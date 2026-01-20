@@ -2,8 +2,7 @@ class AppString {
   AppString._();
 
   static const String appName = "";
-  static const String splashScreenDetails =
-      "Elegance in every treatment, rewards in every visit.";
+  static const String welcometoZena = "Welcome to Zena";
   static const String onBoardingTitle01 = "Your Beauty Journey Starts Here";
   static const String onBoardingTitle02 = "Collect Stars with Every Visit";
   static const String onBoardingTitle03 = "Beauty is Better with Friends";
@@ -25,4 +24,9 @@ class AppString {
   static const String orSigninWith = "or sign in with";
   static const String contineuWithGoggle = "Contineu with Goggle";
   static const String contineuWithApple = "Contineu with Apple";
+  static const String verificationCode = "Verification Code";
+  static const String enter4digitWehaveSentto =
+      "Enter the 4-digit code sent to ";
+  static const String resendCodeIn = "Resend code at : ";
+  static const String didntReceiveIt = "Didn't Receive it?";
 }

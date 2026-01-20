@@ -1,6 +1,7 @@
 class AppImages {
   AppImages._();
 
+  static const String bankgroundImages = "assets/images/Splash Screen.png";
   static const String appImages = "assets/images/appLogo.png";
   static const String onboarding1 = "assets/images/onboarding01.png";
   static const String onboarding2 = "assets/images/onboarding02.png";

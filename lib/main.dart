@@ -3,12 +3,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/api_endpoints/api_endpoints.dart';
+import 'package:zena_app/core/app_bindings/app_bindings.dart';
+import 'package:zena_app/widget/app_device_utils/app_deviceutils.dart';
 import 'package:zena_app/widget/app_observer/app_observer.dart';
 
 import 'core/app_route/app_route.dart';
 import 'utils/app_colors/app_colors.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //! Device Utils
+  DeviceUtils.lockDevicePortrait();
   runApp(const MyApp());
 }
 
@@ -22,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: AppInitialBindings(),
       navigatorObservers: [NavigationObserver()],
       scaffoldMessengerKey: scaffoldMessengerKey,
       useInheritedMediaQuery: true,
@@ -31,25 +37,39 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoute.splashscreen,
       navigatorKey: Get.key,
       theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.primaryColor,
-        inputDecorationTheme: const InputDecorationTheme(
-          fillColor: Colors.white,
-
-          hintStyle: TextStyle(color: Colors.grey, fontStyle: FontStyle.normal),
-        ),
+        useMaterial3: true,
         fontFamily: 'Poppins',
-        // colorScheme: ColorScheme(
-        //   brightness: Brightness.light,
-        //  primary: primary, onPrimary: onPrimary,
-        //   secondary: secondary, onSecondary: onSecondary,
-        //    error: error, onError: onError,
-        //    surface: surface,
-        //    onSurface: onSurface),
+        scaffoldBackgroundColor: AppColor.whiteColor,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColor.primaryColor,
+          primary: AppColor.primaryColor, // button
+          onPrimary: AppColor.darkColor, // text on button
+          secondary: AppColor.textColor, // unselected radio
+          onSurface: AppColor.textColor, //text on card
+          surface: AppColor.secondaryColor, //card color
+          outline: AppColor.textColor, // border color
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.transparent,
+          // border: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(40),
+          //   borderSide: BorderSide(color: AppColor.outlineColor, width: 1.5),
+          // ),
+          hintStyle: TextStyle(
+            color: AppColor.textColor,
+            fontStyle: FontStyle.normal,
+          ), //hint and prefix color
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primaryColor,
+            minimumSize: const Size(80, 50),
+            backgroundColor: AppColor.primaryColor, //button background
+            foregroundColor: Colors.orangeAccent, //loader color
+            textStyle: const TextStyle(color: AppColor.darkColor), //title color
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              side: const BorderSide(width: 1.5, color: Colors.transparent),
+              borderRadius: BorderRadius.circular(40),
             ),
           ),
         ),
@@ -78,7 +98,7 @@ class MyApp extends StatelessWidget {
             refreshToken: () async => '',
             updateTokens:
                 (
-                  data
+                  data,
                 ) async {}, // clearTokens: () => StorageService().removeTokens()
           ),
           child: child,
