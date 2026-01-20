@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:zena_app/screen/auth_screen/otp_screen/otp_screen.dart';
 import 'package:zena_app/screen/onboarding_screen/onboarding_screen.dart';
 
 import '../../screen/auth_screen/login_screen/login_screen.dart';
@@ -10,6 +11,9 @@ class AppRoute {
   static const String splashscreen = '/splashscreen';
   static const String onboardingScreen = "/onboardingScreen";
   static const String loginScreen = "/loginScreen";
+  static const String otpScreen = "/otpScreen";
+
+
 
   static final List<GetPage> appRoutes = [
     GetPage(
@@ -30,7 +34,15 @@ class AppRoute {
     //! Login Screen
     GetPage(
       name: loginScreen,
-      page: () => const LoginScreen(),
+      page: () =>  LoginScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! Otp Screen
+    GetPage(
+      name: otpScreen,
+      page: () => OptScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),

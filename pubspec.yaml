@@ -16,6 +16,7 @@ dependencies:
     git:
       url: https://github.com/kmmuzahid/flutter_core_kit.git
       ref: 1.0.4
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:

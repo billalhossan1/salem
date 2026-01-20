@@ -18,7 +18,7 @@ class AppString {
   static const String beautyRewardsMadeEasy = "Beauty rewards made easy";
   static const String logintoYourAccount = "Login to you account";
   static const String phoneNumber = "Phone Number";
-  static const String contineu = "Contineu";
+  static const String contineu = "Continue";
   static const String byContineuingyouAgreethePrivayPolicy =
       "By continuing you agree to the Privacy Policy.";
   static const String orSigninWith = "or sign in with";

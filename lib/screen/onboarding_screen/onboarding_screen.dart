@@ -25,7 +25,7 @@ class OnboardingScreen extends StatelessWidget {
                     top: 0,
                     left: 0,
                     right: 0,
-                    height: MediaQuery.of(context).size.height * 0.70.h,
+                    height: MediaQuery.of(context).size.height * 0.65.h,
                     child: Image.asset(
                       controller.onboardingData[index]["image"]!,
                       fit: BoxFit.scaleDown,
@@ -34,7 +34,7 @@ class OnboardingScreen extends StatelessWidget {
 
                   // Gradient Overlay for Title Visibility
                   Positioned(
-                    top: MediaQuery.of(context).size.height * 0.47.h,
+                    top: MediaQuery.of(context).size.height * 0.42.h,
                     left: 0,
                     right: 0,
                     height: MediaQuery.of(context).size.height * 0.3.h,
@@ -56,7 +56,7 @@ class OnboardingScreen extends StatelessWidget {
 
                   // Title Text Overlay
                   Positioned(
-                    top: MediaQuery.of(context).size.height * 0.51.h,
+                    top: MediaQuery.of(context).size.height * 0.448.h,
                     left: 20.w,
                     right: 20.w,
                     child: CommonText(
@@ -74,7 +74,7 @@ class OnboardingScreen extends StatelessWidget {
 
           // Bottom Section (Description Card, Indicators, Button)
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.60,
+            top: MediaQuery.of(context).size.height * 0.55.h,
             // bottom: 0,
             left: 0,
             right: 0,
