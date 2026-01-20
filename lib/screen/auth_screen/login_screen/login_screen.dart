@@ -1,6 +1,8 @@
+import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/app_images/app_images.dart';
+import '../../../utils/app_string/app_string.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -18,7 +20,8 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
-          
+
+          Center(child: CommonText(text: AppString.contineu)),
         ],
       ),
     );
