@@ -1,6 +1,6 @@
 name: zena_app
 description: "A new Flutter project."
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -15,7 +15,7 @@ dependencies:
   core_kit:
     git:
       url: https://github.com/kmmuzahid/flutter_core_kit.git
-      ref: eb434d0
+      ref: 047e5dd
 
 dev_dependencies:
   flutter_test:
@@ -24,7 +24,6 @@ dev_dependencies:
   flutter_lints: ^6.0.0
 
 flutter:
-
   uses-material-design: true
   assets:
     - assets/icons/
@@ -33,4 +32,3 @@ flutter:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Regular.ttf
-        
