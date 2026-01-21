@@ -5,6 +5,7 @@ import '../../screen/auth_screen/login_screen/controller/login_screen_controller
 import '../../screen/auth_screen/otp_screen/controller/otp_screen_controller.dart';
 import '../../screen/bottom_nav/controller/bottom_nav_controller.dart';
 import '../../screen/home_screen/controller/home_screen_controller.dart';
+import '../../screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/onboarding_screen/controller/onboarding_screen_controller.dart';
 import '../../screen/salon_screen/controller/salon_screen_controller.dart';
@@ -59,6 +60,12 @@ class AppInitialBindings extends Bindings {
     Get.lazyPut<SalonScreenController>(() {
       AppLogger.screen("Salon Screen Controller");
       return SalonScreenController();
+    }, fenix: true);
+
+    //! Myvisit Screen Controller
+    Get.lazyPut<MyvisitScreenController>(() {
+      AppLogger.screen("Myvisit Screen Controller");
+      return MyvisitScreenController();
     }, fenix: true);
   }
 }
