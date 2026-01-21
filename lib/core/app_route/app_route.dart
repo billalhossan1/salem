@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
+import 'package:zena_app/screen/auth_screen/otp_screen/controller/otp_screen_controller.dart';
 import 'package:zena_app/screen/auth_screen/otp_screen/otp_screen.dart';
 import 'package:zena_app/screen/onboarding_screen/onboarding_screen.dart';
 
 import '../../screen/auth_screen/login_screen/login_screen.dart';
+import '../../screen/bottom_nav/bottom_nav.dart';
 import '../../screen/splash_screen/splash_screen.dart';
 
 class AppRoute {
@@ -12,8 +14,7 @@ class AppRoute {
   static const String onboardingScreen = "/onboardingScreen";
   static const String loginScreen = "/loginScreen";
   static const String otpScreen = "/otpScreen";
-
-
+  static const String bottomNav = "/bottomNav";
 
   static final List<GetPage> appRoutes = [
     GetPage(
@@ -34,7 +35,7 @@ class AppRoute {
     //! Login Screen
     GetPage(
       name: loginScreen,
-      page: () =>  LoginScreen(),
+      page: () => LoginScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),
@@ -43,6 +44,17 @@ class AppRoute {
     GetPage(
       name: otpScreen,
       page: () => OptScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(OtpScreenController());
+      }),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! Bottom Nav
+    GetPage(
+      name: bottomNav,
+      page: () => BottomNav(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),
