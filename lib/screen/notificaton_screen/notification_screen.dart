@@ -1,4 +1,3 @@
-import 'package:core_kit/app_bar/common_app_bar.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,26 +37,28 @@ class NotificationScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
+      body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        itemCount: controller.notifications.length,
-        itemBuilder: (context, index) {
-          final notification = controller.notifications[index];
-          return NotificationCard(
-            iconAsset: notification["icon"]!,
-            title: notification["title"]!,
-            time: notification["time"]!,
-            onMoreTap: () {},
-            iconBackgroundColor: AppColor.secondaryColor,
-            titleColor: AppColor.textColor,
-            timeColor: AppColor.textColor,
-            iconSize: 40.w,
-            titleFontSize: 14.sp,
-            timeFontSize: 12.sp,
-            titleFontWeight: FontWeight.w500,
-            timeFontWeight: FontWeight.w400,
-          );
-        },
+        child: SmartListLoader(
+          itemCount: controller.notifications.length,
+          itemBuilder: (context, index) {
+            final notification = controller.notifications[index];
+            return NotificationCard(
+              iconAsset: notification["icon"]!,
+              title: notification["title"]!,
+              time: notification["time"]!,
+              onMoreTap: () {},
+              iconBackgroundColor: AppColor.secondaryColor,
+              titleColor: AppColor.textColor,
+              timeColor: AppColor.textColor,
+              iconSize: 40.w,
+              titleFontSize: 14.sp,
+              timeFontSize: 12.sp,
+              titleFontWeight: FontWeight.w500,
+              timeFontWeight: FontWeight.w400,
+            );
+          },
+        ),
       ),
     );
   }

@@ -7,6 +7,7 @@ import '../../screen/bottom_nav/controller/bottom_nav_controller.dart';
 import '../../screen/home_screen/controller/home_screen_controller.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/onboarding_screen/controller/onboarding_screen_controller.dart';
+import '../../screen/salon_screen/controller/salon_screen_controller.dart';
 import '../../screen/splash_screen/controller/splash_screen_controller.dart';
 
 class AppInitialBindings extends Bindings {
@@ -52,6 +53,12 @@ class AppInitialBindings extends Bindings {
     Get.lazyPut<NotificationScreenController>(() {
       AppLogger.screen("Notification Screen Controller");
       return NotificationScreenController();
+    }, fenix: true);
+
+    //! Salon Screen Controller
+    Get.lazyPut<SalonScreenController>(() {
+      AppLogger.screen("Salon Screen Controller");
+      return SalonScreenController();
     }, fenix: true);
   }
 }
