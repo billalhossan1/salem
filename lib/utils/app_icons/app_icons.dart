@@ -15,4 +15,6 @@ class AppIcons {
   static const String myVisitIconsSelect = "assets/icons/MyVisitIconSelect.svg";
   static const String profileIconsSelect =
       "assets/icons/ProfileIconsSelect.svg";
+  static const String notificationIcons = "assets/icons/notificationIcons.svg";
+  static const String starIcons = "assets/icons/starIcons.svg";
 }

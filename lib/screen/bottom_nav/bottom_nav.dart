@@ -19,12 +19,12 @@ class BottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<BottomNavController>();
 
-    final List<Widget> screens = const [
+    final List<Widget> screens = [
       HomeScreen(),
-      SalonScreen(),
-      RewardsScreen(),
-      MyvisitScreen(),
-      ProfileScreen(),
+      const SalonScreen(),
+      const RewardsScreen(),
+      const MyvisitScreen(),
+      const ProfileScreen(),
     ];
 
     final List<NavItem> navItems = [
