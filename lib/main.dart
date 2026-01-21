@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Poppins',
-        scaffoldBackgroundColor: AppColor.whiteColor,
+        scaffoldBackgroundColor: AppColor.screenBackgroundColor,
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColor.primaryColor,
           primary: AppColor.primaryColor, // button

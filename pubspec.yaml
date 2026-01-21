@@ -15,8 +15,9 @@ dependencies:
   core_kit:
     git:
       url: https://github.com/kmmuzahid/flutter_core_kit.git
-      ref: 1.0.4
+      ref: 1.0.5
   flutter_svg: ^2.2.3
+  persistent_bottom_nav_bar_v2: ^6.2.0
 
 dev_dependencies:
   flutter_test:

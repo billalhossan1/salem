@@ -2,6 +2,7 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/core/app_route/app_route.dart';
 
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_icons/app_icons.dart';
@@ -75,6 +76,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                       24.height,
                       CommonPhoneNumberTextFiled(
+                        borderColor: AppColor.textColor,
+                        textInputAction: TextInputAction.next,
                         controller: controller.phoneNumberController,
                         countryChange: (country) {
                           controller.onCountryChange(country.countryCode);
@@ -89,7 +92,9 @@ class LoginScreen extends StatelessWidget {
                         titleSize: 18.w,
                         titleWeight: FontWeight.w500,
                         buttonWidth: double.infinity,
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(AppRoute.otpScreen);
+                        },
                       ),
 
                       24.height,
