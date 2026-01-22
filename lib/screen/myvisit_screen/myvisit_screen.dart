@@ -65,16 +65,43 @@ class MyvisitScreen extends StatelessWidget {
             8.height,
 
             Center(
-              child: CommonButton(
-                titleText: "Member Since 2025",
-                buttonColor: AppColor.secondaryColor,
-                titleColor: AppColor.whiteColor,
-                //titleSize: 12.w,
-                titleWeight: FontWeight.w500,
-                // buttonHeight: 30,
-                // buttonWidth: 150.w,
-                buttonRadius: 12.w,
+              child: Container(
+                height: 24.h,
+                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                decoration: ShapeDecoration(
+                  color: AppColor.secondaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 10,
+                  children: [
+                    Text(
+                      'MEMBER SINCE 2025',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              // CommonButton(
+              //   titleText: "Member Since 2025",
+              //   buttonColor: AppColor.secondaryColor,
+              //   titleColor: AppColor.whiteColor,
+              //   //titleSize: 12.w,
+              //   titleWeight: FontWeight.w500,
+              //   // buttonHeight: 30,
+              //   // buttonWidth: 150.w,
+              //   buttonRadius: 12.w,
+              // ),
             ),
             20.height,
             Container(

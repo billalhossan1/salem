@@ -8,6 +8,7 @@ import '../../screen/home_screen/controller/home_screen_controller.dart';
 import '../../screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/onboarding_screen/controller/onboarding_screen_controller.dart';
+import '../../screen/profile_screen/controller/profile_screen_controller.dart';
 import '../../screen/salon_screen/controller/salon_screen_controller.dart';
 import '../../screen/splash_screen/controller/splash_screen_controller.dart';
 
@@ -66,6 +67,12 @@ class AppInitialBindings extends Bindings {
     Get.lazyPut<MyvisitScreenController>(() {
       AppLogger.screen("Myvisit Screen Controller");
       return MyvisitScreenController();
+    }, fenix: true);
+
+    //! Profile Screen Controller
+    Get.lazyPut<ProfileScreenController>(() {
+      AppLogger.screen("Profile Screen Controller");
+      return ProfileScreenController();
     }, fenix: true);
   }
 }
