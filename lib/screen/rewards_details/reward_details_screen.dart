@@ -2,6 +2,7 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/core/app_route/app_route.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
 import 'package:zena_app/utils/app_icons/app_icons.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
@@ -326,7 +327,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                   buttonRadius: 12.w,
                   titleText: "Enjoy Your Reward",
                   onTap: () {
-                    // Handle redemption
+                    Get.toNamed(AppRoute.redemNowScreen);
                   },
                 ),
               ],
