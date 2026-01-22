@@ -11,7 +11,7 @@ import '../../screen/edit_profile/edit_profile_screen.dart';
 import '../../screen/invite_friends/invite_friends_screen.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/notificaton_screen/notification_screen.dart';
-import '../../screen/rewards_details/reward_details_screen.dart';
+import '../../screen/salon_details/salon_details_screen.dart';
 import '../../screen/splash_screen/splash_screen.dart';
 import '../../screen/view_history/view_history_screen.dart';
 
@@ -104,7 +104,7 @@ class AppRoute {
     //! Salon Details Screen
     GetPage(
       name: salonDetailsScreen,
-      page: () => RewardsDetailsScreen(),
+      page: () => SalonDetailsScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),

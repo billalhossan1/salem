@@ -63,18 +63,24 @@ class SalonScreen extends StatelessWidget {
             16.height,
             Expanded(
               child: SmartListLoader(
-                itemCount: 10,
-                itemBuilder: (context, index) => SalonCard(
-                  imageAsset: AppImages.nearBySalon1,
-                  salonName: "Bloom Beauty",
-                  distance: "1.2 km",
-                  description: "Luxury hair & skin care",
-                  statusText: "Points are active",
-                  buttonText: "View Details",
-                  onButtonTap: () {
-                    // Your action
-                  },
-                ),
+                itemCount: controller.salonList.length,
+                itemBuilder: (context, index) {
+                  final salon = controller.salonList[index];
+                  return SalonCard(
+                    imageAsset: salon["image"]!,
+                    salonName: salon["name"]!,
+                    distance: salon["distance"]!,
+                    description: salon["description"]!,
+                    statusText: salon["status"]!,
+                    buttonText: "View Details",
+                    onButtonTap: () {
+                      Get.toNamed(
+                        AppRoute.salonDetailsScreen,
+                        arguments: salon,
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ],

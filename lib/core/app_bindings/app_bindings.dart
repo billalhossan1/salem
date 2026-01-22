@@ -13,6 +13,7 @@ import '../../screen/onboarding_screen/controller/onboarding_screen_controller.d
 import '../../screen/profile_screen/controller/profile_screen_controller.dart';
 import '../../screen/rewards_screen/controller/rewards_screen_controller.dart';
 import '../../screen/rewards_details/controller/reward_details_controller.dart';
+import '../../screen/salon_details/controller/salon_details_controller.dart';
 import '../../screen/salon_screen/controller/salon_screen_controller.dart';
 import '../../screen/splash_screen/controller/splash_screen_controller.dart';
 
@@ -101,6 +102,12 @@ class AppInitialBindings extends Bindings {
     Get.lazyPut<RewardDetailsController>(() {
       AppLogger.screen("Reward Details Controller");
       return RewardDetailsController();
+    }, fenix: true);
+
+    //! SalonDetailsController
+    Get.lazyPut<SalonDetailsController>(() {
+      AppLogger.screen("Salon Details Controller");
+      return SalonDetailsController();
     }, fenix: true);
   }
 }
