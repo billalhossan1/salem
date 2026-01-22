@@ -5,6 +5,8 @@ import 'package:zena_app/screen/onboarding_screen/onboarding_screen.dart';
 
 import '../../screen/auth_screen/login_screen/login_screen.dart';
 import '../../screen/bottom_nav/bottom_nav.dart';
+import '../../screen/edit_profile/edit_profile_screen.dart';
+import '../../screen/invite_friends/invite_friends_screen.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/notificaton_screen/notification_screen.dart';
 import '../../screen/splash_screen/splash_screen.dart';
@@ -18,6 +20,8 @@ class AppRoute {
   static const String otpScreen = "/otpScreen";
   static const String bottomNav = "/bottomNav";
   static const String notificationScreen = "/notificationScreen";
+  static const String editProfileScreen = "/editProfileScreen";
+  static const String inviteFriendsScreen = "/inviteFriendsScreen";
 
   static final List<GetPage> appRoutes = [
     GetPage(
@@ -69,6 +73,24 @@ class AppRoute {
       binding: BindingsBuilder(() {
         Get.put(NotificationScreenController());
       }),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! Edit Profile Screen
+    GetPage(
+      name: editProfileScreen,
+      page: () => EditProfileScreen(),
+
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! Invite Friends Screen
+    GetPage(
+      name: inviteFriendsScreen,
+      page: () => InviteFriendsScreen(),
+
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),

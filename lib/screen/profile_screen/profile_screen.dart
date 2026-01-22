@@ -160,13 +160,25 @@ class ProfileScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
+                  //! Edit Profile
                   ProfileMenuItem(
                     icon: AppIcons.editProfileIcons,
                     title: "Edit Profile",
                     onTap: () {
                       // Navigate to edit profile
+                      Get.toNamed(AppRoute.editProfileScreen);
                     },
                   ),
+                  //! Referal
+                  ProfileMenuItem(
+                    icon: AppIcons.invitePeople,
+                    title: "Invite & Refer Friends",
+                    onTap: () {
+                      // Navigate to referal screen
+                      Get.toNamed(AppRoute.inviteFriendsScreen);
+                    },
+                  ),
+                  //! Language
                   ProfileMenuItem(
                     icon: AppIcons.languageIcons,
                     title: "Language",
@@ -191,6 +203,7 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //! Notification
                   ProfileMenuItem(
                     icon: AppIcons.notificationIconsSelect,
                     title: "Notification",
@@ -205,6 +218,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  //! Privacy and Policy
                   ProfileMenuItem(
                     icon: AppIcons.privacPolicyIcons,
                     title: "Privacy and Policy",
@@ -243,22 +257,22 @@ class ProfileScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
+                  //! WhatsApp
                   ProfileMenuItem(
                     icon: AppIcons.whatAppIcons,
                     title: "WhatsApp",
-                    iconBgColor: const Color(0x1400ADF6),
                     onTap: () {},
                   ),
+                  //! Email Contact
                   ProfileMenuItem(
                     icon: AppIcons.emailUs,
                     title: "Email Contact",
-                    iconBgColor: const Color(0x1400ADF6),
                     onTap: () {},
                   ),
+                  //! Contact Form
                   ProfileMenuItem(
                     icon: AppIcons.contactForm,
                     title: "Contact Form",
-                    iconBgColor: const Color(0x1400ADF6),
                     showDivider: false,
                     onTap: () {},
                   ),

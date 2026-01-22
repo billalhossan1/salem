@@ -22,14 +22,15 @@ class AppIcons {
   static const String searchIcons = "assets/icons/searchIcons.svg";
   static const String referalStatusIcons =
       "assets/icons/referalStatusIcons.svg";
-  static const String contactForm = "assets/icons/contactForm.svg";
+  static const String contactForm = "assets/icons/contactFormsIcons.svg";
   static const String editProfileIcons = "assets/icons/EditProfileIcons.svg";
-  static const String emailUs = "assets/icons/emailUs.svg";
+  static const String emailUs = "assets/icons/emailusIcons.svg";
   static const String invitePeople = "assets/icons/invitePeople.svg";
   static const String languageIcons = "assets/icons/language.svg";
   static const String linkIcons = "assets/icons/link-square-icon.svg";
   static const String notificationIconsSelect =
       "assets/icons/Notification-Icon.svg";
   static const String privacPolicyIcons = "assets/icons/privacyPolicyIcons.svg";
-  static const String whatAppIcons = "assets/icons/whatsAppIcons.svg";
+  static const String whatAppIcons = "assets/icons/whatappIcons.svg";
+  static const String editProfileImages = "assets/icons/Edit Icon.svg";
 }
