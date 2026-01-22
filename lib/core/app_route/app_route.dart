@@ -9,6 +9,7 @@ import '../../screen/edit_profile/edit_profile_screen.dart';
 import '../../screen/invite_friends/invite_friends_screen.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/notificaton_screen/notification_screen.dart';
+import '../../screen/rewards_details/reward_details_screen.dart';
 import '../../screen/splash_screen/splash_screen.dart';
 
 class AppRoute {
@@ -22,6 +23,7 @@ class AppRoute {
   static const String notificationScreen = "/notificationScreen";
   static const String editProfileScreen = "/editProfileScreen";
   static const String inviteFriendsScreen = "/inviteFriendsScreen";
+  static const String salonDetailsScreen = "/salonDetailsScreen";
 
   static final List<GetPage> appRoutes = [
     GetPage(
@@ -90,7 +92,14 @@ class AppRoute {
     GetPage(
       name: inviteFriendsScreen,
       page: () => InviteFriendsScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
 
+    //! Salon Details Screen
+    GetPage(
+      name: salonDetailsScreen,
+      page: () => RewardsDetailsScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),

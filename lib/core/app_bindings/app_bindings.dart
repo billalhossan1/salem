@@ -11,6 +11,8 @@ import '../../screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/onboarding_screen/controller/onboarding_screen_controller.dart';
 import '../../screen/profile_screen/controller/profile_screen_controller.dart';
+import '../../screen/rewards_screen/controller/rewards_screen_controller.dart';
+import '../../screen/rewards_details/controller/reward_details_controller.dart';
 import '../../screen/salon_screen/controller/salon_screen_controller.dart';
 import '../../screen/splash_screen/controller/splash_screen_controller.dart';
 
@@ -87,6 +89,18 @@ class AppInitialBindings extends Bindings {
     Get.lazyPut<InviteFriendsController>(() {
       AppLogger.screen("Invite Friends Controller");
       return InviteFriendsController();
+    }, fenix: true);
+
+    //! RewardsScreenController
+    Get.lazyPut<RewardsScreenController>(() {
+      AppLogger.screen("Rewards Screen Controller");
+      return RewardsScreenController();
+    }, fenix: true);
+
+    //! SalonDetailsController
+    Get.lazyPut<RewardDetailsController>(() {
+      AppLogger.screen("Reward Details Controller");
+      return RewardDetailsController();
     }, fenix: true);
   }
 }
