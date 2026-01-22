@@ -33,4 +33,5 @@ class AppIcons {
   static const String privacPolicyIcons = "assets/icons/privacyPolicyIcons.svg";
   static const String whatAppIcons = "assets/icons/whatappIcons.svg";
   static const String editProfileImages = "assets/icons/Edit Icon.svg";
+  static const String shareReferalLink = "assets/icons/share-08.svg";
 }
