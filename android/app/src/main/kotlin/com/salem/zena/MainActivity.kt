@@ -1,4 +1,4 @@
-package com.example.zena_app
+package com.salem.zena
 
 import io.flutter.embedding.android.FlutterActivity
 
