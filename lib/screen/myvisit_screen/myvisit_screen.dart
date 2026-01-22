@@ -298,6 +298,178 @@ class MyvisitScreen extends StatelessWidget {
               text: "Referal Status",
               fontSize: 20,
               fontWeight: FontWeight.w500,
+              textColor: AppColor.darkColor,
+            ),
+
+            16.height,
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: ShapeDecoration(
+                color: AppColor.secondaryColor.withValues(alpha: 0.2),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                shadows: [
+                  BoxShadow(
+                    color: AppColor.secondaryColor.withValues(alpha: 0.03),
+                    blurRadius: 6,
+                    offset: Offset(0, 2),
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: AppColor.secondaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(
+                      AppIcons.referalStatusIcons,
+                      width: 24,
+                      height: 24,
+                    ),
+                  ),
+                  8.width,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CommonText(
+                        text: "Successful Referrals:2/3",
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        textColor: AppColor.darkColor,
+                      ),
+                      CommonText(
+                        text: "One more for a bonus!",
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        textColor: AppColor.successColor,
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Column(
+                    children: [
+                      CommonText(
+                        text: "+60",
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                        textColor: AppColor.secondaryColor,
+                      ),
+                      CommonText(
+                        text: "Point Earned",
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        textColor: AppColor.textColor,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            20.height,
+            CommonText(
+              text: "Current Reward",
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              textColor: AppColor.darkColor,
+            ),
+            16.height,
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                shadows: [
+                  BoxShadow(
+                    color: Color(0x113A3A3A),
+                    blurRadius: 16,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Image.asset(
+                    AppImages.myvisitImages,
+                    width: 60.w,
+                    height: 60.h,
+                  ),
+                  8.width,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CommonText(
+                        text: "Manicure Discount",
+                        fontSize: 16.w,
+                        fontWeight: FontWeight.w500,
+                        textColor: AppColor.darkColor,
+                      ),
+                      CommonText(
+                        text: "Redeemed on Oct 24, 2023",
+                        fontSize: 13.w,
+                        fontWeight: FontWeight.w400,
+                        textColor: AppColor.textColor,
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Column(
+                    children: [
+                      Container(
+                        height: 26.h,
+                        padding: const EdgeInsets.all(4),
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFFE86DAC),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              AppIcons.starIcons,
+                              width: 20.w,
+                              height: 20.h,
+                            ),
+                            CommonText(
+                              text: "30+",
+                              fontSize: 18.w,
+                              fontWeight: FontWeight.w400,
+                              textColor: AppColor.screenBackgroundColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                      8.height,
+                      Container(
+                        height: 24.h,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        decoration: ShapeDecoration(
+                          color: const Color(0x1E3FBA72),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                        child: CommonText(
+                          text: "Active",
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                          textColor: AppColor.successColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

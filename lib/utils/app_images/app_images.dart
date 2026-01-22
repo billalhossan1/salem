@@ -18,4 +18,5 @@ class AppImages {
   static const String rewardImage2 = "assets/images/rewardImage02.png";
   static const String salonDetails = "assets/images/salonDetails.png";
   static const String invitesImages = "assets/images/invitesImages.png";
+  static const String myvisitImages = "assets/images/myvisitPhoto.png";
 }
