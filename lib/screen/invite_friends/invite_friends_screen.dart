@@ -68,17 +68,18 @@ class InviteFriendsScreen extends StatelessWidget {
               onTap: () {},
               buttonRadius: 12.w,
               buttonWidth: double.infinity,
-              buttonHeight: 48.h,
+              // buttonHeight: 48.h,
             ),
             24.height,
             CommonButton(
               titleText: "View History",
               onTap: () {},
               buttonRadius: 12.w,
+              // titleSize: 20,
               buttonWidth: double.infinity,
               buttonColor: AppColor.secondaryColor100,
               borderColor: AppColor.errorColor,
-              buttonHeight: 48.h,
+              // buttonH/* eight: 48.h, */
             ),
             30.height,
             Row(
