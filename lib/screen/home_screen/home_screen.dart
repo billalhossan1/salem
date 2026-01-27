@@ -53,90 +53,186 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             10.height,
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: ShapeDecoration(
-                color: AppColor.secondaryColor.withValues(alpha: 0.2),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                shadows: [
-                  BoxShadow(
-                    color: AppColor.secondaryColor.withValues(alpha: 0.03),
-                    blurRadius: 6,
-                    offset: Offset(0, 2),
-                    spreadRadius: 0,
+
+            //! Treat You Self More.
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoute.howItWorkPointsScreen);
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: ShapeDecoration(
+                  color: AppColor.secondaryColor.withValues(alpha: 0.2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CommonText(
-                    text: "You are getting closer!",
-                    fontSize: 16.w,
-                    fontWeight: FontWeight.w600,
-                    textColor: AppColor.darkColor,
-                  ),
-                  12.height,
-                  Row(
-                    children: [
-                      SvgPicture.asset(AppIcons.starIcons),
-                      6.width,
-                      CommonText(
-                        text: "120",
-                        fontSize: 24.w,
-                        fontWeight: FontWeight.w600,
-                        textColor: AppColor.darkColor,
-                      ),
-                      3.width,
-                      CommonText(
-                        text: "Points Collected",
-                        fontSize: 16.w,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
-                    ],
-                  ),
-                  16.height,
-                  Container(
-                    height: 12.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: AppColor.whiteColor,
+                  shadows: [
+                    BoxShadow(
+                      color: AppColor.secondaryColor.withValues(alpha: 0.03),
+                      blurRadius: 6,
+                      offset: Offset(0, 2),
+                      spreadRadius: 0,
                     ),
-                    child: FractionallySizedBox(
-                      alignment: Alignment.centerLeft,
-                      widthFactor: 0.7, // 70% progress
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: AppColor.secondaryColor,
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CommonText(
+                      text: "Treat yourself more 💕",
+                      fontSize: 16.w,
+                      fontWeight: FontWeight.w600,
+                      textColor: AppColor.darkColor,
+                    ),
+                    4.height,
+                    CommonText(
+                      text: "Every visit = 100 points",
+                      fontSize: 12.w,
+                      fontWeight: FontWeight.w400,
+                      textColor: AppColor.textColor,
+                    ),
+                    12.height,
+                    Row(
+                      children: [
+                        SvgPicture.asset(AppIcons.starIcons),
+                        6.width,
+                        CommonText(
+                          text: "300/400",
+                          fontSize: 24.w,
+                          fontWeight: FontWeight.w600,
+                          textColor: AppColor.darkColor,
+                        ),
+                      ],
+                    ),
+                    16.height,
+                    Container(
+                      height: 12.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: AppColor.whiteColor,
+                      ),
+                      child: FractionallySizedBox(
+                        alignment: Alignment.centerLeft,
+                        widthFactor: 0.7, // 70% progress
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColor.secondaryColor,
+                          ),
                         ),
                       ),
                     ),
+                    12.height,
+                    CommonText(
+                      text: "Just a few more visits to unlock your reward ✨",
+                      fontSize: 12.w,
+                      fontWeight: FontWeight.w400,
+                      textColor: AppColor.textColor,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            16.height,
+
+            //! Invite Friends.
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoute.howItWorkInviteScreen);
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: ShapeDecoration(
+                  color: const Color(0xFFB08AB1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  12.height,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CommonText(
-                        text: "Just 80 points to go 💖",
-                        fontSize: 12.w,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
-                      CommonText(
-                        text: "Your reward is waiting ✨",
-                        fontSize: 12.w,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
-                    ],
-                  ),
-                ],
+                  shadows: [
+                    BoxShadow(
+                      color: Color(0x4C9C6BC3),
+                      blurRadius: 6,
+                      offset: Offset(0, 2),
+                      spreadRadius: 0,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CommonText(
+                      text: "Invite 3 Friends",
+                      fontSize: 16.w,
+                      fontWeight: FontWeight.w500,
+                      textColor: AppColor.screenBackgroundColor,
+                    ),
+                    12.height,
+                    Row(
+                      children: [
+                        SvgPicture.asset(AppIcons.starIcons),
+                        08.width,
+                        CommonText(
+                          text: "2/3",
+                          fontSize: 24.w,
+                          fontWeight: FontWeight.w500,
+                          textColor: AppColor.screenBackgroundColor,
+                        ),
+                        06.width,
+                        CommonText(
+                          text: "Points",
+                          fontSize: 20.w,
+                          fontWeight: FontWeight.w500,
+                          textColor: AppColor.screenBackgroundColor,
+                        ),
+                      ],
+                    ),
+                    32.height,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 100.w,
+                          height: 12.h,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFFF4BDE2),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 100.w,
+                          height: 12.h,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFFF4BDE2),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 100.w,
+                          height: 12.h,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFFFFFFFF),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    12.height,
+                    CommonText(
+                      text: "Share the beauty, share the gift 💗",
+                      fontSize: 12.w,
+                      fontWeight: FontWeight.w400,
+                      textColor: AppColor.screenBackgroundColor,
+                    ),
+                  ],
+                ),
               ),
             ),
 
@@ -191,7 +287,7 @@ class HomeScreen extends StatelessWidget {
 
             12.height,
             SizedBox(
-              height: 300.h,
+              height: 310.h,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: controller.exclusiveOffers.length,

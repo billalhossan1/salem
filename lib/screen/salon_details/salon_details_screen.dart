@@ -275,6 +275,15 @@ class SalonDetailsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        12.height,
+                        CommonButton(
+                          buttonWidth: double.infinity,
+                          buttonRadius: 12,
+                          titleText: "Get Direction",
+                          prefix: SvgPicture.asset(AppIcons.getDirection),
+                          buttonColor: AppColor.screenBackgroundColor,
+                          borderColor: AppColor.textColor,
+                        ),
                         24.height,
 
                         //! Active Points Banner

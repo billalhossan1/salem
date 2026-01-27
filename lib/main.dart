@@ -63,10 +63,13 @@ class MyApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            minimumSize: const Size(80, 50),
+            minimumSize: const Size(80, 48),
             backgroundColor: AppColor.primaryColor, //button background
             foregroundColor: Colors.orangeAccent, //loader color
-            textStyle: const TextStyle(color: AppColor.darkColor), //title color
+            textStyle: const TextStyle(
+              color: AppColor.darkColor,
+              fontSize: 16,
+            ), //title color
             shape: RoundedRectangleBorder(
               side: const BorderSide(width: 1.5, color: Colors.transparent),
               borderRadius: BorderRadius.circular(40),
@@ -77,13 +80,14 @@ class MyApp extends StatelessWidget {
       getPages: AppRoute.appRoutes,
       builder: (context, child) {
         return CoreKit.init(
+          scaffoldMessangeKey: scaffoldMessengerKey,
           back: () {
             Get.back();
           },
           designSize: const Size(428, 926),
           imageBaseUrl: ApiEndpoints.imageUrl,
           backButton: Icon(Icons.arrow_back_ios, color: Colors.red),
-          navigatorKey: Get.key,
+          //navigatorKey: Get.key,
           dioServiceConfig: DioServiceConfig(
             baseUrl: ApiEndpoints.baseUrl,
             refreshTokenEndpoint: ApiEndpoints.refreshToken,
