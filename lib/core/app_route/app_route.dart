@@ -8,6 +8,8 @@ import 'package:zena_app/screen/redem_now/redem_now_screen.dart';
 import '../../screen/auth_screen/login_screen/login_screen.dart';
 import '../../screen/bottom_nav/bottom_nav.dart';
 import '../../screen/edit_profile/edit_profile_screen.dart';
+import '../../screen/how_it_work_invite/how_it_work_invite.dart';
+import '../../screen/how_it_work_points/how_it_work_points.dart';
 import '../../screen/invite_friends/invite_friends_screen.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/notificaton_screen/notification_screen.dart';
@@ -31,6 +33,8 @@ class AppRoute {
   static const String rewardDetailsScreen = "/rewardDetailsScreen";
   static const String redemNowScreen = "/redemNowScreen";
   static const String viewHistoryScreen = "/viewHistoryScreen";
+  static const String howItWorkInviteScreen = "/howItWorkInviteScreen";
+  static const String howItWorkPointsScreen = "/howItWorkPointsScreen";
 
   static final List<GetPage> appRoutes = [
     GetPage(
@@ -131,6 +135,22 @@ class AppRoute {
     GetPage(
       name: viewHistoryScreen,
       page: () => ViewHistoryScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! How It Work Invite Screen
+    GetPage(
+      name: howItWorkInviteScreen,
+      page: () => HowItWorkInviteScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! How It Work Points Screen
+    GetPage(
+      name: howItWorkPointsScreen,
+      page: () => HowItWorkPointsScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),
