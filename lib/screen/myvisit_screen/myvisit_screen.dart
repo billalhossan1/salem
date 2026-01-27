@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 
+import 'package:zena_app/screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
@@ -13,6 +14,9 @@ class MyvisitScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MyvisitScreenController controller = Get.put(
+      MyvisitScreenController(),
+    );
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: CommonAppBar(
@@ -92,16 +96,6 @@ class MyvisitScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // CommonButton(
-              //   titleText: "Member Since 2025",
-              //   buttonColor: AppColor.secondaryColor,
-              //   titleColor: AppColor.whiteColor,
-              //   //titleSize: 12.w,
-              //   titleWeight: FontWeight.w500,
-              //   // buttonHeight: 30,
-              //   // buttonWidth: 150.w,
-              //   buttonRadius: 12.w,
-              // ),
             ),
             20.height,
             Container(
@@ -320,6 +314,233 @@ class MyvisitScreen extends StatelessWidget {
                 ),
               ],
             ),
+            12.height,
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                shadows: [
+                  BoxShadow(
+                    color: Color(0x113A3A3A),
+                    blurRadius: 16,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  // Header
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE7FEF0),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "Salon Name",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Color(0xFF333333),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "Date",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Color(0xFF333333),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "Status",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Color(0xFF333333),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "Point\nEarned",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Color(0xFF333333),
+                            ),
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  // Data Rows
+                  Obx(() {
+                    if (controller.currentVisits.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text("No visits found"),
+                      );
+                    }
+                    return Column(
+                      children: controller.currentVisits.map((visit) {
+                        return Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8.0,
+                                horizontal: 8,
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      visit.salonName,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xFF333333),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      visit.date,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xFF6E6E6E),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      visit.status,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: visit.status == 'Pending'
+                                            ? Colors.orange
+                                            : Color(0xFF6E6E6E),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      visit.points,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: AppColor.successColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Divider(color: Color(0xFFEEEEEE), height: 1),
+                            SizedBox(height: 8),
+                          ],
+                        );
+                      }).toList(),
+                    );
+                  }),
+                  SizedBox(height: 12),
+                  // Pagination Controls
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () => controller.previousPage(),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFEEEEEE),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.chevron_left,
+                                size: 16,
+                                color: Color(0xFF333333),
+                              ),
+                              SizedBox(width: 4),
+                              Text(
+                                "Previous",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xFF333333),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => controller.nextPage(),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFA5D6A7),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Next",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xFF333333),
+                                ),
+                              ),
+                              SizedBox(width: 4),
+                              Icon(
+                                Icons.chevron_right,
+                                size: 16,
+                                color: Color(0xFF333333),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
             20.height,
             CommonText(
               text: "Referal Status",

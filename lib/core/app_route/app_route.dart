@@ -11,6 +11,7 @@ import '../../screen/edit_profile/edit_profile_screen.dart';
 import '../../screen/invite_friends/invite_friends_screen.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/notificaton_screen/notification_screen.dart';
+import '../../screen/rewards_details/reward_details_screen.dart';
 import '../../screen/salon_details/salon_details_screen.dart';
 import '../../screen/splash_screen/splash_screen.dart';
 import '../../screen/view_history/view_history_screen.dart';
@@ -27,6 +28,7 @@ class AppRoute {
   static const String editProfileScreen = "/editProfileScreen";
   static const String inviteFriendsScreen = "/inviteFriendsScreen";
   static const String salonDetailsScreen = "/salonDetailsScreen";
+  static const String rewardDetailsScreen = "/rewardDetailsScreen";
   static const String redemNowScreen = "/redemNowScreen";
   static const String viewHistoryScreen = "/viewHistoryScreen";
 
@@ -105,6 +107,14 @@ class AppRoute {
     GetPage(
       name: salonDetailsScreen,
       page: () => SalonDetailsScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! Reward Details Screen
+    GetPage(
+      name: rewardDetailsScreen,
+      page: () => RewardsDetailsScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),

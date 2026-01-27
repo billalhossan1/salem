@@ -171,7 +171,7 @@ class RewardsScreen extends StatelessWidget {
                     reward: reward,
                     onTap: () {
                       if (reward.isRewardReady) {
-                        Get.toNamed(AppRoute.salonDetailsScreen);
+                        Get.toNamed(AppRoute.rewardDetailsScreen);
                       } else {
                         Get.toNamed(AppRoute.viewHistoryScreen);
                       }
