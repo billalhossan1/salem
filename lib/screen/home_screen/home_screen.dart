@@ -8,6 +8,7 @@ import 'package:zena_app/widget/app_custom_cards/home_screen_card.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
+import '../../utils/app_images/app_images.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -19,7 +20,12 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: CommonAppBar(
         title: "Home",
-        hideBack: true,
+        // leading: CommonImage(
+        //   src: AppImages.appImages,
+        //   height: 30.h,
+        //   width: 70.h,
+        // ),
+        //hideBack: true,
         actions: [
           GestureDetector(
             onTap: () {
