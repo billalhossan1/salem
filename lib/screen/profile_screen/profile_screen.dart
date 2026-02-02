@@ -9,6 +9,7 @@ import 'package:zena_app/widget/app_custom_cards/profile_menu_item.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
+import '../../widget/app_custom_appbar/app_custom_appbar.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -18,34 +19,14 @@ class ProfileScreen extends StatelessWidget {
     final controller = Get.find<ProfileScreenController>();
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
-      appBar: CommonAppBar(
+      appBar: AppCustomAppbar(
         title: "Profile",
-        hideBack: true,
+        leadingType: LeadingType.logo,
+        centerTitle: true,
         actions: [
-          GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoute.notificationScreen);
-            },
-            child: Container(
-              width: 48.w,
-              height: 48.h,
-              margin: EdgeInsets.only(right: 16.w),
-              decoration: ShapeDecoration(
-                color: const Color(0xFFE7FEF0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Badge(
-                  label: Text('3'), // Show notification count
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  child: SvgPicture.asset(AppIcons.notificationIcons),
-                ),
-              ),
-            ),
+          NotificationActionButton(
+            notificationCount: 3,
+            onTap: () => Get.toNamed(AppRoute.notificationScreen),
           ),
         ],
       ),
