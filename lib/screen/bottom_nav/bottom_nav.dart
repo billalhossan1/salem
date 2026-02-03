@@ -36,7 +36,7 @@ class BottomNav extends StatelessWidget {
       NavItem(
         selectedIcon: AppIcons.salonIconsSelect,
         unselectedIcon: AppIcons.salonIcons,
-        label: 'Salon',
+        label: 'Salons',
       ),
       NavItem(
         selectedIcon: AppIcons.rewardsIconsSelect,
@@ -46,7 +46,7 @@ class BottomNav extends StatelessWidget {
       NavItem(
         selectedIcon: AppIcons.myVisitIconsSelect,
         unselectedIcon: AppIcons.myVisitIcons,
-        label: 'My Visit',
+        label: 'My Visits',
       ),
       NavItem(
         selectedIcon: AppIcons.profileIconsSelect,

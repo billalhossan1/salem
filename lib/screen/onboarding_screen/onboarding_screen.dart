@@ -20,16 +20,30 @@ class OnboardingScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return Stack(
                 children: [
-                  // Image Section
+                  // Image Section with Animation
                   Positioned(
                     top: 0,
                     left: 0,
                     right: 0,
                     height: MediaQuery.of(context).size.height * 0.65.h,
-                    child: Image.asset(
-                      controller.onboardingData[index]["image"]!,
-                      fit: BoxFit.scaleDown,
-                    ),
+                    child: Obx(() {
+                      final isCurrent = controller.currentPage.value == index;
+                      return AnimatedContainer(
+                        duration: const Duration(milliseconds: 600),
+                        curve: Curves.easeOutBack,
+                        transform: Matrix4.identity()
+                          ..scale(isCurrent ? 1.0 : 0.8),
+                        transformAlignment: Alignment.center,
+                        child: AnimatedOpacity(
+                          duration: const Duration(milliseconds: 600),
+                          opacity: isCurrent ? 1.0 : 0.5,
+                          child: Image.asset(
+                            controller.onboardingData[index]["image"]!,
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                      );
+                    }),
                   ),
 
                   // Gradient Overlay for Title Visibility
@@ -94,13 +108,33 @@ class OnboardingScreen extends StatelessWidget {
                       color: const Color(0xFFECF6F1), // Light mint green
                       borderRadius: BorderRadius.circular(24),
                     ),
-                    child: CommonText(
-                      text: controller.onboardingData[index]["subtitle"]!,
-                      fontSize: 14.w,
-                      fontWeight: FontWeight.w400,
-                      textAlign: TextAlign.center,
-                      textColor: AppColor.darkColor,
-                      maxLines: 3,
+                    // Added AnimatedSwitcher for smooth text transition
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 500),
+                      transitionBuilder:
+                          (Widget child, Animation<double> animation) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(0.0, 0.2),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          ),
+                        );
+                      },
+                      child: CommonText(
+                        key: ValueKey<String>(
+                          controller.onboardingData[index]["subtitle"]!,
+                        ),
+                        text: controller.onboardingData[index]["subtitle"]!,
+                        fontSize: 14.w,
+                        fontWeight: FontWeight.w400,
+                        textAlign: TextAlign.center,
+                        textColor: AppColor.darkColor,
+                        maxLines: 3,
+                      ),
                     ),
                   );
                 }),
@@ -133,36 +167,57 @@ class OnboardingScreen extends StatelessWidget {
 
                 30.height,
 
-                // Next Button
-                GestureDetector(
-                  onTap: controller.nextPage,
-                  child: Container(
-                    height: 72.h,
-                    width: 72.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: AppColor.primaryColor,
-                        width: 1.5,
+                // Next Button with Progress Animation
+                Obx(() {
+                  double progress = (controller.currentPage.value + 1) /
+                      controller.onboardingData.length;
+                  return GestureDetector(
+                    onTap: controller.nextPage,
+                    child: SizedBox(
+                      height: 72.h,
+                      width: 72.w,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          // Animated Progress Indicator
+                          SizedBox(
+                            height: 72.h,
+                            width: 72.w,
+                            child: TweenAnimationBuilder<double>(
+                              tween: Tween<double>(begin: 0, end: progress),
+                              duration: const Duration(milliseconds: 500),
+                              builder: (context, value, child) {
+                                return CircularProgressIndicator(
+                                  value: value,
+                                  strokeWidth: 2,
+                                  backgroundColor:
+                                      AppColor.primaryColor.withOpacity(0.2),
+                                  valueColor: const AlwaysStoppedAnimation<Color>(
+                                    AppColor.primaryColor,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          // Button Content
+                          Container(
+                            height: 58.h,
+                            width: 58.w,
+                            decoration: const BoxDecoration(
+                              color: AppColor.primaryColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.arrow_forward,
+                              color: AppColor.darkColor,
+                              size: 24,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    child: Center(
-                      child: Container(
-                        height: 58.h,
-                        width: 58.w,
-                        decoration: const BoxDecoration(
-                          color: AppColor.primaryColor,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.arrow_forward,
-                          color: AppColor.darkColor,
-                          size: 24,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                  );
+                }),
 
                 40.height,
               ],

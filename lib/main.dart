@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
       getPages: AppRoute.appRoutes,
       builder: (context, child) {
         return CoreKit.init(
-          scaffoldMessangeKey: scaffoldMessengerKey,
+          navigatorKey: Get.key,
           back: () {
             Get.back();
           },

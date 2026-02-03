@@ -189,7 +189,7 @@ class ProfileScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         CommonText(
-                          text: "En",
+                          text: "EN",
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           textColor: AppColor.darkColor,
@@ -221,7 +221,7 @@ class ProfileScreen extends StatelessWidget {
                   //! Privacy and Policy
                   ProfileMenuItem(
                     icon: AppIcons.privacPolicyIcons,
-                    title: "Privacy and Policy",
+                    title: "Privacy Policy",
                     showDivider: false,
                     onTap: () {
                       // Navigate to privacy policy
