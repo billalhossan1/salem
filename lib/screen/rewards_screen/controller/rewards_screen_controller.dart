@@ -11,7 +11,6 @@ class RewardModel {
   final bool isRewardReady;
   final String buttonText;
   final String? footerText;
-  final String category;
 
   RewardModel({
     required this.image,
@@ -23,14 +22,11 @@ class RewardModel {
     required this.isRewardReady,
     required this.buttonText,
     this.footerText,
-    required this.category,
   });
 }
 
 class RewardsScreenController extends GetxController {
   //! Variables
-  RxInt selectedCategoryIndex = 0.obs;
-  var categoryList = ["All", "Hair", "Nails", "Skincare", "Makeup"];
 
   var rewardList = <RewardModel>[
     RewardModel(
@@ -43,7 +39,6 @@ class RewardsScreenController extends GetxController {
       isRewardReady: true,
       buttonText: "Use my points",
       footerText: "Ready for a free treatment",
-      category: "Hair",
     ),
     RewardModel(
       image: AppImages.rewardImage2,
@@ -54,7 +49,6 @@ class RewardsScreenController extends GetxController {
       statusText: "15 POINTS REMAINING",
       isRewardReady: false,
       buttonText: "View History",
-      category: "Skincare",
     ),
     RewardModel(
       image: AppImages.salonDetails,
@@ -65,7 +59,6 @@ class RewardsScreenController extends GetxController {
       statusText: "15 POINTS REMAINING",
       isRewardReady: false,
       buttonText: "View History",
-      category: "Skincare",
     ),
     RewardModel(
       image: AppImages.rewardImage1,
@@ -76,7 +69,6 @@ class RewardsScreenController extends GetxController {
       statusText: "30 POINTS REMAINING",
       isRewardReady: false,
       buttonText: "View History",
-      category: "Nails",
     ),
     RewardModel(
       image: AppImages.rewardImage2,
@@ -87,21 +79,6 @@ class RewardsScreenController extends GetxController {
       statusText: "5 POINTS REMAINING",
       isRewardReady: false,
       buttonText: "View History",
-      category: "Makeup",
     ),
   ].obs;
-
-  List<RewardModel> get filteredRewardList {
-    if (selectedCategoryIndex.value == 0) {
-      return rewardList;
-    }
-    String selectedCategory = categoryList[selectedCategoryIndex.value];
-    return rewardList
-        .where((reward) => reward.category == selectedCategory)
-        .toList();
-  }
-
-  void selectCategory(int index) {
-    selectedCategoryIndex.value = index;
-  }
 }

@@ -7,11 +7,7 @@ import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
 import '../../utils/app_images/app_images.dart';
 
-enum LeadingType {
-  logo, // Show app logo/image
-  back, // Show back button
-  none, // No leading widget
-}
+enum LeadingType { logo, back, none }
 
 class AppCustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -81,8 +77,8 @@ class AppCustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.only(left: 16.w, top: 8.h, bottom: 8.h),
       child: CommonImage(
         src: AppImages.appImages,
-        height: 24.h,
-        width: 60.w,
+        // height: 24.h,
+        // width: 60.w,
         //fit: BoxFit.contain,
       ),
     );

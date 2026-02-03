@@ -198,7 +198,7 @@ class OptScreen extends StatelessWidget {
                   titleText: AppString.next,
                   titleSize: 18.w,
                   titleWeight: FontWeight.w500,
-                  titleColor: AppColor.textColor,
+                  titleColor: AppColor.charocalColor,
                   onTap: () {
                     Get.offAllNamed(AppRoute.bottomNav);
                   },

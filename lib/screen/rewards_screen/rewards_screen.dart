@@ -86,68 +86,17 @@ class RewardsScreen extends StatelessWidget {
               ),
             ),
 
-            //! Category Section
-            35.height,
-            SizedBox(
-              height: 40.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Obx(
-                    () => GestureDetector(
-                      onTap: () {
-                        controller.selectCategory(index);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20.w,
-                          vertical: 8.h,
-                        ),
-                        decoration: ShapeDecoration(
-                          color: controller.selectedCategoryIndex.value == index
-                              ? AppColor.primaryColor
-                              : Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              color:
-                                  controller.selectedCategoryIndex.value ==
-                                      index
-                                  ? AppColor.primaryColor
-                                  : AppColor.textColor.withValues(alpha: 0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        child: Center(
-                          child: CommonText(
-                            text: controller.categoryList[index],
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                            textColor:
-                                controller.selectedCategoryIndex.value == index
-                                ? AppColor.darkColor
-                                : AppColor.textColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => 12.width,
-                itemCount: controller.categoryList.length,
-              ),
-            ),
+            //! Category Section removed
             24.height,
             //! Reward List
             Obx(
               () => ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.filteredRewardList.length,
+                itemCount: controller.rewardList.length,
                 separatorBuilder: (context, index) => 24.height,
                 itemBuilder: (context, index) {
-                  final reward = controller.filteredRewardList[index];
+                  final reward = controller.rewardList[index];
                   return RewardCard(
                     reward: reward,
                     onTap: () {

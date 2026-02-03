@@ -21,7 +21,7 @@ class MyvisitScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
-        title: "My Visit",
+        title: "My Visits",
         leadingType: LeadingType.logo,
         centerTitle: true,
         actions: [
@@ -103,7 +103,7 @@ class MyvisitScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CommonText(
-                        text: "Total Point : 120",
+                        text: "Total Points : 120",
                         fontSize: 16.w,
                         fontWeight: FontWeight.w600,
                         textColor: AppColor.darkColor,
@@ -296,6 +296,79 @@ class MyvisitScreen extends StatelessWidget {
               ],
             ),
             12.height,
+            CommonTextField(
+              validationType: ValidationType.validateFullName,
+              prefixIcon: SvgPicture.asset(AppIcons.searchIcons),
+              backgroundColor: AppColor.screenBackgroundColor,
+              hintText: "Search",
+              borderColor: AppColor.textColor.withValues(alpha: 0.2),
+              onChanged: (val) => controller.updateSearchText(val),
+            ),
+            12.height,
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: AppColor.textColor.withValues(alpha: 0.2),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Status",
+                          style: TextStyle(color: AppColor.textColor),
+                        ),
+                        Icon(
+                          Icons.chevron_right,
+                          color: AppColor.textColor,
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                12.width,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => controller.toggleDateSort(),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 12,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: AppColor.textColor.withValues(alpha: 0.2),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Date",
+                            style: TextStyle(color: AppColor.textColor),
+                          ),
+                          Icon(
+                            Icons.calendar_today_outlined,
+                            color: AppColor.textColor,
+                            size: 18,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            12.height,
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(12),
@@ -362,7 +435,7 @@ class MyvisitScreen extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            "Point\nEarned",
+                            "Points Earned",
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 12,
@@ -377,154 +450,93 @@ class MyvisitScreen extends StatelessWidget {
                   SizedBox(height: 16),
                   // Data Rows
                   Obx(() {
-                    if (controller.currentVisits.isEmpty) {
+                    if (controller.filteredVisits.isEmpty) {
                       return Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Text("No visits found"),
                       );
                     }
-                    return Column(
-                      children: controller.currentVisits.map((visit) {
-                        return Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 8.0,
-                                horizontal: 8,
+                    return ConstrainedBox(
+                      constraints: BoxConstraints(maxHeight: 180),
+                      child: ListView(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        children: controller.filteredVisits.map((visit) {
+                          return Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0,
+                                  horizontal: 8,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        visit.salonName,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xFF333333),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        visit.date,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xFF6E6E6E),
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        visit.status,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: visit.status == 'Pending'
+                                              ? Colors.orange
+                                              : Color(0xFF6E6E6E),
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        visit.points,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: AppColor.successColor,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      visit.salonName,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color(0xFF333333),
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      visit.date,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color(0xFF6E6E6E),
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      visit.status,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: visit.status == 'Pending'
-                                            ? Colors.orange
-                                            : Color(0xFF6E6E6E),
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      visit.points,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: AppColor.successColor,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      textAlign: TextAlign.end,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Divider(color: Color(0xFFEEEEEE), height: 1),
-                            SizedBox(height: 8),
-                          ],
-                        );
-                      }).toList(),
+                              Divider(color: Color(0xFFEEEEEE), height: 1),
+                              SizedBox(height: 8),
+                            ],
+                          );
+                        }).toList(),
+                      ),
                     );
                   }),
                   SizedBox(height: 12),
-                  // Pagination Controls
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () => controller.previousPage(),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFEEEEEE),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.chevron_left,
-                                size: 16,
-                                color: Color(0xFF333333),
-                              ),
-                              SizedBox(width: 4),
-                              Text(
-                                "Previous",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color(0xFF333333),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => controller.nextPage(),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFA5D6A7),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Next",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color(0xFF333333),
-                                ),
-                              ),
-                              SizedBox(width: 4),
-                              Icon(
-                                Icons.chevron_right,
-                                size: 16,
-                                color: Color(0xFF333333),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
 
             20.height,
             CommonText(
-              text: "Referal Status",
+              text: "Referral Status",
               fontSize: 20,
               fontWeight: FontWeight.w500,
               textColor: AppColor.darkColor,

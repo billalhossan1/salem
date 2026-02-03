@@ -43,7 +43,7 @@ class InviteFriendsScreen extends StatelessWidget {
             Center(
               child: CommonText(
                 text:
-                    "Give 10 Stars off their first visit, and you'll\nreceive 50 Stars as a thank you",
+                    "Give 10 Points off their first visit, and you'll\nreceive 50 Stars as a thank you",
                 fontSize: 16.w,
                 fontWeight: FontWeight.w400,
                 textColor: AppColor.textColor,
@@ -52,7 +52,7 @@ class InviteFriendsScreen extends StatelessWidget {
             ),
             20.height,
             CommonButton(
-              titleText: "Share Referal Link",
+              titleText: "Share Referral Link",
               prefix: SvgPicture.asset(AppIcons.shareReferalLink),
               onTap: () {},
               buttonRadius: 12.w,
