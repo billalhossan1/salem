@@ -5,6 +5,7 @@ import 'package:zena_app/utils/app_images/app_images.dart';
 import 'package:zena_app/widget/app_custom_cards/history_card.dart';
 
 import '../../utils/app_colors/app_colors.dart';
+import '../../widget/app_custom_appbar/app_custom_appbar.dart';
 
 class ViewHistoryScreen extends StatelessWidget {
   const ViewHistoryScreen({super.key});
@@ -13,28 +14,16 @@ class ViewHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
-      appBar: CommonAppBar(
+      appBar: AppCustomAppbar(
         title: "Redemption History",
-        leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-            width: 48.w,
-            height: 48.h,
-            margin: EdgeInsets.only(left: 15.w),
-            decoration: ShapeDecoration(
-              color: AppColor.primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: AppColor.textColor,
-            ),
-          ),
-        ),
+        leadingType: LeadingType.back,
+        centerTitle: true,
+        // actions: [
+        //   NotificationActionButton(
+        //     notificationCount: 3,
+        //     onTap: () => Get.toNamed(AppRoute.notificationScreen),
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16.w),

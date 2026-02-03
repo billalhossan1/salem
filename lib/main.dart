@@ -40,8 +40,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
         scaffoldBackgroundColor: AppColor.screenBackgroundColor,
+        appBarTheme: AppBarTheme(surfaceTintColor: Colors.white),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColor.primaryColor,
+          seedColor: AppColor.whiteColor,
           primary: AppColor.primaryColor, // button
           onPrimary: AppColor.darkColor, // text on button
           secondary: AppColor.textColor, // unselected radio

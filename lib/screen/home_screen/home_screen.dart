@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/app_route/app_route.dart';
 import 'package:zena_app/screen/home_screen/controller/home_screen_controller.dart';
+import 'package:zena_app/widget/app_custom_appbar/app_custom_appbar.dart';
 import 'package:zena_app/widget/app_custom_cards/home_screen_card.dart';
 
 import '../../utils/app_colors/app_colors.dart';
@@ -17,34 +18,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
-      appBar: CommonAppBar(
+      appBar: AppCustomAppbar(
         title: "Home",
-        hideBack: true,
+        leadingType: LeadingType.logo,
+        centerTitle: true,
         actions: [
-          GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoute.notificationScreen);
-            },
-            child: Container(
-              width: 48.w,
-              height: 48.h,
-              margin: EdgeInsets.only(right: 16.w),
-              decoration: ShapeDecoration(
-                color: const Color(0xFFE7FEF0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Badge(
-                  label: Text('3'), // Show notification count
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  child: SvgPicture.asset(AppIcons.notificationIcons),
-                ),
-              ),
-            ),
+          NotificationActionButton(
+            notificationCount: 3,
+            onTap: () => Get.toNamed(AppRoute.notificationScreen),
           ),
         ],
       ),
