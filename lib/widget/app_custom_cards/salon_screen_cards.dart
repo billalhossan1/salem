@@ -19,9 +19,12 @@ class SalonCard extends StatelessWidget {
   final String statusText;
   final String buttonText;
   final VoidCallback onButtonTap;
+  final VoidCallback onAddRatingTap;
+  final VoidCallback onCardTap;
+  final bool isPopular;
 
   const SalonCard({
-    Key? key,
+    super.key,
     required this.imageAsset,
     required this.salonName,
     required this.distance,
@@ -29,98 +32,143 @@ class SalonCard extends StatelessWidget {
     required this.statusText,
     required this.buttonText,
     required this.onButtonTap,
-  }) : super(key: key);
+    required this.onAddRatingTap,
+    required this.onCardTap,
+    this.isPopular = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 6.h),
-          decoration: BoxDecoration(
-            color: AppColor.screenBackgroundColor,
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.asset(
-                  imageAsset,
-                  width: 110.w,
-                  fit: BoxFit.cover,
+        GestureDetector(
+          onTap: onCardTap,
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 6.h),
+            decoration: BoxDecoration(color: AppColor.screenBackgroundColor),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    imageAsset,
+                    width: 110.w,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              13.width,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CommonText(
-                          text: salonName,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w600,
-                          textColor: AppColor.darkColor,
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10.w,
-                            vertical: 4.h,
+                13.width,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CommonText(
+                            text: salonName,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                            textColor: AppColor.darkColor,
                           ),
-                          decoration: ShapeDecoration(
-                            color: AppColor.secondaryColor20,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10.w,
+                              vertical: 4.h,
+                            ),
+                            decoration: ShapeDecoration(
+                              color: AppColor.secondaryColor20,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: CommonText(
+                              text: distance,
+                              textAlign: TextAlign.center,
+                              textColor: AppColor.secondaryColor,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          child: CommonText(
-                            text: distance,
-                            textAlign: TextAlign.center,
-                            textColor: AppColor.secondaryColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w500,
+                        ],
+                      ),
+                      // 5.height,
+                      CommonText(
+                        text: description,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                        textColor: AppColor.secondaryColor,
+                      ),
+                      // 8.height,
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SvgPicture.asset(AppIcons.starIcons),
                           ),
-                        ),
-                      ],
-                    ),
-                    5.height,
-                    CommonText(
-                      text: description,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400,
-                      textColor: AppColor.secondaryColor,
-                    ),
-                    8.height,
-                    Row(
-                      children: [
-                        SvgPicture.asset(AppIcons.starIcons),
-                        5.width,
-                        CommonText(
-                          text: statusText,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w400,
-                          textColor: AppColor.textColor,
-                        ),
-                      ],
-                    ),
-                    12.height,
-                    CommonButton(
-                      titleText: buttonText,
-                      onTap: onButtonTap,
-                      buttonColor: AppColor.green100,
-                      titleColor: AppColor.darkColor,
-                      buttonRadius: 12,
-                      buttonWidth: double.infinity,
-                      titleSize: 34.sp,
-                      titleWeight: FontWeight.w600,
-                    ),
-                  ],
+
+                          CommonText(
+                            text: statusText,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            textColor: AppColor.darkColor,
+                          ),
+                          Spacer(),
+                          if (isPopular)
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 4.h,
+                                horizontal: 16.w,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFF6C720).withValues(alpha: 0.4),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: CommonText(
+                                text: "Popular",
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                                textColor: AppColor.charocalColor,
+                              ),
+                            ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CommonButton(
+                              titleText: buttonText,
+                              onTap: onButtonTap,
+                              buttonColor: AppColor.green100,
+                              titleColor: AppColor.charocalColor,
+                              borderColor: AppColor.primaryColor,
+                              buttonRadius: 12,
+                              buttonWidth: double.infinity,
+                              titleSize: 20.sp,
+                              titleWeight: FontWeight.w600,
+                            ),
+                          ),
+                          20.width,
+                          Expanded(
+                            child: CommonButton(
+                              titleText: "Add Rating",
+                              onTap: onAddRatingTap,
+                              buttonColor: AppColor.secondaryColor100,
+                              titleColor: AppColor.charocalColor,
+                              borderColor: AppColor.secondaryColor,
+                              buttonRadius: 12,
+                              buttonWidth: double.infinity,
+                              titleSize: 20.sp,
+                              titleWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         Divider(

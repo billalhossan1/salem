@@ -16,14 +16,14 @@ class AppString {
   static const String skip = "Skip";
   static const String welcometoZenaRewards = "Welcome to Zena Rewards";
   static const String beautyRewardsMadeEasy = "Beauty rewards made easy";
-  static const String logintoYourAccount = "Login to you account";
+  static const String logintoYourAccount = "Login to your account";
   static const String phoneNumber = "Phone Number";
   static const String contineu = "Continue";
   static const String byContineuingyouAgreethePrivayPolicy =
       "By continuing you agree to the Privacy Policy.";
   static const String orSigninWith = "or sign in with";
-  static const String contineuWithGoggle = "Contineu with Goggle";
-  static const String contineuWithApple = "Contineu with Apple";
+  static const String contineuWithGoggle = "Continue with Google";
+  static const String contineuWithApple = "Continue with Apple";
   static const String verificationCode = "Verification Code";
   static const String enter4digitWehaveSentto =
       "Enter the 4-digit code sent to ";

@@ -108,22 +108,23 @@ class OnboardingScreen extends StatelessWidget {
                       color: const Color(0xFFECF6F1), // Light mint green
                       borderRadius: BorderRadius.circular(24),
                     ),
+                    clipBehavior: Clip.antiAlias,
                     // Added AnimatedSwitcher for smooth text transition
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 500),
                       transitionBuilder:
                           (Widget child, Animation<double> animation) {
-                            return FadeTransition(
-                              opacity: animation,
-                              child: SlideTransition(
-                                position: Tween<Offset>(
-                                  begin: const Offset(0.0, 0.2),
-                                  end: Offset.zero,
-                                ).animate(animation),
-                                child: child,
-                              ),
-                            );
-                          },
+                        return FadeTransition(
+                          opacity: animation,
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(1.0, 0.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          ),
+                        );
+                      },
                       child: CommonText(
                         key: ValueKey<String>(
                           controller.onboardingData[index]["subtitle"]!,
