@@ -113,17 +113,17 @@ class OnboardingScreen extends StatelessWidget {
                       duration: const Duration(milliseconds: 500),
                       transitionBuilder:
                           (Widget child, Animation<double> animation) {
-                        return FadeTransition(
-                          opacity: animation,
-                          child: SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(0.0, 0.2),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          ),
-                        );
-                      },
+                            return FadeTransition(
+                              opacity: animation,
+                              child: SlideTransition(
+                                position: Tween<Offset>(
+                                  begin: const Offset(0.0, 0.2),
+                                  end: Offset.zero,
+                                ).animate(animation),
+                                child: child,
+                              ),
+                            );
+                          },
                       child: CommonText(
                         key: ValueKey<String>(
                           controller.onboardingData[index]["subtitle"]!,
@@ -169,7 +169,8 @@ class OnboardingScreen extends StatelessWidget {
 
                 // Next Button with Progress Animation
                 Obx(() {
-                  double progress = (controller.currentPage.value + 1) /
+                  double progress =
+                      (controller.currentPage.value + 1) /
                       controller.onboardingData.length;
                   return GestureDetector(
                     onTap: controller.nextPage,
@@ -190,11 +191,12 @@ class OnboardingScreen extends StatelessWidget {
                                 return CircularProgressIndicator(
                                   value: value,
                                   strokeWidth: 2,
-                                  backgroundColor:
-                                      AppColor.primaryColor.withOpacity(0.2),
-                                  valueColor: const AlwaysStoppedAnimation<Color>(
-                                    AppColor.primaryColor,
-                                  ),
+                                  backgroundColor: AppColor.primaryColor
+                                      .withOpacity(0.2),
+                                  valueColor:
+                                      const AlwaysStoppedAnimation<Color>(
+                                        AppColor.primaryColor,
+                                      ),
                                 );
                               },
                             ),

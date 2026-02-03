@@ -11,13 +11,13 @@ class NotificationScreenController extends GetxController {
       };
     } else if (index % 3 == 1) {
       return {
-        "icon": AppIcons.homeIcons, // Placeholder for another icon
+        "icon": AppIcons.blackStar,
         "title": "New appointment booked successfully",
         "time": "${index + 1} hours ago",
       };
     } else {
       return {
-        "icon": AppIcons.salonIcons, // Placeholder for another icon
+        "icon": AppIcons.blackStar,
         "title": "Special offer just for you!",
         "time": "${index + 1} days ago",
       };
