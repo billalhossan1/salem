@@ -7,6 +7,7 @@ import '../../screen/bottom_nav/controller/bottom_nav_controller.dart';
 import '../../screen/edit_profile/controller/edit_profile_controller.dart';
 import '../../screen/home_screen/controller/home_screen_controller.dart';
 import '../../screen/invite_friends/controller/invite_friends_controller.dart';
+import '../../screen/invite_history/controller/invite_history_controller.dart';
 import '../../screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/onboarding_screen/controller/onboarding_screen_controller.dart';
@@ -108,6 +109,12 @@ class AppInitialBindings extends Bindings {
     Get.lazyPut<SalonDetailsController>(() {
       AppLogger.screen("Salon Details Controller");
       return SalonDetailsController();
+    }, fenix: true);
+
+    //! InviteHistoryController
+    Get.lazyPut<InviteHistoryController>(() {
+      AppLogger.screen("Invite History Controller");
+      return InviteHistoryController();
     }, fenix: true);
   }
 }

@@ -109,10 +109,11 @@ class MyvisitScreen extends StatelessWidget {
                         textColor: AppColor.darkColor,
                       ),
                       Container(
-                        height: 24,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 4,
+                        height: 24.h,
+                        padding: 
+                       EdgeInsets.symmetric(
+                          horizontal: 12.w,
+                          vertical: 4.h,
                         ),
                         decoration: ShapeDecoration(
                           color: const Color(0xFFE86DAC),
@@ -124,7 +125,7 @@ class MyvisitScreen extends StatelessWidget {
                           'SILVER TIER',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
                           ),
@@ -423,6 +424,18 @@ class MyvisitScreen extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Text(
+                            "Service",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Color(0xFF333333),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
                             "Status",
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -447,7 +460,7 @@ class MyvisitScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 16),
+                  16.height,
                   // Data Rows
                   Obx(() {
                     if (controller.filteredVisits.isEmpty) {
@@ -496,9 +509,20 @@ class MyvisitScreen extends StatelessWidget {
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        visit.status,
+                                        visit.service,
                                         style: TextStyle(
                                           fontSize: 12,
+                                          color: Color(0xFF6E6E6E),
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        visit.status,
+                                        style: TextStyle(
+                                          fontSize: 11,
                                           color: visit.status == 'Pending'
                                               ? Colors.orange
                                               : Color(0xFF6E6E6E),
@@ -522,7 +546,7 @@ class MyvisitScreen extends StatelessWidget {
                                 ),
                               ),
                               Divider(color: Color(0xFFEEEEEE), height: 1),
-                              SizedBox(height: 8),
+                              8.height,
                             ],
                           );
                         }).toList(),

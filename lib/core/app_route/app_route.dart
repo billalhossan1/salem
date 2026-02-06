@@ -11,6 +11,7 @@ import '../../screen/edit_profile/edit_profile_screen.dart';
 import '../../screen/how_it_work_invite/how_it_work_invite.dart';
 import '../../screen/how_it_work_points/how_it_work_points.dart';
 import '../../screen/invite_friends/invite_friends_screen.dart';
+import '../../screen/invite_history/invite_history.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/notificaton_screen/notification_screen.dart';
 import '../../screen/rewards_details/reward_details_screen.dart';
@@ -35,6 +36,7 @@ class AppRoute {
   static const String viewHistoryScreen = "/viewHistoryScreen";
   static const String howItWorkInviteScreen = "/howItWorkInviteScreen";
   static const String howItWorkPointsScreen = "/howItWorkPointsScreen";
+  static const String inviteHistoryScreen = "/inviteHistoryScreen";
 
   static final List<GetPage> appRoutes = [
     GetPage(
@@ -151,6 +153,14 @@ class AppRoute {
     GetPage(
       name: howItWorkPointsScreen,
       page: () => HowItWorkPointsScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! Invite History Screen
+    GetPage(
+      name: inviteHistoryScreen,
+      page: () => InviteHistoryScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),

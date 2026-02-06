@@ -15,6 +15,7 @@ class SalonDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize controller
+    // ignore: unused_local_variable
     final controller = Get.put(SalonDetailsController());
 
     // Get arguments if available, otherwise use defaults
@@ -314,7 +315,7 @@ class SalonDetailsScreen extends StatelessWidget {
                               ),
                               12.width,
                               CommonText(
-                                text: status,
+                                text: "Points are Active here.",
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w500,
                                 textColor: AppColor.darkColor,

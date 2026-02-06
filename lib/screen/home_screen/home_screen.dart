@@ -237,7 +237,9 @@ class HomeScreen extends StatelessWidget {
                   titleColor: AppColor.darkColor,
                   titleSize: 18.w,
                   titleWeight: FontWeight.w500,
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRoute.inviteFriendsScreen);
+                  },
                 ),
               ],
             ),

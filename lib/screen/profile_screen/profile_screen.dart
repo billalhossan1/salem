@@ -1,6 +1,5 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 
