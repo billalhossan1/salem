@@ -1,12 +1,18 @@
 import 'package:get/get.dart';
 import 'package:zena_app/screen/auth_screen/otp_screen/controller/otp_screen_controller.dart';
 import 'package:zena_app/screen/auth_screen/otp_screen/otp_screen.dart';
+import 'package:zena_app/screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import 'package:zena_app/screen/onboarding_screen/onboarding_screen.dart';
+import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 
 import 'package:zena_app/screen/redem_now/redem_now_screen.dart';
+import 'package:zena_app/screen/rewards_screen/controller/rewards_screen_controller.dart';
 
 import '../../screen/auth_screen/login_screen/login_screen.dart';
 import '../../screen/bottom_nav/bottom_nav.dart';
+import '../../screen/bottom_nav/controller/bottom_nav_controller.dart';
+import '../../screen/home_screen/controller/home_screen_controller.dart';
+import '../../screen/salon_screen/controller/salon_screen_controller.dart';
 import '../../screen/edit_profile/edit_profile_screen.dart';
 import '../../screen/how_it_work_invite/how_it_work_invite.dart';
 import '../../screen/how_it_work_points/how_it_work_points.dart';
@@ -77,6 +83,30 @@ class AppRoute {
     GetPage(
       name: bottomNav,
       page: () => BottomNav(),
+      binding: BindingsBuilder(() {
+        // Initialize BottomNavController first
+        if (!Get.isRegistered<BottomNavController>()) {
+          Get.put(BottomNavController());
+        }
+        // Initialize HomeScreenController as it's the default screen
+        if (!Get.isRegistered<HomeScreenController>()) {
+          Get.put(HomeScreenController());
+        }
+        // Lazy load other controllers
+        Get.lazyPut(() => SalonScreenController(), fenix: true);
+        // Rewards Screen
+        if (!Get.isRegistered<RewardsScreenController>()) {
+          Get.put(RewardsScreenController());
+        }
+        //My Visits
+        if (!Get.isRegistered<MyvisitScreenController>()) {
+          Get.put(MyvisitScreenController());
+        }
+        //Profile
+        if (!Get.isRegistered<ProfileScreenController>()) {
+          Get.put(ProfileScreenController());
+        }
+      }),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),

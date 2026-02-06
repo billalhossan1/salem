@@ -12,9 +12,10 @@ import 'controller/salon_screen_controller.dart';
 
 class SalonScreen extends StatelessWidget {
   SalonScreen({super.key});
-  final controller = Get.find<SalonScreenController>();
+
   @override
   Widget build(BuildContext context) {
+      final controller = Get.find<SalonScreenController>();
     return Scaffold(
       appBar: AppCustomAppbar(
         title: "Salons",
@@ -32,7 +33,7 @@ class SalonScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.height,
-          _tabs(),
+          _tabs(controller),
           16.height,
           _searchbar(),
           16.height,
@@ -76,21 +77,21 @@ class SalonScreen extends StatelessWidget {
     );
   }
 
-  Widget _tabs() {
+  Widget _tabs(SalonScreenController controller) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _tabButton("Nearest"),
-          _tabButton("Popular"),
-          _tabButton("Rating"),
+          _tabButton("Nearest", controller),
+          _tabButton("Popular", controller),
+          _tabButton("Rating", controller),
         ],
       ),
     );
   }
 
-  Widget _tabButton(String title) {
+  Widget _tabButton(String title, SalonScreenController controller) {
     return Obx(() {
       final isSelected = controller.selectedTab.value == title;
       return GestureDetector(

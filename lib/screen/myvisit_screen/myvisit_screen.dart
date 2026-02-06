@@ -15,9 +15,8 @@ class MyvisitScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MyvisitScreenController controller = Get.put(
-      MyvisitScreenController(),
-    );
+    final MyvisitScreenController controller =
+        Get.find<MyvisitScreenController>();
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
@@ -110,8 +109,7 @@ class MyvisitScreen extends StatelessWidget {
                       ),
                       Container(
                         height: 24.h,
-                        padding: 
-                       EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                           horizontal: 12.w,
                           vertical: 4.h,
                         ),

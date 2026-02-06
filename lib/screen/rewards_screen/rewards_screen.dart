@@ -16,7 +16,7 @@ class RewardsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(RewardsScreenController());
+    final controller = Get.find<RewardsScreenController>();
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(

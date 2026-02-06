@@ -7,9 +7,13 @@ import 'package:zena_app/utils/app_icons/app_icons.dart';
 
 import '../home_screen/home_screen.dart';
 import '../myvisit_screen/myvisit_screen.dart';
+import '../myvisit_screen/controller/myvisit_screen_controller.dart';
 import '../profile_screen/profile_screen.dart';
+import '../profile_screen/controller/profile_screen_controller.dart';
 import '../rewards_screen/rewards_screen.dart';
+import '../rewards_screen/controller/rewards_screen_controller.dart';
 import '../salon_screen/salon_screen.dart';
+import '../salon_screen/controller/salon_screen_controller.dart';
 import 'controller/bottom_nav_controller.dart';
 
 class BottomNav extends StatelessWidget {
@@ -19,13 +23,32 @@ class BottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<BottomNavController>();
 
-    final List<Widget> screens = [
-      HomeScreen(),
-       SalonScreen(),
-      const RewardsScreen(),
-      const MyvisitScreen(),
-      const ProfileScreen(),
-    ];
+    // Factory function to create screens lazily with proper controller initialization
+    Widget buildScreen(int index) {
+      switch (index) {
+        case 0:
+          // HomeScreen controller is already initialized in app_route.dart
+          return HomeScreen();
+        case 1:
+          // Ensure SalonScreenController is initialized
+
+          return SalonScreen();
+        case 2:
+          // Ensure RewardsScreenController is initialized
+
+          return const RewardsScreen();
+        case 3:
+          // Ensure MyvisitScreenController is initialized
+
+          return const MyvisitScreen();
+        case 4:
+          // Ensure ProfileScreenController is initialized
+
+          return const ProfileScreen();
+        default:
+          return HomeScreen();
+      }
+    }
 
     final List<NavItem> navItems = [
       NavItem(
@@ -57,9 +80,19 @@ class BottomNav extends StatelessWidget {
 
     return Scaffold(
       body: Obx(
-        () => IndexedStack(
-          index: controller.currentIndex.value,
-          children: screens,
+        () => Stack(
+          children: List.generate(5, (index) {
+            // Only build the screen if it has been visited
+            if (controller.visitedScreens.contains(index)) {
+              return Offstage(
+                offstage: controller.currentIndex.value != index,
+                child: buildScreen(index),
+              );
+            } else {
+              // Return empty container for unvisited screens
+              return const SizedBox.shrink();
+            }
+          }),
         ),
       ),
       bottomNavigationBar: Container(

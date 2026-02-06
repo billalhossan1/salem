@@ -12,10 +12,11 @@ import '../../utils/app_icons/app_icons.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  final controller = Get.find<HomeScreenController>();
+  
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<HomeScreenController>();
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
