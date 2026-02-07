@@ -7,7 +7,6 @@ import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
-import '../../widget/app_custom_cards/salon_screen_cards.dart';
 import 'controller/salon_screen_controller.dart';
 
 class SalonScreen extends StatelessWidget {
@@ -15,7 +14,7 @@ class SalonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final controller = Get.find<SalonScreenController>();
+    final controller = Get.find<SalonScreenController>();
     return Scaffold(
       appBar: AppCustomAppbar(
         title: "Salons",
@@ -37,41 +36,41 @@ class SalonScreen extends StatelessWidget {
           16.height,
           _searchbar(),
           16.height,
-          Expanded(
-            child: Obx(
-              () => SmartListLoader(
-                itemCount: controller.filteredSalonList.length,
-                itemBuilder: (context, index) {
-                  final salon = controller.filteredSalonList[index];
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: SalonCard(
-                      imageAsset: salon["image"]!,
-                      salonName: salon["name"]!,
-                      distance: salon["distance"]!,
-                      description: salon["description"]!,
-                      statusText: salon["status"]!,
-                      buttonText: "View Details",
-                      isPopular: salon["isPopular"] ?? false,
-                      onCardTap: () {
-                        Get.toNamed(
-                          AppRoute.salonDetailsScreen,
-                          arguments: salon,
-                        );
-                      },
-                      onButtonTap: () {
-                        Get.toNamed(
-                          AppRoute.salonDetailsScreen,
-                          arguments: salon,
-                        );
-                      },
-                      onAddRatingTap: () => _showRatingBottomSheet(context),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
+          // Expanded(
+          //   child: Obx(
+          //     () => SmartListLoader(
+          //       itemCount: controller.filteredSalonList.length,
+          //       itemBuilder: (context, index) {
+          //         final salon = controller.filteredSalonList[index];
+          //         return Padding(
+          //           padding: EdgeInsets.symmetric(horizontal: 16.w),
+          //           child: SalonCard(
+          //             imageAsset: salon["image"]!,
+          //             salonName: salon["name"]!,
+          //             distance: salon["distance"]!,
+          //             description: salon["description"]!,
+          //             statusText: salon["status"]!,
+          //             buttonText: "View Details",
+          //             isPopular: salon["isPopular"] ?? false,
+          //             onCardTap: () {
+          //               Get.toNamed(
+          //                 AppRoute.salonDetailsScreen,
+          //                 arguments: salon,
+          //               );
+          //             },
+          //             onButtonTap: () {
+          //               Get.toNamed(
+          //                 AppRoute.salonDetailsScreen,
+          //                 arguments: salon,
+          //               );
+          //             },
+          //             onAddRatingTap: () => _showRatingBottomSheet(context),
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -118,6 +117,7 @@ class SalonScreen extends StatelessWidget {
     });
   }
 
+  // ignore: unused_element
   void _showRatingBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
