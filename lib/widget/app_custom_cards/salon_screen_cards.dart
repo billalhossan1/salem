@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
+import '../../utils/app_images/app_images.dart';
 // Import your custom widgets and constants
 // import 'package:your_app/widgets/common_text.dart';
 // import 'package:your_app/widgets/common_button.dart';
@@ -124,11 +125,20 @@ class SalonCard extends StatelessWidget {
                                 color: Color(0xFFF6C720).withValues(alpha: 0.4),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: CommonText(
-                                text: "Popular",
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                                textColor: AppColor.charocalColor,
+                              child: Row(
+                                children: [
+                                  CommonImage(
+                                    src: AppImages.fireIcon,
+                                    height: 12.h,
+                                    width: 12.w,
+                                  ),
+                                  CommonText(
+                                    text: "Popular",
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w400,
+                                    textColor: AppColor.charocalColor,
+                                  ),
+                                ],
                               ),
                             ),
                         ],
@@ -141,7 +151,6 @@ class SalonCard extends StatelessWidget {
                               onTap: onButtonTap,
                               buttonColor: AppColor.green100,
                               titleColor: AppColor.charocalColor,
-                              borderColor: AppColor.primaryColor,
                               buttonRadius: 12,
                               buttonWidth: double.infinity,
                               titleSize: 20.sp,
@@ -155,7 +164,6 @@ class SalonCard extends StatelessWidget {
                               onTap: onAddRatingTap,
                               buttonColor: AppColor.secondaryColor100,
                               titleColor: AppColor.charocalColor,
-                              borderColor: AppColor.secondaryColor,
                               buttonRadius: 12,
                               buttonWidth: double.infinity,
                               titleSize: 20.sp,

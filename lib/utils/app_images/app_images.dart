@@ -22,4 +22,5 @@ class AppImages {
   static const String uaeFlag = "assets/images/uae_flag.png";
   static const String documentImages = "assets/images/document (1) 1.png";
   static const String messageImages = "assets/images/message 1.png";
+  static const String fireIcon = "assets/images/fire.png";
 }

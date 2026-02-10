@@ -10,9 +10,10 @@ import '../../../utils/app_string/app_string.dart';
 
 class OptScreen extends StatelessWidget {
   OptScreen({super.key});
-  final OtpScreenController controller = Get.find<OtpScreenController>();
+
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<OtpScreenController>();
     return Scaffold(
       body: Stack(
         children: [
@@ -24,25 +25,20 @@ class OptScreen extends StatelessWidget {
               ),
             ),
           ),
-          Opacity(
-            opacity: 0,
-            child: TextField(
-              controller: controller.otpController,
-              focusNode: controller.focusNode,
-              keyboardType: TextInputType.number,
-              autofocus: true,
-              maxLength: 4,
-              onChanged: (value) {
-                if (value.length > 4) {
-                  controller.otpController.text = value.substring(0, 4);
-                  controller
-                      .otpController
-                      .selection = TextSelection.fromPosition(
-                    TextPosition(offset: controller.otpController.text.length),
-                  );
-                }
-              },
-            ),
+          TextField(
+            controller: controller.otpController,
+            focusNode: controller.focusNode,
+            keyboardType: TextInputType.number,
+            autofocus: true,
+            maxLength: 4,
+            onChanged: (value) {
+              if (value.length > 4) {
+                controller.otpController.text = value.substring(0, 4);
+                controller.otpController.selection = TextSelection.fromPosition(
+                  TextPosition(offset: controller.otpController.text.length),
+                );
+              }
+            },
           ),
           Padding(
             padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 60.h),

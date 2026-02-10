@@ -12,10 +12,11 @@ import '../../utils/app_icons/app_icons.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  final controller = Get.find<HomeScreenController>();
+  
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HomeScreenController());
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
@@ -237,7 +238,9 @@ class HomeScreen extends StatelessWidget {
                   titleColor: AppColor.darkColor,
                   titleSize: 18.w,
                   titleWeight: FontWeight.w500,
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRoute.inviteFriendsScreen);
+                  },
                 ),
               ],
             ),
