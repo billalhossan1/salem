@@ -46,16 +46,12 @@ class AppInitialBindings extends Bindings {
     }, fenix: true);
 
     //! Bottom Nav Controller
-    Get.lazyPut<BottomNavController>(() {
-      AppLogger.screen("Bottom Nav Controller");
-      return BottomNavController();
-    }, fenix: true);
+    Get.put<BottomNavController>(BottomNavController(), permanent: true);
+    AppLogger.screen("Bottom Nav Controller");
 
     //! Home Screen Controller
-    Get.lazyPut<HomeScreenController>(() {
-      AppLogger.screen("Home Screen Controller");
-      return HomeScreenController();
-    }, fenix: true);
+    Get.put<HomeScreenController>(HomeScreenController(), permanent: true);
+    AppLogger.screen("Home Screen Controller");
 
     //! Notification Screen Controller
     Get.lazyPut<NotificationScreenController>(() {
@@ -64,22 +60,22 @@ class AppInitialBindings extends Bindings {
     }, fenix: true);
 
     //! Salon Screen Controller
-    Get.lazyPut<SalonScreenController>(() {
-      AppLogger.screen("Salon Screen Controller");
-      return SalonScreenController();
-    }, fenix: true);
+    Get.put<SalonScreenController>(SalonScreenController(), permanent: true);
+    AppLogger.screen("Salon Screen Controller");
 
     //! Myvisit Screen Controller
-    Get.lazyPut<MyvisitScreenController>(() {
-      AppLogger.screen("Myvisit Screen Controller");
-      return MyvisitScreenController();
-    }, fenix: true);
+    Get.put<MyvisitScreenController>(
+      MyvisitScreenController(),
+      permanent: true,
+    );
+    AppLogger.screen("Myvisit Screen Controller");
 
     //! Profile Screen Controller
-    Get.lazyPut<ProfileScreenController>(() {
-      AppLogger.screen("Profile Screen Controller");
-      return ProfileScreenController();
-    }, fenix: true);
+    Get.put<ProfileScreenController>(
+      ProfileScreenController(),
+      permanent: true,
+    );
+    AppLogger.screen("Profile Screen Controller");
 
     //! Edit Profile Controller
     Get.lazyPut<EditProfileController>(() {
@@ -94,10 +90,11 @@ class AppInitialBindings extends Bindings {
     }, fenix: true);
 
     //! RewardsScreenController
-    Get.lazyPut<RewardsScreenController>(() {
-      AppLogger.screen("Rewards Screen Controller");
-      return RewardsScreenController();
-    }, fenix: true);
+    Get.put<RewardsScreenController>(
+      RewardsScreenController(),
+      permanent: true,
+    );
+    AppLogger.screen("Rewards Screen Controller");
 
     //! SalonDetailsController
     Get.lazyPut<RewardDetailsController>(() {

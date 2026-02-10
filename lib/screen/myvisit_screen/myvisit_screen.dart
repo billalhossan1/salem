@@ -16,7 +16,7 @@ class MyvisitScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MyvisitScreenController controller =
-        Get.find<MyvisitScreenController>();
+        Get.put(MyvisitScreenController());
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(

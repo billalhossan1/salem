@@ -1,57 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/myvisit_screen/myvisit_screen.dart';
+import 'package:zena_app/screen/profile_screen/profile_screen.dart';
+import 'package:zena_app/screen/rewards_screen/rewards_screen.dart';
+import 'package:zena_app/screen/salon_screen/salon_screen.dart';
+
 import '../../home_screen/home_screen.dart';
-import '../../home_screen/controller/home_screen_controller.dart';
-import '../../salon_screen/salon_screen.dart';
-import '../../salon_screen/controller/salon_screen_controller.dart';
-import '../../rewards_screen/rewards_screen.dart';
-import '../../rewards_screen/controller/rewards_screen_controller.dart';
-import '../../myvisit_screen/myvisit_screen.dart';
-import '../../myvisit_screen/controller/myvisit_screen_controller.dart';
-import '../../profile_screen/profile_screen.dart';
-import '../../profile_screen/controller/profile_screen_controller.dart';
 
 class BottomNavController extends GetxController {
-  final RxInt currentIndex = 0.obs;
+  var selectedIndex = 0.obs;
 
-  // Initialize all controllers at once
-  @override
-  void onInit() {
-    super.onInit();
-    _initializeControllers();
-  }
-
-  void _initializeControllers() {
-    // // Initialize HomeScreenController (should already exist from app_route)
-    // if (!Get.isRegistered<HomeScreenController>()) {
-    //   Get.put(HomeScreenController());
-    // }
-
-    // // Initialize other controllers
-    // if (!Get.isRegistered<SalonScreenController>()) {
-    //   Get.put(SalonScreenController());
-    // }
-    // if (!Get.isRegistered<RewardsScreenController>()) {
-    //   Get.put(RewardsScreenController());
-    // }
-    // if (!Get.isRegistered<MyvisitScreenController>()) {
-    //   Get.put(MyvisitScreenController());
-    // }
-    // if (!Get.isRegistered<ProfileScreenController>()) {
-    //   Get.put(ProfileScreenController());
-    // }
-  }
-
-  // List of pages
-  final List<Widget> pages = [
+  // Use a getter to create pages on-demand
+  List<Widget> get pages => [
     HomeScreen(),
     SalonScreen(),
-    const RewardsScreen(),
+    RewardsScreen(),
     const MyvisitScreen(),
     const ProfileScreen(),
   ];
 
-  void changeIndex(int index) {
-    currentIndex.value = index;
+  @override
+  void onInit() {
+    super.onInit();
+    // Check if there are arguments passed for initial tab selection
+    final arguments = Get.arguments;
+    if (arguments != null && arguments is Map<String, dynamic>) {
+      final initialIndex = arguments['selectedIndex'];
+      if (initialIndex != null && initialIndex is int) {
+        selectedIndex.value = initialIndex;
+      }
+    }
+  }
+
+  void onItemTapped(int index) {
+    selectedIndex.value = index;
   }
 }
