@@ -1,6 +1,5 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 
@@ -16,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<ProfileScreenController>();
+    final controller = Get.put(ProfileScreenController());
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
@@ -170,7 +169,7 @@ class ProfileScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         CommonText(
-                          text: "En",
+                          text: "EN",
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           textColor: AppColor.darkColor,
@@ -202,7 +201,7 @@ class ProfileScreen extends StatelessWidget {
                   //! Privacy and Policy
                   ProfileMenuItem(
                     icon: AppIcons.privacPolicyIcons,
-                    title: "Privacy and Policy",
+                    title: "Privacy Policy",
                     showDivider: false,
                     onTap: () {
                       // Navigate to privacy policy
@@ -240,19 +239,19 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   //! WhatsApp
                   ProfileMenuItem(
-                    icon: AppIcons.whatAppIcons,
+                    icon: AppImages.whatsappImages,
                     title: "WhatsApp",
                     onTap: () {},
                   ),
                   //! Email Contact
                   ProfileMenuItem(
-                    icon: AppIcons.emailUs,
+                    icon: AppImages.emailImages,
                     title: "Email Contact",
                     onTap: () {},
                   ),
                   //! Contact Form
                   ProfileMenuItem(
-                    icon: AppIcons.contactForm,
+                    icon: AppImages.contactImages,
                     title: "Contact Form",
                     showDivider: false,
                     onTap: () {},

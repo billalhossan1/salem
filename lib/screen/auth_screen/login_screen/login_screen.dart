@@ -1,5 +1,6 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/app_route/app_route.dart';
@@ -75,20 +76,96 @@ class LoginScreen extends StatelessWidget {
                         textColor: AppColor.textColor,
                       ),
                       24.height,
-                      CommonPhoneNumberTextFiled(
-                        borderColor: AppColor.textColor,
-                        textInputAction: TextInputAction.next,
-                        controller: controller.phoneNumberController,
-                        countryChange: (country) {
-                          controller.onCountryChange(country.countryCode);
-                        },
+                      // CommonPhoneNumberTextFiled(
+                      //   borderColor: AppColor.textColor,
+                      //   textInputAction: TextInputAction.next,
+                      //   controller: controller.phoneNumberController,
+                      //   countryChange: (country) {
+                      //     controller.onCountryChange(country.countryCode);
+                      //   },
+                      // ),
+                      Container(
+                        width: double.infinity,
+                        decoration: ShapeDecoration(
+                          color: const Color(
+                            0xFFFFF8F5,
+                          ) /* Secondary-Colors-Cream-White */,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              width: 0.50,
+                              color: const Color(0x4C6E6E6E),
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                                left: 4,
+                                bottom: 10,
+                              ),
+                              child: CommonImage(src: AppImages.uaeFlag),
+                            ),
+                            8.width,
+                            CommonText(
+                              text: "+971",
+                              fontSize: 16.w,
+                              fontWeight: FontWeight.w400,
+                              textColor: AppColor.textColor,
+                            ),
+                            8.width,
+                            Container(
+                              height: 40.h,
+                              width: 2.w,
+                              decoration: BoxDecoration(
+                                color: AppColor.textColor,
+                              ),
+                            ),
+                            8.width,
+                            Expanded(
+                              child: TextFormField(
+                                controller: controller.phoneNumberController,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.phone,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  LengthLimitingTextInputFormatter(9),
+                                ],
+                                decoration: InputDecoration(
+                                  hintText: "Enter Your Phone Number",
+                                  hintStyle: TextStyle(
+                                    color: AppColor.textColor.withValues(
+                                      alpha: 0.5,
+                                    ),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  border: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  errorBorder: InputBorder.none,
+                                  focusedErrorBorder: InputBorder.none,
+                                  contentPadding: EdgeInsets.zero,
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter phone number';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
 
                       16.height,
                       //! Contineu Button
                       CommonButton(
                         titleText: AppString.contineu,
-                        titleColor: AppColor.textColor,
+                        titleColor: AppColor.charocalColor,
                         titleSize: 18.w,
                         titleWeight: FontWeight.w500,
                         buttonWidth: double.infinity,

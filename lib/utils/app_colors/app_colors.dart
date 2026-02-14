@@ -17,4 +17,5 @@ class AppColor {
   static const Color errorColor = Color(0xFFFF5578);
   static const Color green100 = Color(0xFFE4F2EA);
   static const Color creamColor = Color(0xFFFFF8F5);
+  static const Color charocalColor = Color(0xFF4A4A4A);
 }

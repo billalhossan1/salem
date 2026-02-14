@@ -7,6 +7,7 @@ import 'package:zena_app/utils/app_string/app_string.dart';
 class OnboardingScreenController extends GetxController {
   final PageController pageController = PageController();
   RxInt currentPage = 0.obs;
+  RxBool isNextPressed = false.obs;
 
   final List<Map<String, String>> onboardingData = [
     {
