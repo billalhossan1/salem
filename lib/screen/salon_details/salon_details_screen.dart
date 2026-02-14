@@ -297,27 +297,21 @@ class SalonDetailsScreen extends StatelessWidget {
                             color: Color(0xFFFFF9E6), // Light yellow
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Row(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: 24.w,
-                                height: 24.h,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                  size: 16.sp,
-                                ),
-                              ),
-                              12.width,
                               CommonText(
-                                text: status,
+                                text: "🎁 Rewards Active",
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w500,
                                 textColor: AppColor.darkColor,
+                              ),
+                              8.height,
+                              CommonText(
+                                text: "Points & Offers Available",
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                textColor: AppColor.textColor,
                               ),
                             ],
                           ),

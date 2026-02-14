@@ -21,7 +21,7 @@ class SalonCard extends StatelessWidget {
   final VoidCallback onButtonTap;
 
   const SalonCard({
-    Key? key,
+    super.key,
     required this.imageAsset,
     required this.salonName,
     required this.distance,
@@ -29,7 +29,7 @@ class SalonCard extends StatelessWidget {
     required this.statusText,
     required this.buttonText,
     required this.onButtonTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,7 @@ class SalonCard extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(vertical: 6.h),
-          decoration: BoxDecoration(
-            color: AppColor.screenBackgroundColor,
-          ),
+          decoration: BoxDecoration(color: AppColor.screenBackgroundColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -48,6 +46,7 @@ class SalonCard extends StatelessWidget {
                 child: Image.asset(
                   imageAsset,
                   width: 110.w,
+                  height: 185.h,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -94,26 +93,38 @@ class SalonCard extends StatelessWidget {
                       textColor: AppColor.secondaryColor,
                     ),
                     8.height,
-                    Row(
-                      children: [
-                        SvgPicture.asset(AppIcons.starIcons),
-                        5.width,
-                        CommonText(
-                          text: statusText,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w400,
-                          textColor: AppColor.textColor,
-                        ),
-                      ],
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 14.w,
+                        vertical: 5.h,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Color(0xFFF1B852).withValues(alpha: 0.31),
+                        border: Border.all(color: AppColor.primaryColor),
+                      ),
+                      child: CommonText(
+                        text: statusText,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        textColor: AppColor.textColor,
+                      ),
+                    ),
+                    8.height,
+                    CommonText(
+                      text: "Points & Offers Available",
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      textColor: AppColor.textColor,
                     ),
                     12.height,
                     CommonButton(
                       titleText: buttonText,
                       onTap: onButtonTap,
+                      borderColor: AppColor.primaryColor,
                       buttonColor: AppColor.green100,
                       titleColor: AppColor.darkColor,
                       buttonRadius: 12,
-                      buttonHeight: 48.h,
                       buttonWidth: double.infinity,
                       titleSize: 24.sp,
                       titleWeight: FontWeight.w600,

@@ -13,6 +13,7 @@ import '../../screen/how_it_work_points/how_it_work_points.dart';
 import '../../screen/invite_friends/invite_friends_screen.dart';
 import '../../screen/notificaton_screen/controller/notification_screen_controller.dart';
 import '../../screen/notificaton_screen/notification_screen.dart';
+import '../../screen/rating_screen/rating_screen.dart';
 import '../../screen/rewards_details/reward_details_screen.dart';
 import '../../screen/salon_details/salon_details_screen.dart';
 import '../../screen/splash_screen/splash_screen.dart';
@@ -31,6 +32,7 @@ class AppRoute {
   static const String inviteFriendsScreen = "/inviteFriendsScreen";
   static const String salonDetailsScreen = "/salonDetailsScreen";
   static const String rewardDetailsScreen = "/rewardDetailsScreen";
+  static const String ratingScreen = "/ratingScreen";
   static const String redemNowScreen = "/redemNowScreen";
   static const String viewHistoryScreen = "/viewHistoryScreen";
   static const String howItWorkInviteScreen = "/howItWorkInviteScreen";
@@ -119,6 +121,13 @@ class AppRoute {
     GetPage(
       name: rewardDetailsScreen,
       page: () => RewardsDetailsScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: ratingScreen,
+      page: () => RatingScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),
