@@ -1,6 +1,5 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 import 'package:zena_app/widget/app_custom_cards/history_card.dart';
 

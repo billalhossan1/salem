@@ -15,6 +15,7 @@ class SalonDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize controller
+    // ignore: unused_local_variable
     final controller = Get.put(SalonDetailsController());
 
     // Get arguments if available, otherwise use defaults

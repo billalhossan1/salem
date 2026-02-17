@@ -2,7 +2,13 @@ import 'package:get/get.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 
 class SalonScreenController extends GetxController {
-  final List<Map<String, String>> salonList = [
+  var selectedTab = "Nearest".obs;
+
+  void selectTab(String tab) {
+    selectedTab.value = tab;
+  }
+
+  final List<Map<String, dynamic>> salonList = [
     {
       "image": AppImages.nearBySalon1,
       "name": "Bloom Beauty",
@@ -46,4 +52,19 @@ class SalonScreenController extends GetxController {
       "status": "🎁 Rewards active",
     },
   ];
+
+  List<Map<String, dynamic>> get filteredSalonList {
+    if (selectedTab.value == "Popular") {
+      return salonList.where((salon) => salon["isPopular"] == true).toList();
+    } else if (selectedTab.value == "Rating") {
+      // Mock logic: Sort by status (rating) descending
+      var list = List<Map<String, dynamic>>.from(salonList);
+      list.sort(
+        (a, b) => (b["status"] as String).compareTo(a["status"] as String),
+      );
+      return list;
+    }
+    // "Nearest" or default
+    return salonList;
+  }
 }

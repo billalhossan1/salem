@@ -37,6 +37,21 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoute.splashscreen,
       navigatorKey: Get.key,
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(80, 48),
+            backgroundColor: AppColor.primaryColor, //button background
+            foregroundColor: Colors.orangeAccent, //loader color
+            textStyle: const TextStyle(
+              color: AppColor.darkColor,
+              fontSize: 16,
+            ), //title color
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(width: 1.5, color: Colors.transparent),
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
         useMaterial3: true,
         fontFamily: 'Poppins',
         scaffoldBackgroundColor: AppColor.screenBackgroundColor,
@@ -62,26 +77,11 @@ class MyApp extends StatelessWidget {
             fontStyle: FontStyle.normal,
           ), //hint and prefix color
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(80, 48),
-            backgroundColor: AppColor.primaryColor, //button background
-            foregroundColor: Colors.orangeAccent, //loader color
-            textStyle: const TextStyle(
-              color: AppColor.darkColor,
-              fontSize: 16,
-            ), //title color
-            shape: RoundedRectangleBorder(
-              side: const BorderSide(width: 1.5, color: Colors.transparent),
-              borderRadius: BorderRadius.circular(40),
-            ),
-          ),
-        ),
       ),
       getPages: AppRoute.appRoutes,
       builder: (context, child) {
         return CoreKit.init(
-          scaffoldMessangeKey: scaffoldMessengerKey,
+          navigatorKey: Get.key,
           back: () {
             Get.back();
           },

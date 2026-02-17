@@ -91,10 +91,10 @@ class RewardsScreen extends StatelessWidget {
               () => ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.filteredRewardList.length,
+                itemCount: controller.rewardList.length,
                 separatorBuilder: (context, index) => 24.height,
                 itemBuilder: (context, index) {
-                  final reward = controller.filteredRewardList[index];
+                  final reward = controller.rewardList[index];
                   return RewardCard(
                     reward: reward,
                     onTap: () {
