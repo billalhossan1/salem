@@ -113,7 +113,9 @@ class MyvisitScreenController extends GetxController {
     // Filter by search text
     if (searchText.value.isNotEmpty) {
       results = results.where((visit) {
-        return visit.salonName.toLowerCase().contains(searchText.value.toLowerCase());
+        return visit.salonName.toLowerCase().contains(
+          searchText.value.toLowerCase(),
+        );
       }).toList();
     }
 
@@ -149,10 +151,20 @@ class MyvisitScreenController extends GetxController {
 
       int month = 1;
       const months = {
-        'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
-        'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+        'Jan': 1,
+        'Feb': 2,
+        'Mar': 3,
+        'Apr': 4,
+        'May': 5,
+        'Jun': 6,
+        'Jul': 7,
+        'Aug': 8,
+        'Sep': 9,
+        'Oct': 10,
+        'Nov': 11,
+        'Dec': 12,
       };
-      
+
       month = months[monthStr] ?? 1;
 
       return DateTime(year, month, day);

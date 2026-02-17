@@ -33,30 +33,25 @@ class SalonCard extends StatelessWidget {
     required this.statusText,
     required this.buttonText,
     required this.onButtonTap,
-    required this.onAddRatingTap,
-    required this.onCardTap,
-    this.isPopular = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GestureDetector(
-          onTap: onCardTap,
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 6.h),
-            decoration: BoxDecoration(color: AppColor.screenBackgroundColor),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.asset(
-                    imageAsset,
-                    width: 110.w,
-                    fit: BoxFit.cover,
-                  ),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 6.h),
+          decoration: BoxDecoration(color: AppColor.screenBackgroundColor),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  imageAsset,
+                  width: 110.w,
+                  height: 185.h,
+                  fit: BoxFit.cover,
                 ),
                 13.width,
                 Expanded(
@@ -170,10 +165,54 @@ class SalonCard extends StatelessWidget {
                               titleWeight: FontWeight.w600,
                             ),
                           ),
-                        ],
+                        ),
+                      ],
+                    ),
+                    5.height,
+                    CommonText(
+                      text: description,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w400,
+                      textColor: AppColor.secondaryColor,
+                    ),
+                    8.height,
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 14.w,
+                        vertical: 5.h,
                       ),
-                    ],
-                  ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Color(0xFFF1B852).withValues(alpha: 0.31),
+                        border: Border.all(color: AppColor.primaryColor),
+                      ),
+                      child: CommonText(
+                        text: statusText,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        textColor: AppColor.textColor,
+                      ),
+                    ),
+                    8.height,
+                    CommonText(
+                      text: "Points & Offers Available",
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      textColor: AppColor.textColor,
+                    ),
+                    12.height,
+                    CommonButton(
+                      titleText: buttonText,
+                      onTap: onButtonTap,
+                      borderColor: AppColor.primaryColor,
+                      buttonColor: AppColor.green100,
+                      titleColor: AppColor.darkColor,
+                      buttonRadius: 12,
+                      buttonWidth: double.infinity,
+                      titleSize: 24.sp,
+                      titleWeight: FontWeight.w600,
+                    ),
+                  ],
                 ),
               ],
             ),

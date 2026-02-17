@@ -6,8 +6,8 @@ class NotificationScreenController extends GetxController {
     if (index % 3 == 0) {
       return {
         "icon": AppIcons.blackStar,
-        "title": "You have received a new review",
-        "time": "${index + 1}0 minutes ago",
+        "title": "Salon Review",
+        "time": "How was your visit? Rate your salon.",
       };
     } else if (index % 3 == 1) {
       return {

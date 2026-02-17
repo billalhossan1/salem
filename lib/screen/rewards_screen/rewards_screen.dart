@@ -85,9 +85,7 @@ class RewardsScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            //! Category Section removed
-            24.height,
+            20.height,
             //! Reward List
             Obx(
               () => ListView.separated(

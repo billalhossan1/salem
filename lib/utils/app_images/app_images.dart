@@ -19,8 +19,8 @@ class AppImages {
   static const String salonDetails = "assets/images/salonDetails.png";
   static const String invitesImages = "assets/images/invitesImages.png";
   static const String myvisitImages = "assets/images/myvisitPhoto.png";
-  static const String uaeFlag = "assets/images/uae_flag.png";
-  static const String documentImages = "assets/images/document (1) 1.png";
-  static const String messageImages = "assets/images/message 1.png";
-  static const String fireIcon = "assets/images/fire.png";
+  static const String uaeFlag = "assets/images/image 34.png";
+  static const String whatsappImages = "assets/images/logos_whatsapp-icon.png";
+  static const String emailImages = "assets/images/message 1.png";
+  static const String contactImages = "assets/images/document (1) 1.png";
 }

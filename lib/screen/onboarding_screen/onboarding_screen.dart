@@ -26,24 +26,24 @@ class OnboardingScreen extends StatelessWidget {
                     left: 0,
                     right: 0,
                     height: MediaQuery.of(context).size.height * 0.65.h,
-                    child: Obx(() {
-                      final isCurrent = controller.currentPage.value == index;
-                      return AnimatedContainer(
-                        duration: const Duration(milliseconds: 600),
-                        curve: Curves.easeOutBack,
-                        transform: Matrix4.identity()
-                          ..scale(isCurrent ? 1.0 : 0.8),
-                        transformAlignment: Alignment.center,
-                        child: AnimatedOpacity(
-                          duration: const Duration(milliseconds: 600),
-                          opacity: isCurrent ? 1.0 : 0.5,
-                          child: Image.asset(
-                            controller.onboardingData[index]["image"]!,
-                            fit: BoxFit.scaleDown,
+                    child: TweenAnimationBuilder<double>(
+                      duration: const Duration(milliseconds: 700),
+                      curve: Curves.easeOutCubic,
+                      tween: Tween<double>(begin: 0, end: 1),
+                      builder: (context, value, child) {
+                        return Opacity(
+                          opacity: value,
+                          child: Transform.scale(
+                            scale: 0.92 + (0.08 * value),
+                            child: child,
                           ),
-                        ),
-                      );
-                    }),
+                        );
+                      },
+                      child: Image.asset(
+                        controller.onboardingData[index]["image"]!,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
                   ),
 
                   // Gradient Overlay for Title Visibility
@@ -73,12 +73,26 @@ class OnboardingScreen extends StatelessWidget {
                     top: MediaQuery.of(context).size.height * 0.448.h,
                     left: 20.w,
                     right: 20.w,
-                    child: CommonText(
-                      text: controller.onboardingData[index]["title"]!,
-                      fontSize: 32.w,
-                      fontWeight: FontWeight.w400,
-                      textAlign: TextAlign.center,
-                      textColor: AppColor.darkColor,
+                    child: TweenAnimationBuilder<double>(
+                      duration: const Duration(milliseconds: 650),
+                      curve: Curves.easeOutCubic,
+                      tween: Tween<double>(begin: 0, end: 1),
+                      builder: (context, value, child) {
+                        return Opacity(
+                          opacity: value,
+                          child: Transform.translate(
+                            offset: Offset(0, 14 * (1 - value)),
+                            child: child,
+                          ),
+                        );
+                      },
+                      child: CommonText(
+                        text: controller.onboardingData[index]["title"]!,
+                        fontSize: 32.w,
+                        fontWeight: FontWeight.w400,
+                        textAlign: TextAlign.center,
+                        textColor: AppColor.darkColor,
+                      ),
                     ),
                   ),
                 ],
@@ -98,37 +112,37 @@ class OnboardingScreen extends StatelessWidget {
                 // Description Card
                 Obx(() {
                   final index = controller.currentPage.value;
-                  return Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.w),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 24.w,
-                      vertical: 24.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFECF6F1), // Light mint green
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    // Added AnimatedSwitcher for smooth text transition
-                    child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 500),
-                      transitionBuilder:
-                          (Widget child, Animation<double> animation) {
-                        return FadeTransition(
-                          opacity: animation,
-                          child: SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(1.0, 0.0),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          ),
-                        );
-                      },
-                      child: CommonText(
-                        key: ValueKey<String>(
-                          controller.onboardingData[index]["subtitle"]!,
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    switchInCurve: Curves.easeOutCubic,
+                    switchOutCurve: Curves.easeInCubic,
+                    transitionBuilder: (child, animation) {
+                      final offsetAnimation = Tween<Offset>(
+                        begin: const Offset(0, 0.2),
+                        end: Offset.zero,
+                      ).animate(animation);
+                      return FadeTransition(
+                        opacity: animation,
+                        child: SlideTransition(
+                          position: offsetAnimation,
+                          child: child,
                         ),
+                      );
+                    },
+                    child: Container(
+                      key: ValueKey(
+                        controller.onboardingData[index]["subtitle"],
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: 20.w),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24.w,
+                        vertical: 24.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFECF6F1),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: CommonText(
                         text: controller.onboardingData[index]["subtitle"]!,
                         fontSize: 14.w,
                         fontWeight: FontWeight.w400,
@@ -168,55 +182,67 @@ class OnboardingScreen extends StatelessWidget {
 
                 30.height,
 
-                // Next Button with Progress Animation
+                // Next Button
                 Obx(() {
-                  double progress =
+                  final progressValue =
                       (controller.currentPage.value + 1) /
                       controller.onboardingData.length;
                   return GestureDetector(
-                    onTap: controller.nextPage,
-                    child: SizedBox(
-                      height: 72.h,
-                      width: 72.w,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          // Animated Progress Indicator
-                          SizedBox(
-                            height: 72.h,
-                            width: 72.w,
-                            child: TweenAnimationBuilder<double>(
-                              tween: Tween<double>(begin: 0, end: progress),
-                              duration: const Duration(milliseconds: 500),
+                    onTapDown: (_) => controller.isNextPressed.value = true,
+                    onTapUp: (_) {
+                      controller.isNextPressed.value = false;
+                      controller.nextPage();
+                    },
+                    onTapCancel: () => controller.isNextPressed.value = false,
+                    child: AnimatedScale(
+                      scale: controller.isNextPressed.value ? 0.92 : 1,
+                      duration: const Duration(milliseconds: 180),
+                      curve: Curves.easeOutBack,
+                      child: SizedBox(
+                        height: 72.h,
+                        width: 72.w,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            TweenAnimationBuilder<double>(
+                              duration: const Duration(milliseconds: 450),
+                              curve: Curves.easeOutCubic,
+                              tween: Tween<double>(
+                                begin: 0,
+                                end: progressValue,
+                              ),
                               builder: (context, value, child) {
-                                return CircularProgressIndicator(
-                                  value: value,
-                                  strokeWidth: 2,
-                                  backgroundColor: AppColor.primaryColor
-                                      .withOpacity(0.2),
-                                  valueColor:
-                                      const AlwaysStoppedAnimation<Color>(
-                                        AppColor.primaryColor,
-                                      ),
+                                return SizedBox(
+                                  height: 72.h,
+                                  width: 72.w,
+                                  child: CircularProgressIndicator(
+                                    value: value,
+                                    strokeWidth: 3.5,
+                                    backgroundColor: AppColor.primaryColor
+                                        .withValues(alpha: 0.2),
+                                    valueColor:
+                                        const AlwaysStoppedAnimation<Color>(
+                                          AppColor.primaryColor,
+                                        ),
+                                  ),
                                 );
                               },
                             ),
-                          ),
-                          // Button Content
-                          Container(
-                            height: 58.h,
-                            width: 58.w,
-                            decoration: const BoxDecoration(
-                              color: AppColor.primaryColor,
-                              shape: BoxShape.circle,
+                            Container(
+                              height: 58.h,
+                              width: 58.w,
+                              decoration: const BoxDecoration(
+                                color: AppColor.primaryColor,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.arrow_forward,
+                                color: AppColor.darkColor,
+                                size: 24,
+                              ),
                             ),
-                            child: const Icon(
-                              Icons.arrow_forward,
-                              color: AppColor.darkColor,
-                              size: 24,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );

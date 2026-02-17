@@ -239,19 +239,19 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   //! WhatsApp
                   ProfileMenuItem(
-                    icon: AppIcons.whatsappLogo,
+                    icon: AppImages.whatsappImages,
                     title: "WhatsApp",
                     onTap: () {},
                   ),
                   //! Email Contact
                   ProfileMenuItem(
-                    icon: AppImages.messageImages,
+                    icon: AppImages.emailImages,
                     title: "Email Contact",
                     onTap: () {},
                   ),
                   //! Contact Form
                   ProfileMenuItem(
-                    icon: AppImages.documentImages,
+                    icon: AppImages.contactImages,
                     title: "Contact Form",
                     showDivider: false,
                     onTap: () {},
