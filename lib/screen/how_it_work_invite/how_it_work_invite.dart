@@ -97,25 +97,27 @@ class HowItWorkInviteScreen extends StatelessWidget {
               titleText: "Invite a Friend",
               onTap: () {
                 // Navigate to invite friend
+                Get.toNamed(AppRoute.inviteFriendsScreen);
               },
               buttonColor: AppColor.primaryColor,
               titleColor: AppColor.darkColor,
               buttonRadius: 12,
               buttonWidth: double.infinity,
             ),
-            16.height,
-            CommonButton(
-              titleText: "Invite History",
-              onTap: () {
-                Get.toNamed(AppRoute.inviteFriendsScreen);
-              },
-              buttonColor: Colors.white,
-              titleColor: AppColor.textColor,
-              borderColor: AppColor.darkColor,
-              buttonRadius: 12,
-              buttonWidth: double.infinity,
-            ),
-            40.height,
+            // 16.height,
+            // CommonButton(
+            //   titleText: "Invite History",
+            //   onTap: () {
+            //     Get.toNamed(AppRoute.inviteFriendsScreen);
+            //   },
+            //   buttonColor: Colors.white,
+            //   titleColor: AppColor.textColor,
+            //   borderColor: AppColor.darkColor,
+            //   buttonRadius: 12,
+            //   buttonWidth: double.infinity,
+            // ),
+            // 40.height,
+            65.height,
           ],
         ),
       ),

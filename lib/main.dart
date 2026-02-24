@@ -81,10 +81,12 @@ class MyApp extends StatelessWidget {
       getPages: AppRoute.appRoutes,
       builder: (context, child) {
         return CoreKit.init(
-          scaffoldMessangeKey: scaffoldMessengerKey,
+          navigatorKey: Get.key,
+          //scaffoldMessangeKey: scaffoldMessengerKey,
           back: () {
             Get.back();
           },
+
           designSize: const Size(428, 926),
           imageBaseUrl: ApiEndpoints.imageUrl,
           backButton: Icon(Icons.arrow_back_ios, color: Colors.red),

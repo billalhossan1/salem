@@ -4,6 +4,7 @@ import 'package:zena_app/screen/auth_screen/otp_screen/otp_screen.dart';
 import 'package:zena_app/screen/onboarding_screen/onboarding_screen.dart';
 
 import 'package:zena_app/screen/redem_now/redem_now_screen.dart';
+import 'package:zena_app/screen/referral_reward/referral_reward_screen.dart';
 
 import '../../screen/auth_screen/login_screen/login_screen.dart';
 import '../../screen/bottom_nav/bottom_nav.dart';
@@ -30,6 +31,7 @@ class AppRoute {
   static const String notificationScreen = "/notificationScreen";
   static const String editProfileScreen = "/editProfileScreen";
   static const String inviteFriendsScreen = "/inviteFriendsScreen";
+  static const String referralRewardScreen = "/referralRewardScreen";
   static const String salonDetailsScreen = "/salonDetailsScreen";
   static const String rewardDetailsScreen = "/rewardDetailsScreen";
   static const String ratingScreen = "/ratingScreen";
@@ -105,6 +107,14 @@ class AppRoute {
     GetPage(
       name: inviteFriendsScreen,
       page: () => InviteFriendsScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! Referral Reward Screen
+    GetPage(
+      name: referralRewardScreen,
+      page: () => ReferralRewardScreen(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),
