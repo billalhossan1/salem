@@ -20,7 +20,7 @@ class OnboardingScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return Stack(
                 children: [
-                  // Image Section
+                  // Image Section with Animation
                   Positioned(
                     top: 0,
                     left: 0,

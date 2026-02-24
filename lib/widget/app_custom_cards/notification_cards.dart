@@ -73,16 +73,25 @@ class NotificationCard extends StatelessWidget {
           Row(
             children: [
               // Icon Container
-              Container(
-                width: iconSize ?? 40.w,
-                height: iconSize ?? 40.h,
-                decoration: BoxDecoration(
-                  color: iconBackgroundColor ?? AppColor.secondaryColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(iconPadding ?? 10.0),
-                  child: SvgPicture.asset(iconAsset),
+              Opacity(
+                opacity: 0.2,
+                child: Container(
+                  width: iconSize ?? 40.w,
+                  height: iconSize ?? 40.h,
+                  decoration: BoxDecoration(
+                    color: AppColor.secondaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(iconPadding ?? 10.0),
+                    child: SvgPicture.asset(
+                      iconAsset,
+                      colorFilter: ColorFilter.mode(
+                        AppColor.darkColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(width: spaceBetweenIconAndText ?? 8.w),

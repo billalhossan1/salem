@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OtpScreenController extends GetxController {
-  final TextEditingController otpController = TextEditingController();
+  late TextEditingController otpController;
   final RxString otpCode = ''.obs;
   final FocusNode focusNode = FocusNode();
   final RxInt secondsRemaining = 55.obs;
@@ -12,8 +12,9 @@ class OtpScreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    otpController = TextEditingController();
     startTimer();
-    // Listen to changes in the text field
+    //Listen to changes in the text field
     otpController.addListener(() {
       otpCode.value = otpController.text;
       if (otpCode.value.length == 4) {
@@ -36,7 +37,7 @@ class OtpScreenController extends GetxController {
 
   @override
   void onClose() {
-    otpController.dispose();
+    //otpController.dispose();
     focusNode.dispose();
     _timer?.cancel();
     super.onClose();

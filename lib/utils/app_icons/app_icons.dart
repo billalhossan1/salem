@@ -35,4 +35,7 @@ class AppIcons {
   static const String editProfileImages = "assets/icons/Edit Icon.svg";
   static const String shareReferalLink = "assets/icons/share-08.svg";
   static const String getDirection = "assets/icons/getDirection.svg";
+  static const String whatsappLogo = "assets/icons/logos_whatsapp-icon.svg";
+  static const String emailLogo = "assets/icons/message 1.svg";
+  static const String contactFormLogo = "assets/icons/document (1) 1.svg";
 }
