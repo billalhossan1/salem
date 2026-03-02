@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
-import '../../utils/app_images/app_images.dart';
 // Import your custom widgets and constants
 // import 'package:your_app/widgets/common_text.dart';
 // import 'package:your_app/widgets/common_button.dart';
@@ -20,9 +19,6 @@ class SalonCard extends StatelessWidget {
   final String statusText;
   final String buttonText;
   final VoidCallback onButtonTap;
-  final VoidCallback onAddRatingTap;
-  final VoidCallback onCardTap;
-  final bool isPopular;
 
   const SalonCard({
     super.key,
@@ -53,117 +49,38 @@ class SalonCard extends StatelessWidget {
                   height: 185.h,
                   fit: BoxFit.cover,
                 ),
-                13.width,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CommonText(
-                            text: salonName,
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w600,
-                            textColor: AppColor.darkColor,
+              ),
+              13.width,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CommonText(
+                          text: salonName,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
+                          textColor: AppColor.darkColor,
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 4.h,
                           ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10.w,
-                              vertical: 4.h,
-                            ),
-                            decoration: ShapeDecoration(
-                              color: AppColor.secondaryColor20,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                            child: CommonText(
-                              text: distance,
-                              textAlign: TextAlign.center,
-                              textColor: AppColor.secondaryColor,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w500,
+                          decoration: ShapeDecoration(
+                            color: AppColor.secondaryColor20,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                        ],
-                      ),
-                      // 5.height,
-                      CommonText(
-                        text: description,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.secondaryColor,
-                      ),
-                      // 8.height,
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SvgPicture.asset(AppIcons.starIcons),
-                          ),
-
-                          CommonText(
-                            text: statusText,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            textColor: AppColor.darkColor,
-                          ),
-                          Spacer(),
-                          if (isPopular)
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 4.h,
-                                horizontal: 16.w,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Color(0xFFF6C720).withValues(alpha: 0.4),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Row(
-                                children: [
-                                  CommonImage(
-                                    src: AppImages.fireIcon,
-                                    height: 12.h,
-                                    width: 12.w,
-                                  ),
-                                  CommonText(
-                                    text: "Popular",
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w400,
-                                    textColor: AppColor.charocalColor,
-                                  ),
-                                ],
-                              ),
-                            ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CommonButton(
-                              titleText: buttonText,
-                              onTap: onButtonTap,
-                              buttonColor: AppColor.green100,
-                              titleColor: AppColor.charocalColor,
-                              buttonRadius: 12,
-                              buttonWidth: double.infinity,
-                              titleSize: 20.sp,
-                              titleWeight: FontWeight.w600,
-                            ),
-                          ),
-                          20.width,
-                          Expanded(
-                            child: CommonButton(
-                              titleText: "Add Rating",
-                              onTap: onAddRatingTap,
-                              buttonColor: AppColor.secondaryColor100,
-                              titleColor: AppColor.charocalColor,
-                              buttonRadius: 12,
-                              buttonWidth: double.infinity,
-                              titleSize: 20.sp,
-                              titleWeight: FontWeight.w600,
-                            ),
+                          child: CommonText(
+                            text: distance,
+                            textAlign: TextAlign.center,
+                            textColor: AppColor.secondaryColor,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
@@ -214,8 +131,8 @@ class SalonCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         Divider(

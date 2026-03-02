@@ -88,14 +88,10 @@ class _SplashScreenState extends State<SplashScreen>
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white.withOpacity(0.0),
-                  Colors.white.withOpacity(0.2),
-                ],
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(AppImages.bankgroundImages),
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -137,7 +133,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ],

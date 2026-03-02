@@ -37,21 +37,6 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoute.splashscreen,
       navigatorKey: Get.key,
       theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(80, 48),
-            backgroundColor: AppColor.primaryColor, //button background
-            foregroundColor: Colors.orangeAccent, //loader color
-            textStyle: const TextStyle(
-              color: AppColor.darkColor,
-              fontSize: 16,
-            ), //title color
-            shape: RoundedRectangleBorder(
-              side: const BorderSide(width: 1.5, color: Colors.transparent),
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ),
         useMaterial3: true,
         fontFamily: 'Poppins',
         scaffoldBackgroundColor: AppColor.screenBackgroundColor,
@@ -77,15 +62,27 @@ class MyApp extends StatelessWidget {
             fontStyle: FontStyle.normal,
           ), //hint and prefix color
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(80, 48),
+            backgroundColor: AppColor.primaryColor, //button background
+            foregroundColor: Colors.orangeAccent, //loader color
+            textStyle: const TextStyle(
+              color: AppColor.darkColor,
+              fontSize: 16,
+            ), //title color
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(width: 1.5, color: Colors.transparent),
+              borderRadius: BorderRadius.circular(40),
+            ),
+          ),
+        ),
       ),
       getPages: AppRoute.appRoutes,
       builder: (context, child) {
         return CoreKit.init(
           navigatorKey: Get.key,
-<<<<<<< HEAD
           //scaffoldMessangeKey: scaffoldMessengerKey,
-=======
->>>>>>> 1e5516cf78929e054eaa0e0c99692d1f9c9641e9
           back: () {
             Get.back();
           },
