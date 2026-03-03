@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
           },
 
           designSize: const Size(428, 926),
-          imageBaseUrl: ApiEndpoints.imageUrl,
+          imageBaseUrl: ApiEndpoints.domain,
           backButton: Icon(Icons.arrow_back_ios, color: Colors.red),
           //navigatorKey: Get.key,
           dioServiceConfig: DioServiceConfig(
@@ -106,7 +106,9 @@ class MyApp extends StatelessWidget {
             updateTokens:
                 (
                   data,
-                ) async {}, // clearTokens: () => StorageService().removeTokens()
+                ) async {
+
+                }, // clearTokens: () => StorageService().removeTokens()
           ),
           child: child,
         );

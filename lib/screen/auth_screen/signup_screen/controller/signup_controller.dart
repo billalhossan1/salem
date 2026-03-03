@@ -8,7 +8,7 @@ class SignupController extends GetxController {
     final result = await DioService.instance.request<dynamic>(
       // showMessage: true,
       // debug: true,
-      input: RequestInput(endpoint: '', method: .POST),
+      input: RequestInput(endpoint: '', method: RequestMethod.POST, ),
       responseBuilder: (data) {
         return data;
       },

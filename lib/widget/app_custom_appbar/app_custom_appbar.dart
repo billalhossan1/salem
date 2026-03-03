@@ -133,38 +133,42 @@ class NotificationActionButton extends StatelessWidget {
           color: const Color(0xFFE7FEF0),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Center(
-          child: notificationCount != null && notificationCount! > 0
-              ? Badge(
-                  label: CommonText(
-                    text: '$notificationCount',
-                    style: TextStyle(
-                      fontSize: 8.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SvgPicture.asset(
+              AppIcons.notificationIcons,
+              width: 18.w,
+              height: 18.h,
+              colorFilter: ColorFilter.mode(
+                AppColor.primaryColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            if (notificationCount != null && notificationCount! > 0)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  width: 14,
+                  height: 14,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
                   ),
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  smallSize: 14,
-                  child: SvgPicture.asset(
-                    AppIcons.notificationIcons,
-                    width: 18.w,
-                    height: 18.h,
-                    colorFilter: ColorFilter.mode(
-                      AppColor.primaryColor,
-                      BlendMode.srcIn,
+                  child: Center(
+                    child: CommonText(
+                      text: '$notificationCount',
+                      style: TextStyle(
+                        fontSize: 8.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                )
-              : SvgPicture.asset(
-                  AppIcons.notificationIcons,
-                  width: 18.w,
-                  height: 18.h,
-                  colorFilter: ColorFilter.mode(
-                    AppColor.primaryColor,
-                    BlendMode.srcIn,
                   ),
                 ),
+              ),
+          ],
         ),
       ),
     );

@@ -9,6 +9,7 @@ import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_icons/app_icons.dart';
 import '../../../utils/app_images/app_images.dart';
 import '../../../utils/app_string/app_string.dart';
+import '../../../widget/loading_widget/loading_widget.dart';
 import 'controller/login_screen_controller.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -18,6 +19,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Container(
@@ -163,16 +165,21 @@ class LoginScreen extends StatelessWidget {
 
                       16.height,
                       //! Contineu Button
-                      CommonButton(
-                        titleText: AppString.contineu,
-                        titleColor: AppColor.charocalColor,
-                        titleSize: 18.w,
-                        titleWeight: FontWeight.w500,
-                        buttonWidth: double.infinity,
-                        onTap: () {
-                          Get.toNamed(AppRoute.otpScreen);
-                        },
-                      ),
+                      Obx(() {
+                        if (controller.isLoading.value) {
+                          return LoadingWidget();
+                        }
+                        return CommonButton(
+                          titleText: AppString.contineu,
+                          titleColor: AppColor.charocalColor,
+                          titleSize: 18.w,
+                          titleWeight: FontWeight.w500,
+                          buttonWidth: double.infinity,
+                          onTap: () {
+                            controller.login();
+                          },
+                        );
+                      }),
 
                       24.height,
                       CommonText(
@@ -251,3 +258,5 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
+

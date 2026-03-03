@@ -12,7 +12,6 @@ import '../../utils/app_icons/app_icons.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -222,26 +221,36 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CommonButton(
-                  titleText: "View Reward",
-                  buttonColor: AppColor.green100,
-                  buttonRadius: 12.w,
-                  titleColor: AppColor.darkColor,
-                  titleSize: 18.w,
-                  titleWeight: FontWeight.w500,
-                  onTap: () {},
-                ),
-                CommonButton(
-                  titleText: "Invite a Friend",
-                  buttonRadius: 12.w,
-                  buttonColor: AppColor.secondaryColor,
-                  titleColor: AppColor.darkColor,
-                  titleSize: 18.w,
-                  titleWeight: FontWeight.w500,
-                  onTap: () {
-                    Get.toNamed(AppRoute.inviteFriendsScreen);
-                  },
-                ),
+                // Expanded(
+                //   child: Padding(
+                //     padding: EdgeInsets.only(right: 8.w),
+                //     child: CommonButton(
+                //       titleText: "View Reward",
+                //       buttonColor: AppColor.green100,
+                //       buttonRadius: 12.w,
+                //       titleColor: AppColor.darkColor,
+                //       titleSize: 18.w,
+                //       titleWeight: FontWeight.w500,
+                //       onTap: () {},
+                //     ),
+                //   ),
+                // ),
+                // Expanded(
+                //   child: Padding(
+                //     padding: EdgeInsets.only(left: 8.w),
+                //     child: CommonButton(
+                //       titleText: "Invite a Friend",
+                //       buttonRadius: 12.w,
+                //       buttonColor: AppColor.secondaryColor,
+                //       titleColor: AppColor.darkColor,
+                //       titleSize: 18.w,
+                //       titleWeight: FontWeight.w500,
+                //       onTap: () {
+                //         Get.toNamed(AppRoute.inviteFriendsScreen);
+                //       },
+                //     ),
+                //   ),
+                // ),
               ],
             ),
             29.height,
