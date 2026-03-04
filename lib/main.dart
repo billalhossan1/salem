@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/api_endpoints/api_endpoints.dart';
 import 'package:zena_app/core/app_bindings/app_bindings.dart';
+import 'package:zena_app/utils/shared_prefe.dart';
 import 'package:zena_app/widget/app_device_utils/app_deviceutils.dart';
 import 'package:zena_app/widget/app_observer/app_observer.dart';
 
@@ -80,39 +81,43 @@ class MyApp extends StatelessWidget {
       ),
       getPages: AppRoute.appRoutes,
       builder: (context, child) {
-        return CoreKit.init(
-          navigatorKey: Get.key,
-          //scaffoldMessangeKey: scaffoldMessengerKey,
-          back: () {
-            Get.back();
-          },
-
-          designSize: const Size(428, 926),
-          imageBaseUrl: ApiEndpoints.domain,
-          backButton: Icon(Icons.arrow_back_ios, color: Colors.red),
-          //navigatorKey: Get.key,
-          dioServiceConfig: DioServiceConfig(
-            baseUrl: ApiEndpoints.baseUrl,
-            refreshTokenEndpoint: ApiEndpoints.refreshToken,
-            onLogout: () {
-              // StorageService().removeTokens();
-              Get.offAllNamed(AppRoute.splashscreen);
-            },
-            enableDebugLogs: kDebugMode,
-          ),
-          tokenProvider: TokenProvider(
-            accessToken: () async => '',
-            refreshToken: () async => '',
-            updateTokens:
-                (
-                  data,
-                ) async {
-
-                }, // clearTokens: () => StorageService().removeTokens()
-          ),
-          child: child,
-        );
+        return corekitInit(child);
       },
     );
+  }
+
+  Widget corekitInit(Widget? child) {
+    return CoreKit.init(
+        navigatorKey: Get.key,
+        //scaffoldMessangeKey: scaffoldMessengerKey,
+        back: () {
+          Get.back();
+        },
+
+        designSize: const Size(428, 926),
+        imageBaseUrl: ApiEndpoints.domain,
+        backButton: Icon(Icons.arrow_back_ios, color: Colors.red),
+        //navigatorKey: Get.key,
+        dioServiceConfig: DioServiceConfig(
+          baseUrl: ApiEndpoints.baseUrl,
+          refreshTokenEndpoint: ApiEndpoints.refreshToken,
+          onLogout: () {
+            // StorageService().removeTokens();
+            Get.offAllNamed(AppRoute.splashscreen);
+          },
+          enableDebugLogs: kDebugMode,
+        ),
+        tokenProvider: TokenProvider(
+          accessToken: () async => SharePrefsHelper.getString(SharedPreferenceValue.token),
+          refreshToken: () async => '',
+          updateTokens:
+              (
+                data
+              ) async {
+
+              }, // clearTokens: () => StorageService().removeTokens()
+        ),
+        child: child,
+      );
   }
 }

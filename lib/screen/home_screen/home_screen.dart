@@ -11,11 +11,12 @@ import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeScreenController());
+    final controller = Get.find<HomeScreenController>();
+
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
@@ -279,24 +280,26 @@ class HomeScreen extends StatelessWidget {
             ),
 
             12.height,
-            SizedBox(
+            Obx(()=>controller.isRewardLoading.value?Center(child:CircularProgressIndicator(),):SizedBox(
               height: 310.h,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemCount: controller.exclusiveOffers.length,
+                itemCount: controller.rewardList.length,
                 separatorBuilder: (context, index) => 16.width,
                 itemBuilder: (context, index) {
-                  final offer = controller.exclusiveOffers[index];
+                  final offer = controller.rewardList[index];
                   return HomeScreenCard(
-                    imageAsset: offer["image"]!,
-                    title: offer["title"]!,
-                    subtitle: offer["subtitle"]!,
+                    imageAsset:offer.rewardImage??'' ,
+                    title: offer.rewardName??'N/A',
+                    subtitle: 'Valid Until ${offer.closedDays?.toList().map((e) => e.day).join(', ')}',
                     buttonText: "View Details",
-                    onButtonTap: () {},
+                    onButtonTap: () {
+                      Get.toNamed(AppRoute.rewardDetailsScreen,arguments: {'rewardId':offer.id});
+                    },
                   );
                 },
               ),
-            ),
+            ),)
           ],
         ),
       ),

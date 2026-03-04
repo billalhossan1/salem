@@ -1,6 +1,7 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/redem_now/controller/redeem_now_controller.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
 
 class RedemNowScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class RedemNowScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RedeemNowController controller = Get.find<RedeemNowController>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(

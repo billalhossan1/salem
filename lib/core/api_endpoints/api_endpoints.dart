@@ -7,5 +7,10 @@ class ApiEndpoints {
   static String get baseUrl => _baseUrl;
   static String get domain => _domain;
   static const String refreshToken = "";
+
+
+
   static final String login = "/auth/login";
+  static final String getRewards = "/salon-reward";
+  static final String redeemNow = "/salon-reward/claim";
 }

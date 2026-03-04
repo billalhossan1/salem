@@ -1,5 +1,6 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/redem_now/controller/redeem_now_controller.dart';
 
 import '../../screen/auth_screen/login_screen/controller/login_screen_controller.dart';
 import '../../screen/auth_screen/otp_screen/controller/otp_screen_controller.dart';
@@ -27,6 +28,11 @@ class AppInitialBindings extends Bindings {
       return SplashScreenController();
     }, fenix: true);
 
+    Get.lazyPut<HomeScreenController>(() {
+      AppLogger.screen("Splash Screen");
+      return HomeScreenController();
+    }, fenix: true);
+
     //! Onboarding Screen controller
     Get.lazyPut<OnboardingScreenController>(() {
       AppLogger.screen("Onboarding Screen");
@@ -45,13 +51,13 @@ class AppInitialBindings extends Bindings {
       return OtpScreenController();
     }, fenix: true);
 
-    //! Bottom Nav Controller
-    Get.put<BottomNavController>(BottomNavController(), permanent: true);
-    AppLogger.screen("Bottom Nav Controller");
+    Get.lazyPut<BottomNavController>(() {
+      return BottomNavController();
+    }, fenix: true);
 
-    //! Home Screen Controller
-    Get.put<HomeScreenController>(HomeScreenController(), permanent: true);
-    AppLogger.screen("Home Screen Controller");
+
+
+
 
     //! Notification Screen Controller
     Get.lazyPut<NotificationScreenController>(() {
@@ -60,21 +66,29 @@ class AppInitialBindings extends Bindings {
     }, fenix: true);
 
     //! Salon Screen Controller
-    Get.put<SalonScreenController>(SalonScreenController(), permanent: true);
-    AppLogger.screen("Salon Screen Controller");
+
+    Get.lazyPut<SalonScreenController>(() {
+      AppLogger.screen("Notification Screen Controller");
+      return SalonScreenController();
+    }, fenix: true);
+
+
+    Get.lazyPut<MyvisitScreenController>(() {
+      AppLogger.screen("Notification Screen Controller");
+      return MyvisitScreenController();
+    }, fenix: true);
+
+
+
+    Get.lazyPut<ProfileScreenController>(() {
+      AppLogger.screen("Notification Screen Controller");
+      return ProfileScreenController();
+    }, fenix: true);
+
 
     //! Myvisit Screen Controller
-    Get.put<MyvisitScreenController>(
-      MyvisitScreenController(),
-      permanent: true,
-    );
-    AppLogger.screen("Myvisit Screen Controller");
 
-    //! Profile Screen Controller
-    Get.put<ProfileScreenController>(
-      ProfileScreenController(),
-      permanent: true,
-    );
+
     AppLogger.screen("Profile Screen Controller");
 
     //! Edit Profile Controller
@@ -89,17 +103,25 @@ class AppInitialBindings extends Bindings {
       return InviteFriendsController();
     }, fenix: true);
 
+
+
+    Get.lazyPut<RewardsScreenController>(() {
+      AppLogger.screen("Invite Friends Controller");
+      return RewardsScreenController();
+    }, fenix: true);
+
     //! RewardsScreenController
-    Get.put<RewardsScreenController>(
-      RewardsScreenController(),
-      permanent: true,
-    );
+
     AppLogger.screen("Rewards Screen Controller");
 
     //! SalonDetailsController
     Get.lazyPut<RewardDetailsController>(() {
       AppLogger.screen("Reward Details Controller");
       return RewardDetailsController();
+    }, fenix: true);
+
+    Get.lazyPut<RedeemNowController>(() {
+      return RedeemNowController();
     }, fenix: true);
 
     //! SalonDetailsController

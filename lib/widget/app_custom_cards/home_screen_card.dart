@@ -1,5 +1,6 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:zena_app/core/api_endpoints/api_endpoints.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 // Import your custom widgets
@@ -84,7 +85,7 @@ class HomeScreenCard extends StatelessWidget {
                 topRight: Radius.circular(borderRadius ?? 24),
               ),
               image: DecorationImage(
-                image: AssetImage(imageAsset),
+                image: NetworkImage("${ApiEndpoints.domain}$imageAsset"),
                 fit: BoxFit.cover,
               ),
             ),
