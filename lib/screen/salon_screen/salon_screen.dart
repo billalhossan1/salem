@@ -17,30 +17,44 @@ class SalonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
-      body: SmartListLoader(
-        appbar: Column(children: [_appbar(), _searchbar()]),
-        onColapsAppbar: Container(
-          color: Colors.white,
-          child: Column(children: [_appbar(), _searchbar(), 8.height]),
-        ),
-        itemCount: controller.salonList.length,
-        itemBuilder: (context, index) {
-          final salon = controller.salonList[index];
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: SalonCard(
-              imageAsset: salon["image"]!,
-              salonName: salon["name"]!,
-              distance: salon["distance"]!,
-              description: salon["description"]!,
-              statusText: salon["status"]!,
-              buttonText: "View Details",
-              onButtonTap: () {
-                Get.toNamed(AppRoute.salonDetailsScreen, arguments: salon);
-              },
-            ),
-          );
-        },
+      body: Column(
+        children: [
+          _appbar(), _searchbar(),
+
+          Expanded(
+            child: Obx(() {
+              if (controller.isLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              return SmartListLoader(
+                onLoadMore: (page) {
+                  controller.getSalonList(page: page);
+                },
+                limit: 10,
+                itemCount: controller.allSalonList.length,
+                itemBuilder: (context, index) {
+                  final salon = controller.allSalonList[index];
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: SalonCard(
+                      imageAsset: salon.image,
+                      isNetworkImage: true,
+                      salonName: salon.businessName,
+                      distance: "📍 1.3 km",
+                      description: salon.description,
+                      statusText: salon.isRewardAvailable,
+                      buttonText: "View Details",
+                      onButtonTap: () {
+                        Get.toNamed(AppRoute.salonDetailsScreen,
+                            arguments: {'salonId': salon.id});
+                      },
+                    ),
+                  );
+                },
+              );
+            }),
+          ),
+        ],
       ),
     );
   }
@@ -49,10 +63,15 @@ class SalonScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: CommonTextField(
+        key: Key('slaon_search_field'),
+        initialText: controller.search,
         validationType: ValidationType.validateFullName,
         prefixIcon: SvgPicture.asset(AppIcons.searchIcons),
         backgroundColor: AppColor.screenBackgroundColor,
         hintText: "Search",
+        onChanged: (val){
+          controller.onSearch(val);
+        },
         borderColor: AppColor.textColor.withValues(alpha: 0.2),
       ),
     );

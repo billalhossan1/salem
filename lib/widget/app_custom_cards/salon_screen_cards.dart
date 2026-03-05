@@ -13,16 +13,18 @@ import '../../utils/app_icons/app_icons.dart';
 
 class SalonCard extends StatelessWidget {
   final String imageAsset;
+  final bool isNetworkImage;
   final String salonName;
   final String distance;
   final String description;
-  final String statusText;
+  final bool statusText;
   final String buttonText;
   final VoidCallback onButtonTap;
 
   const SalonCard({
     super.key,
     required this.imageAsset,
+    this.isNetworkImage = false,
     required this.salonName,
     required this.distance,
     required this.description,
@@ -43,12 +45,34 @@ class SalonCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Image.asset(
-                  imageAsset,
-                  width: 110.w,
-                  height: 185.h,
-                  fit: BoxFit.cover,
-                ),
+                child: isNetworkImage
+                    ? Image.network(
+                        imageAsset,
+                        width: 110.w,
+                        height: 185.h,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          width: 110.w,
+                          height: 185.h,
+                          color: Colors.grey.shade200,
+                          child: const Icon(Icons.broken_image, color: Colors.grey),
+                        ),
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Container(
+                            width: 110.w,
+                            height: 185.h,
+                            color: Colors.grey.shade100,
+                            child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                          );
+                        },
+                      )
+                    : Image.asset(
+                        imageAsset,
+                        width: 110.w,
+                        height: 185.h,
+                        fit: BoxFit.cover,
+                      ),
               ),
               13.width,
               Expanded(
@@ -87,13 +111,16 @@ class SalonCard extends StatelessWidget {
                     ),
                     5.height,
                     CommonText(
+                      textAlign: .start,
+                      isDescription: true,
+                      maxLines: 3,
                       text: description,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
                       textColor: AppColor.secondaryColor,
                     ),
                     8.height,
-                    Container(
+                   statusText? Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 14.w,
                         vertical: 5.h,
@@ -104,19 +131,19 @@ class SalonCard extends StatelessWidget {
                         border: Border.all(color: AppColor.primaryColor),
                       ),
                       child: CommonText(
-                        text: statusText,
+                        text: "🎁 Rewards active",
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                         textColor: AppColor.textColor,
                       ),
-                    ),
-                    8.height,
-                    CommonText(
+                    ):SizedBox(),
+                   statusText? 8.height:SizedBox(),
+                   statusText? CommonText(
                       text: "Points & Offers Available",
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400,
                       textColor: AppColor.textColor,
-                    ),
+                    ):SizedBox(),
                     12.height,
                     CommonButton(
                       titleText: buttonText,
