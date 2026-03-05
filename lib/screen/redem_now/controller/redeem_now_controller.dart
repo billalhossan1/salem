@@ -1,6 +1,7 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:core_kit/network/request_input.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/core/app_route/app_route.dart';
 
 import '../../../core/api_endpoints/api_endpoints.dart';
 
@@ -29,8 +30,7 @@ class RedeemNowController extends GetxController{
     );
     isRedeemLoading.value = false;
     if(response.isSuccess){
-
+      Get.offAllNamed(AppRoute.bottomNav);
     }
-
   }
 }

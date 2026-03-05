@@ -14,7 +14,6 @@ return DioService.instance.request(
       responseBuilder: (data) {
         return (data as List<dynamic>).map((e) => RewardsItemModel.fromJson(e)).toList();
       },
-
     );
   }
 

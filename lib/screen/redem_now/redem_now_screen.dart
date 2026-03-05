@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/screen/redem_now/controller/redeem_now_controller.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
+import 'package:zena_app/widget/loading_widget/loading_widget.dart';
 
 class RedemNowScreen extends StatelessWidget {
   const RedemNowScreen({super.key});
@@ -104,13 +105,17 @@ class RedemNowScreen extends StatelessWidget {
             ),
 
             //! Bottom Buttons
-            CommonButton(
-              buttonWidth: double.infinity,
-              buttonRadius: 12.w,
-              titleText: "Confirm to Redeem",
-              onTap: () {
-                // Handle confirm
-              },
+            Obx(
+              () => controller.isRedeemLoading.value
+                  ? LoadingWidget()
+                  : CommonButton(
+                      buttonWidth: double.infinity,
+                      buttonRadius: 12.w,
+                      titleText: "Confirm to Redeem",
+                      onTap: () {
+                        controller.redeemNow();
+                      },
+                    ),
             ),
             16.height,
             CommonButton(
