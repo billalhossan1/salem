@@ -23,14 +23,13 @@ class SalonScreen extends StatelessWidget {
 
           Expanded(
             child: Obx(() {
-              if (controller.isLoading.value) {
-                return const Center(child: CircularProgressIndicator());
-              }
+
               return SmartListLoader(
                 onLoadMore: (page) {
                   controller.getSalonList(page: page);
                 },
                 limit: 10,
+                isLoading: controller.isLoading.value,
                 itemCount: controller.allSalonList.length,
                 itemBuilder: (context, index) {
                   final salon = controller.allSalonList[index];

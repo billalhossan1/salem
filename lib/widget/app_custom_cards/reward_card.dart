@@ -1,10 +1,10 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:zena_app/screen/rewards_screen/controller/rewards_screen_controller.dart';
+import 'package:zena_app/screen/home_screen/model/rewards_item_model.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
 
 class RewardCard extends StatelessWidget {
-  final RewardModel reward;
+  final RewardsItemModel reward;
   final VoidCallback? onTap;
 
   const RewardCard({
@@ -13,12 +13,19 @@ class RewardCard extends StatelessWidget {
     this.onTap,
   });
 
+  bool get _isRewardReady => reward.visitorPoints >= reward.rewardPoints;
+  int get _currentPoints => reward.visitorPoints;
+  int get _goalPoints => reward.rewardPoints;
+  String get _statusText => _isRewardReady
+      ? "YOU DESERVE THIS 💖"
+      : "${(_goalPoints - _currentPoints).clamp(0, _goalPoints)} POINTS REMAINING";
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       decoration: ShapeDecoration(
-        color: const Color(0xFFFFF5F5), // Light pink background
+        color: const Color(0xFFFFF5F5),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -29,28 +36,32 @@ class RewardCard extends StatelessWidget {
           //! Image Section
           Stack(
             children: [
-              Container(
-                height: 160.h,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage(reward.image),
-                    fit: BoxFit.cover,
-                  ),
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
+                child: reward.rewardImage.isNotEmpty
+                    ? CommonImage(
+                        src:reward.rewardImage,
+                        height: 160.h,
+
+                        width: double.infinity,
+                        fill: BoxFit.cover,
+                )
+                    : Container(
+                        height: 160.h,
+                  width: double.infinity,
+
+                        color: Colors.grey.shade200,
+                      ),
               ),
-              if (reward.isRewardReady)
+              if (_isRewardReady)
                 Positioned(
                   bottom: 16.h,
                   left: 16.w,
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                      vertical: 6.h,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                     decoration: BoxDecoration(
                       color: const Color(0xFFE86DAC),
                       borderRadius: BorderRadius.circular(20),
@@ -73,14 +84,17 @@ class RewardCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CommonText(
-                  text: reward.salonName,
+                  text: reward.rewardName,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                   textColor: AppColor.darkColor,
                 ),
                 4.height,
                 CommonText(
+                  textAlign: .start,
                   text: reward.description,
+                  isDescription: true,
+                  maxLines: 3,
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
@@ -92,16 +106,13 @@ class RewardCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CommonText(
-                      text: reward.isRewardReady
-                          ? "Goal reached!"
-                          : "Keep going!",
+                      text: _isRewardReady ? "Goal reached!" : "Keep going!",
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
                       textColor: AppColor.darkColor,
                     ),
                     CommonText(
-                      text:
-                          "${reward.currentPoints}/${reward.goalPoints} points",
+                      text: "$_currentPoints/$_goalPoints points",
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
                       textColor: AppColor.textColor,
@@ -119,9 +130,7 @@ class RewardCard extends StatelessWidget {
                   ),
                   child: LayoutBuilder(
                     builder: (context, constraints) {
-                      final progress = (reward.currentPoints /
-                              reward.goalPoints)
-                          .clamp(0.0, 1.0);
+                      final progress = (_currentPoints / _goalPoints.clamp(1, _goalPoints)).clamp(0.0, 1.0);
                       return Align(
                         alignment: Alignment.centerLeft,
                         child: Container(
@@ -137,7 +146,7 @@ class RewardCard extends StatelessWidget {
                 ),
                 8.height,
                 CommonText(
-                  text: reward.statusText,
+                  text: _statusText,
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w700,
                   textColor: const Color(0xFFE86DAC),
@@ -145,12 +154,12 @@ class RewardCard extends StatelessWidget {
 
                 //! Footer Section
                 24.height,
-                if (reward.isRewardReady)
+                if (_isRewardReady)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CommonText(
-                        text: reward.footerText ?? "",
+                        text: "Ready for a free treatment",
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
                         textColor: AppColor.textColor,
@@ -158,16 +167,13 @@ class RewardCard extends StatelessWidget {
                       GestureDetector(
                         onTap: onTap,
                         child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20.w,
-                            vertical: 10.h,
-                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF8FD7B0), // Green
+                            color: const Color(0xFF8FD7B0),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: CommonText(
-                            text: reward.buttonText,
+                            text: "Use my points",
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w600,
                             textColor: Colors.white,
@@ -181,16 +187,14 @@ class RewardCard extends StatelessWidget {
                     onTap: onTap,
                     child: Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 12.h,
-                      ),
+                      padding: EdgeInsets.symmetric(vertical: 12.h),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: AppColor.secondaryColor.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: CommonText(
-                        text: reward.buttonText,
+                        text: "View History",
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         textColor: AppColor.darkColor,

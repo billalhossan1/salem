@@ -59,9 +59,16 @@ class RewardsItemModel {
       closedDays: (json['closedDays'] as List?)
           ?.map((e) => ClosedDays.fromJson(e))
           .toList() ??
-          [], visitorPoints: json['visitorPoints'] is int
-          ? json['visitorPoints']
-          : int.tryParse(json['VisitorCoin']?.toString() ?? '') ?? 0,
+          [],
+      visitorPoints: json['VisitorCoin'] is int
+          ? json['VisitorCoin']
+          : json['visitorPoints'] is int
+              ? json['visitorPoints']
+              : int.tryParse(
+                      (json['VisitorCoin'] ?? json['visitorPoints'])
+                          ?.toString() ??
+                          '') ??
+                  0,
     );
   }
 
@@ -81,6 +88,7 @@ class RewardsItemModel {
       'createdAt': createdAt?.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
       'closedDays': closedDays.map((e) => e.toJson()).toList(),
+      'VisitorCoin': visitorPoints,
     };
   }
 }

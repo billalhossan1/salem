@@ -8,7 +8,7 @@ class SalonDetailsController extends GetxController {
   final isLoading = true.obs;
   String salonId = '';
   Rx<SalonItemModel> salon = SalonItemModel.empty().obs;
-
+  // RxList<RewardsItemModel> rewardList = <RewardsItemModel>[].obs;
 
   @override
   void onInit() {
@@ -24,19 +24,34 @@ class SalonDetailsController extends GetxController {
 
   Future<void> getSingleSalonById() async {
     isLoading.value = true;
-    final response = await DioService.instance.request(
+     await DioService.instance.request(
       input: RequestInput(
         endpoint: '${ApiEndpoints.salonList}/$salonId',
         method: .GET,
       ),
-      responseBuilder: (data){
+      responseBuilder: (data) {
         salon.value = SalonItemModel.fromJson(data);
       },
     );
-    if (response.isSuccess) {
-    } else {
-      showSnackBar(response.message ?? '', type: SnackBarType.error);
-    }
+
     isLoading.value = false;
   }
+
+  // Future<void> getRewardsBySalonId() async {
+  //   isLoading.value = true;
+  //  await DioService.instance.request(
+  //     input: RequestInput(
+  //       endpoint: ApiEndpoints.getRewards,
+  //       method: .GET,
+  //       queryParams: {'salonId': salonId},
+  //     ),
+  //     responseBuilder: (data) {
+  //       rewardList.addAll(
+  //         data.map((e) => RewardsItemModel.fromJson(e)).toList(),
+  //       );
+  //     },
+  //   );
+  //
+  //   isLoading.value = false;
+  // }
 }

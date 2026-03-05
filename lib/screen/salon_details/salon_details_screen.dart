@@ -42,19 +42,7 @@ class SalonDetailsScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.grey.shade200,
                           ),
-                          child: salon.image.isNotEmpty
-                              ? Image.network(
-                                  salon.image,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (_, __, ___) => Image.asset(
-                                    AppImages.salonDetails,
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
-                              : Image.asset(
-                                  AppImages.salonDetails,
-                                  fit: BoxFit.cover,
-                                ),
+                          child: CommonImage(src: salon.image,fill: BoxFit.cover,),
                         ),
                         Positioned(
                           top: 50.h,
@@ -180,7 +168,7 @@ class SalonDetailsScreen extends StatelessWidget {
                                     CommonText(
                                       text: salon.service.isNotEmpty
                                           ? salon.service
-                                          : "Luxury hair & skin care",
+                                          : "N/A",
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.w400,
                                       textColor: const Color(0xFFE86DAC),

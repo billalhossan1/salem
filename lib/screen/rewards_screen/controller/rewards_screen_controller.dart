@@ -1,84 +1,37 @@
+import 'package:core_kit/core_kit.dart';
+import 'package:core_kit/network/request_input.dart';
 import 'package:get/get.dart';
-import 'package:zena_app/utils/app_images/app_images.dart';
+import 'package:zena_app/screen/home_screen/model/rewards_item_model.dart';
 
-class RewardModel {
-  final String image;
-  final String salonName;
-  final String description;
-  final int currentPoints;
-  final int goalPoints;
-  final String statusText;
-  final bool isRewardReady;
-  final String buttonText;
-  final String? footerText;
-
-  RewardModel({
-    required this.image,
-    required this.salonName,
-    required this.description,
-    required this.currentPoints,
-    required this.goalPoints,
-    required this.statusText,
-    required this.isRewardReady,
-    required this.buttonText,
-    this.footerText,
-  });
-}
+import '../../../core/api_endpoints/api_endpoints.dart';
 
 class RewardsScreenController extends GetxController {
   //! Variables
+  RxInt selectedIndex = 0.obs;
+  RxList<RewardsItemModel> allRewardList = <RewardsItemModel>[].obs;
+  RxBool isLoading = false.obs;
 
-  var rewardList = <RewardModel>[
-    RewardModel(
-      image: AppImages.rewardImage1,
-      salonName: "Lush Locks Salon",
-      description: "Your points at Lush Locks Salon",
-      currentPoints: 55,
-      goalPoints: 50,
-      statusText: "YOU DESERVE THIS 💖",
-      isRewardReady: true,
-      buttonText: "Use my points",
-      footerText: "Ready for a free treatment",
-    ),
-    RewardModel(
-      image: AppImages.rewardImage2,
-      salonName: "Glow Spa",
-      description: "Your points at Glow Spa",
-      currentPoints: 35,
-      goalPoints: 50,
-      statusText: "15 POINTS REMAINING",
-      isRewardReady: false,
-      buttonText: "View History",
-    ),
-    RewardModel(
-      image: AppImages.salonDetails,
-      salonName: "Glow Spa",
-      description: "Your points at Glow Spa",
-      currentPoints: 35,
-      goalPoints: 50,
-      statusText: "15 POINTS REMAINING",
-      isRewardReady: false,
-      buttonText: "View History",
-    ),
-    RewardModel(
-      image: AppImages.rewardImage1,
-      salonName: "Nail Art Studio",
-      description: "Your points at Nail Art Studio",
-      currentPoints: 20,
-      goalPoints: 50,
-      statusText: "30 POINTS REMAINING",
-      isRewardReady: false,
-      buttonText: "View History",
-    ),
-    RewardModel(
-      image: AppImages.rewardImage2,
-      salonName: "Pure Beauty Makeup",
-      description: "Your points at Pure Beauty",
-      currentPoints: 45,
-      goalPoints: 50,
-      statusText: "5 POINTS REMAINING",
-      isRewardReady: false,
-      buttonText: "View History",
-    ),
-  ].obs;
+  @override
+  void onInit() {
+    super.onInit();
+    getReward();
+  }
+
+  Future<void> getReward() async {
+    isLoading.value = true;
+    final response = await DioService.instance.request(
+      input: RequestInput(endpoint: ApiEndpoints.globalReward, method: .GET),
+      responseBuilder: (data) {
+        final list = (data as List<dynamic>)
+            .map((e) => RewardsItemModel.fromJson(e))
+            .toList();
+        allRewardList.addAll(list);
+      },
+    );
+    isLoading.value = false;
+
+    if (!response.isSuccess) {
+      showSnackBar(response.message ?? '', type: SnackBarType.error);
+    }
+  }
 }
