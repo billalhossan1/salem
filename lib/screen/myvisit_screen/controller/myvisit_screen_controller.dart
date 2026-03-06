@@ -1,4 +1,10 @@
+import 'package:core_kit/core_kit.dart';
+import 'package:core_kit/network/request_input.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/myvisit_screen/model/tiar_model.dart';
+import 'package:zena_app/screen/rewards_screen/controller/rewards_screen_controller.dart';
+
+import '../../../core/api_endpoints/api_endpoints.dart';
 
 class VisitModel {
   final String salonName;
@@ -17,8 +23,13 @@ class VisitModel {
 }
 
 class MyvisitScreenController extends GetxController {
+
+
   var searchText = ''.obs;
   var isDateAscending = false.obs;
+
+  RxList<TiarModel> tiarList = <TiarModel>[].obs;
+  RxBool isTiarLoading = false.obs;
 
   final List<VisitModel> allVisits = [
     VisitModel(
@@ -107,6 +118,8 @@ class MyvisitScreenController extends GetxController {
     ),
   ];
 
+
+
   List<VisitModel> get filteredVisits {
     List<VisitModel> results = List.from(allVisits);
 
@@ -130,6 +143,11 @@ class MyvisitScreenController extends GetxController {
 
     return results;
   }
+  @override
+  void onInit() {
+    getAllTiar();
+    super.onInit();
+  }
 
   void updateSearchText(String value) {
     searchText.value = value;
@@ -137,6 +155,59 @@ class MyvisitScreenController extends GetxController {
 
   void toggleDateSort() {
     isDateAscending.value = !isDateAscending.value;
+  }
+
+  Future<void> getAllTiar() async {
+    isTiarLoading.value = true;
+    await DioService.instance.request(
+      input: RequestInput(endpoint: ApiEndpoints.getAllTiar, method: .GET),
+      responseBuilder: (data) {
+        final list = (data as List<dynamic>)
+            .map((item) => TiarModel.fromJson(item))
+            .toList();
+        tiarList.assignAll(list);
+      },
+    );
+    isTiarLoading.value = false;
+  }
+
+  /// The tier whose tireCoins the user has already reached.
+  TiarModel? get currentTier {
+    final coins = rewardsController?.userCoin.value ?? 0;
+    TiarModel? matched;
+    for (final t in tiarList) {
+      if (coins >= t.tireCoins) matched = t;
+    }
+    return matched;
+  }
+
+  /// The next tier above the current one, if any.
+  TiarModel? get nextTier {
+    final coins = rewardsController?.userCoin.value ?? 0;
+    for (final t in tiarList) {
+      if (coins < t.tireCoins) return t;
+    }
+    return null;
+  }
+
+  /// Progress fraction (0.0 – 1.0) toward the next tier.
+  double get tierProgress {
+    final coins = rewardsController?.userCoin.value ?? 0;
+    final next = nextTier;
+    final cur = currentTier;
+    if (next == null) return 1.0; // max tier reached
+    final base = cur?.tireCoins ?? 0;
+    final range = next.tireCoins - base;
+    if (range <= 0) return 1.0;
+    return ((coins - base) / range).clamp(0.0, 1.0);
+  }
+
+  RewardsScreenController? get rewardsController {
+    try {
+      return Get.find<RewardsScreenController>();
+    } catch (_) {
+      return null;
+    }
   }
 
   DateTime _parseDate(String dateStr) {

@@ -2,13 +2,18 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/profile_screen/profile_screen.dart';
+import 'package:zena_app/screen/rewards_screen/rewards_screen.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 
 import 'package:zena_app/screen/myvisit_screen/controller/myvisit_screen_controller.dart';
+import 'package:zena_app/screen/myvisit_screen/model/tiar_model.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
+import '../profile_screen/controller/profile_screen_controller.dart';
+import '../rewards_screen/controller/rewards_screen_controller.dart';
 
 class MyvisitScreen extends StatelessWidget {
   const MyvisitScreen({super.key});
@@ -16,7 +21,11 @@ class MyvisitScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MyvisitScreenController controller =
-        Get.put(MyvisitScreenController());
+        Get.find<MyvisitScreenController>();
+    final RewardsScreenController rewardsScreenController =
+        Get.find<RewardsScreenController>();
+    var profile = Get.find<ProfileScreenController>().profileModel.value;
+
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
@@ -40,7 +49,7 @@ class MyvisitScreen extends StatelessWidget {
             12.height,
             Center(
               child: CommonText(
-                text: "Salma Khatun",
+                text: profile.name,
                 fontSize: 22.w,
                 fontWeight: FontWeight.w500,
                 textColor: AppColor.darkColor,
@@ -65,7 +74,7 @@ class MyvisitScreen extends StatelessWidget {
                   spacing: 10,
                   children: [
                     Text(
-                      'MEMBER SINCE 2025',
+                      'MEMBER SINCE ${getYear(profile.createdAt)}',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,
@@ -98,77 +107,124 @@ class MyvisitScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CommonText(
-                        text: "Total Points : 120",
-                        fontSize: 16.w,
-                        fontWeight: FontWeight.w600,
-                        textColor: AppColor.darkColor,
-                      ),
-                      Container(
-                        height: 24.h,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 12.w,
-                          vertical: 4.h,
-                        ),
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFFE86DAC),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        child: Text(
-                          'SILVER TIER',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.sp,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  Obx(() {
+                    // Explicitly read both observables here so GetX
+                    // registers them as reactive dependencies.
+                    final coins = rewardsScreenController.userCoin.value;
 
-                  16.height,
-                  Container(
-                    height: 12.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: AppColor.whiteColor,
-                    ),
-                    child: FractionallySizedBox(
-                      alignment: Alignment.centerLeft,
-                      widthFactor: 0.7, // 70% progress
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: AppColor.secondaryColor,
+                    // Sort ascending by tireCoins — API order is not guaranteed
+                    final tiers = [...controller.tiarList]
+                      ..sort((a, b) => a.tireCoins.compareTo(b.tireCoins));
+
+                    // Current tier = highest tier whose tireCoins <= coins
+                    TiarModel? currentTier;
+                    for (final t in tiers) {
+                      if (coins >= t.tireCoins) currentTier = t;
+                    }
+
+                    // Next tier = lowest tier whose tireCoins > coins
+                    TiarModel? nextTier;
+                    for (final t in tiers) {
+                      if (coins < t.tireCoins) {
+                        nextTier = t;
+                        break;
+                      }
+                    }
+
+                    // Progress fraction 0.0–1.0
+                    final double progress = () {
+                      if (nextTier == null) return 1.0;
+                      final base = currentTier?.tireCoins ?? 0;
+                      final range = nextTier.tireCoins - base;
+                      if (range <= 0) return 1.0;
+                      return ((coins - base) / range).clamp(0.0, 1.0);
+                    }();
+
+                    final tierLabel = currentTier?.tireName ?? '—';
+                    final coinsToNext = nextTier != null
+                        ? nextTier.tireCoins - coins
+                        : 0;
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CommonText(
+                              text: "Total Points : $coins",
+                              fontSize: 16.w,
+                              fontWeight: FontWeight.w600,
+                              textColor: AppColor.darkColor,
+                            ),
+                            Container(
+                              height: 24.h,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 12.w,
+                                vertical: 4.h,
+                              ),
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFFE86DAC),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                              ),
+                              child: Text(
+                                tierLabel.isEmpty
+                                    ? '—'
+                                    : '${tierLabel.toUpperCase()} TIER',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.sp,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                  ),
-                  12.height,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CommonText(
-                        text: '80 points to go for your next reward',
-                        fontSize: 12.w,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
-                      CommonText(
-                        text: "60%",
-                        fontSize: 16.w,
-                        fontWeight: FontWeight.w600,
-                        textColor: AppColor.darkColor,
-                      ),
-                    ],
-                  ),
+                        16.height,
+                        Container(
+                          height: 12.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColor.whiteColor,
+                          ),
+                          child: FractionallySizedBox(
+                            alignment: Alignment.centerLeft,
+                            widthFactor: progress,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: AppColor.secondaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        12.height,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CommonText(
+                              text: nextTier != null
+                                  ? '$coinsToNext points to go for ${nextTier.tireName} tier'
+                                  : 'Max tier reached 🎉',
+                              fontSize: 12.w,
+                              fontWeight: FontWeight.w400,
+                              textColor: AppColor.textColor,
+                            ),
+                            CommonText(
+                              text: '${(progress * 100).toStringAsFixed(0)}%',
+                              fontSize: 16.w,
+                              fontWeight: FontWeight.w600,
+                              textColor: AppColor.darkColor,
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  }),
                 ],
               ),
             ),
@@ -224,7 +280,7 @@ class MyvisitScreen extends StatelessWidget {
                             ),
                           ),
                           CommonText(
-                            text: '12 Friends',
+                            text: '${profile.totalVisit} Friends',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: const Color(0xFF333333),
@@ -267,25 +323,19 @@ class MyvisitScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         spacing: 4,
                         children: [
-                          Text(
-                            'LAST VISIT',
+                          CommonText(
+                            text: 'LAST VISIT',
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: const Color(0xFF6E6E6E),
-                              fontSize: 14,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                            ),
+                            textColor: const Color(0xFF6E6E6E),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
                           ),
-                          Text(
-                            'Jan 12, 2025',
+                          CommonText(
+                            text: formatDate(profile.lastVisit),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: const Color(0xFF333333),
-                              fontSize: 22,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                            ),
+                            textColor: const Color(0xFF333333),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500,
                           ),
                         ],
                       ),

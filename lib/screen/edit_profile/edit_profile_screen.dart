@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:zena_app/screen/edit_profile/controller/edit_profile_controller.dart';
 import 'package:zena_app/utils/app_icons/app_icons.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
+import 'package:zena_app/widget/loading_widget/loading_widget.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 
@@ -13,7 +14,7 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(EditProfileController());
+    final controller = Get.find<EditProfileController>();
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: CommonAppBar(
@@ -147,7 +148,7 @@ class EditProfileScreen extends StatelessWidget {
             40.height,
 
             //! Save Button
-            CommonButton(
+            Obx(()=>controller.profile.updateIsLoading.value?LoadingWidget():CommonButton(
               titleText: "Save Changes",
               buttonColor: AppColor.primaryColor,
               titleColor: AppColor.darkColor,
@@ -156,9 +157,9 @@ class EditProfileScreen extends StatelessWidget {
               buttonWidth: double.infinity,
               buttonRadius: 12,
               onTap: () {
-                controller.saveChanges();
+                controller.onTapSaved();
               },
-            ),
+            ),),
             40.height,
           ],
         ),

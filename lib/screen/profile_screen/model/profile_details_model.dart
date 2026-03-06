@@ -3,6 +3,7 @@ class ProfileModel {
   final String id;
   final String role;
   final String name;
+  final String email;
   final String phoneNumber;
   final bool verified;
   final String status;
@@ -46,7 +47,7 @@ class ProfileModel {
     required this.image,
     required this.totalVisit,
     required this.lastVisit,
-    required this.availableReward, required this.name, required this.createdAt,
+    required this.availableReward, required this.name, required this.createdAt, required this.email,
   });
 
   factory ProfileModel.empty() {
@@ -72,7 +73,7 @@ class ProfileModel {
       image: '',
       totalVisit: 0,
       lastVisit: '',
-      availableReward: [], name: '', createdAt: '',
+      availableReward: [], name: '', createdAt: '', email: '',
     );
   }
 
@@ -112,7 +113,7 @@ class ProfileModel {
       availableReward: (json['availableReward'] as List?)
           ?.map((e) => AvailableReward.fromJson(e))
           .toList() ??
-          [], name: json['name']?.toString() ?? '', createdAt: json['createdAt']?.toString() ?? '',
+          [], name: json['name']?.toString() ?? '', createdAt: json['createdAt']?.toString() ?? '', email: json['email']?.toString() ?? '',
     );
   }
 

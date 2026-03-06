@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 
 class EditProfileController extends GetxController {
   late TextEditingController fullNameController;
   late TextEditingController emailController;
   late TextEditingController phoneController;
 
+  var profile =Get.find<ProfileScreenController>();
+
   @override
   void onInit() {
     super.onInit();
-    fullNameController = TextEditingController(text: "Salma Khatun");
-    emailController = TextEditingController(text: "salmakhatun@gmail.com");
-    phoneController = TextEditingController(text: "+1(555) 000-0000");
+    fullNameController = TextEditingController(text: profile.profileModel.value.name);
+    emailController = TextEditingController(text: profile.profileModel.value.email);
+    phoneController = TextEditingController(text: profile.profileModel.value.phoneNumber);
   }
 
   @override
@@ -21,6 +24,13 @@ class EditProfileController extends GetxController {
     // phoneController.dispose();
     super.onClose();
   }
+  void onTapSaved(){
+    profile.updateProfile(
+      email: emailController.text.trim(),
+      name: fullNameController.text.trim(),
+    );
+  }
+
 
   void onCountryChange(String countryCode) {
     // Handle country code change
