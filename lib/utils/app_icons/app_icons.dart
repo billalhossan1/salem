@@ -10,6 +10,7 @@ class AppIcons {
   static const String profileIcons = "assets/icons/ProfileIcon.svg";
   static const String homeIconsSelect = "assets/icons/HomeIconSelect.svg";
   static const String salonIconsSelect = "assets/icons/SalonIconSelect.svg";
+  static const String star = "assets/icons/star.svg";
   static const String rewardsIconsSelect =
       "assets/icons/RewardsIconSelected.svg";
   static const String myVisitIconsSelect = "assets/icons/MyVisitIconSelect.svg";

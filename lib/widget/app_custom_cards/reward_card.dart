@@ -6,11 +6,12 @@ import 'package:zena_app/utils/app_colors/app_colors.dart';
 class RewardCard extends StatelessWidget {
   final RewardsItemModel reward;
   final VoidCallback? onTap;
+  final VoidCallback? onTapViewHistory;
 
   const RewardCard({
     super.key,
     required this.reward,
-    this.onTap,
+    this.onTap, this.onTapViewHistory,
   });
 
   bool get _isRewardReady => reward.visitorPoints >= reward.rewardPoints;
@@ -154,7 +155,7 @@ class RewardCard extends StatelessWidget {
 
                 //! Footer Section
                 24.height,
-                if (_isRewardReady)
+                // if (_isRewardReady)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -181,10 +182,11 @@ class RewardCard extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
-                else
+                  ),
+                // else
+                10.height,
                   GestureDetector(
-                    onTap: onTap,
+                    onTap: onTapViewHistory,
                     child: Container(
                       width: double.infinity,
                       padding: EdgeInsets.symmetric(vertical: 12.h),

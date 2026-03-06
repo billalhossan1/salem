@@ -43,8 +43,9 @@ class HistoryCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            image,
+          CommonImage(
+            src: image,
+            borderRadius: 30,
             width: 60.w,
             height: 60.h,
           ),

@@ -1,6 +1,7 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/screen/redem_now/controller/redeem_now_controller.dart';
+import 'package:zena_app/screen/view_history/controller/view_history_controller.dart';
 
 import '../../screen/auth_screen/login_screen/controller/login_screen_controller.dart';
 import '../../screen/auth_screen/otp_screen/controller/otp_screen_controller.dart';
@@ -118,6 +119,10 @@ class AppInitialBindings extends Bindings {
     Get.lazyPut<RewardDetailsController>(() {
       AppLogger.screen("Reward Details Controller");
       return RewardDetailsController();
+    }, fenix: true);
+
+    Get.lazyPut<ViewHistoryController>(() {
+      return ViewHistoryController();
     }, fenix: true);
 
     Get.lazyPut<RedeemNowController>(() {
