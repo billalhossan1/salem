@@ -15,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProfileScreenController());
+    final controller = Get.find<ProfileScreenController>();
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
@@ -31,290 +31,299 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            4.height,
-            //! Profile Card
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: ShapeDecoration(
-                color: AppColor.secondaryColor.withValues(alpha: 0.2),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                shadows: [
-                  BoxShadow(
-                    color: AppColor.secondaryColor.withValues(alpha: 0.03),
-                    blurRadius: 6,
-                    offset: Offset(0, 2),
-                    spreadRadius: 0,
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Image.asset(
-                    AppImages.profileImage,
-                    height: 85.h,
-                    width: 85.w,
-                  ),
-                  12.width,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CommonText(
-                        text: "Salma Khatun",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        textColor: AppColor.darkColor,
-                      ),
-                      4.height,
-                      CommonText(
-                        text: "+97150 123 4567",
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
-                      4.height,
-                      Container(
-                        height: 24.h,
-                        padding: EdgeInsets.symmetric(horizontal: 12.w),
-                        decoration: ShapeDecoration(
-                          color: AppColor.secondaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          spacing: 10,
-                          children: [
-                            Text(
-                              'MEMBER SINCE 2025',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
-            //! Account Settings
-            25.height,
-            CommonText(
-              text: "Account Settings",
-              fontWeight: FontWeight.w500,
-              fontSize: 18.w,
-              textColor: AppColor.darkColor,
-            ),
-            25.height,
-
-            //! Account Settings Card
-            Container(
-              width: double.infinity,
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                shadows: [
-                  BoxShadow(
-                    color: Color(0x263A3A3A),
-                    blurRadius: 36,
-                    offset: Offset(0, 0),
-                    spreadRadius: 0,
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  //! Edit Profile
-                  ProfileMenuItem(
-                    icon: AppIcons.editProfileIcons,
-                    title: "Edit Profile",
-                    onTap: () {
-                      // Navigate to edit profile
-                      Get.toNamed(AppRoute.editProfileScreen);
-                    },
-                  ),
-                  //! Referal
-                  ProfileMenuItem(
-                    icon: AppIcons.invitePeople,
-                    title: "Invite & Refer Friends",
-                    onTap: () {
-                      // Navigate to referal screen
-                      Get.toNamed(AppRoute.inviteFriendsScreen);
-                    },
-                  ),
-                  //! Language
-                  ProfileMenuItem(
-                    icon: AppIcons.languageIcons,
-                    title: "Language",
-                    onTap: () {
-                      // Change language
-                    },
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        CommonText(
-                          text: "EN",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          textColor: AppColor.darkColor,
-                        ),
-                        4.width,
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 24,
-                          color: AppColor.darkColor,
-                        ),
-                      ],
-                    ),
-                  ),
-                  //! Notification
-                  ProfileMenuItem(
-                    icon: AppIcons.notificationIconsSelect,
-                    title: "Notification",
-                    trailing: Obx(
-                      () => Switch(
-                        value: controller.isNotificationEnabled.value,
-                        onChanged: (value) {
-                          controller.toggleNotification(value);
-                        },
-                        activeThumbColor: AppColor.primaryColor,
-                        inactiveThumbColor: AppColor.screenBackgroundColor,
-                      ),
-                    ),
-                  ),
-                  //! Privacy and Policy
-                  ProfileMenuItem(
-                    icon: AppIcons.privacPolicyIcons,
-                    title: "Privacy Policy",
-                    showDivider: false,
-                    onTap: () {
-                      // Navigate to privacy policy
-                    },
-                  ),
-                ],
-              ),
-            ),
-            25.height,
-            CommonText(
-              text: "Contact & Support",
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              textColor: AppColor.darkColor,
-            ),
-            20.height,
-
-            Container(
-              width: double.infinity,
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                shadows: [
-                  BoxShadow(
-                    color: Color(0x263A3A3A),
-                    blurRadius: 36,
-                    offset: Offset(0, 0),
-                    spreadRadius: 0,
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  //! WhatsApp
-                  ProfileMenuItem(
-                    icon: AppImages.whatsappImages,
-                    title: "WhatsApp",
-                    onTap: () {},
-                  ),
-                  //! Email Contact
-                  ProfileMenuItem(
-                    icon: AppImages.emailImages,
-                    title: "Email Contact",
-                    onTap: () {},
-                  ),
-                  //! Contact Form
-                  ProfileMenuItem(
-                    icon: AppImages.contactImages,
-                    title: "Contact Form",
-                    showDivider: false,
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ),
-
-            //! Sing Out Button
-            25.height,
-            Center(
-              child: Container(
-                width: 220,
-                height: 48,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 08,
-                ),
+        child: Obx(() {
+          var profile = controller.profileModel.value;
+          return  Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              4.height,
+              //! Profile Card
+            controller.isLoading.value?Center(child: CircularProgressIndicator(),):  Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
                 decoration: ShapeDecoration(
-                  color: const Color(0x1EFF5477),
+                  color: AppColor.secondaryColor.withValues(alpha: 0.2),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 1.50,
-                      color: const Color(
-                        0xFFFF5578,
-                      ) /* Other-Color-Error-Color */,
-                    ),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   shadows: [
                     BoxShadow(
-                      color: Color(0x113A3A3A),
-                      blurRadius: 16,
-                      offset: Offset(0, 0),
+                      color: AppColor.secondaryColor.withValues(alpha: 0.03),
+                      blurRadius: 6,
+                      offset: Offset(0, 2),
                       spreadRadius: 0,
                     ),
                   ],
                 ),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  spacing: 10,
                   children: [
-                    Text(
-                      'Sign Out',
-                      style: TextStyle(
-                        color: const Color(
-                          0xFFFF5578,
-                        ) /* Other-Color-Error-Color */,
-                        fontSize: 18,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                      ),
+                    CommonImage(
+                      defaultImage: AppImages.defaultProfile,
+                      src: profile.image,
+                      height: 80,
+                      width: 80,
+                      borderRadius: 40,
+                    ),
+                    12.width,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CommonText(
+                          text: profile.name,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          textColor: AppColor.darkColor,
+                        ),
+                        4.height,
+                        CommonText(
+                          text: profile.phoneNumber,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          textColor: AppColor.textColor,
+                        ),
+                        4.height,
+                        Container(
+                          height: 24.h,
+                          padding: EdgeInsets.symmetric(horizontal: 12.w),
+                          decoration: ShapeDecoration(
+                            color: AppColor.secondaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            spacing: 10,
+                            children: [
+                              CommonText(
+                                text: "MEMBER SINCE ${getYear(profile.createdAt)}",
+                                textColor: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-            ),
-            40.height,
-          ],
-        ),
+
+              //! Account Settings
+              25.height,
+              CommonText(
+                text: "Account Settings",
+                fontWeight: FontWeight.w500,
+                fontSize: 18.w,
+                textColor: AppColor.darkColor,
+              ),
+              25.height,
+
+              //! Account Settings Card
+              Container(
+                width: double.infinity,
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  shadows: [
+                    BoxShadow(
+                      color: Color(0x263A3A3A),
+                      blurRadius: 36,
+                      offset: Offset(0, 0),
+                      spreadRadius: 0,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    //! Edit Profile
+                    ProfileMenuItem(
+                      icon: AppIcons.editProfileIcons,
+                      title: "Edit Profile",
+                      onTap: () {
+                        // Navigate to edit profile
+                        Get.toNamed(AppRoute.editProfileScreen);
+                      },
+                    ),
+                    //! Referal
+                    ProfileMenuItem(
+                      icon: AppIcons.invitePeople,
+                      title: "Invite & Refer Friends",
+                      onTap: () {
+                        // Navigate to referal screen
+                        Get.toNamed(AppRoute.inviteFriendsScreen);
+                      },
+                    ),
+                    //! Language
+                    ProfileMenuItem(
+                      icon: AppIcons.languageIcons,
+                      title: "Language",
+                      onTap: () {
+                        // Change language
+                      },
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CommonText(
+                            text: "EN",
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            textColor: AppColor.darkColor,
+                          ),
+                          4.width,
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 24,
+                            color: AppColor.darkColor,
+                          ),
+                        ],
+                      ),
+                    ),
+                    //! Notification
+                    ProfileMenuItem(
+                      icon: AppIcons.notificationIconsSelect,
+                      title: "Notification",
+                      trailing: Obx(
+                        () => Switch(
+                          value: controller.isNotificationEnabled.value,
+                          onChanged: (value) {
+                            controller.toggleNotification(value);
+                          },
+                          activeThumbColor: AppColor.primaryColor,
+                          inactiveThumbColor: AppColor.screenBackgroundColor,
+                        ),
+                      ),
+                    ),
+                    //! Privacy and Policy
+                    ProfileMenuItem(
+                      icon: AppIcons.privacPolicyIcons,
+                      title: "Privacy Policy",
+                      showDivider: false,
+                      onTap: () {
+                        // Navigate to privacy policy
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              25.height,
+              CommonText(
+                text: "Contact & Support",
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                textColor: AppColor.darkColor,
+              ),
+              20.height,
+
+              Container(
+                width: double.infinity,
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  shadows: [
+                    BoxShadow(
+                      color: Color(0x263A3A3A),
+                      blurRadius: 36,
+                      offset: Offset(0, 0),
+                      spreadRadius: 0,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    //! WhatsApp
+                    ProfileMenuItem(
+                      icon: AppImages.whatsappImages,
+                      title: "WhatsApp",
+                      onTap: () {},
+                    ),
+                    //! Email Contact
+                    ProfileMenuItem(
+                      icon: AppImages.emailImages,
+                      title: "Email Contact",
+                      onTap: () {},
+                    ),
+                    //! Contact Form
+                    ProfileMenuItem(
+                      icon: AppImages.contactImages,
+                      title: "Contact Form",
+                      showDivider: false,
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ),
+
+              //! Sing Out Button
+              25.height,
+              Center(
+                child: Container(
+                  width: 220,
+                  height: 48,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 08,
+                  ),
+                  decoration: ShapeDecoration(
+                    color: const Color(0x1EFF5477),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        width: 1.50,
+                        color: const Color(
+                          0xFFFF5578,
+                        ) /* Other-Color-Error-Color */,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x113A3A3A),
+                        blurRadius: 16,
+                        offset: Offset(0, 0),
+                        spreadRadius: 0,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    spacing: 10,
+                    children: [
+                      Text(
+                        'Sign Out',
+                        style: TextStyle(
+                          color: const Color(
+                            0xFFFF5578,
+                          ) /* Other-Color-Error-Color */,
+                          fontSize: 18,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              40.height,
+            ],
+          );
+        }),
       ),
     );
   }
+}
+String getYear(String isoDate) {
+  if(isoDate.isEmpty){
+    return 'N/A';
+  }
+  DateTime dateTime = DateTime.parse(isoDate);
+  return dateTime.year.toString();
 }

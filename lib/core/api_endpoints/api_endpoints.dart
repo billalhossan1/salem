@@ -18,4 +18,5 @@ class ApiEndpoints {
   static final String getRewardHistory = "/salon-reward/purchase-view-history";
   static final String redeemNow = "/salon-reward/claim";
   static final String salonList = "/salon";
+  static final String getProfile = "/user/details";
 }

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/app_route/app_route.dart';
 import 'package:zena_app/screen/home_screen/controller/home_screen_controller.dart';
+import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 import 'package:zena_app/widget/app_custom_appbar/app_custom_appbar.dart';
 import 'package:zena_app/widget/app_custom_cards/home_screen_card.dart';
 
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeScreenController>();
+    final profileController = Get.find<ProfileScreenController>();
 
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,

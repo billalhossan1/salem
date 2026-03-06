@@ -14,6 +14,7 @@ class AppImages {
   static const String nearBySalon3 = "assets/images/nearBySalon03.png";
   static const String nearBySalon4 = "assets/images/nearBySalon04.png";
   static const String profileImage = "assets/images/profileImages.png";
+  static const String defaultProfile = "assets/images/default_profile.svg";
   static const String rewardImage1 = "assets/images/rewardImage01.png";
   static const String rewardImage2 = "assets/images/rewardImage02.png";
   static const String salonDetails = "assets/images/salonDetails.png";
