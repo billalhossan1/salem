@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 
 import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
+import 'package:zena_app/utils/shared_prefe.dart';
 import 'package:zena_app/widget/app_custom_cards/profile_menu_item.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
@@ -264,40 +265,40 @@ class ProfileScreen extends StatelessWidget {
               //! Sing Out Button
               25.height,
               Center(
-                child: Container(
-                  width: 220,
-                  height: 48,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 08,
-                  ),
-                  decoration: ShapeDecoration(
-                    color: const Color(0x1EFF5477),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        width: 1.50,
-                        color: const Color(
-                          0xFFFF5578,
-                        ) /* Other-Color-Error-Color */,
-                      ),
-                      borderRadius: BorderRadius.circular(12),
+                child: GestureDetector(
+                  onTap: (){
+                    SharePrefsHelper.remove(SharedPreferenceValue.token);
+                    Get.offAllNamed(AppRoute.loginScreen);
+                  },
+                  child: Container(
+                    width: 220,
+                    height: 48,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 08,
                     ),
-                    shadows: [
-                      BoxShadow(
-                        color: Color(0x113A3A3A),
-                        blurRadius: 16,
-                        offset: Offset(0, 0),
-                        spreadRadius: 0,
+                    decoration: ShapeDecoration(
+                      color: const Color(0x1EFF5477),
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1.50,
+                          color: const Color(
+                            0xFFFF5578,
+                          ) /* Other-Color-Error-Color */,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 10,
-                    children: [
-                      Text(
+                      shadows: [
+                        BoxShadow(
+                          color: Color(0x113A3A3A),
+                          blurRadius: 16,
+                          offset: Offset(0, 0),
+                          spreadRadius: 0,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
                         'Sign Out',
                         style: TextStyle(
                           color: const Color(
@@ -308,7 +309,7 @@ class ProfileScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),

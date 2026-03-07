@@ -2,9 +2,12 @@ import 'package:core_kit/core_kit.dart';
 import 'package:core_kit/network/request_input.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/screen/myvisit_screen/model/tiar_model.dart';
+import 'package:zena_app/screen/myvisit_screen/model/user_rewards_model.dart';
+import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 import 'package:zena_app/screen/rewards_screen/controller/rewards_screen_controller.dart';
 
 import '../../../core/api_endpoints/api_endpoints.dart';
+import '../model/active_rewards_model.dart';
 
 class VisitModel {
   final String salonName;
@@ -23,131 +26,122 @@ class VisitModel {
 }
 
 class MyvisitScreenController extends GetxController {
-
-
   var searchText = ''.obs;
   var isDateAscending = false.obs;
 
   RxList<TiarModel> tiarList = <TiarModel>[].obs;
+  final RxList<Purchases> activeRewards = <Purchases>[].obs;
+  final RxList<UserRewardsModel> userRewardsList = <UserRewardsModel>[].obs;
   RxBool isTiarLoading = false.obs;
+  RxBool isCurrentRewardsLoading = false.obs;
+  RxBool isCurrentRewardsLoadDone = false.obs;
+  RxBool isUserRewardsLoading = false.obs;
+  RxBool isUserRewardsLoadDone = false.obs;
+  // ── Visit filter state ─────────────────────────────────────────────
+  final Rxn<DateTime> selectedDate = Rxn<DateTime>();
+  final RxString selectedStatus = ''.obs;
 
-  final List<VisitModel> allVisits = [
-    VisitModel(
-      salonName: "Glamour Studio",
-      date: "Jan 12, 2025",
-      service: "Haircut",
-      status: "Completed",
-      points: "100 PTS",
-    ),
-    VisitModel(
-      salonName: "20% off Hairstyle",
-      date: "Jan 12, 2025",
-      service: "Haircut",
-      status: "Completed",
-      points: "100 PTS",
-    ),
-    VisitModel(
-      salonName: "Luxury Spa",
-      date: "Jan 12, 2025",
-      service: "Massage",
-      status: "Pending",
-      points: "100 PTS",
-    ),
-    VisitModel(
-      salonName: "Urban Cuts",
-      date: "Jan 10, 2025",
-      service: "Beard Trim",
-      status: "Completed",
-      points: "50 PTS",
-    ),
-    VisitModel(
-      salonName: "Nail Artistry",
-      date: "Jan 08, 2025",
-      service: "Manicure",
-      status: "Completed",
-      points: "80 PTS",
-    ),
-    VisitModel(
-      salonName: "Color Bar",
-      date: "Jan 05, 2025",
-      service: "Hair Color",
-      status: "Cancelled",
-      points: "0 PTS",
-    ),
-    VisitModel(
-      salonName: "Style Lounge",
-      date: "Jan 01, 2025",
-      service: "Styling",
-      status: "Completed",
-      points: "120 PTS",
-    ),
-    VisitModel(
-      salonName: "Elite Barber",
-      date: "Dec 28, 2024",
-      service: "Haircut",
-      status: "Completed",
-      points: "45 PTS",
-    ),
-    VisitModel(
-      salonName: "Pure Elegance",
-      date: "Dec 25, 2024",
-      service: "Facial",
-      status: "Completed",
-      points: "90 PTS",
-    ),
-    VisitModel(
-      salonName: "The Hair Loft",
-      date: "Dec 20, 2024",
-      service: "Blow Dry",
-      status: "Completed",
-      points: "60 PTS",
-    ),
-    VisitModel(
-      salonName: "Modern Touch",
-      date: "Dec 15, 2024",
-      service: "Haircut",
-      status: "Pending",
-      points: "75 PTS",
-    ),
-    VisitModel(
-      salonName: "Beauty Haven",
-      date: "Dec 10, 2024",
-      service: "Makeup",
-      status: "Completed",
-      points: "110 PTS",
-    ),
-  ];
+  static const int _limit = 10;
+  int get limit => _limit;
 
-
-
-  List<VisitModel> get filteredVisits {
-    List<VisitModel> results = List.from(allVisits);
-
-    // Filter by search text
-    if (searchText.value.isNotEmpty) {
-      results = results.where((visit) {
-        return visit.salonName.toLowerCase().contains(
-          searchText.value.toLowerCase(),
-        );
-      }).toList();
-    }
-
-    // Sort by date
-    results.sort((a, b) {
-      DateTime dateA = _parseDate(a.date);
-      DateTime dateB = _parseDate(b.date);
-      return isDateAscending.value
-          ? dateA.compareTo(dateB)
-          : dateB.compareTo(dateA);
-    });
-
-    return results;
-  }
   @override
   void onInit() {
     getAllTiar();
+    getAllCurrentRewards(1);
+    getUserRewards(1);
+
     super.onInit();
   }
+
+  Future<void> getAllCurrentRewards(int page) async {
+    if (isCurrentRewardsLoading.value || isCurrentRewardsLoadDone.value) return;
+    isCurrentRewardsLoading.value = true;
+
+    final response = await DioService.instance.request(
+      input: RequestInput(
+        endpoint: ApiEndpoints.getActiveRewards,
+        method: .GET,
+        queryParams: {'page': page, 'limit': _limit},
+      ),
+      responseBuilder: (data) {
+        final list = (data['purchases'] as List<dynamic>)
+            .map((e) => Purchases.fromJson(e))
+            .toList();
+        if (page == 1) {
+          activeRewards.assignAll(list);
+        } else {
+          activeRewards.addAll(list);
+        }
+        if (list.length < _limit) isCurrentRewardsLoadDone.value = true;
+      },
+    );
+
+    isCurrentRewardsLoading.value = false;
+    if (!response.isSuccess) {
+      showSnackBar(response.message ?? '', type: SnackBarType.error);
+    }
+  }
+
+  Future<void> getUserRewards(int page) async {
+    if (isUserRewardsLoading.value || isUserRewardsLoadDone.value) return;
+    isUserRewardsLoading.value = true;
+
+    final Map<String, dynamic> params = {'page': page, 'limit': _limit};
+    if (selectedDate.value != null) {
+      final d = selectedDate.value!;
+      params['date'] =
+          '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+    }
+    if (selectedStatus.value.isNotEmpty) {
+      params['status'] = selectedStatus.value;
+    }
+
+    final response = await DioService.instance.request(
+      input: RequestInput(
+        endpoint: ApiEndpoints.getUserRewardHistory,
+        method: .GET,
+        queryParams: params,
+      ),
+      responseBuilder: (data) {
+        final list = (data['Reward'] as List<dynamic>)
+            .map((e) => UserRewardsModel.fromJson(e))
+            .toList();
+        if (page == 1) {
+          userRewardsList.assignAll(list);
+        } else {
+          userRewardsList.addAll(list);
+        }
+        if (list.length < _limit) isUserRewardsLoadDone.value = true;
+      },
+    );
+
+    isUserRewardsLoading.value = false;
+    if (!response.isSuccess) {
+      showSnackBar(response.message ?? '', type: SnackBarType.error);
+    }
+  }
+
+  void clearVisitFilters() {
+    selectedDate.value = null;
+    selectedStatus.value = '';
+    onUserRewardsRefresh();
+  }
+
+  void onUserRewardsRefresh() {
+    isUserRewardsLoadDone.value = false;
+    userRewardsList.clear();
+    getUserRewards(1);
+  }
+
+  void onUserRewardsLoadMore(int page) => getUserRewards(page);
+
+  void onCurrentRewardRefresh() {
+    isCurrentRewardsLoadDone.value = false;
+    activeRewards.clear();
+    getAllCurrentRewards(1);
+  }
+
+  void onCurrentRewardLoadMore(int page) => getAllCurrentRewards(page);
 
   void updateSearchText(String value) {
     searchText.value = value;

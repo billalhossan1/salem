@@ -2,8 +2,9 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/myvisit_screen/model/active_rewards_model.dart';
 import 'package:zena_app/screen/profile_screen/profile_screen.dart';
-import 'package:zena_app/screen/rewards_screen/rewards_screen.dart';
+
 import 'package:zena_app/utils/app_images/app_images.dart';
 
 import 'package:zena_app/screen/myvisit_screen/controller/myvisit_screen_controller.dart';
@@ -13,7 +14,9 @@ import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
 import '../profile_screen/controller/profile_screen_controller.dart';
+
 import '../rewards_screen/controller/rewards_screen_controller.dart';
+import 'widget/visit_history_table.dart';
 
 class MyvisitScreen extends StatelessWidget {
   const MyvisitScreen({super.key});
@@ -354,257 +357,187 @@ class MyvisitScreen extends StatelessWidget {
               onChanged: (val) => controller.updateSearchText(val),
             ),
             12.height,
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: AppColor.textColor.withValues(alpha: 0.2),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Status",
-                          style: TextStyle(color: AppColor.textColor),
-                        ),
-                        Icon(
-                          Icons.chevron_right,
-                          color: AppColor.textColor,
-                          size: 20,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                12.width,
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () => controller.toggleDateSort(),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 12,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: AppColor.textColor.withValues(alpha: 0.2),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Date",
-                            style: TextStyle(color: AppColor.textColor),
-                          ),
-                          Icon(
-                            Icons.calendar_today_outlined,
-                            color: AppColor.textColor,
-                            size: 18,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            12.height,
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(12),
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                shadows: [
-                  BoxShadow(
-                    color: Color(0x113A3A3A),
-                    blurRadius: 16,
-                    offset: Offset(0, 0),
-                    spreadRadius: 0,
-                  ),
-                ],
-              ),
-              child: Column(
+            // ── Filter row ────────────────────────────────────────────────
+            Obx(() {
+              final hasDate = controller.selectedDate.value != null;
+              final hasStatus = controller.selectedStatus.value.isNotEmpty;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Header
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFE7FEF0),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Salon Name",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Color(0xFF333333),
+                  Row(
+                    children: [
+                      // ── Status filter ──────────────────────────────
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () => _showStatusPicker(context, controller),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 12,
                             ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Date",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Color(0xFF333333),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Service",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Color(0xFF333333),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Status",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Color(0xFF333333),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Points Earned",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Color(0xFF333333),
-                            ),
-                            textAlign: TextAlign.end,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  16.height,
-                  // Data Rows
-                  Obx(() {
-                    if (controller.filteredVisits.isEmpty) {
-                      return Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text("No visits found"),
-                      );
-                    }
-                    return ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: 180),
-                      child: ListView(
-                        shrinkWrap: true,
-                        padding: EdgeInsets.zero,
-                        children: controller.filteredVisits.map((visit) {
-                          return Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0,
-                                  horizontal: 8,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        visit.salonName,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF333333),
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        visit.date,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF6E6E6E),
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        visit.service,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF6E6E6E),
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        visit.status,
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          color: visit.status == 'Pending'
-                                              ? Colors.orange
-                                              : Color(0xFF6E6E6E),
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        visit.points,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: AppColor.successColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                            decoration: BoxDecoration(
+                              color: hasStatus
+                                  ? AppColor.secondaryColor.withValues(
+                                      alpha: 0.1,
+                                    )
+                                  : Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: hasStatus
+                                    ? AppColor.secondaryColor
+                                    : AppColor.textColor.withValues(alpha: 0.2),
                               ),
-                              Divider(color: Color(0xFFEEEEEE), height: 1),
-                              8.height,
-                            ],
-                          );
-                        }).toList(),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  hasStatus
+                                      ? controller.selectedStatus.value
+                                      : 'Status',
+                                  style: TextStyle(
+                                    color: hasStatus
+                                        ? AppColor.secondaryColor
+                                        : AppColor.textColor,
+                                    fontWeight: hasStatus
+                                        ? FontWeight.w600
+                                        : FontWeight.w400,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.chevron_right,
+                                  color: hasStatus
+                                      ? AppColor.secondaryColor
+                                      : AppColor.textColor,
+                                  size: 20,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
-                    );
-                  }),
-                  SizedBox(height: 12),
+                      12.width,
+                      // ── Date filter ────────────────────────────────
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            // If a date is already selected → clear it
+                            if (controller.selectedDate.value != null) {
+                              controller.selectedDate.value = null;
+                              controller.onUserRewardsRefresh();
+                              return;
+                            }
+                            // Otherwise open the picker
+                            final picked = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2020),
+                              lastDate: DateTime.now(),
+                              builder: (context, child) => Theme(
+                                data: Theme.of(context).copyWith(
+                                  colorScheme: ColorScheme.light(
+                                    primary: AppColor.secondaryColor,
+                                    onPrimary: Colors.white,
+                                    surface: Colors.white,
+                                    onSurface: AppColor.darkColor,
+                                  ),
+                                ),
+                                child: child!,
+                              ),
+                            );
+                            if (picked != null) {
+                              controller.selectedDate.value = picked;
+                              controller.onUserRewardsRefresh();
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: hasDate
+                                  ? AppColor.secondaryColor.withValues(
+                                      alpha: 0.1,
+                                    )
+                                  : Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: hasDate
+                                    ? AppColor.secondaryColor
+                                    : AppColor.textColor.withValues(alpha: 0.2),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  hasDate
+                                      ? _fmtFilterDate(
+                                          controller.selectedDate.value!,
+                                        )
+                                      : 'Date',
+                                  style: TextStyle(
+                                    color: hasDate
+                                        ? AppColor.secondaryColor
+                                        : AppColor.textColor,
+                                    fontWeight: hasDate
+                                        ? FontWeight.w600
+                                        : FontWeight.w400,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                Icon(
+                                  hasDate
+                                      ? Icons.close
+                                      : Icons.calendar_today_outlined,
+                                  color: hasDate
+                                      ? AppColor.secondaryColor
+                                      : AppColor.textColor,
+                                  size: 18,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // ── Clear button ──────────────────────────────────
+                  if (hasDate || hasStatus)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: GestureDetector(
+                        onTap: controller.clearVisitFilters,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.close,
+                              size: 14,
+                              color: AppColor.textColor,
+                            ),
+                            4.width,
+                            Text(
+                              'Clear filters',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: AppColor.textColor,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
-              ),
-            ),
+              );
+            }),
+            20.height,
+            CommonText(text: "My Visits & Points", fontSize: 20),
+            10.height,
+            const VisitHistoryTable(),
 
             20.height,
             CommonText(
@@ -692,101 +625,242 @@ class MyvisitScreen extends StatelessWidget {
               textColor: AppColor.darkColor,
             ),
             16.height,
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+            Obx(() {
+              final items = controller.activeRewards;
+              final isLoading = controller.isCurrentRewardsLoading.value;
+              final isDone = controller.isCurrentRewardsLoadDone.value;
+
+              if (isLoading && items.isEmpty) {
+                return const Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              }
+
+              if (items.isEmpty) {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: CommonText(
+                      text: 'No active rewards',
+                      textColor: AppColor.textColor,
+                    ),
+                  ),
+                );
+              }
+
+              return SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                child: SmartListLoader(
+                  isLoading: isLoading,
+                  isLoadDone: isDone,
+                  onRefresh: controller.onCurrentRewardRefresh,
+                  onLoadMore: controller.onCurrentRewardLoadMore,
+                  itemCount: items.length,
+                  padding: const EdgeInsets.only(bottom: 12),
+                  itemBuilder: (context, index) =>
+                      _CurrentRewardCard(item: items[index]),
                 ),
-                shadows: [
-                  BoxShadow(
-                    color: Color(0x113A3A3A),
-                    blurRadius: 16,
-                    offset: Offset(0, 0),
-                    spreadRadius: 0,
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Image.asset(
-                    AppImages.myvisitImages,
-                    width: 60.w,
-                    height: 60.h,
-                  ),
-                  8.width,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CommonText(
-                        text: "Manicure Discount",
-                        fontSize: 16.w,
-                        fontWeight: FontWeight.w500,
-                        textColor: AppColor.darkColor,
-                      ),
-                      CommonText(
-                        text: "Redeemed on Oct 24, 2023",
-                        fontSize: 13.w,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                  Column(
-                    children: [
-                      Container(
-                        height: 26.h,
-                        padding: const EdgeInsets.all(4),
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFFE86DAC),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              AppIcons.starIcons,
-                              width: 20.w,
-                              height: 20.h,
-                            ),
-                            CommonText(
-                              text: "30+",
-                              fontSize: 18.w,
-                              fontWeight: FontWeight.w400,
-                              textColor: AppColor.screenBackgroundColor,
-                            ),
-                          ],
-                        ),
-                      ),
-                      8.height,
-                      Container(
-                        height: 24.h,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        decoration: ShapeDecoration(
-                          color: const Color(0x1E3FBA72),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        child: CommonText(
-                          text: "Active",
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          textColor: AppColor.successColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+              );
+            }),
           ],
         ),
       ),
     );
   }
+}
+
+// ── Status picker bottom sheet ─────────────────────────────────────────────
+void _showStatusPicker(
+  BuildContext context,
+  MyvisitScreenController controller,
+) {
+  const statuses = ['All', 'PENDING', 'APPROVED'];
+  showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    ),
+    builder: (_) {
+      return SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 12),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Filter by Status',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 8),
+            ...statuses.map(
+              (s) => ListTile(
+                title: Text(s),
+                trailing: Obx(
+                  () => controller.selectedStatus.value == (s == 'All' ? '' : s)
+                      ? Icon(Icons.check, color: AppColor.secondaryColor)
+                      : const SizedBox.shrink(),
+                ),
+                onTap: () {
+                  controller.selectedStatus.value = s == 'All' ? '' : s;
+                  controller.onUserRewardsRefresh();
+                  Get.back();
+                },
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+// ── Format DateTime for filter button label ─────────────────────────────
+String _fmtFilterDate(DateTime d) {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  return '${d.day} ${months[d.month - 1]} ${d.year}';
+}
+
+class _CurrentRewardCard extends StatelessWidget {
+  final Purchases item;
+  const _CurrentRewardCard({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shadows: const [
+          BoxShadow(
+            color: Color(0x113A3A3A),
+            blurRadius: 16,
+            offset: Offset(0, 0),
+            spreadRadius: 0,
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: item.rewardId.rewardImage.isNotEmpty
+                ? Image.network(
+                    item.rewardId.rewardImage,
+                    width: 60.w,
+                    height: 60.h,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => _placeholder(),
+                  )
+                : _placeholder(),
+          ),
+          8.width,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CommonText(
+                  text: item.rewardId.rewardName.isNotEmpty
+                      ? item.rewardId.rewardName
+                      : 'Reward',
+                  fontSize: 16.w,
+                  fontWeight: FontWeight.w500,
+                  textColor: AppColor.darkColor,
+                ),
+                CommonText(
+                  text: "Redeemed on ${formatDate(item.createdAt)}",
+                  fontSize: 13.w,
+                  fontWeight: FontWeight.w400,
+                  textColor: AppColor.textColor,
+                ),
+              ],
+            ),
+          ),
+          8.width,
+          Column(
+            children: [
+              Container(
+                height: 26.h,
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: ShapeDecoration(
+                  color: const Color(0xFFE86DAC),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(
+                      AppIcons.starIcons,
+                      width: 16.w,
+                      height: 16.h,
+                    ),
+                    4.width,
+                    CommonText(
+                      text: '${item.pointCost}',
+                      fontSize: 14.w,
+                      fontWeight: FontWeight.w500,
+                      textColor: AppColor.screenBackgroundColor,
+                    ),
+                  ],
+                ),
+              ),
+              8.height,
+              Container(
+                height: 24.h,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: ShapeDecoration(
+                  color: const Color(0x1E3FBA72),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+                child: CommonText(
+                  text: item.status.isNotEmpty ? item.status : 'Active',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  textColor: AppColor.successColor,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _placeholder() => Container(
+    width: 60.w,
+    height: 60.h,
+    decoration: BoxDecoration(
+      color: AppColor.secondaryColor.withValues(alpha: 0.1),
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Icon(Icons.card_giftcard, color: AppColor.secondaryColor, size: 28),
+  );
 }

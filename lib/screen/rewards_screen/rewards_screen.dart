@@ -141,13 +141,13 @@ class _RewardsAppBar extends StatelessWidget {
             () => Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _TabButton(
+                TabButton(
                   title: 'Active',
                   isSelected: controller.selectedIndex.value == 0,
                   onTap: () => controller.onTabChanged(0),
                 ),
                 8.width,
-                _TabButton(
+                TabButton(
                   title: 'Used',
                   isSelected: controller.selectedIndex.value == 1,
                   onTap: () => controller.onTabChanged(1),
@@ -176,13 +176,13 @@ class _StickyTabBar extends StatelessWidget {
         () => Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _TabButton(
+            TabButton(
               title: 'Active',
               isSelected: controller.selectedIndex.value == 0,
               onTap: () => controller.onTabChanged(0),
             ),
             8.width,
-            _TabButton(
+            TabButton(
               title: 'Used',
               isSelected: controller.selectedIndex.value == 1,
               onTap: () => controller.onTabChanged(1),
@@ -345,12 +345,12 @@ class _UsedSummaryCard extends StatelessWidget {
 }
 
 // ─── Tab button ────────────────────────────────────────────────────────────────
-class _TabButton extends StatelessWidget {
+class TabButton extends StatelessWidget {
   final String title;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const _TabButton({
+  const TabButton({
     required this.title,
     required this.isSelected,
     required this.onTap,

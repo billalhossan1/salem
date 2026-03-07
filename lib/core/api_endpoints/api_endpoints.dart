@@ -16,9 +16,12 @@ class ApiEndpoints {
   static final String globalReward = "/salon-reward/global-reward";
   static final String getAllTiar = "/rule/tire";
   static final String getUsedReward = "/reward/used";
+  static final String getActiveRewards = "/reward/active";
   static final String getRewardHistory = "/salon-reward/purchase-view-history";
+  static final String getUserRewardHistory = "/salon-reward/purchase-reward-history";
   static final String redeemNow = "/salon-reward/claim";
   static final String salonList = "/salon";
   static final String getProfile = "/user/details";
   static final String updateProfile = "/user";
+
 }
