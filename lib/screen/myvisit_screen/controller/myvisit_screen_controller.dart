@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:core_kit/core_kit.dart';
 import 'package:core_kit/network/request_input.dart';
 import 'package:get/get.dart';
@@ -95,6 +96,9 @@ class MyvisitScreenController extends GetxController {
     if (selectedStatus.value.isNotEmpty) {
       params['status'] = selectedStatus.value;
     }
+    if (searchText.value.isNotEmpty) {
+      params['searchTerm'] = searchText.value;
+    }
 
     final response = await DioService.instance.request(
       input: RequestInput(
@@ -124,6 +128,7 @@ class MyvisitScreenController extends GetxController {
   void clearVisitFilters() {
     selectedDate.value = null;
     selectedStatus.value = '';
+    searchText.value = '';
     onUserRewardsRefresh();
   }
 
@@ -143,8 +148,20 @@ class MyvisitScreenController extends GetxController {
 
   void onCurrentRewardLoadMore(int page) => getAllCurrentRewards(page);
 
+  Timer? _searchDebounce;
+
   void updateSearchText(String value) {
     searchText.value = value;
+    _searchDebounce?.cancel();
+    _searchDebounce = Timer(const Duration(milliseconds: 600), () {
+      onUserRewardsRefresh();
+    });
+  }
+
+  @override
+  void onClose() {
+    _searchDebounce?.cancel();
+    super.onClose();
   }
 
   void toggleDateSort() {

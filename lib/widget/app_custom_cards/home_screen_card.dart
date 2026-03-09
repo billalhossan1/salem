@@ -67,9 +67,9 @@ class HomeScreenCard extends StatelessWidget {
       width: width ?? 266.w,
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColor.creamColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(borderRadius ?? 32.w),
-          topRight: Radius.circular(borderRadius ?? 32.w),
+        borderRadius: BorderRadius.all(
+          Radius.circular(borderRadius??16)
+         
         ),
       ),
       child: Column(

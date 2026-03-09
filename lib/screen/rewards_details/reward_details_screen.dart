@@ -6,6 +6,7 @@ import 'package:zena_app/core/app_route/app_route.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
 import 'package:zena_app/utils/app_icons/app_icons.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
+import 'package:zena_app/widget/loading_widget/loading_widget.dart';
 
 import 'controller/reward_details_controller.dart';
 
@@ -367,6 +368,17 @@ class RewardsDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   16.height,
+                  controller.isConfirmVisitLoading.value?LoadingWidget():CommonButton(
+                    buttonColor: Colors.white,
+                    borderColor: Colors.black,
+                    buttonWidth: double.infinity,
+                    buttonRadius: 12.w,
+                    titleText: "Confirm Visit",
+                    onTap: () {
+                      controller.confirmVisit();
+                    },
+                  ),
+                  10.height,
                   CommonButton(
                     buttonWidth: double.infinity,
                     buttonRadius: 12.w,

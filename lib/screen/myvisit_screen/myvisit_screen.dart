@@ -841,7 +841,7 @@ class _CurrentRewardCard extends StatelessWidget {
                   ),
                 ),
                 child: CommonText(
-                  text: item.status.isNotEmpty ? item.status : 'Active',
+                  text:  'Active',
                   fontSize: 13,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.successColor,

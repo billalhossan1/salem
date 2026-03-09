@@ -86,82 +86,7 @@ class LoginScreen extends StatelessWidget {
                       //     controller.onCountryChange(country.countryCode);
                       //   },
                       // ),
-                      Container(
-                        width: double.infinity,
-                        decoration: ShapeDecoration(
-                          color: const Color(
-                            0xFFFFF8F5,
-                          ) /* Secondary-Colors-Cream-White */,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 0.50,
-                              color: const Color(0x4C6E6E6E),
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: 10,
-                                left: 4,
-                                bottom: 10,
-                              ),
-                              child: CommonImage(src: AppImages.uaeFlag),
-                            ),
-                            8.width,
-                            CommonText(
-                              text: "+971",
-                              fontSize: 16.w,
-                              fontWeight: FontWeight.w400,
-                              textColor: AppColor.textColor,
-                            ),
-                            8.width,
-                            Container(
-                              height: 40.h,
-                              width: 2.w,
-                              decoration: BoxDecoration(
-                                color: AppColor.textColor,
-                              ),
-                            ),
-                            8.width,
-                            Expanded(
-                              child: TextFormField(
-                                controller: controller.phoneNumberController,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.phone,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                  LengthLimitingTextInputFormatter(9),
-                                ],
-                                decoration: InputDecoration(
-                                  hintText: "Enter Your Phone Number",
-                                  hintStyle: TextStyle(
-                                    color: AppColor.textColor.withValues(
-                                      alpha: 0.5,
-                                    ),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  border: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  focusedErrorBorder: InputBorder.none,
-                                  contentPadding: EdgeInsets.zero,
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter phone number';
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      PhoneTextFiled(controller: controller.phoneNumberController),
 
                       16.height,
                       //! Contineu Button
@@ -251,6 +176,95 @@ class LoginScreen extends StatelessWidget {
                   onTap: () {},
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PhoneTextFiled extends StatelessWidget {
+  const PhoneTextFiled({
+    super.key,
+    required this.controller,
+  });
+
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: ShapeDecoration(
+        color: const Color(
+          0xFFFFF8F5,
+        ) /* Secondary-Colors-Cream-White */,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 0.50,
+            color: const Color(0x4C6E6E6E),
+          ),
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      child: Row(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              top: 10,
+              left: 4,
+              bottom: 10,
+            ),
+            child: CommonImage(src: AppImages.uaeFlag),
+          ),
+          8.width,
+          CommonText(
+            text: "+971",
+            fontSize: 16.w,
+            fontWeight: FontWeight.w400,
+            textColor: AppColor.textColor,
+          ),
+          8.width,
+          Container(
+            height: 40.h,
+            width: 2.w,
+            decoration: BoxDecoration(
+              color: AppColor.textColor,
+            ),
+          ),
+          8.width,
+          Expanded(
+            child: TextFormField(
+              controller: controller,
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.phone,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(9),
+              ],
+              decoration: InputDecoration(
+                hintText: "Enter Your Phone Number",
+                hintStyle: TextStyle(
+                  color: AppColor.textColor.withValues(
+                    alpha: 0.5,
+                  ),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                focusedErrorBorder: InputBorder.none,
+                contentPadding: EdgeInsets.zero,
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter phone number';
+                }
+                return null;
+              },
             ),
           ),
         ],

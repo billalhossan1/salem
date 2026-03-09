@@ -20,6 +20,7 @@ class SalonScreen extends StatelessWidget {
       body: Column(
         children: [
           _appbar(), _searchbar(),
+          10.height,
 
           Expanded(
             child: Obx(() {

@@ -4,17 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/api_endpoints/api_endpoints.dart';
 import 'package:zena_app/core/app_bindings/app_bindings.dart';
+import 'package:zena_app/core/services/deep_link_service.dart';
 import 'package:zena_app/utils/shared_prefe.dart';
 import 'package:zena_app/widget/app_device_utils/app_deviceutils.dart';
 import 'package:zena_app/widget/app_observer/app_observer.dart';
 
 import 'core/app_route/app_route.dart';
+import 'screen/splash_screen/splash_screen.dart';
 import 'utils/app_colors/app_colors.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //! Device Utils
   DeviceUtils.lockDevicePortrait();
+  //! Deep link service — captures cold-start link BEFORE runApp so splash can read it immediately
+  await DeepLinkService.init();
   runApp(const MyApp());
 }
 
@@ -80,6 +84,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       getPages: AppRoute.appRoutes,
+      unknownRoute: GetPage(
+        name: AppRoute.splashscreen,
+        page: () => SplashScreen(),
+      ),
       builder: (context, child) {
         return corekitInit(child);
       },
@@ -88,36 +96,41 @@ class MyApp extends StatelessWidget {
 
   Widget corekitInit(Widget? child) {
     return CoreKit.init(
-        navigatorKey: Get.key,
-        //scaffoldMessangeKey: scaffoldMessengerKey,
-        back: () {
+      navigatorKey: Get.key,
+      //scaffoldMessangeKey: scaffoldMessengerKey,
+      // back: () {
+      //   Get.back();
+      // },
+      appbarConfig: AppbarConfig(
+        onBack: () {
           Get.back();
         },
-
-        designSize: const Size(428, 926),
-        imageBaseUrl: ApiEndpoints.domain,
         backButton: Icon(Icons.arrow_back_ios, color: Colors.red),
-        //navigatorKey: Get.key,
-        dioServiceConfig: DioServiceConfig(
-          baseUrl: ApiEndpoints.baseUrl,
-          refreshTokenEndpoint: ApiEndpoints.refreshToken,
-          onLogout: () {
-            // StorageService().removeTokens();
-            Get.offAllNamed(AppRoute.splashscreen);
-          },
-          enableDebugLogs: kDebugMode,
-        ),
-        tokenProvider: TokenProvider(
-          accessToken: () async => SharePrefsHelper.getString(SharedPreferenceValue.token),
-          refreshToken: () async => '',
-          updateTokens:
-              (
-                data
-              ) async {
+      ),
 
-              }, // clearTokens: () => StorageService().removeTokens()
-        ),
-        child: child,
-      );
+      designSize: const Size(428, 926),
+      imageBaseUrl: ApiEndpoints.domain,
+      // backButton: Icon(Icons.arrow_back_ios, color: Colors.red),
+      //navigatorKey: Get.key,
+      dioServiceConfig: DioServiceConfig(
+        baseUrl: ApiEndpoints.baseUrl,
+        refreshTokenEndpoint: ApiEndpoints.refreshToken,
+        onLogout: () {
+          // StorageService().removeTokens();
+          Get.offAllNamed(AppRoute.splashscreen);
+        },
+        enableDebugLogs: kDebugMode,
+      ),
+      tokenProvider: TokenProvider(
+        accessToken: () async =>
+            SharePrefsHelper.getString(SharedPreferenceValue.token),
+        refreshToken: () async => '',
+        updateTokens:
+            (
+              data,
+            ) async {}, // clearTokens: () => StorageService().removeTokens()
+      ),
+      child: child,
+    );
   }
 }
