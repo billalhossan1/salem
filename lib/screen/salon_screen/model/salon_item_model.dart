@@ -15,7 +15,10 @@ class SalonItemModel {
   final String description;
   final String image;
   final String location;
+  final String distance;
   final String service;
+  final String lat;
+  final String lon;
   final List<OpeningTime> openingTime;
   final String createdAt;
   final String updatedAt;
@@ -47,6 +50,8 @@ class SalonItemModel {
     required this.v,
     required this.visitor,
     required this.isRewardAvailable,
+    required this.lat,
+    required this.lon, required this.distance,
   });
 
   factory SalonItemModel.empty() {
@@ -74,6 +79,8 @@ class SalonItemModel {
       v: 0,
       visitor: 0,
       isRewardAvailable: false,
+      lat: '',
+      lon: '', distance: '',
     );
   }
 
@@ -98,9 +105,10 @@ class SalonItemModel {
       image: json['image']?.toString() ?? '',
       location: json['location']?.toString() ?? '',
       service: json['service']?.toString() ?? '',
-      openingTime: (json['openingTime'] as List?)
-          ?.map((e) => OpeningTime.fromJson(e))
-          .toList() ??
+      openingTime:
+          (json['openingTime'] as List?)
+              ?.map((e) => OpeningTime.fromJson(e))
+              .toList() ??
           [],
       createdAt: json['createdAt']?.toString() ?? '',
       updatedAt: json['updatedAt']?.toString() ?? '',
@@ -111,6 +119,8 @@ class SalonItemModel {
           ? json['visitor']
           : int.tryParse(json['visitor']?.toString() ?? '') ?? 0,
       isRewardAvailable: json['isRewardAvailable'] ?? false,
+      lat: json['lat']?.toString() ?? '',
+      lon: json['lon']?.toString() ?? '', distance: json['distance']?.toString() ?? '',
     );
   }
 
@@ -148,18 +158,10 @@ class Admin {
   final String name;
   final String email;
 
-  Admin({
-    required this.id,
-    required this.name,
-    required this.email,
-  });
+  Admin({required this.id, required this.name, required this.email});
 
   factory Admin.empty() {
-    return Admin(
-      id: '',
-      name: '',
-      email: '',
-    );
+    return Admin(id: '', name: '', email: '');
   }
 
   factory Admin.fromJson(Map<String, dynamic> json) {
@@ -171,11 +173,7 @@ class Admin {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      '_id': id,
-      'name': name,
-      'email': email,
-    };
+    return {'_id': id, 'name': name, 'email': email};
   }
 }
 

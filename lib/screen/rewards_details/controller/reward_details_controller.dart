@@ -3,6 +3,7 @@ import 'package:core_kit/network/request_input.dart';
 import 'package:core_kit/utils/app_log.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/models/lat_long.dart';
+import 'package:zena_app/core/services/location_controller.dart';
 import 'package:zena_app/core/services/location_service.dart';
 import 'package:zena_app/screen/home_screen/model/rewards_item_model.dart';
 
@@ -22,8 +23,16 @@ class RewardDetailsController extends GetxController {
   @override
   void onInit() {
     rewardId = Get.arguments['rewardId'] ?? '';
-    getRewardById();
+    _initial();
     super.onInit();
+  }
+
+  Future<void> _initial() async {
+    // Wait for location before firing the API call
+    await LocationController.instance.ready;
+    // Seed local cache with already-fetched location
+    currentLocation.value = LocationController.instance.currentLocation.value;
+    getRewardById();
   }
 
   Future<void> confirmVisit() async {
@@ -73,3 +82,5 @@ class RewardDetailsController extends GetxController {
     }
   }
 }
+
+

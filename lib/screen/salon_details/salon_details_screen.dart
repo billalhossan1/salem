@@ -287,6 +287,9 @@ class SalonDetailsScreen extends StatelessWidget {
                           ),
                           12.height,
                           CommonButton(
+                            onTap: (){
+                              controller.openMap();
+                            },
                             buttonWidth: double.infinity,
                             buttonRadius: 12,
                             titleText: "Get Direction",

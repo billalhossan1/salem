@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:zena_app/core/api_endpoints/api_endpoints.dart';
 import 'package:zena_app/core/app_bindings/app_bindings.dart';
 import 'package:zena_app/core/services/deep_link_service.dart';
+import 'package:zena_app/core/services/location_controller.dart';
 import 'package:zena_app/utils/shared_prefe.dart';
 import 'package:zena_app/widget/app_device_utils/app_deviceutils.dart';
 import 'package:zena_app/widget/app_observer/app_observer.dart';
@@ -19,6 +20,8 @@ void main() async {
   DeviceUtils.lockDevicePortrait();
   //! Deep link service — captures cold-start link BEFORE runApp so splash can read it immediately
   await DeepLinkService.init();
+  //! Location controller — start fetching NOW so it's ready when any screen opens
+  Get.put(LocationController());
   runApp(const MyApp());
 }
 

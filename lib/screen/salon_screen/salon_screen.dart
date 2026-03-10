@@ -40,7 +40,7 @@ class SalonScreen extends StatelessWidget {
                       imageAsset: salon.image,
                       isNetworkImage: true,
                       salonName: salon.businessName,
-                      distance: "📍 1.3 km",
+                      distance: salon.distance,
                       description: salon.description,
                       statusText: salon.isRewardAvailable,
                       buttonText: "View Details",
