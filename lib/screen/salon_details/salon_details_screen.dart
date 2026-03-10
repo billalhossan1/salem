@@ -7,6 +7,7 @@ import 'package:zena_app/utils/app_images/app_images.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
+import '../../widget/shimmer/app_shimmer.dart';
 import 'controller/salon_details_controller.dart';
 
 class SalonDetailsScreen extends StatelessWidget {
@@ -20,7 +21,7 @@ class SalonDetailsScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return const DetailPageShimmer();
         }
 
         final salon = controller.salon.value;
@@ -42,7 +43,10 @@ class SalonDetailsScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.grey.shade200,
                           ),
-                          child: CommonImage(src: salon.image,fill: BoxFit.cover,),
+                          child: CommonImage(
+                            src: salon.image,
+                            fill: BoxFit.cover,
+                          ),
                         ),
                         Positioned(
                           top: 50.h,
@@ -213,7 +217,8 @@ class SalonDetailsScreen extends StatelessWidget {
                                       child: salon.openingTime.isEmpty
                                           ? Center(
                                               child: CommonText(
-                                                text: "No opening hours available",
+                                                text:
+                                                    "No opening hours available",
                                                 fontSize: 12.sp,
                                                 fontWeight: FontWeight.w400,
                                                 textColor: AppColor.textColor,
@@ -224,21 +229,22 @@ class SalonDetailsScreen extends StatelessWidget {
                                                   .asMap()
                                                   .entries
                                                   .map((entry) {
-                                                final i = entry.key;
-                                                final ot = entry.value;
-                                                return Column(
-                                                  children: [
-                                                    if (i > 0) 8.height,
-                                                    _buildTimeRow(
-                                                      ot.day,
-                                                      ot.isClosed
-                                                          ? "Closed"
-                                                          : "${ot.openingTime} - ${ot.closingTime}",
-                                                      isClosed: ot.isClosed,
-                                                    ),
-                                                  ],
-                                                );
-                                              }).toList(),
+                                                    final i = entry.key;
+                                                    final ot = entry.value;
+                                                    return Column(
+                                                      children: [
+                                                        if (i > 0) 8.height,
+                                                        _buildTimeRow(
+                                                          ot.day,
+                                                          ot.isClosed
+                                                              ? "Closed"
+                                                              : "${ot.openingTime} - ${ot.closingTime}",
+                                                          isClosed: ot.isClosed,
+                                                        ),
+                                                      ],
+                                                    );
+                                                  })
+                                                  .toList(),
                                             ),
                                     ),
                                   ],
@@ -287,7 +293,7 @@ class SalonDetailsScreen extends StatelessWidget {
                           ),
                           12.height,
                           CommonButton(
-                            onTap: (){
+                            onTap: () {
                               controller.openMap();
                             },
                             buttonWidth: double.infinity,

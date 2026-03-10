@@ -1,9 +1,7 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:zena_app/core/app_route/app_route.dart';
 
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_icons/app_icons.dart';
@@ -78,14 +76,62 @@ class LoginScreen extends StatelessWidget {
                         textColor: AppColor.textColor,
                       ),
                       24.height,
-                      // CommonPhoneNumberTextFiled(
-                      //   borderColor: AppColor.textColor,
-                      //   textInputAction: TextInputAction.next,
-                      //   controller: controller.phoneNumberController,
-                      //   countryChange: (country) {
-                      //     controller.onCountryChange(country.countryCode);
-                      //   },
-                      // ),
+                      //! Referral code banner — shown only when coming from a referral link
+                      Obx(() {
+                        if (controller.referralCode.value.isEmpty) {
+                          return const SizedBox.shrink();
+                        }
+                        return Column(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16.w,
+                                vertical: 10.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColor.green100,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: AppColor.darkColor.withValues(alpha: 0.15),
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.card_giftcard_rounded,
+                                    color: AppColor.darkColor,
+                                    size: 20.w,
+                                  ),
+                                  8.width,
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        CommonText(
+                                          text: "Referral Code Applied 🎉",
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w600,
+                                          textColor: AppColor.darkColor,
+                                        ),
+                                        4.height,
+                                        CommonText(
+                                          text: controller.referralCode.value,
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w700,
+                                          textColor: AppColor.darkColor,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            16.height,
+                          ],
+                        );
+                      }),
+
                       PhoneTextFiled(controller: controller.phoneNumberController),
 
                       16.height,

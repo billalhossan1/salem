@@ -127,11 +127,14 @@ class MyApp extends StatelessWidget {
       tokenProvider: TokenProvider(
         accessToken: () async =>
             SharePrefsHelper.getString(SharedPreferenceValue.token),
-        refreshToken: () async => '',
+        refreshToken: () async => SharePrefsHelper.getString(SharedPreferenceValue.refreshToken),
         updateTokens:
             (
               data,
-            ) async {}, // clearTokens: () => StorageService().removeTokens()
+            ) async {
+              await SharePrefsHelper.setString(SharedPreferenceValue.token, data['accessToken']);
+              await SharePrefsHelper.setString(SharedPreferenceValue.refreshToken, data['refreshToken']);
+            }, // clearTokens: () => StorageService().removeTokens()
       ),
       child: child,
     );

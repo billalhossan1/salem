@@ -10,6 +10,7 @@ import 'package:zena_app/widget/app_custom_cards/home_screen_card.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
+import '../../widget/shimmer/app_shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -282,27 +283,35 @@ class HomeScreen extends StatelessWidget {
             ),
 
             12.height,
-            Obx(()=>controller.isRewardLoading.value?Center(child:CircularProgressIndicator(),):SizedBox(
-              height: 310.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.rewardList.length,
-                separatorBuilder: (context, index) => 16.width,
-                itemBuilder: (context, index) {
-                  final offer = controller.rewardList[index];
-                  return HomeScreenCard(
-                    imageAsset:offer.rewardImage??'' ,
-                    title: offer.rewardName??'N/A',
-                    subtitle: 'Valid Until ${offer.closedDays?.toList().map((e) => e.day).join(', ')}',
-                    buttonText: "View Details",
-                    onButtonTap: () {
-                      Get.toNamed(AppRoute.rewardDetailsScreen,arguments: {'rewardId':offer.id});
-                    },
-                  );
-                },
-              ),
-            ),),
-            20.height
+            Obx(
+              () => controller.isRewardLoading.value
+                  ? const HomeRewardListShimmer()
+                  : SizedBox(
+                      height: 310.h,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.rewardList.length,
+                        separatorBuilder: (context, index) => 16.width,
+                        itemBuilder: (context, index) {
+                          final offer = controller.rewardList[index];
+                          return HomeScreenCard(
+                            imageAsset: offer.rewardImage ?? '',
+                            title: offer.rewardName ?? 'N/A',
+                            subtitle:
+                                'Valid Until ${offer.closedDays?.toList().map((e) => e.day).join(', ')}',
+                            buttonText: "View Details",
+                            onButtonTap: () {
+                              Get.toNamed(
+                                AppRoute.rewardDetailsScreen,
+                                arguments: {'rewardId': offer.id},
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+            ),
+            20.height,
           ],
         ),
       ),

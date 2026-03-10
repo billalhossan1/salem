@@ -1,9 +1,8 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:zena_app/screen/invite_friends/controller/invite_friends_controller.dart';
-import 'package:zena_app/screen/referral_reward/referral_reward_screen.dart';
 import 'package:zena_app/utils/app_icons/app_icons.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 
@@ -20,7 +19,7 @@ class InviteFriendsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
-        title: "Invite & Referral\nPeople",
+        title: "Invite & Referral",
         leadingType: LeadingType.back,
         centerTitle: true,
       ),
@@ -68,11 +67,18 @@ class InviteFriendsScreen extends StatelessWidget {
             ),
             32.height,
             CommonButton(
-              titleText: "Share Referal Link",
+              titleText: "Share Referral Link",
               prefix: SvgPicture.asset(AppIcons.shareReferalLink),
               onTap: () {
-                // Navigate to referral reward screen
-                Get.to(() => ReferralRewardScreen());
+                final code = controller.referralCode;
+                final referralLink = 'https://zenaApp.com/referral/$code';
+                SharePlus.instance.share(
+                  ShareParams(
+                    text:
+                        'Join me on Zena! Use my referral link to sign up and get exclusive rewards:\n$referralLink',
+                    subject: 'You\'re invited to Zena!',
+                  ),
+                );
               },
               buttonRadius: 12.w,
               buttonWidth: double.infinity,

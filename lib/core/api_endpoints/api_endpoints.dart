@@ -10,7 +10,7 @@ class ApiEndpoints {
 
 
 
-  static final String login = "/auth/login";
+  static final String login = "/user";
   static final String getRewards = "/salon-reward";
   static final String getUserCoin = "/user/coins";
   static final String globalReward = "/salon-reward/global-reward";

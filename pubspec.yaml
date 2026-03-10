@@ -23,6 +23,13 @@ dependencies:
   geolocator: ^13.0.2
   app_links: ^6.4.0
   url_launcher: ^6.3.2
+  shimmer: ^3.0.0
+
+dependency_overrides:
+  core_kit:
+    path: C:\Users\Billal\AppData\Local\Pub\Cache\git\flutter_core_kit-8da6043773bc394d3bf62b7617f9ca658b371fd8
+  share_plus: ^12.0.0
+  share_plus_platform_interface: ^6.0.0
 
 dev_dependencies:
   flutter_test:

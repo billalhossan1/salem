@@ -11,18 +11,27 @@ class LoginScreenController extends GetxController {
   late TextEditingController phoneNumberController;
   var countryCode = '+880'.obs; // Default country code
 
+  /// Referral code passed via deep link (may be empty)
+  RxString referralCode = ''.obs;
+
   @override
   void onInit() {
     phoneNumberController = TextEditingController();
+    // Read referral code from deep-link arguments if available
+    final args = Get.arguments;
+    if (args is Map && args['referralCode'] != null) {
+      referralCode.value = args['referralCode'].toString();
+      AppLogger.debug(
+        'LoginScreen: referral code from deep link = "${referralCode.value}"',
+        tag: 'Login',
+      );
+    }
     super.onInit();
   }
-
-
 
   void onCountryChange(String code) {
     countryCode.value = code;
   }
-
 
   Future<void> login() async {
     isLoading.value = true;
@@ -31,13 +40,14 @@ class LoginScreenController extends GetxController {
         endpoint: ApiEndpoints.login,
         method: RequestMethod.POST,
         jsonBody: {
-          "phoneNumber": "01335588522",
-        }
+          "phoneNumber": phoneNumberController.text.trim(),
+          if (referralCode.value.isNotEmpty) "referralCode": referralCode.value,
+        },
       ),
       responseBuilder: (data) {
         return data;
       },
-      showMessage: true
+      showMessage: true,
     );
     isLoading.value = false;
     SharePrefsHelper.setString(SharedPreferenceValue.token, response.data['accessToken']);
@@ -45,7 +55,7 @@ class LoginScreenController extends GetxController {
     AppLogger.apiDebug(response.data.toString());
     AppLogger.apiDebug(response.data['accessToken'].toString());
 
-    if(response.isSuccess){
+    if (response.isSuccess) {
       Get.toNamed(AppRoute.bottomNav);
     }
   }

@@ -11,8 +11,11 @@ class DeepLinkService extends GetxService {
   StreamSubscription<Uri>? _linkSubscription;
 
   /// Stores the first path segment from the deep link.
-  /// e.g. 'event' from https://zenaapp.com/event/123
+  /// e.g. 'referral' from https://zenaapp.com/referral/ABC123
   final RxString pendingPath = ''.obs;
+
+  /// Stores the referral code when the link is https://zenaapp.com/referral/{code}
+  final RxString pendingReferralCode = ''.obs;
 
   /// Stores the full URI for richer handling if needed.
   Uri? pendingUri;
@@ -59,12 +62,23 @@ class DeepLinkService extends GetxService {
     pendingUri = uri;
     final segments = uri.pathSegments.where((s) => s.isNotEmpty).toList();
     pendingPath.value = segments.isNotEmpty ? segments.first : '';
+
+    // Extract referral code: https://zenaapp.com/referral/{code}
+    if (segments.length >= 2 && segments[0] == 'referral') {
+      pendingReferralCode.value = segments[1];
+      AppLogger.debug(
+        'Referral code extracted: "${pendingReferralCode.value}"',
+        tag: 'DeepLink',
+      );
+    }
+
     AppLogger.debug('Pending path: "${pendingPath.value}"', tag: 'DeepLink');
   }
 
   /// Call this after you have consumed the pending link.
   void clearPending() {
     pendingPath.value = '';
+    pendingReferralCode.value = '';
     pendingUri = null;
   }
 

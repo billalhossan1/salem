@@ -124,11 +124,9 @@ packages:
   core_kit:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "1.0.36"
-      resolved-ref: "8da6043773bc394d3bf62b7617f9ca658b371fd8"
-      url: "https://github.com/kmmuzahid/flutter_core_kit.git"
-    source: git
+      path: "C:\\Users\\Billal\\AppData\\Local\\Pub\\Cache\\git\\flutter_core_kit-8da6043773bc394d3bf62b7617f9ca658b371fd8"
+      relative: false
+    source: path
     version: "0.0.1"
   cross_file:
     dependency: transitive
@@ -778,7 +776,7 @@ packages:
     source: hosted
     version: "0.28.0"
   share_plus:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: share_plus
       sha256: "14c8860d4de93d3a7e53af51bff479598c4e999605290756bbbe45cf65b37840"
@@ -786,7 +784,7 @@ packages:
     source: hosted
     version: "12.0.1"
   share_plus_platform_interface:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: share_plus_platform_interface
       sha256: "88023e53a13429bd65d8e85e11a9b484f49d4c190abbd96c7932b74d6927cc9a"
@@ -849,6 +847,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  shimmer:
+    dependency: "direct main"
+    description:
+      name: shimmer
+      sha256: "5f88c883a22e9f9f299e5ba0e4f7e6054857224976a5d9f839d4ebdc94a14ac9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   skeletonizer:
     dependency: transitive
     description:

@@ -1,8 +1,16 @@
 import 'package:get/get.dart';
+import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 
 class InviteFriendsController extends GetxController {
   RxBool isInviteFriendsEnabled = true.obs;
 
+  String referralCode = '';
+
+  @override
+  void onInit() {
+    referralCode = Get.find<ProfileScreenController>().profileModel.value.referralCode;
+    super.onInit();
+  }
   // Track number of friends who completed their first visit (0-3)
   RxInt completedReferrals = 0.obs;
 

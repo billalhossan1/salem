@@ -10,6 +10,7 @@ import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
+import '../../widget/shimmer/app_shimmer.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -34,84 +35,89 @@ class ProfileScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Obx(() {
           var profile = controller.profileModel.value;
-          return  Column(
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               4.height,
               //! Profile Card
-            controller.isLoading.value?Center(child: CircularProgressIndicator(),):  Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: ShapeDecoration(
-                  color: AppColor.secondaryColor.withValues(alpha: 0.2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  shadows: [
-                    BoxShadow(
-                      color: AppColor.secondaryColor.withValues(alpha: 0.03),
-                      blurRadius: 6,
-                      offset: Offset(0, 2),
-                      spreadRadius: 0,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    CommonImage(
-                      defaultImage: AppImages.defaultProfile,
-                      src: profile.image,
-                      height: 80,
-                      width: 80,
-                      borderRadius: 40,
-                    ),
-                    12.width,
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CommonText(
-                          text: profile.name,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          textColor: AppColor.darkColor,
+              controller.isLoading.value
+                  ? const ProfileCardShimmer()
+                  : Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: ShapeDecoration(
+                        color: AppColor.secondaryColor.withValues(alpha: 0.2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        4.height,
-                        CommonText(
-                          text: profile.phoneNumber,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          textColor: AppColor.textColor,
-                        ),
-                        4.height,
-                        Container(
-                          height: 24.h,
-                          padding: EdgeInsets.symmetric(horizontal: 12.w),
-                          decoration: ShapeDecoration(
-                            color: AppColor.secondaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24),
+                        shadows: [
+                          BoxShadow(
+                            color: AppColor.secondaryColor.withValues(
+                              alpha: 0.03,
                             ),
+                            blurRadius: 6,
+                            offset: Offset(0, 2),
+                            spreadRadius: 0,
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            spacing: 10,
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          CommonImage(
+                            defaultImage: AppImages.defaultProfile,
+                            src: profile.image,
+                            height: 80,
+                            width: 80,
+                            borderRadius: 40,
+                          ),
+                          12.width,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CommonText(
-                                text: "MEMBER SINCE ${getYear(profile.createdAt)}",
-                                textColor: Colors.white,
-                                fontSize: 12,
+                                text: profile.name,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500,
+                                textColor: AppColor.darkColor,
+                              ),
+                              4.height,
+                              CommonText(
+                                text: profile.phoneNumber,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                textColor: AppColor.textColor,
+                              ),
+                              4.height,
+                              Container(
+                                height: 24.h,
+                                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                                decoration: ShapeDecoration(
+                                  color: AppColor.secondaryColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(24),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  spacing: 10,
+                                  children: [
+                                    CommonText(
+                                      text:
+                                          "MEMBER SINCE ${getYear(profile.createdAt)}",
+                                      textColor: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
 
               //! Account Settings
               25.height,
@@ -266,7 +272,7 @@ class ProfileScreen extends StatelessWidget {
               25.height,
               Center(
                 child: GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     SharePrefsHelper.remove(SharedPreferenceValue.token);
                     Get.offAllNamed(AppRoute.loginScreen);
                   },
@@ -321,8 +327,9 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+
 String getYear(String isoDate) {
-  if(isoDate.isEmpty){
+  if (isoDate.isEmpty) {
     return 'N/A';
   }
   DateTime dateTime = DateTime.parse(isoDate);

@@ -1,6 +1,5 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/screen/rewards_screen/controller/rewards_screen_controller.dart';
 import 'package:zena_app/widget/app_custom_cards/reward_card.dart';
@@ -8,8 +7,8 @@ import 'package:zena_app/widget/app_custom_cards/reward_card.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
-import '../../utils/app_images/app_images.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
+import '../../widget/shimmer/app_shimmer.dart';
 import '../../widget/app_custom_cards/history_card.dart';
 import 'model/used_reward_model.dart';
 
@@ -25,6 +24,7 @@ class RewardsScreen extends StatelessWidget {
         final tabIndex = controller.selectedIndex.value;
         return SmartListLoader(
           key: ValueKey(tabIndex),
+          loadingWidget: const RewardCardListShimmer(itemCount: 4),
           isLoading: tabIndex == 0
               ? controller.isLoading.value
               : controller.usedRewardIsLoading.value,
@@ -84,7 +84,7 @@ class _RewardsAppBar extends StatelessWidget {
           //! Balance Card
           Obx(
             () => controller.userCoinIsLoading.value
-                ? const Center(child: CircularProgressIndicator())
+                ? const RewardsBalanceCardShimmer()
                 : Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),

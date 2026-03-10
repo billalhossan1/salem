@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
+import '../shimmer/app_shimmer.dart';
 // Import your custom widgets and constants
 // import 'package:your_app/widgets/common_text.dart';
 // import 'package:your_app/widgets/common_button.dart';
@@ -55,7 +56,10 @@ class SalonCard extends StatelessWidget {
                           width: 110.w,
                           height: 185.h,
                           color: Colors.grey.shade200,
-                          child: const Icon(Icons.broken_image, color: Colors.grey),
+                          child: const Icon(
+                            Icons.broken_image,
+                            color: Colors.grey,
+                          ),
                         ),
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress == null) return child;
@@ -63,7 +67,10 @@ class SalonCard extends StatelessWidget {
                             width: 110.w,
                             height: 185.h,
                             color: Colors.grey.shade100,
-                            child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                            child: const SalonCardImageShimmer(
+                              width: 110,
+                              height: 185,
+                            ),
                           );
                         },
                       )
@@ -120,30 +127,34 @@ class SalonCard extends StatelessWidget {
                       textColor: AppColor.secondaryColor,
                     ),
                     8.height,
-                   statusText? Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 14.w,
-                        vertical: 5.h,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Color(0xFFF1B852).withValues(alpha: 0.31),
-                        border: Border.all(color: AppColor.primaryColor),
-                      ),
-                      child: CommonText(
-                        text: "🎁 Rewards active",
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
-                    ):SizedBox(),
-                   statusText? 8.height:SizedBox(),
-                   statusText? CommonText(
-                      text: "Points & Offers Available",
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      textColor: AppColor.textColor,
-                    ):SizedBox(),
+                    statusText
+                        ? Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 14.w,
+                              vertical: 5.h,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Color(0xFFF1B852).withValues(alpha: 0.31),
+                              border: Border.all(color: AppColor.primaryColor),
+                            ),
+                            child: CommonText(
+                              text: "🎁 Rewards active",
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                              textColor: AppColor.textColor,
+                            ),
+                          )
+                        : SizedBox(),
+                    statusText ? 8.height : SizedBox(),
+                    statusText
+                        ? CommonText(
+                            text: "Points & Offers Available",
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            textColor: AppColor.textColor,
+                          )
+                        : SizedBox(),
                     12.height,
                     CommonButton(
                       titleText: buttonText,

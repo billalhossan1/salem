@@ -13,6 +13,7 @@ import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
+import '../../widget/shimmer/app_shimmer.dart';
 import '../profile_screen/controller/profile_screen_controller.dart';
 
 import '../rewards_screen/controller/rewards_screen_controller.dart';
@@ -633,7 +634,7 @@ class MyvisitScreen extends StatelessWidget {
               if (isLoading && items.isEmpty) {
                 return const Padding(
                   padding: EdgeInsets.all(24),
-                  child: Center(child: CircularProgressIndicator()),
+                  child: const RewardCardListShimmer(itemCount: 4),
                 );
               }
 
@@ -841,7 +842,7 @@ class _CurrentRewardCard extends StatelessWidget {
                   ),
                 ),
                 child: CommonText(
-                  text:  'Active',
+                  text: 'Active',
                   fontSize: 13,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.successColor,

@@ -28,16 +28,33 @@ class SplashScreenController extends GetxController {
         //! Check for a pending deep link
         final deepLinkService = DeepLinkService.instance;
         final pendingPath = deepLinkService.pendingPath.value;
+        final referralCode = deepLinkService.pendingReferralCode.value;
 
-        if (pendingPath.isNotEmpty && token.isNotEmpty) {
-          //! Authenticated + deep link → handle it
+        if (pendingPath == 'referral' && referralCode.isNotEmpty) {
+          // Referral deep link
+          deepLinkService.clearPending();
+          if (token.isNotEmpty) {
+            //! Already logged in → go home (referral already used at signup)
+            Get.offAllNamed(AppRoute.bottomNav);
+          } else {
+            //! Not logged in → go directly to login with the referral code
+            AppLogger.debug(
+              'Referral deep link → login with code: "$referralCode"',
+              tag: 'Splash',
+            );
+            Get.offAllNamed(
+              AppRoute.loginScreen,
+              arguments: {'referralCode': referralCode},
+            );
+          }
+        } else if (pendingPath.isNotEmpty && token.isNotEmpty) {
+          //! Authenticated + other deep link → handle it
           AppLogger.debug(
             'Navigating via deep link path: "$pendingPath"',
             tag: 'Splash',
           );
           deepLinkService.clearPending();
           Get.offAllNamed(AppRoute.bottomNav);
-          // Add extra routing based on pendingPath here if needed.
         } else if (token.isNotEmpty) {
           //! Authenticated, no deep link
           Get.offAllNamed(AppRoute.bottomNav);

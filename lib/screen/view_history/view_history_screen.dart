@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:zena_app/screen/rewards_screen/model/reward_history_model.dart';
 import 'package:zena_app/screen/view_history/controller/view_history_controller.dart';
 import 'package:zena_app/utils/app_icons/app_icons.dart';
-import 'package:zena_app/utils/app_images/app_images.dart';
-import 'package:zena_app/widget/app_custom_cards/history_card.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
@@ -127,16 +125,14 @@ class _HistoryItem extends StatelessWidget {
 
   const _HistoryItem({required this.history});
 
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
-        border: Border.all(color:Color(0xffFFF6D0)),
-        boxShadow:[
+        border: Border.all(color: Color(0xffFFF6D0)),
+        boxShadow: [
           BoxShadow(
             color: Color(0xffFFF6D0).withValues(alpha: 0.5),
             blurRadius: 8,
@@ -177,6 +173,7 @@ class _HistoryItem extends StatelessWidget {
     // );
   }
 }
+
 String formatDate(String raw) {
   if (raw.isEmpty) return '';
   try {

@@ -2,11 +2,10 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors/app_colors.dart';
+import '../shimmer/app_shimmer.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({
-    super.key,
-  });
+  const LoadingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +16,12 @@ class LoadingWidget extends StatelessWidget {
         onPressed: null,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.secondaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         child: SizedBox(
           width: 22.w,
           height: 22.h,
-          child: CircularProgressIndicator(
-            strokeWidth: 2.5,
-            color: AppColor.charocalColor,
-          ),
+          child: const ButtonLoadingShimmer(buttonColor: Colors.transparent),
         ),
       ),
     );

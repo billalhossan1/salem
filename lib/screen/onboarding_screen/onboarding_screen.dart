@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/screen/onboarding_screen/controller/onboarding_screen_controller.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
+import '../../utils/app_images/app_images.dart';
+import '../../widget/shimmer/app_shimmer.dart';
 
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({super.key});
@@ -215,15 +217,8 @@ class OnboardingScreen extends StatelessWidget {
                                 return SizedBox(
                                   height: 72.h,
                                   width: 72.w,
-                                  child: CircularProgressIndicator(
-                                    value: value,
-                                    strokeWidth: 3.5,
-                                    backgroundColor: AppColor.primaryColor
-                                        .withValues(alpha: 0.2),
-                                    valueColor:
-                                        const AlwaysStoppedAnimation<Color>(
-                                          AppColor.primaryColor,
-                                        ),
+                                  child: const ButtonLoadingShimmer(
+                                    buttonColor: Colors.transparent,
                                   ),
                                 );
                               },
