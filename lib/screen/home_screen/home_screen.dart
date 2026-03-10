@@ -1,6 +1,5 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/app_route/app_route.dart';
 import 'package:zena_app/screen/home_screen/controller/home_screen_controller.dart';
@@ -38,7 +37,6 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             10.height,
-
             //! Treat You Self More.
             GestureDetector(
               onTap: () {
@@ -82,11 +80,14 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         SvgPicture.asset(AppIcons.starIcons),
                         6.width,
-                        CommonText(
-                          text: "300/400",
-                          fontSize: 24.w,
-                          fontWeight: FontWeight.w600,
-                          textColor: AppColor.darkColor,
+                        Obx(
+                          () => CommonText(
+                            text:
+                                "${profileController.profileModel.value.coins}/400",
+                            fontSize: 24.w,
+                            fontWeight: FontWeight.w600,
+                            textColor: AppColor.darkColor,
+                          ),
                         ),
                       ],
                     ),
@@ -158,11 +159,14 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         SvgPicture.asset(AppIcons.starIcons),
                         08.width,
-                        CommonText(
-                          text: "2/3",
-                          fontSize: 24.w,
-                          fontWeight: FontWeight.w500,
-                          textColor: AppColor.screenBackgroundColor,
+                        Obx(
+                          () => CommonText(
+                            text:
+                                "${profileController.profileModel.value.successfulInvites}/3",
+                            fontSize: 24.w,
+                            fontWeight: FontWeight.w500,
+                            textColor: AppColor.screenBackgroundColor,
+                          ),
                         ),
                         06.width,
                         CommonText(
@@ -295,10 +299,10 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final offer = controller.rewardList[index];
                           return HomeScreenCard(
-                            imageAsset: offer.rewardImage ?? '',
-                            title: offer.rewardName ?? 'N/A',
+                            imageAsset: offer.rewardImage,
+                            title: offer.rewardName,
                             subtitle:
-                                'Valid Until ${offer.closedDays?.toList().map((e) => e.day).join(', ')}',
+                                'Valid Until ${offer.closedDays.toList().map((e) => e.day).join(', ')}',
                             buttonText: "View Details",
                             onButtonTap: () {
                               Get.toNamed(
