@@ -12,6 +12,7 @@ class ApiEndpoints {
 
   static final String login = "/user";
   static final String getRewards = "/salon-reward";
+  static final String socketUrl = "/salon-reward";
   static final String getUserCoin = "/user/coins";
   static final String globalReward = "/salon-reward/global-reward";
   static final String getAllTiar = "/rule/tire";
@@ -24,5 +25,7 @@ class ApiEndpoints {
   static final String salonList = "/salon";
   static final String getProfile = "/user/details";
   static final String updateProfile = "/user";
+  static final String getAllNotification = "/notification";
+  static final String updateNotification = "/user";
 
 }

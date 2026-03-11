@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../core/api_endpoints/api_endpoints.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
@@ -37,7 +38,7 @@ class SalonScreen extends StatelessWidget {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: SalonCard(
-                      imageAsset: salon.image,
+                      imageAsset: "${ApiEndpoints.domain}${salon.image}",
                       isNetworkImage: true,
                       salonName: salon.businessName,
                       distance: salon.distance,

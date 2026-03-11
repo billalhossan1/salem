@@ -19,6 +19,17 @@ class RewardsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(RewardsScreenController());
     return Scaffold(
+      appBar: AppCustomAppbar(
+        title: "Home",
+        leadingType: LeadingType.logo,
+        centerTitle: true,
+        actions: [
+          NotificationActionButton(
+            notificationCount: 3,
+            onTap: () => Get.toNamed(AppRoute.notificationScreen),
+          ),
+        ],
+      ),
       backgroundColor: AppColor.screenBackgroundColor,
       body: Obx(() {
         final tabIndex = controller.selectedIndex.value;

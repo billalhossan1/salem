@@ -9,7 +9,7 @@ import '../../../utils/app_images/app_images.dart';
 import '../../../utils/app_string/app_string.dart';
 
 class OptScreen extends StatelessWidget {
-  OptScreen({super.key});
+  const OptScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

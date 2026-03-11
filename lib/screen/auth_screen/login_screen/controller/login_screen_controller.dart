@@ -40,7 +40,8 @@ class LoginScreenController extends GetxController {
         endpoint: ApiEndpoints.login,
         method: RequestMethod.POST,
         jsonBody: {
-          "phoneNumber": phoneNumberController.text.trim(),
+          // "phoneNumber": phoneNumberController.text.trim(),
+          "phoneNumber": "013355588522",
           if (referralCode.value.isNotEmpty) "referralCode": referralCode.value,
         },
       ),
