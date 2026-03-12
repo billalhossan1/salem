@@ -53,8 +53,10 @@ class LoginScreenController extends GetxController {
     isLoading.value = false;
     SharePrefsHelper.setString(SharedPreferenceValue.token, response.data['accessToken']);
     SharePrefsHelper.setString(SharedPreferenceValue.refreshToken, response.data['refreshToken']);
+    SharePrefsHelper.setString(SharedPreferenceValue.userId, response.data['userId']);
     AppLogger.apiDebug(response.data.toString());
     AppLogger.apiDebug(response.data['accessToken'].toString());
+    AppLogger.apiDebug(response.data['userId'].toString());
 
     if (response.isSuccess) {
       Get.toNamed(AppRoute.bottomNav);

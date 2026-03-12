@@ -17,7 +17,7 @@ class RewardsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(RewardsScreenController());
+    final controller = Get.find<RewardsScreenController>();
     return Scaffold(
       appBar: AppCustomAppbar(
         title: "Rewards",
@@ -35,8 +35,9 @@ class RewardsScreen extends StatelessWidget {
         final tabIndex = controller.selectedIndex.value;
         return SmartListLoader(
           key: ValueKey(tabIndex),
+          appbar: _StickyTabBar(controller: controller),
           //TODO::
-          // loadingWidget: const RewardCardListShimmer(itemCount: 4),
+          initalLoader: const RewardCardListShimmer(itemCount: 4),
           isLoading: tabIndex == 0
               ? controller.isLoading.value
               : controller.usedRewardIsLoading.value,

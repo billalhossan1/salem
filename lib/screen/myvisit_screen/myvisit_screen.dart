@@ -49,7 +49,11 @@ class MyvisitScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             16.height,
-            Center(child: Image.asset(AppImages.profileImage)),
+            Center(
+              child: CommonImage(src: profile.image,   width: 120,
+                height: 120,
+                borderRadius: 80,),
+            ),
             12.height,
             Center(
               child: CommonText(

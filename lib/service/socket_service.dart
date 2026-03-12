@@ -21,6 +21,7 @@ class SocketService {
 
   // Connect to the Socket.IO server
   void connect({required String id}) {
+    AppLogger.debug('Connecting id= $id', tag: 'socket');
     socket = IO.io(
       ApiEndpoints.domain,
       IO.OptionBuilder().setTransports(['websocket']).build(),
@@ -36,7 +37,6 @@ class SocketService {
 
     //notification
     socket.on('notification::$id', (data) {
-      AppLogger.apiDebug('Notification Event: $data', tag: 'Socket');
       AppLogger.info('Notification Event: $data', tag: 'Socket');
       if (data != null) {
         try {

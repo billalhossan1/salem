@@ -7,6 +7,7 @@ import 'package:zena_app/core/services/location_controller.dart';
 import 'package:zena_app/screen/home_screen/model/rewards_item_model.dart';
 import 'package:zena_app/screen/home_screen/repo/home_repo.dart';
 import 'package:zena_app/service/socket_service.dart';
+import 'package:zena_app/utils/shared_prefe.dart';
 
 import '../../../service/steam_data_model.dart';
 import '../../notificaton_screen/model/notificationItemModel.dart';
@@ -25,6 +26,8 @@ class HomeScreenController extends GetxController {
   void onInit() {
     super.onInit();
     subscription =  SocketService.instance.streamController.stream.listen((event) {
+      AppLogger.debug(event.streamType.toString());
+      AppLogger.debug(event.data.toString());
       if(event.streamType == StreamType.notification && Get.currentRoute !=  AppRoute.notificationScreen){
         final notification = event.data as NotificationItemModel;
 
@@ -40,7 +43,7 @@ class HomeScreenController extends GetxController {
     // before firing any API call.
     await LocationController.instance.ready;
     getRewards();
-    userId = profileController.profileModel.value.id;
+    userId = await SharePrefsHelper.getString(SharedPreferenceValue.userId);
     SocketService.instance.connect(id: userId);
 
   }
