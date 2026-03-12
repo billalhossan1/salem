@@ -7,6 +7,8 @@ import 'package:zena_app/utils/app_images/app_images.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
+import '../../widget/app_custom_appbar/app_custom_appbar.dart';
+import '../../widget/loading_widget/loading_widget.dart';
 import '../../widget/shimmer/app_shimmer.dart';
 import 'controller/salon_details_controller.dart';
 
@@ -77,22 +79,9 @@ class SalonDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 textColor: AppColor.darkColor,
                               ),
-                              Container(
-                                width: 40.w,
-                                height: 40.h,
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFE7FEF0),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Badge(
-                                  label: Text('3'),
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white,
-                                  child: SvgPicture.asset(
-                                    AppIcons.notificationIcons,
-                                  ),
-                                ),
+                              NotificationActionButton(
+                                notificationCount: 3,
+                                onTap: () => Get.toNamed(AppRoute.notificationScreen),
                               ),
                             ],
                           ),
@@ -303,7 +292,21 @@ class SalonDetailsScreen extends StatelessWidget {
                             buttonColor: AppColor.screenBackgroundColor,
                             borderColor: AppColor.textColor,
                           ),
+                          16.height,
+                          controller.isConfirmVisitLoading.value
+                              ? LoadingWidget()
+                              : CommonButton(
+                            buttonColor: Colors.white,
+                            borderColor: Colors.black,
+                            buttonWidth: double.infinity,
+                            buttonRadius: 12.w,
+                            titleText: "Confirm Visit",
+                            onTap: () {
+                              controller.confirmVisit();
+                            },
+                          ),
                           24.height,
+
 
                           //! Active Points Banner (only when rewards available)
                           if (salon.isRewardAvailable) ...[

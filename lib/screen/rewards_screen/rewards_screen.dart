@@ -20,7 +20,7 @@ class RewardsScreen extends StatelessWidget {
     final controller = Get.put(RewardsScreenController());
     return Scaffold(
       appBar: AppCustomAppbar(
-        title: "Home",
+        title: "Rewards",
         leadingType: LeadingType.logo,
         centerTitle: true,
         actions: [
@@ -35,7 +35,8 @@ class RewardsScreen extends StatelessWidget {
         final tabIndex = controller.selectedIndex.value;
         return SmartListLoader(
           key: ValueKey(tabIndex),
-          loadingWidget: const RewardCardListShimmer(itemCount: 4),
+          //TODO::
+          // loadingWidget: const RewardCardListShimmer(itemCount: 4),
           isLoading: tabIndex == 0
               ? controller.isLoading.value
               : controller.usedRewardIsLoading.value,
@@ -52,7 +53,7 @@ class RewardsScreen extends StatelessWidget {
           onLoadMore: tabIndex == 0
               ? controller.onRewardLoadMore
               : controller.onUsedRewardLoadMore,
-          appbar: _RewardsAppBar(controller: controller),
+          // appbar: _RewardsAppBar(controller: controller),
           onColapsAppbar: _StickyTabBar(controller: controller),
           itemBuilder: (context, index) {
             if (tabIndex == 0) {

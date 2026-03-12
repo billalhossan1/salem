@@ -5,11 +5,11 @@ class NotificationItemModel {
   final String body;
   final String notificationType;
   final String notificationEvent;
-  final bool read;
+   bool read;
   final String status;
   final int iV;
 
-  const NotificationItemModel({
+   NotificationItemModel({
     this.sId = '',
     this.receiverId = '',
     this.title = '',

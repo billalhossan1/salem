@@ -42,35 +42,86 @@ class NotificationScreen extends StatelessWidget {
               final notification = controller.notificationList[index];
               final title = notification.title;
               final isReview = title.toLowerCase().contains("review");
+              final isRead = notification.read;
               final iconAsset = AppIcons.blackStar;
               final timeText = notification.body.isNotEmpty
                   ? notification.body
                   : "Just now";
+              final moreKey = GlobalKey();
 
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: isReview
-                      ? AppColor.secondaryColor.withValues(alpha: 0.1)
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: GestureDetector(
-                  onTap: isReview
-                      ? () => Get.toNamed(AppRoute.ratingScreen)
-                      : null,
+              return GestureDetector(
+                onTap: () {
+                  if (!isRead) {
+                    controller.readMessage(id: notification.sId);
+                  }
+                  // if (isReview) {
+                  //   Get.toNamed(AppRoute.ratingScreen);
+                  // }
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                  decoration: BoxDecoration(
+                    color: isRead
+                        ? Colors.transparent
+                        : AppColor.primaryColor.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: NotificationCard(
+                    moreKey: moreKey,
                     iconAsset: iconAsset,
                     title: title.isNotEmpty ? title : "Notification",
                     time: timeText,
-                    onMoreTap: () {},
+                    onMoreTap: () {
+                      final renderBox = moreKey.currentContext
+                          ?.findRenderObject() as RenderBox?;
+                      if (renderBox == null) return;
+                      final offset = renderBox.localToGlobal(Offset.zero);
+                      final size = renderBox.size;
+                      showMenu(
+                        context: context,
+                        position: RelativeRect.fromLTRB(
+                          offset.dx,
+                          offset.dy + size.height,
+                          MediaQuery.of(context).size.width - offset.dx - size.width,
+                          0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        color: AppColor.screenBackgroundColor,
+                        items: [
+                          PopupMenuItem(
+                            onTap: () => controller.deleteNotification(
+                                id: notification.sId),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.delete_outline,
+                                  color: AppColor.errorColor,
+                                  size: 18.sp,
+                                ),
+                                8.width,
+                                Text(
+                                  "Delete",
+                                  style: TextStyle(
+                                    color: AppColor.errorColor,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                     iconBackgroundColor: AppColor.secondaryColor,
-                    titleColor: AppColor.textColor,
+                    titleColor: isRead ? AppColor.textColor : AppColor.darkColor,
                     timeColor: AppColor.textColor,
                     iconSize: 40.w,
                     titleFontSize: 14.sp,
                     timeFontSize: 12.sp,
-                    titleFontWeight: FontWeight.w500,
+                    titleFontWeight: isRead ? FontWeight.w400 : FontWeight.w600,
                     timeFontWeight: FontWeight.w400,
                     showDivider: !isReview,
                   ),

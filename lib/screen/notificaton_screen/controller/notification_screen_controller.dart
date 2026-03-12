@@ -11,7 +11,7 @@ import '../model/notificationItemModel.dart';
 
 class NotificationScreenController extends GetxController {
   RxBool isLoading = false.obs;
-  final RxList<NotificationItemModel> notificationList =
+   RxList<NotificationItemModel> notificationList =
       <NotificationItemModel>[].obs;
   late StreamSubscription<StreamDataModel> subscription;
 
@@ -19,20 +19,53 @@ class NotificationScreenController extends GetxController {
   void onInit() {
     super.onInit();
     getAllNotification();
-  subscription =  SocketService.instance.streamController.stream.listen((event) {
-      if(event.streamType == StreamType.notification){
+    subscription = SocketService.instance.streamController.stream.listen((
+      event,
+    ) {
+      if (event.streamType == StreamType.notification) {
         final notification = event.data as NotificationItemModel;
-         notificationList.insert(0, notification);
+        notificationList.insert(0, notification);
       }
-
     });
   }
 
   @override
-  void onClose(){
+  void onClose() {
     subscription.cancel();
     return super.onClose();
   }
+
+  Future<void> readMessage({required String id}) async {
+    await DioService.instance.request(
+      input: RequestInput(
+        endpoint: "${ApiEndpoints.getAllNotification}/$id",
+        method: .GET,
+      ),
+      responseBuilder: (data) {},
+    );
+    final index = notificationList.indexWhere((element) => element.sId == id);
+    if (index != -1) {
+      notificationList[index].read = true;
+      notificationList.refresh();
+    }
+  }
+
+  Future<void> deleteNotification({required String id}) async {
+    await DioService.instance.request(
+      input: RequestInput(
+        endpoint: "${ApiEndpoints.getAllNotification}/$id",
+        method: .DELETE,
+      ),
+      responseBuilder: (data) {},
+    );
+    final index = notificationList.indexWhere((element) => element.sId == id);
+    if (index != -1) {
+      notificationList.removeAt(index);
+      notificationList.refresh();
+    }
+  }
+
+
 
   Future<void> getAllNotification({int page = 1}) async {
     if (page == 1) {
@@ -58,6 +91,4 @@ class NotificationScreenController extends GetxController {
       isLoading.value = false;
     }
   }
-
-
 }

@@ -33,6 +33,7 @@ class NotificationCard extends StatelessWidget {
   final bool showDivider;
   final bool showMoreOption;
   final String? moreOptionIcon;
+  final GlobalKey? moreKey;
 
   const NotificationCard({
     super.key,
@@ -59,6 +60,7 @@ class NotificationCard extends StatelessWidget {
     this.showDivider = true,
     this.showMoreOption = true,
     this.moreOptionIcon,
+    this.moreKey,
   });
 
   @override
@@ -118,10 +120,14 @@ class NotificationCard extends StatelessWidget {
               ),
               // More Option Icon
               if (showMoreOption)
-                GestureDetector(
+                InkWell(
+                  key: moreKey,
                   onTap: onMoreTap,
-                  child: SvgPicture.asset(
-                    moreOptionIcon ?? AppIcons.moreOption,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      moreOptionIcon ?? AppIcons.moreOption,
+                    ),
                   ),
                 ),
             ],

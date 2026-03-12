@@ -585,36 +585,43 @@ class MyvisitScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CommonText(
-                        text: "Successful Referrals:2/3",
+                        text:
+                            "Successful Referrals:${profile.successfulInvites}/3",
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         textColor: AppColor.darkColor,
                       ),
                       CommonText(
-                        text: "One more for a bonus!",
+                        text:(profile.successfulInvites < 1)
+                          ? "No referrals yet!"
+                          : (profile.successfulInvites < 2)
+                          ? "Great! You’ve referred 1 friend!"
+                          : (profile.successfulInvites < 3)
+                          ? "One more for a bonus!"
+                          : "Referral Bonus unlocked! 🎉",
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
                         textColor: AppColor.successColor,
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Column(
-                    children: [
-                      CommonText(
-                        text: "+60",
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        textColor: AppColor.secondaryColor,
-                      ),
-                      CommonText(
-                        text: "Point Earned",
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
-                    ],
-                  ),
+                  // Spacer(),
+                  // Column(
+                  //   children: [
+                  //     CommonText(
+                  //       text: "+60",
+                  //       fontSize: 24,
+                  //       fontWeight: FontWeight.w500,
+                  //       textColor: AppColor.secondaryColor,
+                  //     ),
+                  //     CommonText(
+                  //       text: "Point Earned",
+                  //       fontSize: 12,
+                  //       fontWeight: FontWeight.w400,
+                  //       textColor: AppColor.textColor,
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

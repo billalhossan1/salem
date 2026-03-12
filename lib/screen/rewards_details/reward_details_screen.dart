@@ -394,19 +394,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        16.height,
-                        controller.isConfirmVisitLoading.value
-                            ? LoadingWidget()
-                            : CommonButton(
-                                buttonColor: Colors.white,
-                                borderColor: Colors.black,
-                                buttonWidth: double.infinity,
-                                buttonRadius: 12.w,
-                                titleText: "Confirm Visit",
-                                onTap: () {
-                                  controller.confirmVisit();
-                                },
-                              ),
+
                         10.height,
                         CommonButton(
                           buttonWidth: double.infinity,

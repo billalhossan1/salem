@@ -15,7 +15,8 @@ dependencies:
   core_kit:
     git:
       url: https://github.com/kmmuzahid/flutter_core_kit.git
-      ref: 1.0.36
+      ref: 1.0.44
+
   flutter_svg: ^2.2.3
   persistent_bottom_nav_bar_v2: ^6.2.0
   smart_stepper: ^0.0.7
@@ -28,8 +29,6 @@ dependencies:
   socket_io_client: ^3.1.4
 
 dependency_overrides:
-  core_kit:
-    path: C:\Users\Billal\AppData\Local\Pub\Cache\git\flutter_core_kit-8da6043773bc394d3bf62b7617f9ca658b371fd8
   share_plus: ^12.0.0
   share_plus_platform_interface: ^6.0.0
 

@@ -14,7 +14,6 @@ class RewardDetailsController extends GetxController {
   Rxn<RewardsItemModel> reward = Rxn<RewardsItemModel>();
   final homeRepo = HomeRepo();
   RxBool isRewardLoading = false.obs;
-  RxBool isConfirmVisitLoading = false.obs;
   String rewardId = '';
   String salonId = '';
   // Last known good location — updated on each successful confirmVisit press
@@ -35,40 +34,6 @@ class RewardDetailsController extends GetxController {
     getRewardById();
   }
 
-  Future<void> confirmVisit() async {
-    // ── 1. Fetch / re-request location on every press ──────────────────────
-    final position = await LocationService.getCurrentPosition();
-
-    if (position == null) {
-      showSnackBar(
-        'Location access is required to confirm a visit. Please allow location permission and try again.',
-        type: SnackBarType.warning,
-      );
-      return;
-    }
-
-    // ── 2. Cache fresh coords ───────────────────────────────────────────────
-    currentLocation.value = LatLong(
-      lat: position.latitude,
-      long: position.longitude,
-    );
-
-    // ── 3. Call API ─────────────────────────────────────────────────────────
-    isConfirmVisitLoading.value = true;
-    await DioService.instance.request(
-      input: RequestInput(
-        endpoint: '${ApiEndpoints.visitSalon}/$salonId',
-        method: .POST,
-        queryParams: {
-          'lat1': currentLocation.value.lat,
-          'lon1': currentLocation.value.long,
-        },
-      ),
-      responseBuilder: (data) {},
-      showMessage: true,
-    );
-    isConfirmVisitLoading.value = false;
-  }
 
   Future<void> getRewardById() async {
     isRewardLoading.value = true;
