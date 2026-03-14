@@ -39,13 +39,13 @@ class VisitHistoryTable extends StatelessWidget {
               color: const Color(0xFFE7FEF0),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Row(
+            child:  Row(
               children: [
-                _THead(text: "Salon Name", align: TextAlign.start),
-                _THead(text: "Date", align: TextAlign.center),
-                _THead(text: "Service", align: TextAlign.center),
-                _THead(text: "Status", align: TextAlign.center),
-                _THead(text: "Points", align: TextAlign.end),
+                _THead(text: "Salon Name".tr, align: TextAlign.start),
+                _THead(text: "Date".tr, align: TextAlign.center),
+                _THead(text: "Service".tr, align: TextAlign.center),
+                _THead(text: "Status".tr, align: TextAlign.center),
+                _THead(text: "Points".tr, align: TextAlign.end),
               ],
             ),
           ),
@@ -164,7 +164,7 @@ class _VisitRow extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Text(
-                  '${item.pointCost} PTS',
+                  '${item.pointCost} PTS'.tr,
                   style: TextStyle(
                     fontSize: 12,
                     color: AppColor.successColor,

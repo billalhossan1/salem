@@ -11,6 +11,7 @@ import 'package:zena_app/widget/app_device_utils/app_deviceutils.dart';
 import 'package:zena_app/widget/app_observer/app_observer.dart';
 
 import 'core/app_route/app_route.dart';
+import 'core/app_translations/app_translations.dart';
 import 'screen/splash_screen/splash_screen.dart';
 import 'utils/app_colors/app_colors.dart';
 
@@ -22,19 +23,31 @@ void main() async {
   await DeepLinkService.init();
   //! Location controller — start fetching NOW so it's ready when any screen opens
   Get.put(LocationController());
-  runApp(const MyApp());
+
+  String savedLang = await SharePrefsHelper.getString(
+    SharedPreferenceValue.language,
+  );
+  if (savedLang.isEmpty) {
+    savedLang = 'en';
+  }
+
+  runApp(MyApp(savedLang: savedLang));
 }
 
 GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
     GlobalKey<ScaffoldMessengerState>();
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String savedLang;
+  const MyApp({super.key, required this.savedLang});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      translations: AppTranslations(),
+      locale: Locale(savedLang),
+      fallbackLocale: const Locale('en'),
       initialBinding: AppInitialBindings(),
       navigatorObservers: [NavigationObserver()],
       scaffoldMessengerKey: scaffoldMessengerKey,
@@ -127,14 +140,18 @@ class MyApp extends StatelessWidget {
       tokenProvider: TokenProvider(
         accessToken: () async =>
             SharePrefsHelper.getString(SharedPreferenceValue.token),
-        refreshToken: () async => SharePrefsHelper.getString(SharedPreferenceValue.refreshToken),
-        updateTokens:
-            (
-              data,
-            ) async {
-              await SharePrefsHelper.setString(SharedPreferenceValue.token, data['accessToken']);
-              await SharePrefsHelper.setString(SharedPreferenceValue.refreshToken, data['refreshToken']);
-            }, // clearTokens: () => StorageService().removeTokens()
+        refreshToken: () async =>
+            SharePrefsHelper.getString(SharedPreferenceValue.refreshToken),
+        updateTokens: (data) async {
+          await SharePrefsHelper.setString(
+            SharedPreferenceValue.token,
+            data['accessToken'],
+          );
+          await SharePrefsHelper.setString(
+            SharedPreferenceValue.refreshToken,
+            data['refreshToken'],
+          );
+        }, // clearTokens: () => StorageService().removeTokens()
       ),
       child: child,
     );

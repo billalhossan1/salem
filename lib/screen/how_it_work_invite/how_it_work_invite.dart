@@ -51,7 +51,7 @@ class HowItWorkInviteScreen extends StatelessWidget {
             ),
             24.height,
             CommonText(
-              text: "Share the Love 💖",
+              text: "Share the Love 💖".tr,
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
               textColor: AppColor.darkColor,
@@ -85,7 +85,7 @@ class HowItWorkInviteScreen extends StatelessWidget {
             Spacer(),
             CommonText(
               text:
-                  "Invite a friend, they visit, and you both get something special to smile about.",
+                  "Invite a friend, they visit, and you both get something special to smile about.".tr,
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
               textColor: AppColor.textColor,
@@ -94,7 +94,7 @@ class HowItWorkInviteScreen extends StatelessWidget {
             ),
             24.height,
             CommonButton(
-              titleText: "Invite a Friend",
+              titleText: "Invite a Friend".tr,
               onTap: () {
                 // Navigate to invite friend
                 Get.toNamed(AppRoute.inviteFriendsScreen);
@@ -106,7 +106,7 @@ class HowItWorkInviteScreen extends StatelessWidget {
             ),
             // 16.height,
             // CommonButton(
-            //   titleText: "Invite History",
+            //   titleText: "Invite History".tr,
             //   onTap: () {
             //     Get.toNamed(AppRoute.inviteFriendsScreen);
             //   },
@@ -129,7 +129,7 @@ class HowItWorkInviteScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CommonText(
-          text: "•",
+          text: "•".tr,
           fontSize: 16.sp,
           fontWeight: FontWeight.w500,
           textColor: AppColor.darkColor,

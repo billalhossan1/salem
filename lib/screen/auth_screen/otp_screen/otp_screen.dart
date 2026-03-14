@@ -66,14 +66,14 @@ class OptScreen extends StatelessWidget {
                 ),
                 24.height,
                 CommonText(
-                  text: AppString.verificationCode,
+                  text: AppString.verificationCode.tr,
                   fontSize: 28.w,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
                 ),
                 12.height,
                 CommonText(
-                  text: AppString.enter4digitWehaveSentto,
+                  text: AppString.enter4digitWehaveSentto.tr,
                   fontSize: 16.w,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
@@ -158,7 +158,7 @@ class OptScreen extends StatelessWidget {
                       ),
                       40.height,
                       CommonText(
-                        text: AppString.didntReceiveIt,
+                        text: AppString.didntReceiveIt.tr,
                         fontSize: 14.w,
                         fontWeight: FontWeight.w400,
                         textColor: AppColor.textColor,
@@ -177,7 +177,7 @@ class OptScreen extends StatelessWidget {
                           Obx(
                             () => CommonText(
                               text:
-                                  "Resend Code in 00:${controller.secondsRemaining.value.toString().padLeft(2, '0')}",
+                                  "Resend Code in 00:${controller.secondsRemaining.value.toString().padLeft(2, '0')}".tr,
                               fontSize: 14.w,
                               fontWeight: FontWeight.w400,
                               textColor: AppColor.secondaryColor,
@@ -191,7 +191,7 @@ class OptScreen extends StatelessWidget {
                 48.height,
                 CommonButton(
                   buttonWidth: double.infinity,
-                  titleText: AppString.next,
+                  titleText: AppString.next.tr,
                   titleSize: 18.w,
                   titleWeight: FontWeight.w500,
                   titleColor: AppColor.charocalColor,

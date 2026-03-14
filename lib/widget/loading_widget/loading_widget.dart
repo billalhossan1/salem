@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../shimmer/app_shimmer.dart';
+import 'package:get/get.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({super.key});

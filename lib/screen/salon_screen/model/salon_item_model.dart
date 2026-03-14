@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class SalonItemModel {
   final String id;
   final String createdBy;

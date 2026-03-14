@@ -17,16 +17,16 @@ class SignupScreen extends StatelessWidget {
           return Column(
             children: [
               SizedBox(height: 16.w),
-              CommonText(text: "Full name"),
+              CommonText(text: "Full name".tr),
               8.height,
               CommonTextField(
-                hintText: 'Enter your full name',
+                hintText: 'Enter your full name'.tr,
                 onSaved: (value, controller) => entity.fullName = value,
                 validationType: ValidationType.validateFullName,
               ),
 
               CommonButton(
-                titleText: "Submit",
+                titleText: "Submit".tr,
                 onTap: () {
                   formKey.currentState?.save();
                   if (formKey.currentState?.validate() ?? false) {

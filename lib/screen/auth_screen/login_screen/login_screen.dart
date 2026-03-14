@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 18.height,
                 CommonText(
-                  text: AppString.beautyRewardsMadeEasy,
+                  text: AppString.beautyRewardsMadeEasy.tr,
                   fontSize: 18.w,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
@@ -70,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       CommonText(
-                        text: AppString.logintoYourAccount,
+                        text: AppString.logintoYourAccount.tr,
                         fontSize: 16.w,
                         fontWeight: FontWeight.w400,
                         textColor: AppColor.textColor,
@@ -109,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         CommonText(
-                                          text: "Referral Code Applied 🎉",
+                                          text: "Referral Code Applied 🎉".tr,
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.w600,
                                           textColor: AppColor.darkColor,
@@ -141,7 +141,7 @@ class LoginScreen extends StatelessWidget {
                           return LoadingWidget();
                         }
                         return CommonButton(
-                          titleText: AppString.contineu,
+                          titleText: AppString.contineu.tr,
                           titleColor: AppColor.charocalColor,
                           titleSize: 18.w,
                           titleWeight: FontWeight.w500,
@@ -154,7 +154,7 @@ class LoginScreen extends StatelessWidget {
 
                       24.height,
                       CommonText(
-                        text: AppString.byContineuingyouAgreethePrivayPolicy,
+                        text: AppString.byContineuingyouAgreethePrivayPolicy.tr,
                         fontSize: 14.w,
                         fontWeight: FontWeight.w400,
                         textColor: AppColor.textColor,
@@ -178,7 +178,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     10.width,
                     CommonText(
-                      text: AppString.orSigninWith,
+                      text: AppString.orSigninWith.tr,
                       fontSize: 14.w,
                       fontWeight: FontWeight.w400,
                       textColor: AppColor.textColor,
@@ -199,7 +199,7 @@ class LoginScreen extends StatelessWidget {
 
                 //! Contineu With Google Button
                 CommonButton(
-                  titleText: AppString.contineuWithGoggle,
+                  titleText: AppString.contineuWithGoggle.tr,
                   prefix: SvgPicture.asset(AppIcons.googleIcons),
                   titleColor: AppColor.darkColor,
                   titleSize: 18.w,
@@ -212,7 +212,7 @@ class LoginScreen extends StatelessWidget {
 
                 //! Contineu With Apple Button
                 CommonButton(
-                  titleText: AppString.contineuWithApple,
+                  titleText: AppString.contineuWithApple.tr,
                   prefix: SvgPicture.asset(AppIcons.appleIcons),
                   titleColor: AppColor.darkColor,
                   titleSize: 18.w,
@@ -266,7 +266,7 @@ class PhoneTextFiled extends StatelessWidget {
           ),
           8.width,
           CommonText(
-            text: "+971",
+            text: "+971".tr,
             fontSize: 16.w,
             fontWeight: FontWeight.w400,
             textColor: AppColor.textColor,
@@ -290,7 +290,7 @@ class PhoneTextFiled extends StatelessWidget {
                 LengthLimitingTextInputFormatter(9),
               ],
               decoration: InputDecoration(
-                hintText: "Enter Your Phone Number",
+                hintText: "Enter Your Phone Number".tr,
                 hintStyle: TextStyle(
                   color: AppColor.textColor.withValues(
                     alpha: 0.5,

@@ -50,9 +50,12 @@ class MyvisitScreen extends StatelessWidget {
           children: [
             16.height,
             Center(
-              child: CommonImage(src: profile.image,   width: 120,
+              child: CommonImage(
+                src: profile.image,
+                width: 120,
                 height: 120,
-                borderRadius: 80,),
+                borderRadius: 80,
+              ),
             ),
             12.height,
             Center(
@@ -82,7 +85,7 @@ class MyvisitScreen extends StatelessWidget {
                   spacing: 10,
                   children: [
                     Text(
-                      'MEMBER SINCE ${getYear(profile.createdAt)}',
+                      'MEMBER SINCE ${getYear(profile.createdAt)}'.tr,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,
@@ -160,7 +163,7 @@ class MyvisitScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CommonText(
-                              text: "Total Points : $coins",
+                              text: "${"Total Points".tr} : $coins",
                               fontSize: 16.w,
                               fontWeight: FontWeight.w600,
                               textColor: AppColor.darkColor,
@@ -216,14 +219,15 @@ class MyvisitScreen extends StatelessWidget {
                           children: [
                             CommonText(
                               text: nextTier != null
-                                  ? '$coinsToNext points to go for ${nextTier.tireName} tier'
-                                  : 'Max tier reached 🎉',
+                                  ? '$coinsToNext ${'points to go for'.tr} ${nextTier.tireName} tier'
+                                  : 'Max tier reached 🎉'.tr,
                               fontSize: 12.w,
                               fontWeight: FontWeight.w400,
                               textColor: AppColor.textColor,
                             ),
                             CommonText(
-                              text: '${(progress * 100).toStringAsFixed(0)}%',
+                              text:
+                                  '${(progress * 100).toStringAsFixed(0)}%'.tr,
                               fontSize: 16.w,
                               fontWeight: FontWeight.w600,
                               textColor: AppColor.darkColor,
@@ -239,7 +243,7 @@ class MyvisitScreen extends StatelessWidget {
 
             20.height,
             CommonText(
-              text: "View Summary",
+              text: "View Summary".tr,
               fontSize: 20,
 
               fontWeight: FontWeight.w500,
@@ -278,7 +282,7 @@ class MyvisitScreen extends StatelessWidget {
                         spacing: 4,
                         children: [
                           CommonText(
-                            text: 'TOTAL VISITS',
+                            text: 'TOTAL VISITS'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: const Color(0xFF6E6E6E),
@@ -288,7 +292,7 @@ class MyvisitScreen extends StatelessWidget {
                             ),
                           ),
                           CommonText(
-                            text: '${profile.totalVisit} Friends',
+                            text: '${profile.totalVisit} ${"Friends".tr}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: const Color(0xFF333333),
@@ -332,7 +336,7 @@ class MyvisitScreen extends StatelessWidget {
                         spacing: 4,
                         children: [
                           CommonText(
-                            text: 'LAST VISIT',
+                            text: 'LAST VISIT'.tr,
                             textAlign: TextAlign.center,
                             textColor: const Color(0xFF6E6E6E),
                             fontSize: 14,
@@ -357,7 +361,7 @@ class MyvisitScreen extends StatelessWidget {
               validationType: ValidationType.validateFullName,
               prefixIcon: SvgPicture.asset(AppIcons.searchIcons),
               backgroundColor: AppColor.screenBackgroundColor,
-              hintText: "Search",
+              hintText: "Search".tr,
               borderColor: AppColor.textColor.withValues(alpha: 0.2),
               onChanged: (val) => controller.updateSearchText(val),
             ),
@@ -525,7 +529,7 @@ class MyvisitScreen extends StatelessWidget {
                             ),
                             4.width,
                             Text(
-                              'Clear filters',
+                              'Clear filters'.tr,
                               style: TextStyle(
                                 fontSize: 12,
                                 color: AppColor.textColor,
@@ -540,13 +544,13 @@ class MyvisitScreen extends StatelessWidget {
               );
             }),
             20.height,
-            CommonText(text: "My Visits & Points", fontSize: 20),
+            CommonText(text: "My Visits & Points".tr, fontSize: 20),
             10.height,
             const VisitHistoryTable(),
 
             20.height,
             CommonText(
-              text: "Referral Status",
+              text: "Referral Status".tr,
               fontSize: 20,
               fontWeight: FontWeight.w500,
               textColor: AppColor.darkColor,
@@ -590,19 +594,19 @@ class MyvisitScreen extends StatelessWidget {
                     children: [
                       CommonText(
                         text:
-                            "Successful Referrals:${profile.successfulInvites}/3",
+                            "${"Successful Referrals:".tr} ${profile.successfulInvites}/3",
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         textColor: AppColor.darkColor,
                       ),
                       CommonText(
-                        text:(profile.successfulInvites < 1)
-                          ? "No referrals yet!"
-                          : (profile.successfulInvites < 2)
-                          ? "Great! You’ve referred 1 friend!"
-                          : (profile.successfulInvites < 3)
-                          ? "One more for a bonus!"
-                          : "Referral Bonus unlocked! 🎉",
+                        text: (profile.successfulInvites < 1)
+                            ? "No referrals yet!".tr
+                            : (profile.successfulInvites < 2)
+                            ? "Great! You’ve referred 1 friend!".tr
+                            : (profile.successfulInvites < 3)
+                            ? "One more for a bonus!".tr
+                            : "Referral Bonus unlocked! 🎉".tr,
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
                         textColor: AppColor.successColor,
@@ -613,13 +617,13 @@ class MyvisitScreen extends StatelessWidget {
                   // Column(
                   //   children: [
                   //     CommonText(
-                  //       text: "+60",
+                  //       text: "+60".tr,
                   //       fontSize: 24,
                   //       fontWeight: FontWeight.w500,
                   //       textColor: AppColor.secondaryColor,
                   //     ),
                   //     CommonText(
-                  //       text: "Point Earned",
+                  //       text: "Point Earned".tr,
                   //       fontSize: 12,
                   //       fontWeight: FontWeight.w400,
                   //       textColor: AppColor.textColor,
@@ -631,7 +635,7 @@ class MyvisitScreen extends StatelessWidget {
             ),
             20.height,
             CommonText(
-              text: "Current Reward",
+              text: "Current Reward".tr,
               fontSize: 20,
               fontWeight: FontWeight.w500,
               textColor: AppColor.darkColor,
@@ -654,7 +658,7 @@ class MyvisitScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: CommonText(
-                      text: 'No active rewards',
+                      text: 'No active rewards'.tr,
                       textColor: AppColor.textColor,
                     ),
                   ),
@@ -708,9 +712,10 @@ void _showStatusPicker(
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Filter by Status',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            CommonText(
+              text: 'Filter by Status'.tr,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
             ),
             const SizedBox(height: 8),
             ...statuses.map(
@@ -804,7 +809,7 @@ class _CurrentRewardCard extends StatelessWidget {
                   textColor: AppColor.darkColor,
                 ),
                 CommonText(
-                  text: "Redeemed on ${formatDate(item.createdAt)}",
+                  text: "Redeemed on ${formatDate(item.createdAt)}".tr,
                   fontSize: 13.w,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
@@ -834,7 +839,7 @@ class _CurrentRewardCard extends StatelessWidget {
                     ),
                     4.width,
                     CommonText(
-                      text: '${item.pointCost}',
+                      text: '${item.pointCost}'.tr,
                       fontSize: 14.w,
                       fontWeight: FontWeight.w500,
                       textColor: AppColor.screenBackgroundColor,
@@ -853,7 +858,7 @@ class _CurrentRewardCard extends StatelessWidget {
                   ),
                 ),
                 child: CommonText(
-                  text: 'Active',
+                  text: 'Active'.tr,
                   fontSize: 13,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.successColor,

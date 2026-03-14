@@ -1,6 +1,7 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
+import 'package:get/get.dart';
 
 class ProfileMenuItem extends StatelessWidget {
   final String icon;

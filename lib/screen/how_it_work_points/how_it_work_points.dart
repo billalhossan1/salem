@@ -5,6 +5,7 @@ import 'package:zena_app/utils/app_icons/app_icons.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
+import 'package:get/get.dart';
 
 class HowItWorkPointsScreen extends StatelessWidget {
   const HowItWorkPointsScreen({super.key});
@@ -49,7 +50,7 @@ class HowItWorkPointsScreen extends StatelessWidget {
             ),
             24.height,
             CommonText(
-              text: "Every Visit Brings You Closer ✨",
+              text: "Every Visit Brings You Closer ✨".tr,
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
               textColor: AppColor.darkColor,
@@ -78,7 +79,7 @@ class HowItWorkPointsScreen extends StatelessWidget {
             Spacer(),
             CommonText(
               text:
-                  "Visit your favourite salon, enjoy your time, and feel the joy add up beautifully.",
+                  "Visit your favourite salon, enjoy your time, and feel the joy add up beautifully.".tr,
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
               textColor: AppColor.textColor,
@@ -87,7 +88,7 @@ class HowItWorkPointsScreen extends StatelessWidget {
             ),
             24.height,
             CommonButton(
-              titleText: "Explore Salons",
+              titleText: "Explore Salons".tr,
               onTap: () {
                 // Navigate to explore salons
               },
@@ -108,7 +109,7 @@ class HowItWorkPointsScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CommonText(
-          text: "•",
+          text: "•".tr,
           fontSize: 16.sp,
           fontWeight: FontWeight.w500,
           textColor: AppColor.darkColor,

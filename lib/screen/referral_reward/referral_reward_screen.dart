@@ -40,7 +40,7 @@ class ReferralRewardScreen extends StatelessWidget {
             },
             backgroundColor: AppColor.primaryColor,
             label: CommonText(
-              text: "Simulate",
+              text: "Simulate".tr,
               fontSize: 12.sp,
               fontWeight: FontWeight.w500,
               textColor: AppColor.darkColor,
@@ -68,7 +68,7 @@ class ReferralRewardScreen extends StatelessWidget {
           24.height,
 
           CommonText(
-            text: "Share beauty together",
+            text: "Share beauty together".tr,
             fontSize: 24.sp,
             fontWeight: FontWeight.w400,
             textColor: AppColor.textColor,
@@ -88,7 +88,7 @@ class ReferralRewardScreen extends StatelessWidget {
             child: Column(
               children: [
                 CommonText(
-                  text: "Unlock a Special\nReward ✨",
+                  text: "Unlock a Special\nReward ✨".tr,
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
                   textColor: AppColor.darkColor,
@@ -98,7 +98,7 @@ class ReferralRewardScreen extends StatelessWidget {
                 12.height,
                 CommonText(
                   text:
-                      "Unlock your discount when 3 friends complete\ntheir first visit.",
+                      "Unlock your discount when 3 friends complete\ntheir first visit.".tr,
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
@@ -131,15 +131,15 @@ class ReferralRewardScreen extends StatelessWidget {
                   height: 1.5,
                 ),
                 children: [
-                  TextSpan(text: "You're "),
+                  TextSpan(text: "You're ".tr),
                   TextSpan(
-                    text: "$numberText $friendText",
+                    text: "$numberText $friendText".tr,
                     style: TextStyle(
                       color: AppColor.successColor,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  TextSpan(text: " away from your reward!"),
+                  TextSpan(text: " away from your reward!".tr),
                 ],
               ),
             );
@@ -149,7 +149,7 @@ class ReferralRewardScreen extends StatelessWidget {
 
           CommonText(
             text:
-                "After completing 3 successful referrals, the reward is valid\nfor 30 days and will be automatically applied to your next\nvisit",
+                "After completing 3 successful referrals, the reward is valid\nfor 30 days and will be automatically applied to your next\nvisit".tr,
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
             textColor: AppColor.textColor,
@@ -161,7 +161,7 @@ class ReferralRewardScreen extends StatelessWidget {
 
           // Share Referral Link button
           CommonButton(
-            titleText: "Share Referral Link",
+            titleText: "Share Referral Link".tr,
             prefix: SvgPicture.asset(AppIcons.shareReferalLink),
             onTap: () {
               // Share referral link logic
@@ -176,7 +176,7 @@ class ReferralRewardScreen extends StatelessWidget {
 
           // Invite History button
           CommonButton(
-            titleText: "Invite History",
+            titleText: "Invite History".tr,
             onTap: () {
               // Navigate to invite history
             },
@@ -258,7 +258,7 @@ class ReferralRewardScreen extends StatelessWidget {
                       ),
                       6.width,
                       CommonText(
-                        text: "GOAL ACHIEVED",
+                        text: "GOAL ACHIEVED".tr,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
                         textColor: AppColor.secondaryColor,
@@ -270,7 +270,7 @@ class ReferralRewardScreen extends StatelessWidget {
                 20.height,
 
                 CommonText(
-                  text: "Reward Ready!",
+                  text: "Reward Ready!".tr,
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w600,
                   textColor: AppColor.darkColor,
@@ -280,7 +280,7 @@ class ReferralRewardScreen extends StatelessWidget {
 
                 CommonText(
                   text:
-                      "Congratulations! You've successfully referred 3\nfriends.",
+                      "Congratulations! You've successfully referred 3\nfriends.".tr,
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
@@ -302,7 +302,7 @@ class ReferralRewardScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CommonText(
-                        text: "YOUR REWARD",
+                        text: "YOUR REWARD".tr,
                         fontSize: 11.sp,
                         fontWeight: FontWeight.w500,
                         textColor: AppColor.textColor,
@@ -313,7 +313,7 @@ class ReferralRewardScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CommonText(
-                            text: "20 AED Off",
+                            text: "20 AED Off".tr,
                             fontSize: 28.sp,
                             fontWeight: FontWeight.w700,
                             textColor: AppColor.darkColor,
@@ -350,7 +350,7 @@ class ReferralRewardScreen extends StatelessWidget {
                 Expanded(
                   child: CommonText(
                     text:
-                        "This reward will be automatically applied by the salon on your next visit. No action needed from your side.",
+                        "This reward will be automatically applied by the salon on your next visit. No action needed from your side.".tr,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     textColor: AppColor.textColor,
@@ -365,7 +365,7 @@ class ReferralRewardScreen extends StatelessWidget {
 
           // Book Your Visit button
           CommonButton(
-            titleText: "Book Your Visit",
+            titleText: "Book Your Visit".tr,
             onTap: () {
               // Navigate to booking
               Get.back();

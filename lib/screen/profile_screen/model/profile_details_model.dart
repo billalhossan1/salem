@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class ProfileModel {
   final int spentCoins;
   final String id;

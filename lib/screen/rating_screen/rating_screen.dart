@@ -2,6 +2,7 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
 import 'package:zena_app/widget/app_custom_appbar/app_custom_appbar.dart';
+import 'package:get/get.dart';
 
 class RatingScreen extends StatefulWidget {
   const RatingScreen({super.key});
@@ -36,21 +37,21 @@ class _RatingScreenState extends State<RatingScreen> {
           children: [
             12.height,
             CommonText(
-              text: "Bloom Beauty Lounge",
+              text: "Bloom Beauty Lounge".tr,
               fontSize: 22.sp,
               fontWeight: FontWeight.w600,
               textColor: AppColor.darkColor,
             ),
             6.height,
             CommonText(
-              text: "Signature Hair Care",
+              text: "Signature Hair Care".tr,
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
               textColor: AppColor.secondaryColor,
             ),
             28.height,
             CommonText(
-              text: "Give Overall Rating",
+              text: "Give Overall Rating".tr,
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
               textColor: AppColor.darkColor,
@@ -84,7 +85,7 @@ class _RatingScreenState extends State<RatingScreen> {
             Align(
               alignment: Alignment.centerLeft,
               child: CommonText(
-                text: "Comment",
+                text: "Comment".tr,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,
                 textColor: AppColor.darkColor,
@@ -104,7 +105,7 @@ class _RatingScreenState extends State<RatingScreen> {
                 controller: commentController,
                 maxLines: 4,
                 decoration: InputDecoration(
-                  hintText: "Enter your comment here...",
+                  hintText: "Enter your comment here...".tr,
                   hintStyle: TextStyle(
                     color: AppColor.textColor.withValues(alpha: 0.6),
                     fontSize: 14.sp,
@@ -121,7 +122,7 @@ class _RatingScreenState extends State<RatingScreen> {
             ),
             32.height,
             CommonButton(
-              titleText: "Send Review",
+              titleText: "Send Review".tr,
               buttonWidth: double.infinity,
               buttonRadius: 12.w,
               buttonColor: AppColor.primaryColor,

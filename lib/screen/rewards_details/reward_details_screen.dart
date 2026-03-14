@@ -78,7 +78,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                       ),
                                     ),
                                     CommonText(
-                                      text: "Rewards Details",
+                                      text: "Rewards Details".tr,
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w600,
                                       textColor: AppColor.darkColor,
@@ -92,7 +92,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: Badge(
-                                        label: Text('3'),
+                                        label: Text('3'.tr),
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         child: SvgPicture.asset(
@@ -162,7 +162,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                         //       ),
                                         //       4.width,
                                         //       CommonText(
-                                        //         text: "30",
+                                        //         text: "30".tr,
                                         //         fontSize: 14.sp,
                                         //         fontWeight: FontWeight.w700,
                                         //         textColor: Colors.white,
@@ -204,7 +204,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                         ),
                                         8.width,
                                         CommonText(
-                                          text: "What's Included",
+                                          text: "What's Included".tr,
                                           fontSize: 18.sp,
                                           fontWeight: FontWeight.w600,
                                           textColor: AppColor.darkColor,
@@ -276,7 +276,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                             ),
                                             child: Center(
                                               child: Text(
-                                                "!",
+                                                "!".tr,
                                                 style: TextStyle(
                                                   color: Colors.orange,
                                                   fontWeight: FontWeight.bold,
@@ -292,7 +292,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 CommonText(
-                                                  text: "Redemption Policy",
+                                                  text: "Redemption Policy".tr,
                                                   fontSize: 14.sp,
                                                   fontWeight: FontWeight.w600,
                                                   textColor: AppColor.darkColor,
@@ -300,7 +300,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                                 4.height,
                                                 CommonText(
                                                   text:
-                                                      "Valid for 30 days after redemption. Booking required in advance. Subject to availability.",
+                                                      "Valid for 30 days after redemption. Booking required in advance. Subject to availability.".tr,
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w400,
                                                   textColor: AppColor.textColor,
@@ -348,7 +348,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CommonText(
-                                    text: "YOUR BALANCE",
+                                    text: "YOUR BALANCE".tr,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w500,
                                     textColor: AppColor.textColor,
@@ -356,7 +356,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                   4.height,
                                   CommonText(
                                     text:
-                                        "${offer.value?.visitorPoints ?? 0} Points",
+                                        "${offer.value?.visitorPoints ?? 0} Points".tr,
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w700,
                                     textColor: AppColor.darkColor,
@@ -376,7 +376,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   CommonText(
-                                    text: "POINTS REQUIRED",
+                                    text: "POINTS REQUIRED".tr,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w500,
                                     textColor: AppColor.textColor,
@@ -384,7 +384,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                   4.height,
                                   CommonText(
                                     text:
-                                        "${offer.value?.rewardPoints ?? 0} Points",
+                                        "${offer.value?.rewardPoints ?? 0} Points".tr,
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w700,
                                     textColor: AppColor.darkColor,
@@ -399,7 +399,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                         CommonButton(
                           buttonWidth: double.infinity,
                           buttonRadius: 12.w,
-                          titleText: "Enjoy Your Reward",
+                          titleText: "Enjoy Your Reward".tr,
                           onTap: () {
                             Get.toNamed(
                               AppRoute.redemNowScreen,

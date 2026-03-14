@@ -8,6 +8,7 @@ import '../../utils/app_colors/app_colors.dart';
 // import 'package:your_app/widgets/common_button.dart';
 // import 'package:your_app/utils/app_color.dart';
 // import 'package:your_app/utils/app_images.dart';
+import 'package:get/get.dart';
 
 class HomeScreenCard extends StatelessWidget {
   final String imageAsset;
@@ -64,6 +65,7 @@ class HomeScreenCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       width: width ?? 266.w,
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColor.creamColor,
@@ -84,10 +86,12 @@ class HomeScreenCard extends StatelessWidget {
                 topLeft: Radius.circular(borderRadius ?? 24),
                 topRight: Radius.circular(borderRadius ?? 24),
               ),
-              image: DecorationImage(
-                image: NetworkImage("${ApiEndpoints.domain}$imageAsset"),
-                fit: BoxFit.cover,
-              ),
+              // image: DecorationImage(
+              //   image: NetworkImage("${ApiEndpoints.domain}$imageAsset"),
+              //   fit: BoxFit.cover,
+              // ),
+            ),
+            child: CommonImage(src: imageAsset,height: 160,width: double.infinity,
             ),
           ),
           // Content Section
@@ -106,7 +110,9 @@ class HomeScreenCard extends StatelessWidget {
                 SizedBox(height: spaceBetweenTitleSubtitle ?? 4.h),
                 // Subtitle using CommonText
                 CommonText(
+                  isDescription: true,
                   text: subtitle,
+                  maxLines: 2,
                   fontSize: subtitleFontSize ?? 14.w,
                   fontWeight: subtitleFontWeight ?? FontWeight.w400,
                   textColor: subtitleColor ?? AppColor.textColor,
@@ -138,8 +144,8 @@ Usage Example:
 OfferCard(
   imageAsset: AppImages.homeImage1,
   title: "20% Off Hairstyle",
-  subtitle: "Valid until Friday",
-  buttonText: "View Details",
+  subtitle: "Valid until Friday".tr,
+  buttonText: "View Details".tr,
   onButtonTap: () {
     // Handle button tap
   },
@@ -149,8 +155,8 @@ OfferCard(
 OfferCard(
   imageAsset: AppImages.homeImage1,
   title: "20% Off Hairstyle",
-  subtitle: "Valid until Friday",
-  buttonText: "View Details",
+  subtitle: "Valid until Friday".tr,
+  buttonText: "View Details".tr,
   onButtonTap: () {},
   width: 266.w,
   imageHeight: 160.h,

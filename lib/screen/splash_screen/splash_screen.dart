@@ -113,7 +113,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: SlideTransition(
                     position: _titleSlide,
                     child: CommonText(
-                      text: AppString.welcometoZena,
+                      text: AppString.welcometoZena.tr,
                       fontSize: 20.w,
                       fontWeight: FontWeight.w500,
                       textColor: AppColor.darkColor,
@@ -126,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: SlideTransition(
                     position: _subtitleSlide,
                     child: CommonText(
-                      text: AppString.beautyRewardsMadeEasy,
+                      text: AppString.beautyRewardsMadeEasy.tr,
                       fontSize: 20.w,
                       fontWeight: FontWeight.w400,
                       textColor: AppColor.textColor,

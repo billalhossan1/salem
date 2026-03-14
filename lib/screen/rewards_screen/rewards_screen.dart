@@ -6,7 +6,6 @@ import 'package:zena_app/widget/app_custom_cards/reward_card.dart';
 
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
-import '../../utils/app_icons/app_icons.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
 import '../../widget/shimmer/app_shimmer.dart';
 import '../../widget/app_custom_cards/history_card.dart';
@@ -20,7 +19,7 @@ class RewardsScreen extends StatelessWidget {
     final controller = Get.find<RewardsScreenController>();
     return Scaffold(
       appBar: AppCustomAppbar(
-        title: "Rewards",
+        title: "Rewards".tr,
         leadingType: LeadingType.logo,
         centerTitle: true,
         actions: [
@@ -69,111 +68,6 @@ class RewardsScreen extends StatelessWidget {
   }
 }
 
-// ─── Appbar: main appbar + balance card + tabs (always visible) ──────────────
-class _RewardsAppBar extends StatelessWidget {
-  final RewardsScreenController controller;
-  const _RewardsAppBar({required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppCustomAppbar(
-            title: "Rewards",
-            leadingType: LeadingType.logo,
-            centerTitle: true,
-            actions: [
-              NotificationActionButton(
-                notificationCount: 3,
-                onTap: () => Get.toNamed(AppRoute.notificationScreen),
-              ),
-            ],
-          ),
-          16.height,
-          //! Balance Card
-          Obx(
-            () => controller.userCoinIsLoading.value
-                ? const RewardsBalanceCardShimmer()
-                : Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: ShapeDecoration(
-                      color: AppColor.secondaryColor.withValues(alpha: 0.2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      shadows: [
-                        BoxShadow(
-                          color: AppColor.secondaryColor.withValues(
-                            alpha: 0.03,
-                          ),
-                          blurRadius: 6,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CommonText(
-                          text: "Balance",
-                          textColor: AppColor.darkColor,
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        8.height,
-                        Row(
-                          children: [
-                            CommonText(
-                              text: "${controller.userCoin.value} ",
-                              textColor: AppColor.darkColor,
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
-                            CommonText(
-                              text: " points",
-                              textColor: AppColor.secondaryColor,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            const Spacer(),
-                            SvgPicture.asset(AppIcons.starIcons),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-          ),
-          20.height,
-          //! Tab buttons
-          Obx(
-            () => Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TabButton(
-                  title: 'Active',
-                  isSelected: controller.selectedIndex.value == 0,
-                  onTap: () => controller.onTabChanged(0),
-                ),
-                8.width,
-                TabButton(
-                  title: 'Used',
-                  isSelected: controller.selectedIndex.value == 1,
-                  onTap: () => controller.onTabChanged(1),
-                ),
-              ],
-            ),
-          ),
-          10.height,
-        ],
-      ),
-    );
-  }
-}
 
 // ─── Sticky tab bar shown when scrolled past the main appbar ─────────────────
 class _StickyTabBar extends StatelessWidget {
@@ -190,13 +84,13 @@ class _StickyTabBar extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             TabButton(
-              title: 'Active',
+              title: 'Active'.tr,
               isSelected: controller.selectedIndex.value == 0,
               onTap: () => controller.onTabChanged(0),
             ),
             8.width,
             TabButton(
-              title: 'Used',
+              title: 'Used'.tr,
               isSelected: controller.selectedIndex.value == 1,
               onTap: () => controller.onTabChanged(1),
             ),
@@ -262,7 +156,7 @@ class _UsedRewardItem extends StatelessWidget {
           // _UsedSummaryCard(),
           24.height,
           CommonText(
-            text: "Recent Redemptions",
+            text: "Recent Redemptions".tr,
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,
             textColor: AppColor.darkColor,
@@ -316,21 +210,21 @@ class _UsedSummaryCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CommonText(
-                  text: "REWARD SUMMARY",
+                  text: "REWARD SUMMARY".tr,
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w600,
                   textColor: AppColor.textColor,
                 ),
                 8.height,
                 CommonText(
-                  text: "Total Claimed: 8",
+                  text: "Total Claimed: 8".tr,
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w600,
                   textColor: AppColor.darkColor,
                 ),
                 8.height,
                 CommonText(
-                  text: "You've saved 450 stars this month",
+                  text: "You've saved 450 stars this month".tr,
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,

@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class TiarModel {
   final String sId;
   final String userId;

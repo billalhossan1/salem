@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
-        title: "Profile",
+        title: "Profile".tr,
         leadingType: LeadingType.logo,
         centerTitle: true,
         actions: [
@@ -105,7 +105,8 @@ class ProfileScreen extends StatelessWidget {
                                   children: [
                                     CommonText(
                                       text:
-                                          "MEMBER SINCE ${getYear(profile.createdAt)}",
+                                          "MEMBER SINCE ${getYear(profile.createdAt)}"
+                                              .tr,
                                       textColor: Colors.white,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
@@ -122,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
               //! Account Settings
               25.height,
               CommonText(
-                text: "Account Settings",
+                text: "Account Settings".tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.w,
                 textColor: AppColor.darkColor,
@@ -151,7 +152,7 @@ class ProfileScreen extends StatelessWidget {
                     //! Edit Profile
                     ProfileMenuItem(
                       icon: AppIcons.editProfileIcons,
-                      title: "Edit Profile",
+                      title: "Edit Profile".tr,
                       onTap: () {
                         // Navigate to edit profile
                         Get.toNamed(AppRoute.editProfileScreen);
@@ -160,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
                     //! Referal
                     ProfileMenuItem(
                       icon: AppIcons.invitePeople,
-                      title: "Invite & Refer Friends",
+                      title: "Invite & Refer Friends".tr,
                       onTap: () {
                         // Navigate to referal screen
                         Get.toNamed(AppRoute.inviteFriendsScreen);
@@ -169,15 +170,73 @@ class ProfileScreen extends StatelessWidget {
                     //! Language
                     ProfileMenuItem(
                       icon: AppIcons.languageIcons,
-                      title: "Language",
+                      title: "Language".tr,
                       onTap: () {
-                        // Change language
+                        Get.bottomSheet(
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(20),
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                CommonText(
+                                  text: "Select Language".tr,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  textColor: AppColor.darkColor,
+                                ),
+                                const SizedBox(height: 20),
+                                ListTile(
+                                  title: const Text("English"),
+                                  onTap: () async {
+                                    await SharePrefsHelper.setString(
+                                      SharedPreferenceValue.language,
+                                      'en',
+                                    );
+                                    Get.updateLocale(const Locale('en'));
+                                    Get.offAllNamed(AppRoute.splashscreen);
+                                  },
+                                  trailing: Get.locale?.languageCode == 'en'
+                                      ? Icon(
+                                          Icons.check,
+                                          color: AppColor.primaryColor,
+                                        )
+                                      : null,
+                                ),
+                                ListTile(
+                                  title: const Text("العربية"),
+                                  onTap: () async {
+                                    await SharePrefsHelper.setString(
+                                      SharedPreferenceValue.language,
+                                      'ar',
+                                    );
+                                    Get.updateLocale(const Locale('ar'));
+                                    Get.offAllNamed(AppRoute.splashscreen);
+                                  },
+                                  trailing: Get.locale?.languageCode == 'ar'
+                                      ? Icon(
+                                          Icons.check,
+                                          color: AppColor.primaryColor,
+                                        )
+                                      : null,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
                       },
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           CommonText(
-                            text: "EN",
+                            text: Get.locale?.languageCode == 'ar'
+                                ? "عربي"
+                                : "EN",
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             textColor: AppColor.darkColor,
@@ -194,7 +253,7 @@ class ProfileScreen extends StatelessWidget {
                     //! Notification
                     ProfileMenuItem(
                       icon: AppIcons.notificationIconsSelect,
-                      title: "Notification",
+                      title: "Notification".tr,
                       trailing: Obx(
                         () => Switch(
                           value: controller.isNotificationEnabled.value,
@@ -209,7 +268,7 @@ class ProfileScreen extends StatelessWidget {
                     //! Privacy and Policy
                     ProfileMenuItem(
                       icon: AppIcons.privacPolicyIcons,
-                      title: "Privacy Policy",
+                      title: "Privacy Policy".tr,
                       showDivider: false,
                       onTap: () {
                         // Navigate to privacy policy
@@ -220,7 +279,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               25.height,
               CommonText(
-                text: "Contact & Support",
+                text: "Contact & Support".tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textColor: AppColor.darkColor,
@@ -248,19 +307,19 @@ class ProfileScreen extends StatelessWidget {
                     //! WhatsApp
                     ProfileMenuItem(
                       icon: AppImages.whatsappImages,
-                      title: "WhatsApp",
+                      title: "WhatsApp".tr,
                       onTap: () {},
                     ),
                     //! Email Contact
                     ProfileMenuItem(
                       icon: AppImages.emailImages,
-                      title: "Email Contact",
+                      title: "Email Contact".tr,
                       onTap: () {},
                     ),
                     //! Contact Form
                     ProfileMenuItem(
                       icon: AppImages.contactImages,
-                      title: "Contact Form",
+                      title: "Contact Form".tr,
                       showDivider: false,
                       onTap: () {},
                     ),
@@ -305,7 +364,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Sign Out',
+                        'Sign Out'.tr,
                         style: TextStyle(
                           color: const Color(
                             0xFFFF5578,

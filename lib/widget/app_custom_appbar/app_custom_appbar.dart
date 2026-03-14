@@ -158,7 +158,7 @@ class NotificationActionButton extends StatelessWidget {
                   ),
                   child: Center(
                     child: CommonText(
-                      text: '$notificationCount',
+                      text: '$notificationCount'.tr,
                       style: TextStyle(
                         fontSize: 8.sp,
                         fontWeight: FontWeight.bold,
@@ -261,18 +261,18 @@ class NotificationActionButton extends StatelessWidget {
 //           // Show confirmation dialog before going back
 //           Get.dialog(
 //             AlertDialog(
-//               title: Text('Discard changes?'),
+//               title: Text('Discard changes?'.tr),
 //               actions: [
 //                 TextButton(
 //                   onPressed: () => Get.back(),
-//                   child: Text('Cancel'),
+//                   child: Text('Cancel'.tr),
 //                 ),
 //                 TextButton(
 //                   onPressed: () {
 //                     Get.back(); // Close dialog
 //                     Get.back(); // Go back to previous screen
 //                   },
-//                   child: Text('Discard'),
+//                   child: Text('Discard'.tr),
 //                 ),
 //               ],
 //             ),

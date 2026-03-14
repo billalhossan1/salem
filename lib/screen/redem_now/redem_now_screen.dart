@@ -70,14 +70,14 @@ class RedemNowScreen extends StatelessWidget {
                   ),
                   32.height,
                   CommonText(
-                    text: "You Deserve this!",
+                    text: "You Deserve this!".tr,
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w600,
                     textColor: AppColor.darkColor,
                   ),
                   8.height,
                   CommonText(
-                    text: "Treating yourself is the ultimate self-care.",
+                    text: "Treating yourself is the ultimate self-care.".tr,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                     textColor: AppColor.textColor,
@@ -94,7 +94,7 @@ class RedemNowScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: CommonText(
-                      text: "POINT BALANCE AFTER REDEMPTION: 90 POINTS",
+                      text: "POINT BALANCE AFTER REDEMPTION: 90 POINTS".tr,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
                       textColor: const Color(0xFFE86DAC),
@@ -111,7 +111,7 @@ class RedemNowScreen extends StatelessWidget {
                   : CommonButton(
                       buttonWidth: double.infinity,
                       buttonRadius: 12.w,
-                      titleText: "Confirm to Redeem",
+                      titleText: "Confirm to Redeem".tr,
                       onTap: () {
                         controller.redeemNow();
                       },
@@ -121,7 +121,7 @@ class RedemNowScreen extends StatelessWidget {
             CommonButton(
               buttonWidth: double.infinity,
               buttonRadius: 12.w,
-              titleText: "Cancel",
+              titleText: "Cancel".tr,
               buttonColor: const Color(0xFFF2F2F2),
               titleColor: AppColor.textColor,
               onTap: () => Get.back(),

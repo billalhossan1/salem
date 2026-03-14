@@ -69,7 +69,7 @@ class EditProfileScreen extends StatelessWidget {
 
                 //! Full Name
                 CommonText(
-                  text: "Full Name",
+                  text: "Full Name".tr,
                   fontSize: 16.w,
                   fontWeight: FontWeight.w500,
                   textColor: AppColor.darkColor,
@@ -77,14 +77,14 @@ class EditProfileScreen extends StatelessWidget {
                 12.height,
                 CommonTextField(
                   controller: controller.fullNameController,
-                  hintText: "Enter your full name",
+                  hintText: "Enter your full name".tr,
                   validationType: ValidationType.validateFullName,
                 ),
                 20.height,
 
                 //! Email Address
                 CommonText(
-                  text: "Email Address",
+                  text: "Email Address".tr,
                   fontSize: 16.w,
                   fontWeight: FontWeight.w500,
                   textColor: AppColor.darkColor,
@@ -92,7 +92,7 @@ class EditProfileScreen extends StatelessWidget {
                 12.height,
                 CommonTextField(
                   controller: controller.emailController,
-                  hintText: "Enter your email address",
+                  hintText: "Enter your email address".tr,
                   validationType: ValidationType.validateEmail,
                 ),
                 20.height,
@@ -101,13 +101,13 @@ class EditProfileScreen extends StatelessWidget {
                 Row(
                   children: [
                     CommonText(
-                      text: "Phone Number",
+                      text: "Phone Number".tr,
                       fontSize: 16.w,
                       fontWeight: FontWeight.w500,
                       textColor: AppColor.darkColor,
                     ),
                     CommonText(
-                      text: "*",
+                      text: "*".tr,
                       fontSize: 16.w,
                       fontWeight: FontWeight.w500,
                       textColor: AppColor.errorColor,
@@ -133,7 +133,7 @@ class EditProfileScreen extends StatelessWidget {
                   () => controller.profile.updateIsLoading.value
                       ? LoadingWidget()
                       : CommonButton(
-                          titleText: "Save Changes",
+                          titleText: "Save Changes".tr,
                           buttonColor: AppColor.primaryColor,
                           titleColor: AppColor.darkColor,
                           titleSize: 18.w,

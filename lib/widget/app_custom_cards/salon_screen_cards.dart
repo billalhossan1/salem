@@ -11,6 +11,7 @@ import '../shimmer/app_shimmer.dart';
 // import 'package:your_app/utils/app_color.dart';
 // import 'package:your_app/utils/app_icons.dart';
 // import 'package:your_app/utils/app_images.dart';
+import 'package:get/get.dart';
 
 class SalonCard extends StatelessWidget {
   final String imageAsset;
@@ -139,7 +140,7 @@ class SalonCard extends StatelessWidget {
                               border: Border.all(color: AppColor.primaryColor),
                             ),
                             child: CommonText(
-                              text: "🎁 Rewards active",
+                              text: "🎁 Rewards active".tr,
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w400,
                               textColor: AppColor.textColor,
@@ -149,7 +150,7 @@ class SalonCard extends StatelessWidget {
                     statusText ? 8.height : SizedBox(),
                     statusText
                         ? CommonText(
-                            text: "Points & Offers Available",
+                            text: "Points & Offers Available".tr,
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w400,
                             textColor: AppColor.textColor,
@@ -191,7 +192,7 @@ SalonCard(
   distance: "1.2 km",
   description: "Luxury hair & skin care",
   statusText: "Points are active",
-  buttonText: "View Details",
+  buttonText: "View Details".tr,
   onButtonTap: () {
     // Your action
   },
@@ -207,7 +208,7 @@ ListView.builder(
       distance: salons[index].distance,
       description: salons[index].description,
       statusText: salons[index].status,
-      buttonText: "View Details",
+      buttonText: "View Details".tr,
       onButtonTap: () {
         // Navigate or action
       },

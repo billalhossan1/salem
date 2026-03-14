@@ -74,7 +74,7 @@ class SalonDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               CommonText(
-                                text: "Salon Details",
+                                text: "Salon Details".tr,
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w600,
                                 textColor: AppColor.darkColor,
@@ -152,7 +152,7 @@ class SalonDetailsScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     CommonText(
-                                      text: "Services",
+                                      text: "Services".tr,
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500,
                                       textColor: AppColor.darkColor,
@@ -191,7 +191,7 @@ class SalonDetailsScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     CommonText(
-                                      text: "Opening Hours",
+                                      text: "Opening Hours".tr,
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500,
                                       textColor: AppColor.darkColor,
@@ -207,7 +207,7 @@ class SalonDetailsScreen extends StatelessWidget {
                                           ? Center(
                                               child: CommonText(
                                                 text:
-                                                    "No opening hours available",
+                                                    "No opening hours available".tr,
                                                 fontSize: 12.sp,
                                                 fontWeight: FontWeight.w400,
                                                 textColor: AppColor.textColor,
@@ -261,7 +261,7 @@ class SalonDetailsScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     CommonText(
-                                      text: "Location",
+                                      text: "Location".tr,
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500,
                                       textColor: AppColor.darkColor,
@@ -287,7 +287,7 @@ class SalonDetailsScreen extends StatelessWidget {
                             },
                             buttonWidth: double.infinity,
                             buttonRadius: 12,
-                            titleText: "Get Direction",
+                            titleText: "Get Direction".tr,
                             prefix: SvgPicture.asset(AppIcons.getDirection),
                             buttonColor: AppColor.screenBackgroundColor,
                             borderColor: AppColor.textColor,
@@ -300,7 +300,7 @@ class SalonDetailsScreen extends StatelessWidget {
                             borderColor: Colors.black,
                             buttonWidth: double.infinity,
                             buttonRadius: 12.w,
-                            titleText: "Confirm Visit",
+                            titleText: "Confirm Visit".tr,
                             onTap: () {
                               controller.confirmVisit();
                             },
@@ -324,14 +324,14 @@ class SalonDetailsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CommonText(
-                                    text: "🎁 Rewards Active",
+                                    text: "🎁 Rewards Active".tr,
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w500,
                                     textColor: AppColor.darkColor,
                                   ),
                                   8.height,
                                   CommonText(
-                                    text: "Points & Offers Available",
+                                    text: "Points & Offers Available".tr,
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w400,
                                     textColor: AppColor.textColor,
@@ -372,14 +372,14 @@ class SalonDetailsScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CommonText(
-                                text: "YOUR POINTS BALANCE",
+                                text: "YOUR POINTS BALANCE".tr,
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                                 textColor: AppColor.textColor,
                               ),
                               4.height,
                               CommonText(
-                                text: "${salon.visitor} Points",
+                                text: "${salon.visitor} Points".tr,
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w700,
                                 textColor: AppColor.darkColor,
@@ -397,14 +397,14 @@ class SalonDetailsScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               CommonText(
-                                text: "POINTS REQUIRED",
+                                text: "POINTS REQUIRED".tr,
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                                 textColor: AppColor.textColor,
                               ),
                               4.height,
                               CommonText(
-                                text: "${salon.visitor} Points",
+                                text: "${salon.visitor} Points".tr,
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w700,
                                 textColor: AppColor.darkColor,
@@ -418,7 +418,7 @@ class SalonDetailsScreen extends StatelessWidget {
                     CommonButton(
                       buttonWidth: double.infinity,
                       buttonRadius: 12.w,
-                      titleText: "Enjoy Your Reward",
+                      titleText: "Enjoy Your Reward".tr,
                       buttonColor: AppColor.primaryColor,
                       titleColor: AppColor.darkColor,
                       onTap: () {

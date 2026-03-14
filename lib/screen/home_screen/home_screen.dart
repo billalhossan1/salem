@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
-        title: "Home",
+        title: "Home".tr,
         leadingType: LeadingType.logo,
         centerTitle: true,
         actions: [
@@ -63,14 +63,14 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CommonText(
-                      text: "Treat yourself more 💕",
+                      text: "Treat yourself more 💕".tr,
                       fontSize: 16.w,
                       fontWeight: FontWeight.w600,
                       textColor: AppColor.darkColor,
                     ),
                     4.height,
                     CommonText(
-                      text: "Every visit = 100 points",
+                      text: "Every visit = 100 points".tr,
                       fontSize: 12.w,
                       fontWeight: FontWeight.w400,
                       textColor: AppColor.textColor,
@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                         Obx(
                           () => CommonText(
                             text:
-                                "${profileController.profileModel.value.coins}/400",
+                                "${profileController.profileModel.value.coins}/400".tr,
                             fontSize: 24.w,
                             fontWeight: FontWeight.w600,
                             textColor: AppColor.darkColor,
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     12.height,
                     CommonText(
-                      text: "Just a few more visits to unlock your reward ✨",
+                      text: "Just a few more visits to unlock your reward ✨".tr,
                       fontSize: 12.w,
                       fontWeight: FontWeight.w400,
                       textColor: AppColor.textColor,
@@ -149,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CommonText(
-                      text: "Invite 3 Friends",
+                      text: "Invite 3 Friends".tr,
                       fontSize: 16.w,
                       fontWeight: FontWeight.w500,
                       textColor: AppColor.screenBackgroundColor,
@@ -162,7 +162,7 @@ class HomeScreen extends StatelessWidget {
                         Obx(
                           () => CommonText(
                             text:
-                                "${profileController.profileModel.value.successfulInvites}/3",
+                                "${profileController.profileModel.value.successfulInvites}/3".tr,
                             fontSize: 24.w,
                             fontWeight: FontWeight.w500,
                             textColor: AppColor.screenBackgroundColor,
@@ -170,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         06.width,
                         CommonText(
-                          text: "Points",
+                          text: "Points".tr,
                           fontSize: 20.w,
                           fontWeight: FontWeight.w500,
                           textColor: AppColor.screenBackgroundColor,
@@ -215,7 +215,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     12.height,
                     CommonText(
-                      text: "Share the beauty, share the gift 💗",
+                      text: "Share the beauty, share the gift 💗".tr,
                       fontSize: 12.w,
                       fontWeight: FontWeight.w400,
                       textColor: AppColor.screenBackgroundColor,
@@ -233,7 +233,7 @@ class HomeScreen extends StatelessWidget {
                 //   child: Padding(
                 //     padding: EdgeInsets.only(right: 8.w),
                 //     child: CommonButton(
-                //       titleText: "View Reward",
+                //       titleText: "View Reward".tr,
                 //       buttonColor: AppColor.green100,
                 //       buttonRadius: 12.w,
                 //       titleColor: AppColor.darkColor,
@@ -247,7 +247,7 @@ class HomeScreen extends StatelessWidget {
                 //   child: Padding(
                 //     padding: EdgeInsets.only(left: 8.w),
                 //     child: CommonButton(
-                //       titleText: "Invite a Friend",
+                //       titleText: "Invite a Friend".tr,
                 //       buttonRadius: 12.w,
                 //       buttonColor: AppColor.secondaryColor,
                 //       titleColor: AppColor.darkColor,
@@ -266,13 +266,13 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CommonText(
-                  text: "Exclusive Offer",
+                  text: "Exclusive Offer".tr,
                   fontSize: 20.w,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
                 ),
                 CommonText(
-                  text: "View All",
+                  text: "View All".tr,
                   fontSize: 14.w,
                   fontWeight: FontWeight.w500,
                   textColor: AppColor.darkColor,
@@ -290,28 +290,37 @@ class HomeScreen extends StatelessWidget {
             Obx(
               () => controller.isRewardLoading.value
                   ? const HomeRewardListShimmer()
-                  : SizedBox(
-                      height: 310.h,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.rewardList.length,
-                        separatorBuilder: (context, index) => 16.width,
-                        itemBuilder: (context, index) {
-                          final offer = controller.rewardList[index];
-                          return HomeScreenCard(
-                            imageAsset: offer.rewardImage,
-                            title: offer.rewardName,
-                            subtitle:
-                                'Valid Until ${offer.closedDays.toList().map((e) => e.day).join(', ')}',
-                            buttonText: "View Details",
-                            onButtonTap: () {
-                              Get.toNamed(
-                                AppRoute.rewardDetailsScreen,
-                                arguments: {'rewardId': offer.id},
+                  : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          ...List.generate(
+                            controller.rewardList.length,
+                            (index) {
+                              final offer = controller.rewardList[index];
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  right: index == controller.rewardList.length - 1
+                                      ? 0
+                                      : 16.w,
+                                ),
+                                child: HomeScreenCard(
+                                  imageAsset: offer.rewardImage,
+                                  title: offer.rewardName,
+                                  subtitle:
+                                      'Valid Until ${offer.closedDays.toList().map((e) => e.day).join('.tr, '.tr)}',
+                                  buttonText: "View Details".tr,
+                                  onButtonTap: () {
+                                    Get.toNamed(
+                                      AppRoute.rewardDetailsScreen,
+                                      arguments: {'rewardId': offer.id},
+                                    );
+                                  },
+                                ),
                               );
                             },
-                          );
-                        },
+                          ),
+                        ],
                       ),
                     ),
             ),

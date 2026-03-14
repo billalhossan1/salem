@@ -1,4 +1,4 @@
-String _domain = "http://10.10.7.104:4005";
+String _domain = "https://ismail4000.binarybards.online";
 final String _baseUrl = "$_domain/api/v1";
 
 

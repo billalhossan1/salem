@@ -40,7 +40,7 @@ class InviteHistoryScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                "TOTAL INVITES",
+                                "TOTAL INVITES".tr,
                                 style: TextStyle(
                                   color: Color(0xFF6E6E6E),
                                   fontSize: 12,
@@ -49,7 +49,7 @@ class InviteHistoryScreen extends StatelessWidget {
                               ),
                               8.height,
                               Text(
-                                "12 Friends",
+                                "12 Friends".tr,
                                 style: TextStyle(
                                   color: Color(0xFF333333),
                                   fontSize: 20,
@@ -71,7 +71,7 @@ class InviteHistoryScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                "COMPLETED",
+                                "COMPLETED".tr,
                                 style: TextStyle(
                                   color: Color(0xFF6E6E6E),
                                   fontSize: 12,
@@ -80,7 +80,7 @@ class InviteHistoryScreen extends StatelessWidget {
                               ),
                               8.height,
                               Text(
-                                "5 Successful",
+                                "5 Successful".tr,
                                 style: TextStyle(
                                   color: Color(0xFF333333),
                                   fontSize: 20,
@@ -97,7 +97,7 @@ class InviteHistoryScreen extends StatelessWidget {
 
                   // Recent Activity Title
                   CommonText(
-                    text: "Recent Activity",
+                    text: "Recent Activity".tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     textColor: Color(0xFF333333),
@@ -227,7 +227,7 @@ class InviteHistoryScreen extends StatelessWidget {
             padding: EdgeInsets.all(26),
             decoration: BoxDecoration(color: AppColor.screenBackgroundColor),
             child: CommonButton(
-              titleText: "Share Referral Link",
+              titleText: "Share Referral Link".tr,
               buttonColor: AppColor.primaryColor,
               titleColor: AppColor
                   .darkColor, // Using dark color for contrast on light green

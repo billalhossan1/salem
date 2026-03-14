@@ -44,7 +44,7 @@ class SalonScreen extends StatelessWidget {
                       distance: salon.distance,
                       description: salon.description,
                       statusText: salon.isRewardAvailable,
-                      buttonText: "View Details",
+                      buttonText: "View Details".tr,
                       onButtonTap: () {
                         Get.toNamed(AppRoute.salonDetailsScreen,
                             arguments: {'salonId': salon.id});
@@ -69,7 +69,7 @@ class SalonScreen extends StatelessWidget {
         validationType: ValidationType.validateFullName,
         prefixIcon: SvgPicture.asset(AppIcons.searchIcons),
         backgroundColor: AppColor.screenBackgroundColor,
-        hintText: "Search",
+        hintText: "Search".tr,
         onChanged: (val){
           controller.onSearch(val);
         },
@@ -80,7 +80,7 @@ class SalonScreen extends StatelessWidget {
 
   Widget _appbar() {
     return AppCustomAppbar(
-      title: "Salons",
+      title: "Salons".tr,
       leadingType: LeadingType.logo,
       centerTitle: true,
       actions: [

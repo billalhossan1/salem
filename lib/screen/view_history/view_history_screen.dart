@@ -39,7 +39,7 @@ class ViewHistoryScreen extends StatelessWidget {
                   _SalonSummaryCard(controller: controller),
                   24.height,
                   CommonText(
-                    text: "Recent Redemptions",
+                    text: "Recent Redemptions".tr,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
                     textColor: AppColor.darkColor,
@@ -99,7 +99,7 @@ class _SalonSummaryCard extends StatelessWidget {
                       horizontal: 10,
                     ),
                     child: CommonText(
-                      text: '📍 1.3 km',
+                      text: '📍 1.3 km'.tr,
                       textColor: AppColor.secondaryColor,
                     ),
                   ),
@@ -144,7 +144,7 @@ class _HistoryItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CommonText(text: 'Last visit at ${formatDate(history.createdAt)}'),
+          CommonText(text: 'Last visit at ${formatDate(history.createdAt)}'.tr),
           Spacer(),
           Container(
             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -156,7 +156,7 @@ class _HistoryItem extends StatelessWidget {
               children: [
                 CommonImage(src: AppIcons.star, width: 16, height: 16),
                 4.width,
-                CommonText(text: '${history.points}'),
+                CommonText(text: '${history.points}'.tr),
               ],
             ),
           ),

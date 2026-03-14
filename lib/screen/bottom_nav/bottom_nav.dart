@@ -25,27 +25,27 @@ class BottomNav extends StatelessWidget {
       NavItemData(
         selectedIcon: 'assets/icons/HomeIconSelect.svg',
         unselectedIcon: 'assets/icons/HomeIcon.svg',
-        label: 'Home',
+        label: 'Home'.tr,
       ),
       NavItemData(
         selectedIcon: 'assets/icons/SalonIconSelect.svg',
         unselectedIcon: 'assets/icons/SalonIcon.svg',
-        label: 'Salons',
+        label: 'Salons'.tr,
       ),
       NavItemData(
         selectedIcon: 'assets/icons/RewardsIconSelected.svg',
         unselectedIcon: 'assets/icons/RewardsIcon.svg',
-        label: 'Rewards',
+        label: 'Rewards'.tr,
       ),
       NavItemData(
         selectedIcon: 'assets/icons/MyVisitIconSelect.svg',
         unselectedIcon: 'assets/icons/MyvisitIcon.svg',
-        label: 'My Visits',
+        label: 'My Visits'.tr,
       ),
       NavItemData(
         selectedIcon: 'assets/icons/ProfileIconsSelect.svg',
         unselectedIcon: 'assets/icons/ProfileIcon.svg',
-        label: 'Profile',
+        label: 'Profile'.tr,
       ),
     ];
 

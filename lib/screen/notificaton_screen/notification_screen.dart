@@ -102,7 +102,7 @@ class NotificationScreen extends StatelessWidget {
                                 ),
                                 8.width,
                                 Text(
-                                  "Delete",
+                                  "Delete".tr,
                                   style: TextStyle(
                                     color: AppColor.errorColor,
                                     fontSize: 14.sp,

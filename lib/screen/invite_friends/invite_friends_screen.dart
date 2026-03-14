@@ -37,7 +37,7 @@ class InviteFriendsScreen extends StatelessWidget {
             24.height,
             Center(
               child: CommonText(
-                text: "Share beauty together",
+                text: "Share beauty together".tr,
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w400,
                 textColor: AppColor.textColor,
@@ -58,7 +58,7 @@ class InviteFriendsScreen extends StatelessWidget {
             16.height,
             CommonText(
               text:
-                  "After completing 3 successful referrals, the reward is valid\nfor 30 days and will be automatically applied to your next\nvisit.",
+                  "After completing 3 successful referrals, the reward is valid\nfor 30 days and will be automatically applied to your next\nvisit.".tr,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
               textColor: AppColor.textColor,
@@ -67,27 +67,26 @@ class InviteFriendsScreen extends StatelessWidget {
             ),
             32.height,
             CommonButton(
-              titleText: "Share Referral Link",
+              titleText: "Share Referral Link".tr,
               prefix: SvgPicture.asset(AppIcons.shareReferalLink),
               onTap: () {
                 final code = controller.referralCode;
-                final referralLink = 'https://zenaApp.com/referral/$code';
+                final referralLink = 'https://zenaapp.com/referral/$code';
                 SharePlus.instance.share(
                   ShareParams(
                     text:
-                        'Join me on Zena! Use my referral link to sign up and get exclusive rewards:\n$referralLink',
+                        'Join me on Zena! Use my referral link to sign up and get exclusive rewards:\n$referralLink'.tr,
                     subject: 'You\'re invited to Zena!',
                   ),
                 );
               },
-              buttonRadius: 12.w,
               buttonWidth: double.infinity,
               buttonColor: AppColor.green100,
               titleColor: AppColor.darkColor,
             ),
             16.height,
             CommonButton(
-              titleText: "Invite History",
+              titleText: "Invite History".tr,
               onTap: () {},
               buttonRadius: 12.w,
               buttonWidth: double.infinity,
@@ -112,7 +111,7 @@ class InviteFriendsScreen extends StatelessWidget {
       ),
       child: Center(
         child: CommonText(
-          text: "$number",
+          text: "$number".tr,
           fontSize: 16.sp,
           fontWeight: FontWeight.w600,
           textColor: Colors.white,
