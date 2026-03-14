@@ -195,6 +195,7 @@ class AppTranslations extends Translations {
       'Max tier reached 🎉': 'Max tier reached 🎉',
       'points to go for': 'points to go for',
       'Friends': 'Friends',
+      'POINT BALANCE AFTER REDEMPTION:': "POINT BALANCE AFTER REDEMPTION:",
 
       // Dynamic interpolation strings from reward_card
       'Goal reached!': 'Goal reached!',
@@ -399,6 +400,7 @@ class AppTranslations extends Translations {
       'Max tier reached 🎉': 'تم الوصول إلى أعلى مستوى 🎉',
       'points to go for': 'نقاط للذهاب ل',
       'Friends': 'أصدقاء',
+      'POINT BALANCE AFTER REDEMPTION:':"رصيد النقاط بعد الاسترداد:",
 
       // Dynamic interpolation strings from reward_card
       'Goal reached!': 'تم الوصول للهدف!',

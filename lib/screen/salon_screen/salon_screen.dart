@@ -69,7 +69,7 @@ class SalonScreen extends StatelessWidget {
       child: CommonTextField(
         key: Key('slaon_search_field'),
         initialText: controller.search,
-        validationType: ValidationType.validateFullName,
+        validationType: ValidationType.notRequired,
         prefixIcon: SvgPicture.asset(AppIcons.searchIcons),
         backgroundColor: AppColor.screenBackgroundColor,
         hintText: "Search".tr,

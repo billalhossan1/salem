@@ -388,7 +388,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                           onTap: () {
                             Get.toNamed(
                               AppRoute.redemNowScreen,
-                              arguments: {'redeemId': offer.value?.id ?? ''},
+                              arguments: {'redeemId': offer.value?.id ?? '','myPoint': offer.value?.visitorPoints ?? 0,'pointRequired': offer.value?.rewardPoints ?? 0},
                             );
                           },
                         ),

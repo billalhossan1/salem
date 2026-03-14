@@ -83,6 +83,9 @@ class MyApp extends StatelessWidget {
             fontStyle: FontStyle.normal,
           ), //hint and prefix color
         ),
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: AppColor.whiteColor,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(80, 48),

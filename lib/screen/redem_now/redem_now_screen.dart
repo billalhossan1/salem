@@ -94,7 +94,7 @@ class RedemNowScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: CommonText(
-                      text: "POINT BALANCE AFTER REDEMPTION: 90 POINTS".tr,
+                      text: "${"POINT BALANCE AFTER REDEMPTION:".tr} ${(controller.myPoint-controller.pointRequired)} ${"points".tr}".tr,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
                       textColor: const Color(0xFFE86DAC),

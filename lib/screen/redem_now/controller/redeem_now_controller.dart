@@ -9,10 +9,15 @@ class RedeemNowController extends GetxController{
 
   RxBool isRedeemLoading = false.obs;
   String redeemId  = '';
+  int myPoint = 0;
+  int pointRequired = 0;
 
   @override
   void onInit() {
     redeemId = Get.arguments['redeemId']??'';
+    myPoint = Get.arguments['myPoint']??0;
+    pointRequired = Get.arguments['pointRequired']??0;
+
     super.onInit();
   }
   Future<void> redeemNow()async{
