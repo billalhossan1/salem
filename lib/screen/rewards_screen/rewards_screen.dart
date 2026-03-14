@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/screen/rewards_screen/controller/rewards_screen_controller.dart';
 import 'package:zena_app/widget/app_custom_cards/reward_card.dart';
+import 'package:zena_app/widget/notificaiton_widget/notification_widget.dart';
 
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
@@ -23,10 +24,7 @@ class RewardsScreen extends StatelessWidget {
         leadingType: LeadingType.logo,
         centerTitle: true,
         actions: [
-          NotificationActionButton(
-            notificationCount: 3,
-            onTap: () => Get.toNamed(AppRoute.notificationScreen),
-          ),
+         NotificationWidget()
         ],
       ),
       backgroundColor: AppColor.screenBackgroundColor,

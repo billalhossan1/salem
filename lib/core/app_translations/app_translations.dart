@@ -192,8 +192,8 @@ class AppTranslations extends Translations {
       'Used': 'Used',
       'points': 'points',
       'Total Points': 'Total Points',
-      'Max tier reached 🎉':'Max tier reached 🎉',
-      'points to go for':'points to go for',
+      'Max tier reached 🎉': 'Max tier reached 🎉',
+      'points to go for': 'points to go for',
       'Friends': 'Friends',
 
       // Dynamic interpolation strings from reward_card
@@ -395,10 +395,10 @@ class AppTranslations extends Translations {
       'Contact Form': 'نموذج الاتصال',
       'Used': 'مستخدم',
       'points': 'نقاط',
-      "Total Points":"مجموع النقاط",
-      'Max tier reached 🎉':'تم الوصول إلى أعلى مستوى 🎉',
-      'points to go for':'نقاط للذهاب ل',
-      'Friends':'أصدقاء',
+      "Total Points": "مجموع النقاط",
+      'Max tier reached 🎉': 'تم الوصول إلى أعلى مستوى 🎉',
+      'points to go for': 'نقاط للذهاب ل',
+      'Friends': 'أصدقاء',
 
       // Dynamic interpolation strings from reward_card
       'Goal reached!': 'تم الوصول للهدف!',
@@ -412,6 +412,7 @@ class AppTranslations extends Translations {
       'Great! You’ve referred 1 friend!': 'عظيم! لقد دعوت صديقاً واحداً!',
       'One more for a bonus!': 'صديق واحد إضافي للحصول على المكافأة!',
       'Referral Bonus unlocked! 🎉': 'تم فتح مكافأة الدعوة! 🎉',
+      'No offers available': 'لا توجد عروض متاحة',
     },
   };
 }

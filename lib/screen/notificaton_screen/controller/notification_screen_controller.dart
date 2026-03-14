@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:core_kit/core_kit.dart';
 import 'package:core_kit/network/request_input.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/home_screen/controller/home_screen_controller.dart';
 import 'package:zena_app/service/socket_service.dart';
 
 import '../../../core/api_endpoints/api_endpoints.dart';
@@ -14,6 +15,8 @@ class NotificationScreenController extends GetxController {
    RxList<NotificationItemModel> notificationList =
       <NotificationItemModel>[].obs;
   late StreamSubscription<StreamDataModel> subscription;
+  final controller = Get.find<HomeScreenController>();
+
 
   @override
   void onInit() {
@@ -36,7 +39,7 @@ class NotificationScreenController extends GetxController {
   }
 
   Future<void> readMessage({required String id}) async {
-    await DioService.instance.request(
+    final response =await DioService.instance.request(
       input: RequestInput(
         endpoint: "${ApiEndpoints.getAllNotification}/$id",
         method: .GET,
@@ -47,6 +50,9 @@ class NotificationScreenController extends GetxController {
     if (index != -1) {
       notificationList[index].read = true;
       notificationList.refresh();
+    }
+    if(response.isSuccess){
+      controller.count--;
     }
   }
 

@@ -1,0 +1,1 @@
+Valid Until ${offer.closedDays.toList().map((e) => e.day).join('.tr, 

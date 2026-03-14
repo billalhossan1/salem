@@ -2,6 +2,7 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/screen/home_screen/controller/home_screen_controller.dart';
 import 'package:zena_app/screen/myvisit_screen/model/active_rewards_model.dart';
 import 'package:zena_app/screen/profile_screen/profile_screen.dart';
 
@@ -9,6 +10,7 @@ import 'package:zena_app/utils/app_images/app_images.dart';
 
 import 'package:zena_app/screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import 'package:zena_app/screen/myvisit_screen/model/tiar_model.dart';
+import 'package:zena_app/widget/notificaiton_widget/notification_widget.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
@@ -28,6 +30,8 @@ class MyvisitScreen extends StatelessWidget {
         Get.find<MyvisitScreenController>();
     final RewardsScreenController rewardsScreenController =
         Get.find<RewardsScreenController>();
+    final HomeScreenController homeController =
+        Get.find<HomeScreenController>();
     var profile = Get.find<ProfileScreenController>().profileModel.value;
 
     return Scaffold(
@@ -37,10 +41,7 @@ class MyvisitScreen extends StatelessWidget {
         leadingType: LeadingType.logo,
         centerTitle: true,
         actions: [
-          NotificationActionButton(
-            notificationCount: 3,
-            onTap: () => Get.toNamed(AppRoute.notificationScreen),
-          ),
+          NotificationWidget()
         ],
       ),
       body: SingleChildScrollView(

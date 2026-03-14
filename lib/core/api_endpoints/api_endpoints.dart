@@ -26,6 +26,7 @@ class ApiEndpoints {
   static final String getProfile = "/user/details";
   static final String updateProfile = "/user";
   static final String getAllNotification = "/notification";
+  static final String notificationCount = "/notification/count";
   static final String updateNotification = "/user";
 
 }

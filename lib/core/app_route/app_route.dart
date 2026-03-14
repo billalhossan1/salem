@@ -6,6 +6,8 @@ import 'package:zena_app/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:zena_app/screen/redem_now/redem_now_screen.dart';
 import 'package:zena_app/screen/referral_reward/referral_reward_screen.dart';
 
+import '../../screen/all_offer_screen/all_offer_screen.dart';
+import '../../screen/all_offer_screen/controller/all_offer_screen_controller.dart';
 import '../../screen/auth_screen/login_screen/login_screen.dart';
 import '../../screen/bottom_nav/bottom_nav.dart';
 import '../../screen/edit_profile/edit_profile_screen.dart';
@@ -39,6 +41,7 @@ class AppRoute {
   static const String viewHistoryScreen = "/viewHistoryScreen";
   static const String howItWorkInviteScreen = "/howItWorkInviteScreen";
   static const String howItWorkPointsScreen = "/howItWorkPointsScreen";
+  static const String allOfferScreen = "/allOfferScreen";
 
   static final List<GetPage> appRoutes = [
     GetPage(
@@ -170,6 +173,17 @@ class AppRoute {
     GetPage(
       name: howItWorkPointsScreen,
       page: () => HowItWorkPointsScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    //! All Offer Screen
+    GetPage(
+      name: allOfferScreen,
+      page: () => const AllOfferScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(AllOfferScreenController());
+      }),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),
     ),

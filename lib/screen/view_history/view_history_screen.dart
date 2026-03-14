@@ -15,46 +15,56 @@ class ViewHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ViewHistoryController controller = Get.find<ViewHistoryController>();
     return Scaffold(
+      appBar: CommonAppBar(
+          title: "Redemption History",
+      ),
       backgroundColor: AppColor.screenBackgroundColor,
       body: Obx(
-        () => SmartListLoader(
-          isLoading: controller.usedRewardIsLoading.value,
-          isLoadDone: controller.isLoadDone.value,
-          itemCount: controller.historyList.length,
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          onRefresh: controller.onRefresh,
-          onLoadMore: controller.onLoadMore,
-          appbar: AppCustomAppbar(
-            title: "Redemption History",
-            leadingType: LeadingType.back,
-            centerTitle: true,
-          ),
-          itemBuilder: (context, index) {
-            // Header block rendered as the first item
-            if (index == 0) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  16.height,
-                  _SalonSummaryCard(controller: controller),
-                  24.height,
-                  CommonText(
-                    text: "Recent Redemptions".tr,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                    textColor: AppColor.darkColor,
-                  ),
-                  16.height,
-                  _HistoryItem(history: controller.historyList[index]),
-                ],
-              );
-            }
+        () => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: .start,
+            children: [
+              _SalonSummaryCard(controller: controller),
+              24.height,
+              CommonText(
+                textAlign: .start,
+                text: "Recent Redemptions".tr,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w600,
+                textColor: AppColor.darkColor,
+              ),
+              Expanded(
+                child: SmartListLoader(
+                  isLoading: controller.usedRewardIsLoading.value,
+                  isLoadDone: controller.isLoadDone.value,
+                  itemCount: controller.historyList.length,
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  onRefresh: controller.onRefresh,
+                  onLoadMore: controller.onLoadMore,
+                  itemBuilder: (context, index) {
+                    // Header block rendered as the first item
+                    if (index == 0) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
 
-            return Padding(
-              padding: EdgeInsets.only(top: 12.h),
-              child: _HistoryItem(history: controller.historyList[index]),
-            );
-          },
+
+                          16.height,
+                          _HistoryItem(history: controller.historyList[index]),
+                        ],
+                      );
+                    }
+
+                    return Padding(
+                      padding: EdgeInsets.only(top: 12.h),
+                      child: _HistoryItem(history: controller.historyList[index]),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

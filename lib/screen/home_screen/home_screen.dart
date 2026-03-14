@@ -6,6 +6,7 @@ import 'package:zena_app/screen/home_screen/controller/home_screen_controller.da
 import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 import 'package:zena_app/widget/app_custom_appbar/app_custom_appbar.dart';
 import 'package:zena_app/widget/app_custom_cards/home_screen_card.dart';
+import 'package:zena_app/widget/notificaiton_widget/notification_widget.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
@@ -25,12 +26,7 @@ class HomeScreen extends StatelessWidget {
         title: "Home".tr,
         leadingType: LeadingType.logo,
         centerTitle: true,
-        actions: [
-          NotificationActionButton(
-            notificationCount: 3,
-            onTap: () => Get.toNamed(AppRoute.notificationScreen),
-          ),
-        ],
+        actions: [NotificationWidget()],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -83,7 +79,8 @@ class HomeScreen extends StatelessWidget {
                         Obx(
                           () => CommonText(
                             text:
-                                "${profileController.profileModel.value.coins}/400".tr,
+                                "${profileController.profileModel.value.coins}/400"
+                                    .tr,
                             fontSize: 24.w,
                             fontWeight: FontWeight.w600,
                             textColor: AppColor.darkColor,
@@ -92,20 +89,24 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     16.height,
-                    Container(
-                      height: 12.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: AppColor.whiteColor,
-                      ),
-                      child: FractionallySizedBox(
-                        alignment: Alignment.centerLeft,
-                        widthFactor: 0.7, // 70% progress
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: AppColor.secondaryColor,
+                    Obx(
+                      () => Container(
+                        height: 12.h,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: AppColor.whiteColor,
+                        ),
+                        child: FractionallySizedBox(
+                          alignment: Alignment.centerLeft,
+                          widthFactor:
+                              (profileController.profileModel.value.coins / 400)
+                                  .clamp(0.0, 1.0), // 70% progress
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: AppColor.secondaryColor,
+                            ),
                           ),
                         ),
                       ),
@@ -162,7 +163,8 @@ class HomeScreen extends StatelessWidget {
                         Obx(
                           () => CommonText(
                             text:
-                                "${profileController.profileModel.value.successfulInvites}/3".tr,
+                                "${profileController.profileModel.value.successfulInvites}/3"
+                                    .tr,
                             fontSize: 24.w,
                             fontWeight: FontWeight.w500,
                             textColor: AppColor.screenBackgroundColor,
@@ -271,12 +273,15 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,
                 ),
-                CommonText(
-                  text: "View All".tr,
-                  fontSize: 14.w,
-                  fontWeight: FontWeight.w500,
-                  textColor: AppColor.darkColor,
-                  decoration: TextDecoration.underline,
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppRoute.allOfferScreen),
+                  child: CommonText(
+                    text: "View All".tr,
+                    fontSize: 14.w,
+                    fontWeight: FontWeight.w500,
+                    textColor: AppColor.darkColor,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ],
             ),
@@ -294,32 +299,31 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          ...List.generate(
-                            controller.rewardList.length,
-                            (index) {
-                              final offer = controller.rewardList[index];
-                              return Padding(
-                                padding: EdgeInsets.only(
-                                  right: index == controller.rewardList.length - 1
-                                      ? 0
-                                      : 16.w,
-                                ),
-                                child: HomeScreenCard(
-                                  imageAsset: offer.rewardImage,
-                                  title: offer.rewardName,
-                                  subtitle:
-                                      'Valid Until ${offer.closedDays.toList().map((e) => e.day).join('.tr, '.tr)}',
-                                  buttonText: "View Details".tr,
-                                  onButtonTap: () {
-                                    Get.toNamed(
-                                      AppRoute.rewardDetailsScreen,
-                                      arguments: {'rewardId': offer.id},
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                          ),
+                          ...List.generate(controller.rewardList.length, (
+                            index,
+                          ) {
+                            final offer = controller.rewardList[index];
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                right: index == controller.rewardList.length - 1
+                                    ? 0
+                                    : 16.w,
+                              ),
+                              child: HomeScreenCard(
+                                imageAsset: offer.rewardImage,
+                                title: offer.rewardName,
+                                subtitle:
+                                    'Valid Until ${offer.closedDays.toList().map((e) => e.day).join('.tr, '.tr)}',
+                                buttonText: "View Details".tr,
+                                onButtonTap: () {
+                                  Get.toNamed(
+                                    AppRoute.rewardDetailsScreen,
+                                    arguments: {'rewardId': offer.id},
+                                  );
+                                },
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),

@@ -165,6 +165,7 @@ class RewardCard extends StatelessWidget {
                 //! Footer Section
                 24.height,
                 // if (_isRewardReady)
+                _currentPoints>= _goalPoints?
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -194,7 +195,7 @@ class RewardCard extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
+                ):SizedBox(),
                 // else
                 10.height,
                 GestureDetector(

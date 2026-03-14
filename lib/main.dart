@@ -121,7 +121,7 @@ class MyApp extends StatelessWidget {
         onBack: () {
           Get.back();
         },
-        backButton: Icon(Icons.arrow_back_ios, color: Colors.red),
+        backButton: AppBackButton(),
       ),
 
       designSize: const Size(428, 926),
@@ -154,6 +154,29 @@ class MyApp extends StatelessWidget {
         }, // clearTokens: () => StorageService().removeTokens()
       ),
       child: child,
+    );
+  }
+}
+
+class AppBackButton extends StatelessWidget {
+  const AppBackButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        color: const Color(0xFFE7FEF0),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Icon(
+        Icons.arrow_back_ios_new,
+        size: 18,
+        color: AppColor.darkColor,
+      ),
     );
   }
 }

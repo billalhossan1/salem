@@ -7,6 +7,7 @@ import 'package:zena_app/utils/app_colors/app_colors.dart';
 import 'package:zena_app/utils/app_icons/app_icons.dart';
 import 'package:zena_app/utils/app_images/app_images.dart';
 import 'package:zena_app/widget/loading_widget/loading_widget.dart';
+import 'package:zena_app/widget/notificaiton_widget/notification_widget.dart';
 import '../../widget/shimmer/app_shimmer.dart';
 
 import 'controller/reward_details_controller.dart';
@@ -83,23 +84,7 @@ class RewardsDetailsScreen extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       textColor: AppColor.darkColor,
                                     ),
-                                    Container(
-                                      width: 40.w,
-                                      height: 40.h,
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFE7FEF0),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: Badge(
-                                        label: Text('3'.tr),
-                                        backgroundColor: Colors.red,
-                                        textColor: Colors.white,
-                                        child: SvgPicture.asset(
-                                          AppIcons.notificationIcons,
-                                        ),
-                                      ),
-                                    ),
+                                    NotificationWidget()
                                   ],
                                 ),
                               ),

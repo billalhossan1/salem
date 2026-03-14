@@ -40,6 +40,8 @@ class SalonDetailsController extends GetxController {
 
   Future<void> confirmVisit() async {
     // ── 1. Fetch / re-request location on every press ──────────────────────
+    isConfirmVisitLoading.value = true;
+
     final position = await LocationService.getCurrentPosition();
 
     if (position == null) {
@@ -57,7 +59,6 @@ class SalonDetailsController extends GetxController {
     );
 
     // ── 3. Call API ─────────────────────────────────────────────────────────
-    isConfirmVisitLoading.value = true;
     await DioService.instance.request(
       input: RequestInput(
         endpoint: '${ApiEndpoints.visitSalon}/$salonId',

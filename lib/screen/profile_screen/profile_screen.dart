@@ -6,6 +6,7 @@ import 'package:zena_app/utils/app_images/app_images.dart';
 import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 import 'package:zena_app/utils/shared_prefe.dart';
 import 'package:zena_app/widget/app_custom_cards/profile_menu_item.dart';
+import 'package:zena_app/widget/notificaiton_widget/notification_widget.dart';
 import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
@@ -25,10 +26,7 @@ class ProfileScreen extends StatelessWidget {
         leadingType: LeadingType.logo,
         centerTitle: true,
         actions: [
-          NotificationActionButton(
-            notificationCount: 3,
-            onTap: () => Get.toNamed(AppRoute.notificationScreen),
-          ),
+         NotificationWidget()
         ],
       ),
       body: SingleChildScrollView(
