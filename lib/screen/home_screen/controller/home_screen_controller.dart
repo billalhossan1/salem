@@ -24,6 +24,7 @@ class HomeScreenController extends GetxController {
   String userId = '';
   RxInt count = 0.obs;
   late StreamSubscription<StreamDataModel> subscription;
+  String fcmToken = '';
   @override
   void onInit() {
     super.onInit();
@@ -34,6 +35,8 @@ class HomeScreenController extends GetxController {
   Future<void> _initial() async {
     // Wait until LocationController finishes its one-time fetch
     // before firing any API call.
+    fcmToken = await SharePrefsHelper.getString(SharedPreferenceValue.fcmToken);
+    updateFcm();
     notificationCount();
     await LocationController.instance.ready;
     getRewards();
@@ -48,6 +51,26 @@ class HomeScreenController extends GetxController {
         // AppLogger.apiDebug("+============notification${count.value}");
       }
     });
+
+  }
+
+  Future<void>updateFcm()async{
+    final Map<String, dynamic> jsonBody = {
+      'fcmToken': fcmToken,
+    };
+   await DioService.instance.request(
+      input: RequestInput(
+        endpoint: ApiEndpoints.updateProfile,
+        method: .PATCH,
+        jsonBody: jsonBody,
+      ),
+      responseBuilder: (data) {
+
+      },
+    );
+   AppLogger.apiDebug("fcm token updated");
+
+
 
   }
 

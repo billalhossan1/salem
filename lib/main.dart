@@ -1,4 +1,5 @@
 import 'package:core_kit/core_kit.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,8 @@ import 'package:zena_app/widget/app_observer/app_observer.dart';
 
 import 'core/app_route/app_route.dart';
 import 'core/app_translations/app_translations.dart';
+import 'core/services/notificaiton_service.dart';
+import 'firebase_options.dart';
 import 'screen/splash_screen/splash_screen.dart';
 import 'utils/app_colors/app_colors.dart';
 
@@ -30,6 +33,12 @@ void main() async {
   if (savedLang.isEmpty) {
     savedLang = 'en';
   }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // 🔥 Setup FCM AFTER Firebase init
+  await NotificationService().setupFCM();
 
   runApp(MyApp(savedLang: savedLang));
 }
