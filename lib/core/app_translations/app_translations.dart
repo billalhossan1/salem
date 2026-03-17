@@ -52,8 +52,9 @@ class AppTranslations extends Translations {
       'Save Changes': 'Save Changes',
       'Treat yourself more 💕': 'Treat yourself more 💕',
       'Every visit = 100 points': 'Every visit = 100 points',
-      'Just a few more visits to unlock your reward ✨':
-          'Just a few more visits to unlock your reward ✨',
+      '4 visits = 1 lovely reward': '4 visits = 1 lovely reward',
+      '3 visits within 30 days at the same salon = faster bonus ✨':
+          '3 visits within 30 days at the same salon = faster bonus ✨',
       'Invite 3 Friends': 'Invite 3 Friends',
       'Points': 'Points',
       'Share the beauty, share the gift 💗':
@@ -196,6 +197,15 @@ class AppTranslations extends Translations {
       'points to go for': 'points to go for',
       'Friends': 'Friends',
       'POINT BALANCE AFTER REDEMPTION:': "POINT BALANCE AFTER REDEMPTION:",
+      'How it Works': 'How it Works',
+      'MEMBER SINCE': 'MEMBER SINCE',
+
+      // How It Works - Invite bullets
+      'Invite 3 friends to Zena': 'Invite 3 friends to Zena',
+      'When they visit, you get a reward 🎁':
+          'When they visit, you get a reward 🎁',
+      'Your friend gets 100 points too (you both win!) 💕':
+          'Your friend gets 100 points too (you both win!) 💕',
 
       // Dynamic interpolation strings from reward_card
       'Goal reached!': 'Goal reached!',
@@ -209,6 +219,7 @@ class AppTranslations extends Translations {
       'Great! You’ve referred 1 friend!': 'Great! You’ve referred 1 friend!',
       'One more for a bonus!': 'One more for a bonus!',
       'Referral Bonus unlocked! 🎉': 'Referral Bonus unlocked! 🎉',
+      'Notifications': 'Notifications',
     },
     'ar': {
       AppString.appName: "زينة",
@@ -259,8 +270,9 @@ class AppTranslations extends Translations {
       'Save Changes': 'حفظ التغييرات',
       'Treat yourself more 💕': 'دلل نفسك أكثر 💕',
       'Every visit = 100 points': 'كل زيارة = 100 نقطة',
-      'Just a few more visits to unlock your reward ✨':
-          'مجرد بضع زيارات أخرى لفتح مكافأتك ✨',
+      '4 visits = 1 lovely reward': '4 زيارات = مكافأة جميلة واحدة',
+      '3 visits within 30 days at the same salon = faster bonus ✨':
+          '3 زيارات خلال 30 يوماً في نفس الصالون = مكافأة أسرع ✨',
       'Invite 3 Friends': 'ادعُ 3 أصدقاء',
       'Points': 'نقاط',
       'Share the beauty, share the gift 💗': 'شارك الجمال، شارك الهدية 💗',
@@ -400,7 +412,16 @@ class AppTranslations extends Translations {
       'Max tier reached 🎉': 'تم الوصول إلى أعلى مستوى 🎉',
       'points to go for': 'نقاط للذهاب ل',
       'Friends': 'أصدقاء',
-      'POINT BALANCE AFTER REDEMPTION:':"رصيد النقاط بعد الاسترداد:",
+      'POINT BALANCE AFTER REDEMPTION:': "رصيد النقاط بعد الاسترداد:",
+      'How it Works': 'كيف يعمل',
+      'MEMBER SINCE': 'عضو منذ',
+
+      // How It Works - Invite bullets
+      'Invite 3 friends to Zena': 'ادعُ 3 أصدقاء إلى زينة',
+      'When they visit, you get a reward 🎁':
+          'عندما يزورون، تحصل على مكافأة 🎁',
+      'Your friend gets 100 points too (you both win!) 💕':
+          'صديقك يحصل أيضاً على 100 نقطة (كلاكما رابح!) 💕',
 
       // Dynamic interpolation strings from reward_card
       'Goal reached!': 'تم الوصول للهدف!',
@@ -415,6 +436,14 @@ class AppTranslations extends Translations {
       'One more for a bonus!': 'صديق واحد إضافي للحصول على المكافأة!',
       'Referral Bonus unlocked! 🎉': 'تم فتح مكافأة الدعوة! 🎉',
       'No offers available': 'لا توجد عروض متاحة',
+      'Notifications': 'إشعارات',
+      'Invite & Referral': 'الدعوة والإحالة',
+      'After completing 3 successful referrals, the reward is valid for 30 days and will be automatically applied to your next visit.':
+          'بعد إتمام 3 إحالات ناجحة، ستكون المكافأة صالحة لمدة 30 يومًا وسيتم تطبيقها تلقائيًا على زيارتك القادمة.',
+
+      'APPROVED':'موافقة',
+      'PENDING':'قيد الانتظار',
+      'All':'الجميع'
     },
   };
 }

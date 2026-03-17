@@ -1,8 +1,11 @@
 import 'package:core_kit/core_kit.dart';
+import 'package:core_kit/network/request_input.dart';
 import 'package:flutter/material.dart';
+import 'package:zena_app/core/api_endpoints/api_endpoints.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
 import 'package:zena_app/widget/app_custom_appbar/app_custom_appbar.dart';
 import 'package:get/get.dart';
+import 'package:zena_app/widget/loading_widget/loading_widget.dart';
 
 class RatingScreen extends StatefulWidget {
   const RatingScreen({super.key});
@@ -13,7 +16,13 @@ class RatingScreen extends StatefulWidget {
 
 class _RatingScreenState extends State<RatingScreen> {
   int rating = 4;
+  String salonId = '';
   final TextEditingController commentController = TextEditingController();
+  @override
+  void initState() {
+    salonId = Get.arguments;
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -92,36 +101,15 @@ class _RatingScreenState extends State<RatingScreen> {
               ),
             ),
             12.height,
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: AppColor.textColor.withValues(alpha: 0.2),
-                ),
-              ),
-              child: TextFormField(
-                controller: commentController,
-                maxLines: 4,
-                decoration: InputDecoration(
-                  hintText: "Enter your comment here...".tr,
-                  hintStyle: TextStyle(
-                    color: AppColor.textColor.withValues(alpha: 0.6),
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  border: InputBorder.none,
-                ),
-                style: TextStyle(
-                  color: AppColor.darkColor,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+            CommonMultilineTextField(
+              validationType: .notRequired,
+              hintText: "Enter your comment here...".tr,
+              maxLength: 150,
+              height: 150,
+              controller: commentController,
             ),
             32.height,
-            CommonButton(
+            isLoading?LoadingWidget():CommonButton(
               titleText: "Send Review".tr,
               buttonWidth: double.infinity,
               buttonRadius: 12.w,
@@ -129,11 +117,36 @@ class _RatingScreenState extends State<RatingScreen> {
               titleColor: AppColor.darkColor,
               titleSize: 16.sp,
               titleWeight: FontWeight.w500,
-              onTap: () {},
+              onTap: () {
+                _giveReview();
+              },
             ),
           ],
         ),
       ),
     );
+  }
+
+  bool isLoading = false;
+  Future<void> _giveReview() async {
+    isLoading = true;
+    setState(() {});
+    final response = await DioService.instance.request(
+      input: RequestInput(
+        endpoint: "${ApiEndpoints.rating}/$salonId",
+        method: .POST,
+        jsonBody: {
+          "rating": rating,
+          "comment": commentController.text,
+        }
+      ),
+      responseBuilder: (data) {},
+      showMessage: true,
+    );
+    isLoading = false;
+    setState(() {});
+    if (response.isSuccess) {
+      Get.back();
+    }
   }
 }

@@ -103,8 +103,7 @@ class ProfileScreen extends StatelessWidget {
                                   children: [
                                     CommonText(
                                       text:
-                                          "MEMBER SINCE ${getYear(profile.createdAt)}"
-                                              .tr,
+                                          "${"MEMBER SINCE".tr} ${getYear(profile.createdAt)}",
                                       textColor: Colors.white,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,

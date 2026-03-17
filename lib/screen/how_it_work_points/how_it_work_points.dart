@@ -15,7 +15,7 @@ class HowItWorkPointsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
-        title: "How it Works",
+        title: "How it Works".tr,
         leadingType: LeadingType.back,
         centerTitle: true,
         // actions: [
@@ -66,12 +66,12 @@ class HowItWorkPointsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildBulletPoint("Every visit = 100 points"),
+                  _buildBulletPoint('Every visit = 100 points'.tr),
                   8.height,
-                  _buildBulletPoint("4 visits = 1 lovely reward"),
+                  _buildBulletPoint('4 visits = 1 lovely reward'.tr),
                   8.height,
                   _buildBulletPoint(
-                    "3 visits within 30 days at the same salon = faster bonus ✨",
+                    '3 visits within 30 days at the same salon = faster bonus ✨'.tr,
                   ),
                 ],
               ),

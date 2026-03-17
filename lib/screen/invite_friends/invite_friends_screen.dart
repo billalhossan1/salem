@@ -19,7 +19,7 @@ class InviteFriendsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
-        title: "Invite & Referral",
+        title: "Invite & Referral".tr,
         leadingType: LeadingType.back,
         centerTitle: true,
       ),
@@ -56,14 +56,17 @@ class InviteFriendsScreen extends StatelessWidget {
               ],
             ),
             16.height,
-            CommonText(
-              text:
-                  "After completing 3 successful referrals, the reward is valid\nfor 30 days and will be automatically applied to your next\nvisit.".tr,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-              textColor: AppColor.textColor,
-              maxLines: 3,
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: CommonText(
+                text:
+                    "After completing 3 successful referrals, the reward is valid for 30 days and will be automatically applied to your next visit.".tr,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                textColor: AppColor.textColor,
+                maxLines: 3,
+                textAlign: TextAlign.center,
+              ),
             ),
             32.height,
             CommonButton(

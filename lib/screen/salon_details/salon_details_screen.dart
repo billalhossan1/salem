@@ -337,6 +337,7 @@ class SalonDetailsScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
+
                             24.height,
                           ],
                         ],
@@ -426,6 +427,28 @@ class SalonDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
+
+            16.height,
+
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: CommonButton(
+                buttonColor: AppColor.primaryColor,
+                titleColor: AppColor.darkColor,
+                buttonWidth: double.infinity,
+                buttonRadius: 12.w,
+                titleText: "Rate This Salon".tr,
+                prefix: Icon(
+                  Icons.star_rate_rounded,
+                  color: AppColor.darkColor,
+                  size: 20.sp,
+                ),
+                onTap: () {
+                  Get.toNamed(AppRoute.ratingScreen, arguments: salon.id);
+                },
+              ),
+            ),
+            30.height,
           ],
         );
       }),

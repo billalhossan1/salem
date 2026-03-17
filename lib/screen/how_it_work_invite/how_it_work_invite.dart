@@ -16,7 +16,7 @@ class HowItWorkInviteScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
-        title: "How it Works",
+        title: "How it Works".tr,
         leadingType: LeadingType.back,
         centerTitle: true,
         // actions: [
@@ -67,18 +67,18 @@ class HowItWorkInviteScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildBulletPoint("Invite 3 friends to Zena"),
+                  _buildBulletPoint('Invite 3 friends to Zena'.tr),
                   8.height,
-                  _buildBulletPoint("When they visit, you get a reward 🎁"),
-                  8.height,
-                  _buildBulletPoint(
-                    "Your friend gets 100 points too (you both win!) 💕",
-                  ),
+                  _buildBulletPoint('When they visit, you get a reward 🎁'.tr),
                   8.height,
                   _buildBulletPoint(
-                    "Maximum 3 invites per month Keep the tone warm, happy, and encouraging — but easy to understand in seconds.",
+                    'Your friend gets 100 points too (you both win!) 💕'.tr,
                   ),
                   8.height,
+                  // _buildBulletPoint(
+                  //   "Maximum 3 invites per month Keep the tone warm, happy, and encouraging — but easy to understand in seconds.",
+                  // ),
+                  // 8.height,
                 ],
               ),
             ),

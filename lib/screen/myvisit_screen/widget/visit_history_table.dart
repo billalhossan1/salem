@@ -39,7 +39,7 @@ class VisitHistoryTable extends StatelessWidget {
               color: const Color(0xFFE7FEF0),
               borderRadius: BorderRadius.circular(8),
             ),
-            child:  Row(
+            child: Row(
               children: [
                 _THead(text: "Salon Name".tr, align: TextAlign.start),
                 _THead(text: "Date".tr, align: TextAlign.center),
@@ -150,7 +150,7 @@ class _VisitRow extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Text(
-                  item.status.isNotEmpty ? item.status : '—',
+                  item.status.isNotEmpty ? item.status.tr : '—',
                   style: TextStyle(
                     fontSize: 11,
                     color: item.status.toLowerCase() == 'pending'

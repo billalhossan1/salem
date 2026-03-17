@@ -399,8 +399,8 @@ class MyvisitScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   hasStatus
-                                      ? controller.selectedStatus.value
-                                      : 'Status',
+                                      ? controller.selectedStatus.value.tr
+                                      : 'Status'.tr,
                                   style: TextStyle(
                                     color: hasStatus
                                         ? AppColor.secondaryColor
@@ -483,7 +483,7 @@ class MyvisitScreen extends StatelessWidget {
                                       ? _fmtFilterDate(
                                           controller.selectedDate.value!,
                                         )
-                                      : 'Date',
+                                      : 'Date'.tr,
                                   style: TextStyle(
                                     color: hasDate
                                         ? AppColor.secondaryColor
@@ -688,7 +688,7 @@ void _showStatusPicker(
   BuildContext context,
   MyvisitScreenController controller,
 ) {
-  const statuses = ['All', 'PENDING', 'APPROVED'];
+  final statuses = ['All', 'PENDING', 'APPROVED'];
   showModalBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
@@ -717,7 +717,7 @@ void _showStatusPicker(
             const SizedBox(height: 8),
             ...statuses.map(
               (s) => ListTile(
-                title: Text(s),
+                title: Text(s.tr),
                 trailing: Obx(
                   () => controller.selectedStatus.value == (s == 'All' ? '' : s)
                       ? Icon(Icons.check, color: AppColor.secondaryColor)
