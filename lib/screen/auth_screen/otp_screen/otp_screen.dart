@@ -1,7 +1,6 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zena_app/core/app_route/app_route.dart';
 import 'package:zena_app/screen/auth_screen/otp_screen/controller/otp_screen_controller.dart';
 import 'package:zena_app/widget/loading_widget/loading_widget.dart';
 
@@ -26,20 +25,24 @@ class OptScreen extends StatelessWidget {
               ),
             ),
           ),
-          TextField(
-            controller: controller.otpController,
-            focusNode: controller.focusNode,
-            keyboardType: TextInputType.number,
-            autofocus: true,
-            maxLength: 4,
-            onChanged: (value) {
-              if (value.length > 4) {
-                controller.otpController.text = value.substring(0, 4);
-                controller.otpController.selection = TextSelection.fromPosition(
-                  TextPosition(offset: controller.otpController.text.length),
-                );
-              }
-            },
+          Offstage(
+            child: TextField(
+              controller: controller.otpController,
+              focusNode: controller.focusNode,
+              keyboardType: TextInputType.number,
+              autofocus: true,
+              maxLength: 4,
+              onChanged: (value) {
+                if (value.length > 4) {
+                  controller.otpController.text = value.substring(0, 4);
+                  controller
+                      .otpController
+                      .selection = TextSelection.fromPosition(
+                    TextPosition(offset: controller.otpController.text.length),
+                  );
+                }
+              },
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 60.h),
@@ -176,13 +179,26 @@ class OptScreen extends StatelessWidget {
                           ),
                           4.width,
                           Obx(
-                            () => CommonText(
-                              text:
-                                  "Resend Code in 00:${controller.secondsRemaining.value.toString().padLeft(2, '0')}".tr,
-                              fontSize: 14.w,
-                              fontWeight: FontWeight.w400,
-                              textColor: AppColor.secondaryColor,
-                            ),
+                            () => controller.secondsRemaining.value > 0
+                                ? CommonText(
+                                    text:
+                                        "${"Resend Code in".tr} 00:${controller.secondsRemaining.value.toString().padLeft(2, '0')}"
+                                            .tr,
+                                    fontSize: 14.w,
+                                    fontWeight: FontWeight.w400,
+                                    textColor: AppColor.secondaryColor,
+                                  )
+                                : GestureDetector(
+                                    onTap: () {
+                                      controller.resendOtp();
+                                    },
+                                    child: CommonText(
+                                      text: 'Resend Code'.tr,
+                                      fontSize: 14.w,
+                                      fontWeight: FontWeight.w400,
+                                      textColor: AppColor.secondaryColor,
+                                    ),
+                                  ),
                           ),
                         ],
                       ),
@@ -190,16 +206,20 @@ class OptScreen extends StatelessWidget {
                   ),
                 ),
                 48.height,
-               Obx(()=> controller.isLoading.value?LoadingWidget():CommonButton(
-                 buttonWidth: double.infinity,
-                 titleText: AppString.next.tr,
-                 titleSize: 18.w,
-                 titleWeight: FontWeight.w500,
-                 titleColor: AppColor.charocalColor,
-                 onTap: () {
-                   controller.onTapVerify();
-                 },
-               ),)
+                Obx(
+                  () => controller.isLoading.value
+                      ? LoadingWidget()
+                      : CommonButton(
+                          buttonWidth: double.infinity,
+                          titleText: AppString.next.tr,
+                          titleSize: 18.w,
+                          titleWeight: FontWeight.w500,
+                          titleColor: AppColor.charocalColor,
+                          onTap: () {
+                            controller.onTapVerify();
+                          },
+                        ),
+                ),
               ],
             ),
           ),

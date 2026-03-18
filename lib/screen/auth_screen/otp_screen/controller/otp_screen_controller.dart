@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'package:core_kit/core_kit.dart' show DioService;
+import 'package:core_kit/core_kit.dart' show DioService, showSnackBar;
 import 'package:core_kit/network/request_input.dart';
 import 'package:core_kit/utils/app_log.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/api_endpoints/api_endpoints.dart';
 import 'package:zena_app/core/app_route/app_route.dart';
+import 'package:zena_app/screen/auth_screen/login_screen/controller/login_screen_controller.dart';
 
 import '../../../../utils/shared_prefe.dart';
 
@@ -33,6 +34,12 @@ class OtpScreenController extends GetxController {
     });
   }
 
+  final LoginScreenController loginController = Get.find<LoginScreenController>();
+  Future<void>resendOtp()async{
+    startTimer();
+    loginController.login();
+  }
+
   Future<void> onTapVerify() async {
     isLoading.value = true;
     final response = await DioService.instance.request(
@@ -46,10 +53,14 @@ class OtpScreenController extends GetxController {
         SharePrefsHelper.setString(SharedPreferenceValue.userId, data['userId']);
         AppLogger.apiDebug( data['accessToken']);
         AppLogger.apiDebug(data['userId']);
-      },showMessage: true,
+      },
     );
+
     if(response.isSuccess){
       Get.toNamed(AppRoute.bottomNav);
+      showSnackBar("Login Successfully".tr, type: .success);
+    }else{
+      showSnackBar(response.message??'Something Went Wrong', type: .error);
     }
 
 

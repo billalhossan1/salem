@@ -137,6 +137,7 @@ class LoginScreen extends StatelessWidget {
                       16.height,
                       //! Contineu Button
                       Obx(() {
+                        final isEnabled = controller.isPhoneValid.value && !controller.isLoading.value;
                         if (controller.isLoading.value) {
                           return LoadingWidget();
                         }
@@ -146,9 +147,10 @@ class LoginScreen extends StatelessWidget {
                           titleSize: 18.w,
                           titleWeight: FontWeight.w500,
                           buttonWidth: double.infinity,
-                          onTap: () {
+                          onTap: isEnabled ? () {
                             controller.login();
-                          },
+                          } : null,
+                          buttonColor: isEnabled ? AppColor.primaryColor : AppColor.whiteColor.withValues(alpha: 0.5),
                         );
                       }),
 
@@ -163,64 +165,64 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 18.height,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 65.w),
-                        child: Divider(
-                          color: AppColor.textColor,
-                          thickness: 0.5,
-                        ),
-                      ),
-                    ),
-                    10.width,
-                    CommonText(
-                      text: AppString.orSigninWith.tr,
-                      fontSize: 14.w,
-                      fontWeight: FontWeight.w400,
-                      textColor: AppColor.textColor,
-                    ),
-                    10.width,
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 65.w),
-                        child: Divider(
-                          color: AppColor.textColor,
-                          thickness: 0.5,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                18.height,
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   crossAxisAlignment: CrossAxisAlignment.center,
+                //   children: [
+                //     Expanded(
+                //       child: Padding(
+                //         padding: EdgeInsets.only(left: 65.w),
+                //         child: Divider(
+                //           color: AppColor.textColor,
+                //           thickness: 0.5,
+                //         ),
+                //       ),
+                //     ),
+                //     10.width,
+                //     CommonText(
+                //       text: AppString.orSigninWith.tr,
+                //       fontSize: 14.w,
+                //       fontWeight: FontWeight.w400,
+                //       textColor: AppColor.textColor,
+                //     ),
+                //     10.width,
+                //     Expanded(
+                //       child: Padding(
+                //         padding: EdgeInsets.only(right: 65.w),
+                //         child: Divider(
+                //           color: AppColor.textColor,
+                //           thickness: 0.5,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // 18.height,
 
                 //! Contineu With Google Button
-                CommonButton(
-                  titleText: AppString.contineuWithGoggle.tr,
-                  prefix: SvgPicture.asset(AppIcons.googleIcons),
-                  titleColor: AppColor.darkColor,
-                  titleSize: 18.w,
-                  titleWeight: FontWeight.w500,
-                  buttonWidth: double.infinity,
-                  buttonColor: AppColor.whiteColor,
-                  onTap: () {},
-                ),
-                12.height,
-
-                //! Contineu With Apple Button
-                CommonButton(
-                  titleText: AppString.contineuWithApple.tr,
-                  prefix: SvgPicture.asset(AppIcons.appleIcons),
-                  titleColor: AppColor.darkColor,
-                  titleSize: 18.w,
-                  titleWeight: FontWeight.w500,
-                  buttonWidth: double.infinity,
-                  buttonColor: AppColor.whiteColor,
-                  onTap: () {},
-                ),
+                // CommonButton(
+                //   titleText: AppString.contineuWithGoggle.tr,
+                //   prefix: SvgPicture.asset(AppIcons.googleIcons),
+                //   titleColor: AppColor.darkColor,
+                //   titleSize: 18.w,
+                //   titleWeight: FontWeight.w500,
+                //   buttonWidth: double.infinity,
+                //   buttonColor: AppColor.whiteColor,
+                //   onTap: () {},
+                // ),
+                // 12.height,
+                //
+                // //! Contineu With Apple Button
+                // CommonButton(
+                //   titleText: AppString.contineuWithApple.tr,
+                //   prefix: SvgPicture.asset(AppIcons.appleIcons),
+                //   titleColor: AppColor.darkColor,
+                //   titleSize: 18.w,
+                //   titleWeight: FontWeight.w500,
+                //   buttonWidth: double.infinity,
+                //   buttonColor: AppColor.whiteColor,
+                //   onTap: () {},
+                // ),
               ],
             ),
           ),
@@ -318,5 +320,3 @@ class PhoneTextFiled extends StatelessWidget {
     );
   }
 }
-
-

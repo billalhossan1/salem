@@ -290,19 +290,19 @@ class SalonDetailsScreen extends StatelessWidget {
                             buttonColor: AppColor.screenBackgroundColor,
                             borderColor: AppColor.textColor,
                           ),
-                          16.height,
-                          controller.isConfirmVisitLoading.value
-                              ? LoadingWidget()
-                              : CommonButton(
-                            buttonColor: Colors.white,
-                            borderColor: Colors.black,
-                            buttonWidth: double.infinity,
-                            buttonRadius: 12.w,
-                            titleText: "Confirm Visit".tr,
-                            onTap: () {
-                              controller.confirmVisit();
-                            },
-                          ),
+                          // 16.height,
+                          // controller.isConfirmVisitLoading.value
+                          //     ? LoadingWidget()
+                          //     : CommonButton(
+                          //   buttonColor: Colors.white,
+                          //   borderColor: Colors.black,
+                          //   buttonWidth: double.infinity,
+                          //   buttonRadius: 12.w,
+                          //   titleText: "Confirm Visit".tr,
+                          //   onTap: () {
+                          //     controller.confirmVisit();
+                          //   },
+                          // ),
                           24.height,
 
 
@@ -427,9 +427,7 @@ class SalonDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
             16.height,
-
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: CommonButton(
@@ -444,7 +442,7 @@ class SalonDetailsScreen extends StatelessWidget {
                   size: 20.sp,
                 ),
                 onTap: () {
-                  Get.toNamed(AppRoute.ratingScreen, arguments: salon.id);
+                  Get.toNamed(AppRoute.ratingScreen, arguments: {'name':salon.businessName,'service':salon.service,'salonId':salon.id});
                 },
               ),
             ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187723987846",
+    "project_id": "zena-app-474da",
+    "storage_bucket": "zena-app-474da.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187723987846:android:41f5c9363d8133271b8a07",
+        "android_client_info": {
+          "package_name": "com.salem.zena"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrkdnXJ9h3BLnbEfwZNIl1PJUJE_8k6EU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

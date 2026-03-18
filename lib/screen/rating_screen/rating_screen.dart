@@ -16,11 +16,15 @@ class RatingScreen extends StatefulWidget {
 
 class _RatingScreenState extends State<RatingScreen> {
   int rating = 4;
+  String salonName = '';
+  String service = '';
   String salonId = '';
   final TextEditingController commentController = TextEditingController();
   @override
   void initState() {
-    salonId = Get.arguments;
+    salonName = Get.arguments['name'] ?? '';
+    service = Get.arguments['service'] ?? '';
+    salonId = Get.arguments['salonId'] ?? '';
     super.initState();
   }
 
@@ -46,14 +50,14 @@ class _RatingScreenState extends State<RatingScreen> {
           children: [
             12.height,
             CommonText(
-              text: "Bloom Beauty Lounge".tr,
+              text: salonName.tr,
               fontSize: 22.sp,
               fontWeight: FontWeight.w600,
               textColor: AppColor.darkColor,
             ),
             6.height,
             CommonText(
-              text: "Signature Hair Care".tr,
+              text: service.tr,
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
               textColor: AppColor.secondaryColor,
@@ -109,18 +113,20 @@ class _RatingScreenState extends State<RatingScreen> {
               controller: commentController,
             ),
             32.height,
-            isLoading?LoadingWidget():CommonButton(
-              titleText: "Send Review".tr,
-              buttonWidth: double.infinity,
-              buttonRadius: 12.w,
-              buttonColor: AppColor.primaryColor,
-              titleColor: AppColor.darkColor,
-              titleSize: 16.sp,
-              titleWeight: FontWeight.w500,
-              onTap: () {
-                _giveReview();
-              },
-            ),
+            isLoading
+                ? LoadingWidget()
+                : CommonButton(
+                    titleText: "Send Review".tr,
+                    buttonWidth: double.infinity,
+                    buttonRadius: 12.w,
+                    buttonColor: AppColor.primaryColor,
+                    titleColor: AppColor.darkColor,
+                    titleSize: 16.sp,
+                    titleWeight: FontWeight.w500,
+                    onTap: () {
+                      _giveReview();
+                    },
+                  ),
           ],
         ),
       ),
@@ -135,10 +141,7 @@ class _RatingScreenState extends State<RatingScreen> {
       input: RequestInput(
         endpoint: "${ApiEndpoints.rating}/$salonId",
         method: .POST,
-        jsonBody: {
-          "rating": rating,
-          "comment": commentController.text,
-        }
+        jsonBody: {"rating": rating, "comment": commentController.text},
       ),
       responseBuilder: (data) {},
       showMessage: true,

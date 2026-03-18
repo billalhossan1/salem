@@ -489,7 +489,9 @@ class AppTranslations extends Translations {
       'Reward Unlocked': 'تم فتح المكافأة',
       'Mid Progress': 'منتصف التقدم',
       'So Close!': 'اقتربتِ جداً!',
-      'Referral Success': 'تمت الإحالة بنجاح'
+      'Referral Success': 'تمت الإحالة بنجاح',
+      'Resend Code in':'أعد إرسال الرمز في',
+      'Resend Code':'إعادة إرسال الرمز'
 
     },
   };
