@@ -10,6 +10,7 @@ class ApiEndpoints {
 
 
 
+  static final String sendOtp = "/user/send-otp";
   static final String login = "/user";
   static final String getRewards = "/salon-reward";
   static final String socketUrl = "/salon-reward";

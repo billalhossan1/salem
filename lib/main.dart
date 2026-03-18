@@ -33,10 +33,10 @@ void main() async {
   if (savedLang.isEmpty) {
     savedLang = 'en';
   }
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  // 🔔 Init local notifications plugin + Android channel
+  await NotificationService.initLocalNotifications();
   // 🔥 Setup FCM AFTER Firebase init
   await NotificationService().setupFCM();
 
@@ -92,9 +92,7 @@ class MyApp extends StatelessWidget {
             fontStyle: FontStyle.normal,
           ), //hint and prefix color
         ),
-        snackBarTheme: SnackBarThemeData(
-          backgroundColor: AppColor.whiteColor,
-        ),
+        snackBarTheme: SnackBarThemeData(backgroundColor: AppColor.whiteColor),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(80, 48),
@@ -171,9 +169,7 @@ class MyApp extends StatelessWidget {
 }
 
 class AppBackButton extends StatelessWidget {
-  const AppBackButton({
-    super.key,
-  });
+  const AppBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {

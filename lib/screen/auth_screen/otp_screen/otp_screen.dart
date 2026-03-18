@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/app_route/app_route.dart';
 import 'package:zena_app/screen/auth_screen/otp_screen/controller/otp_screen_controller.dart';
+import 'package:zena_app/widget/loading_widget/loading_widget.dart';
 
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_images/app_images.dart';
@@ -189,16 +190,16 @@ class OptScreen extends StatelessWidget {
                   ),
                 ),
                 48.height,
-                CommonButton(
-                  buttonWidth: double.infinity,
-                  titleText: AppString.next.tr,
-                  titleSize: 18.w,
-                  titleWeight: FontWeight.w500,
-                  titleColor: AppColor.charocalColor,
-                  onTap: () {
-                    Get.offAllNamed(AppRoute.bottomNav);
-                  },
-                ),
+               Obx(()=> controller.isLoading.value?LoadingWidget():CommonButton(
+                 buttonWidth: double.infinity,
+                 titleText: AppString.next.tr,
+                 titleSize: 18.w,
+                 titleWeight: FontWeight.w500,
+                 titleColor: AppColor.charocalColor,
+                 onTap: () {
+                   controller.onTapVerify();
+                 },
+               ),)
               ],
             ),
           ),

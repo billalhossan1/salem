@@ -443,7 +443,54 @@ class AppTranslations extends Translations {
 
       'APPROVED':'موافقة',
       'PENDING':'قيد الانتظار',
-      'All':'الجميع'
+      'All':'الجميع',
+      'Welcome to Zena 💖 Your glow journey starts here': '💖 حياك في Zena\nرحلة جمالك تبدأ من هنا ✨',
+
+      'Complete your profile ✨ So salons can recognize you instantly': '✨ كمّلي ملفك\nعشان يكون حضورك واضح عند زيارتك 💖',
+
+      'Your glow starts with one visit ✨': '✨ كل شي يبدأ بزيارة وحدة خليها اليوم 💖',
+
+      'That was just the beginning 💖': '💖 هذي كانت البداية بس الأحلى جاي ✨',
+
+      'You looked amazing yesterday ✨ Ready for your next glow?': '✨ طلعتي تبرقين أمس جاهزة للـ glow الجاي؟ 💖',
+
+      'A little self-care never hurts 💖': '💖 شوية دلع لنفسك ما يضر خذي لك موعد خفيف ✨',
+
+      'It’s been a week… time to feel fresh again ✨': '✨ صار لك أسبوع مو وقت لمسة تجددك؟ 💅💖',
+
+      'You’ve started collecting points 💖 Keep going!': '💖 بدأتي تجمعين نقاطك كمّلي 💫',
+
+      'You’re getting closer to something special ✨': '✨ قريب توصّلين لشي حلو كمّلي زياراتك 💖',
+
+      'You’re so close 🎁 Just one visit left!': '🎁 باقي لك زيارة وحدة بس ومكافأتك جاهزة 💖✨',
+
+      'Your reward is ready 💖 Go enjoy it!': '💖 مكافأتك صارت جاهزة دلعي نفسك اليوم ✨',
+
+      'Share Zena with your bestie 💕 You both win!': '💕 شاركي Zena مع صديقتك وكل وحدة فيكم تربح 💖✨',
+
+      'Your friend joined 💖 You earned something special!': '💖 صديقتك سجلت! في شي حلو جاي لك ✨',
+
+      'Weekend is coming 💖 Ready for your glow?': '💖 الويكند قرب وش رايك تدلعين نفسك؟ ✨',
+
+      'Top salons near you ✨ Ready for a glow session?': '✨ صالونات قريبة منك اختاري دلعك اليوم 💖',
+
+      'Perfect weekend for your reward 🎁 One visit and it’s yours!': '🎁 ويكند مثالي لمكافأتك زيارة وحدة وتاخذينها 💖✨',
+
+      'Last chance this weekend ✨ Don’t miss your glow': '✨ آخر فرصة هالويكند لا يفوتك الدلع 💖',
+      'Points Rolling In 💖': 'النقاط تتدفق 💖',
+      'Complete Your Profile ✨': 'أكملي ملفك الشخصي ✨',
+      'Your glow starts here': 'إشراقتك تبدأ من هنا',
+      'You looked amazing yesterday': 'كنتِ رائعة أمس',
+      'A little self-care never hurts': 'قليل من العناية بالنفس لا يضر',
+      'Time to feel fresh again': 'حان وقت الانتعاش من جديد',
+      'Weekend is coming': 'نهاية الأسبوع تقترب',
+      'Last chance this weekend': 'آخر فرصة هذا الأسبوع',
+      'Visit Recorded': 'تم تسجيل الزيارة',
+      'Reward Unlocked': 'تم فتح المكافأة',
+      'Mid Progress': 'منتصف التقدم',
+      'So Close!': 'اقتربتِ جداً!',
+      'Referral Success': 'تمت الإحالة بنجاح'
+
     },
   };
 }

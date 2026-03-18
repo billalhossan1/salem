@@ -9,7 +9,7 @@ import 'package:zena_app/utils/shared_prefe.dart';
 class LoginScreenController extends GetxController {
   RxBool isLoading = false.obs;
   late TextEditingController phoneNumberController;
-  var countryCode = '+880'.obs; // Default country code
+  var countryCode = '+971'.obs; // Default country code
 
   /// Referral code passed via deep link (may be empty)
   RxString referralCode = ''.obs;
@@ -37,11 +37,11 @@ class LoginScreenController extends GetxController {
     isLoading.value = true;
     final response = await DioService.instance.request<dynamic>(
       input: RequestInput(
-        endpoint: ApiEndpoints.login,
+        endpoint: ApiEndpoints.sendOtp,
         method: RequestMethod.POST,
         jsonBody: {
           // "phoneNumber": phoneNumberController.text.trim(),
-          "phoneNumber": "013355588522",
+          "phoneNumber": countryCode+phoneNumberController.text.trim(),
           if (referralCode.value.isNotEmpty) "referralCode": referralCode.value,
         },
       ),
@@ -51,15 +51,15 @@ class LoginScreenController extends GetxController {
       showMessage: true,
     );
     isLoading.value = false;
-    SharePrefsHelper.setString(SharedPreferenceValue.token, response.data['accessToken']);
-    SharePrefsHelper.setString(SharedPreferenceValue.refreshToken, response.data['refreshToken']);
-    SharePrefsHelper.setString(SharedPreferenceValue.userId, response.data['userId']);
-    AppLogger.apiDebug(response.data.toString());
-    AppLogger.apiDebug(response.data['accessToken'].toString());
-    AppLogger.apiDebug(response.data['userId'].toString());
+    // SharePrefsHelper.setString(SharedPreferenceValue.token, response.data['accessToken']);
+    // SharePrefsHelper.setString(SharedPreferenceValue.refreshToken, response.data['refreshToken']);
+    // SharePrefsHelper.setString(SharedPreferenceValue.userId, response.data['userId']);
+    // AppLogger.apiDebug(response.data.toString());
+    // AppLogger.apiDebug(response.data['accessToken'].toString());
+    // AppLogger.apiDebug(response.data['userId'].toString());
 
     if (response.isSuccess) {
-      Get.toNamed(AppRoute.bottomNav);
+      Get.toNamed(AppRoute.otpScreen,arguments: phoneNumberController.text.trim());
     }
   }
 
