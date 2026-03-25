@@ -491,7 +491,11 @@ class AppTranslations extends Translations {
       'So Close!': 'اقتربتِ جداً!',
       'Referral Success': 'تمت الإحالة بنجاح',
       'Resend Code in':'أعد إرسال الرمز في',
-      'Resend Code':'إعادة إرسال الرمز'
+      'Resend Code':'إعادة إرسال الرمز',
+      'Visit Reward pending':'زيارة المكافأة معلقة',
+      'Reward Claimed':'تم استلام المكافأة',
+      // "You've successfully visited a salon and pending 5 coins for approval":"لقد قمت بزيارة صالون تجميل بنجاح، وما زال عليك دفع 5 عملات للموافقة."
+
 
     },
   };

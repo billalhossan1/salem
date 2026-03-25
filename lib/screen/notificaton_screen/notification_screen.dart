@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/screen/notificaton_screen/controller/notification_screen_controller.dart';
 import 'package:zena_app/widget/app_custom_cards/notification_cards.dart';
+import 'package:zena_app/utils/i18n/dynamic_tr.dart';
 
-import '../../core/app_route/app_route.dart';
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_icons/app_icons.dart';
 import '../../widget/app_custom_appbar/app_custom_appbar.dart';
@@ -69,8 +69,8 @@ class NotificationScreen extends StatelessWidget {
                   child: NotificationCard(
                     moreKey: moreKey,
                     iconAsset: iconAsset,
-                    title: title.isNotEmpty ? title : "Notification",
-                    time: timeText,
+                    title: title.isNotEmpty ? dynamicTr(title) : "Notification".tr,
+                    time: dynamicTr(timeText),
                     onMoreTap: () {
                       final renderBox = moreKey.currentContext
                           ?.findRenderObject() as RenderBox?;
