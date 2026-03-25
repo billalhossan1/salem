@@ -191,11 +191,7 @@ class ProfileScreen extends StatelessWidget {
                                 ListTile(
                                   title: const Text("English"),
                                   onTap: () async {
-                                    await SharePrefsHelper.setString(
-                                      SharedPreferenceValue.language,
-                                      'en',
-                                    );
-                                    Get.updateLocale(const Locale('en'));
+                                    await controller.onChangedLanguage('en');
                                     Get.offAllNamed(AppRoute.splashscreen);
                                   },
                                   trailing: Get.locale?.languageCode == 'en'
@@ -208,11 +204,7 @@ class ProfileScreen extends StatelessWidget {
                                 ListTile(
                                   title: const Text("العربية"),
                                   onTap: () async {
-                                    await SharePrefsHelper.setString(
-                                      SharedPreferenceValue.language,
-                                      'ar',
-                                    );
-                                    Get.updateLocale(const Locale('ar'));
+                                    await controller.onChangedLanguage('ar');
                                     Get.offAllNamed(AppRoute.splashscreen);
                                   },
                                   trailing: Get.locale?.languageCode == 'ar'

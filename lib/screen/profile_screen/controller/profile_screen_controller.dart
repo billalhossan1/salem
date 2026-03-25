@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:core_kit/network/request_input.dart';
@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:zena_app/screen/profile_screen/model/profile_details_model.dart';
 
 import '../../../core/api_endpoints/api_endpoints.dart';
+import '../../../utils/shared_prefe.dart';
 
 class ProfileScreenController extends GetxController {
   RxBool isNotificationEnabled = true.obs;
@@ -35,6 +36,56 @@ class ProfileScreenController extends GetxController {
     );
     isLoading.value = false;
   }
+
+  Future<void> onChangedLanguage(String languageCode) async {
+    // guard
+    if (languageCode.isEmpty) return;
+
+    updateIsLoading.value = true;
+    try {
+      await SharePrefsHelper.setString(
+        SharedPreferenceValue.language,
+        languageCode,
+      );
+
+      // Update locale immediately for UI
+      Get.updateLocale(Locale(languageCode));
+
+      final Map<String, dynamic> jsonBody = {
+        'language': languageCode,
+      };
+
+      final response = await DioService.instance.request(
+        input: RequestInput(
+          endpoint: ApiEndpoints.updateProfile,
+          method: .PATCH,
+          jsonBody: jsonBody,
+        ),
+        responseBuilder: (data) {
+          // no-op
+        },
+      );
+
+      if (!response.isSuccess) {
+        showSnackBar(
+          response.message ?? 'Failed to update language',
+          type: SnackBarType.error,
+        );
+      } else {
+        // Refresh profile so local model matches server
+        await getProfile(isNotification: true);
+      }
+    } catch (e) {
+      AppLogger.apiDebug('onChangedLanguage error: $e');
+      showSnackBar(
+        'Failed to update language',
+        type: SnackBarType.error,
+      );
+    } finally {
+      updateIsLoading.value = false;
+    }
+  }
+
   Future<void> updateProfile({
     String? name,
     XFile? image,

@@ -52,12 +52,12 @@ class LoginScreenController extends GetxController {
     isLoading.value = true;
     final response = await DioService.instance.request<dynamic>(
       input: RequestInput(
-        // endpoint: ApiEndpoints.sendOtp,
-        endpoint: "/auth/login",
+        endpoint: ApiEndpoints.sendOtp,
+        // endpoint: "/auth/login",
         method: RequestMethod.POST,
         jsonBody: {
-          "phoneNumber": "013355588522",
-          // "phoneNumber": countryCode+phoneNumberController.text.trim(),
+          // "phoneNumber": "+13802603245",
+          "phoneNumber": countryCode+phoneNumberController.text.trim(),
           if (referralCode.value.isNotEmpty) "referralCode": referralCode.value,
         },
       ),
@@ -66,18 +66,18 @@ class LoginScreenController extends GetxController {
       },
     );
     isLoading.value = false;
-    SharePrefsHelper.setString(SharedPreferenceValue.token, response.data['accessToken']);
-    SharePrefsHelper.setString(SharedPreferenceValue.refreshToken, response.data['refreshToken']);
-    SharePrefsHelper.setString(SharedPreferenceValue.userId, response.data['userId']);
-    AppLogger.apiDebug(response.data.toString());
-    AppLogger.apiDebug(response.data['accessToken'].toString());
-    AppLogger.apiDebug(response.data['userId'].toString());
+    // SharePrefsHelper.setString(SharedPreferenceValue.token, response.data['accessToken']);
+    // SharePrefsHelper.setString(SharedPreferenceValue.refreshToken, response.data['refreshToken']);
+    // SharePrefsHelper.setString(SharedPreferenceValue.userId, response.data['userId']);
+    // AppLogger.apiDebug(response.data.toString());
+    // AppLogger.apiDebug(response.data['accessToken'].toString());
+    // AppLogger.apiDebug(response.data['userId'].toString());
 
     if (response.isSuccess) {
       // showSnackBar('Otp Send Successfully', type: .success);
-      showSnackBar('Login Successfully', type: .success);
-      // Get.toNamed(AppRoute.otpScreen,arguments: phoneNumberController.text.trim());
-      Get.toNamed(AppRoute.bottomNav,);
+      // showSnackBar('Login Successfully', type: .success);
+      Get.toNamed(AppRoute.otpScreen,arguments: phoneNumberController.text.trim());
+      // Get.toNamed(AppRoute.bottomNav,);
     }else{
       showSnackBar(response.message??'Something Went Wrong', type: .error);
     }

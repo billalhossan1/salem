@@ -6,7 +6,6 @@ import 'package:zena_app/screen/view_history/controller/view_history_controller.
 import 'package:zena_app/utils/app_icons/app_icons.dart';
 
 import '../../utils/app_colors/app_colors.dart';
-import '../../widget/app_custom_appbar/app_custom_appbar.dart';
 
 class ViewHistoryScreen extends StatelessWidget {
   const ViewHistoryScreen({super.key});
