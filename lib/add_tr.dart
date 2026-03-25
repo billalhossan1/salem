@@ -21,8 +21,9 @@ void main() {
   for (var file in files) {
     if (file.path.contains('app_string.dart') ||
         file.path.contains('app_translations.dart') ||
-        file.path.contains('add_tr.dart'))
+        file.path.contains('add_tr.dart')) {
       continue;
+    }
 
     var content = file.readAsStringSync();
     var originalContent = content;

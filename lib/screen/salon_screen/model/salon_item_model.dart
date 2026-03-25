@@ -21,6 +21,7 @@ class SalonItemModel {
   final String service;
   final String lat;
   final String lon;
+  final bool isVisited;
   final List<OpeningTime> openingTime;
   final String createdAt;
   final String updatedAt;
@@ -53,7 +54,7 @@ class SalonItemModel {
     required this.visitor,
     required this.isRewardAvailable,
     required this.lat,
-    required this.lon, required this.distance,
+    required this.lon, required this.distance, required this.isVisited,
   });
 
   factory SalonItemModel.empty() {
@@ -82,7 +83,7 @@ class SalonItemModel {
       visitor: 0,
       isRewardAvailable: false,
       lat: '',
-      lon: '', distance: '',
+      lon: '', distance: '',isVisited: false
     );
   }
 
@@ -121,7 +122,7 @@ class SalonItemModel {
           ? json['visitor']
           : int.tryParse(json['visitor']?.toString() ?? '') ?? 0,
       isRewardAvailable: json['isRewardAvailable'] ?? false,
-      lat: json['lat']?.toString() ?? '',
+     isVisited: json['isVisited'] ??false, lat: json['lat']?.toString() ?? '',
       lon: json['lon']?.toString() ?? '', distance: json['distance']?.toString() ?? '',
     );
   }

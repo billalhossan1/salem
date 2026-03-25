@@ -428,7 +428,7 @@ class SalonDetailsScreen extends StatelessWidget {
                 ),
               ),
             16.height,
-            Padding(
+           controller.salon.value.isVisited? Padding(
               padding: const EdgeInsets.all(16.0),
               child: CommonButton(
                 buttonColor: AppColor.primaryColor,
@@ -445,7 +445,7 @@ class SalonDetailsScreen extends StatelessWidget {
                   Get.toNamed(AppRoute.ratingScreen, arguments: {'name':salon.businessName,'service':salon.service,'salonId':salon.id});
                 },
               ),
-            ),
+            ):SizedBox(),
             30.height,
           ],
         );
