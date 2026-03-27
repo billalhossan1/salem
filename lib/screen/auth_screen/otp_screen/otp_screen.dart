@@ -31,10 +31,10 @@ class OptScreen extends StatelessWidget {
               focusNode: controller.focusNode,
               keyboardType: TextInputType.number,
               autofocus: true,
-              maxLength: 4,
+              maxLength: 6,
               onChanged: (value) {
-                if (value.length > 4) {
-                  controller.otpController.text = value.substring(0, 4);
+                if (value.length > 6) {
+                  controller.otpController.text = value.substring(0, 6);
                   controller
                       .otpController
                       .selection = TextSelection.fromPosition(
@@ -112,14 +112,14 @@ class OptScreen extends StatelessWidget {
                           color: Colors.transparent,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(4, (index) {
+                            children: List.generate(6, (index) {
                               return Obx(() {
                                 final code = controller.otpCode.value;
                                 final isFilled = index < code.length;
                                 final char = isFilled ? code[index] : "";
                                 return Container(
-                                  width: 60.w,
-                                  height: 60.w,
+                                  width: 50.w,
+                                  height: 50.w,
                                   alignment: Alignment.center,
                                   decoration: ShapeDecoration(
                                     color: isFilled

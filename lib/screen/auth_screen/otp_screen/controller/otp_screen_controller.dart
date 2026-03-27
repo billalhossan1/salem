@@ -28,7 +28,7 @@ class OtpScreenController extends GetxController {
     //Listen to changes in the text field
     otpController.addListener(() {
       otpCode.value = otpController.text;
-      if (otpCode.value.length == 4) {
+      if (otpCode.value.length == 6) {
         focusNode.unfocus();
       }
     });
