@@ -1,4 +1,4 @@
-String _domain = "https://ismail4000.binarybards.online";
+String _domain = "https://api.zenaapp.net";
 final String _baseUrl = "$_domain/api/v1";
 
 

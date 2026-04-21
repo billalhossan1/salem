@@ -89,6 +89,7 @@ class OnboardingScreen extends StatelessWidget {
                         );
                       },
                       child: CommonText(
+                        isDescription: true,
                         text: controller.onboardingData[index]["title"]!,
                         fontSize: 32.w,
                         fontWeight: FontWeight.w400,
