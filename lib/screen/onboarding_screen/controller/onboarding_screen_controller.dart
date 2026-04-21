@@ -12,17 +12,17 @@ class OnboardingScreenController extends GetxController {
   final List<Map<String, String>> onboardingData = [
     {
       "image": AppImages.onboarding1,
-      "title": AppString.onBoardingSubTitle01.tr,
+      "title": AppString.onBoardingTitle01.tr,
       "subtitle": AppString.onBoardingSubTitle01.tr,
     },
     {
       "image": AppImages.onboarding2,
-      "title": AppString.onBoardingSubTitle02.tr,
+      "title": AppString.onBoardingTitle02.tr,
       "subtitle": AppString.onBoardingSubTitle02.tr,
     },
     {
       "image": AppImages.onboarding3,
-      "title": AppString.onBoardingSubTitle03.tr,
+      "title": AppString.onBoardingTitle03.tr,
       "subtitle": AppString.onBoardingSubTitle03.tr,
     },
   ];

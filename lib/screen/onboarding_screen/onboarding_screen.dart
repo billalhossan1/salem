@@ -72,7 +72,7 @@ class OnboardingScreen extends StatelessWidget {
 
                   // Title Text Overlay
                   Positioned(
-                    top: MediaQuery.of(context).size.height * 0.448.h,
+                    top: CoreScreenUtils.deviceSize.height * 0.42.h,
                     left: 20.w,
                     right: 20.w,
                     child: TweenAnimationBuilder<double>(
@@ -89,7 +89,8 @@ class OnboardingScreen extends StatelessWidget {
                         );
                       },
                       child: CommonText(
-                        isDescription: true,
+                        maxLines: 5,
+                        style: TextStyle(height: 1.2),
                         text: controller.onboardingData[index]["title"]!,
                         fontSize: 32.w,
                         fontWeight: FontWeight.w400,
