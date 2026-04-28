@@ -42,7 +42,8 @@ class SalonScreenController extends GetxController {
   }
 
   Future<void> getSalonList({int page = 1}) async {
-    isLoading.value = true;
+    page==1?allSalonList.clear():null;
+    page==1?isLoading.value = true:null;
     final response = await DioService.instance.request(
       input: RequestInput(
         endpoint: ApiEndpoints.salonList,

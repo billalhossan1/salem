@@ -113,7 +113,6 @@ class HomeScreenController extends GetxController {
 
     if (result.isSuccess) {
       rewardList.addAll(result.data ?? []);
-      AppLogger.apiDebug(rewardList[0].rewardName.toString());
     }
   }
 

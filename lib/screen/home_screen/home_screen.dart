@@ -187,7 +187,8 @@ class HomeScreen extends StatelessWidget {
                           width: 100.w,
                           height: 12.h,
                           decoration: ShapeDecoration(
-                            color: const Color(0xFFF4BDE2),
+                            // color: const Color(0xFFF4BDE2),
+                            color: const Color(0xFFFFFFFF),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(24),
                             ),
@@ -197,7 +198,8 @@ class HomeScreen extends StatelessWidget {
                           width: 100.w,
                           height: 12.h,
                           decoration: ShapeDecoration(
-                            color: const Color(0xFFF4BDE2),
+                            // color: const Color(0xFFF4BDE2),
+                            color: const Color(0xFFFFFFFF),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(24),
                             ),
@@ -227,42 +229,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            24.height,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                // Expanded(
-                //   child: Padding(
-                //     padding: EdgeInsets.only(right: 8.w),
-                //     child: CommonButton(
-                //       titleText: "View Reward".tr,
-                //       buttonColor: AppColor.green100,
-                //       buttonRadius: 12.w,
-                //       titleColor: AppColor.darkColor,
-                //       titleSize: 18.w,
-                //       titleWeight: FontWeight.w500,
-                //       onTap: () {},
-                //     ),
-                //   ),
-                // ),
-                // Expanded(
-                //   child: Padding(
-                //     padding: EdgeInsets.only(left: 8.w),
-                //     child: CommonButton(
-                //       titleText: "Invite a Friend".tr,
-                //       buttonRadius: 12.w,
-                //       buttonColor: AppColor.secondaryColor,
-                //       titleColor: AppColor.darkColor,
-                //       titleSize: 18.w,
-                //       titleWeight: FontWeight.w500,
-                //       onTap: () {
-                //         Get.toNamed(AppRoute.inviteFriendsScreen);
-                //       },
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
+
             29.height,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -295,6 +262,8 @@ class HomeScreen extends StatelessWidget {
             Obx(
               () => controller.isRewardLoading.value
                   ? const HomeRewardListShimmer()
+                  : controller.rewardList.isEmpty
+                  ? Center(child: CommonText(text: 'No reward available'))
                   : SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(

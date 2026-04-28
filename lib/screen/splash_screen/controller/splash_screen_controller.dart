@@ -61,12 +61,13 @@ class SplashScreenController extends GetxController {
         } else {
           //! Not authenticated
           Get.offAllNamed(AppRoute.onboardingScreen);
+          // Get.offAllNamed(AppRoute.bottomNav);
         }
       });
     } catch (e) {
       AppLogger.error('onInitialDataLoadScreen error: $e', tag: 'Splash');
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        Get.offAllNamed(AppRoute.onboardingScreen);
+        Get.offAllNamed(AppRoute.loginScreen);
       });
     }
   }

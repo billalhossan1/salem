@@ -30,6 +30,9 @@ class SalonScreen extends StatelessWidget {
             child: Obx(() {
 
               return SmartListLoader(
+                onRefresh: (){
+                  controller.getSalonList();
+                },
                 onLoadMore: (page) {
                   controller.getSalonList(page: page);
                 },

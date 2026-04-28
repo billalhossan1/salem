@@ -37,6 +37,7 @@ class SalonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("networkImage ==================> $imageAsset");
     return Column(
       children: [
         Container(

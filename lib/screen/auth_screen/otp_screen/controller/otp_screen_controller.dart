@@ -44,7 +44,8 @@ class OtpScreenController extends GetxController {
     isLoading.value = true;
     final response = await DioService.instance.request(
       input: RequestInput(endpoint: ApiEndpoints.login, method: .POST,jsonBody: {
-        "phoneNumber":"+971${phone}",
+        // "phoneNumber":"+971${phone}",
+        "phoneNumber":"+8801868030247",
         "otp":otpCode.value,
       }),
       responseBuilder: (data) {

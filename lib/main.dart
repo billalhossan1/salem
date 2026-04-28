@@ -36,7 +36,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // 🔔 Init local notifications plugin + Android channel
-  await NotificationService.initLocalNotifications();
+  NotificationService.initLocalNotifications();
   // 🔥 Setup FCM AFTER Firebase init
   await NotificationService().setupFCM();
 
@@ -69,8 +69,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Poppins',
+
         scaffoldBackgroundColor: AppColor.screenBackgroundColor,
-        appBarTheme: AppBarTheme(surfaceTintColor: Colors.white),
+        appBarTheme: AppBarTheme(surfaceTintColor: Colors.white,centerTitle: true,),
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColor.whiteColor,
           primary: AppColor.primaryColor, // button
