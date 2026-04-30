@@ -66,13 +66,14 @@ class HowItWorkPointsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildBulletPoint('Every visit = 100 points'.tr),
-                  8.height,
-                  _buildBulletPoint('4 visits = 1 lovely reward'.tr),
-                  8.height,
                   _buildBulletPoint(
                     '3 visits within 30 days at the same salon = faster bonus ✨'.tr,
                   ),
+                  8.height,
+                  _buildBulletPoint('Every visit = 100 points'.tr),
+                  8.height,
+                  _buildBulletPoint('4 visits = 1 lovely reward'.tr),
+
                 ],
               ),
             ),

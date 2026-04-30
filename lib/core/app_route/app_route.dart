@@ -72,7 +72,7 @@ class AppRoute {
       name: otpScreen,
       page: () => OptScreen(),
       binding: BindingsBuilder(() {
-        Get.put(OtpScreenController());
+        Get.lazyPut<OtpScreenController>(() => OtpScreenController());
       }),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 300),

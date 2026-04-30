@@ -110,7 +110,10 @@ class NotificationCard extends StatelessWidget {
                     ),
                     SizedBox(height: spaceBetweenTitleAndTime ?? 4.h),
                     CommonText(
+                      textAlign: .start,
                       text: time,
+                      maxLines: 2,
+                      isDescription: true,
                       textColor: timeColor ?? AppColor.textColor,
                       fontSize: timeFontSize ?? 12.sp,
                       fontWeight: timeFontWeight ?? FontWeight.w400,

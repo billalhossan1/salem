@@ -34,8 +34,9 @@ class OtpScreenController extends GetxController {
     });
   }
 
-  final LoginScreenController loginController = Get.find<LoginScreenController>();
-  Future<void>resendOtp()async{
+  final LoginScreenController loginController =
+      Get.find<LoginScreenController>();
+  Future<void> resendOtp() async {
     startTimer();
     loginController.login();
   }
@@ -43,31 +44,41 @@ class OtpScreenController extends GetxController {
   Future<void> onTapVerify() async {
     isLoading.value = true;
     final response = await DioService.instance.request(
-      input: RequestInput(endpoint: ApiEndpoints.login, method: .POST,jsonBody: {
-        // "phoneNumber":"+971${phone}",
-        "phoneNumber":"+8801868030247",
-        "otp":otpCode.value,
-      }),
+      input: RequestInput(
+        endpoint: ApiEndpoints.login,
+        method: .POST,
+        jsonBody: {
+          "phoneNumber": "+971$phone",
+          // "phoneNumber":"+8801868030247",
+          "otp": otpCode.value,
+        },
+      ),
       responseBuilder: (data) {
-        SharePrefsHelper.setString(SharedPreferenceValue.token, data['accessToken']);
-        SharePrefsHelper.setString(SharedPreferenceValue.refreshToken, data['refreshToken']);
-        SharePrefsHelper.setString(SharedPreferenceValue.userId, data['userId']);
-        AppLogger.apiDebug( data['accessToken']);
+        SharePrefsHelper.setString(
+          SharedPreferenceValue.token,
+          data['accessToken'],
+        );
+        SharePrefsHelper.setString(
+          SharedPreferenceValue.refreshToken,
+          data['refreshToken'],
+        );
+        SharePrefsHelper.setString(
+          SharedPreferenceValue.userId,
+          data['userId'],
+        );
+        AppLogger.apiDebug(data['accessToken']);
         AppLogger.apiDebug(data['userId']);
       },
     );
 
-    if(response.isSuccess){
+    if (response.isSuccess) {
       Get.toNamed(AppRoute.bottomNav);
       showSnackBar("Login Successfully".tr, type: .success);
-    }else{
-      showSnackBar(response.message??'Something Went Wrong', type: .error);
+    } else {
+      showSnackBar(response.message ?? 'Something Went Wrong', type: .error);
     }
 
-
     isLoading.value = false;
-
-
   }
 
   void startTimer() {
@@ -87,6 +98,7 @@ class OtpScreenController extends GetxController {
     //otpController.dispose();
     focusNode.dispose();
     _timer?.cancel();
+
     super.onClose();
   }
 }

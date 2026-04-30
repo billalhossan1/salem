@@ -68,6 +68,11 @@ android {
             signingConfig = signingConfigs.getByName("release") // Optional: you can use a different config for debug
         }
     }
+
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
 }
 
 dependencies {

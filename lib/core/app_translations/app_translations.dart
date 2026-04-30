@@ -270,7 +270,7 @@ class AppTranslations extends Translations {
       'Save Changes': 'حفظ التغييرات',
       'Treat yourself more 💕': 'دلل نفسك أكثر 💕',
       'Every visit = 100 points': 'كل زيارة تمنحك 100 نقطة',
-      '4 visits = 1 lovely reward': 'كل 4 زيارات تمنحك مكافأة جميلة واحدة',
+      '4 visits = 1 lovely reward': '4 زيارات = مكافأة جميلة واحدة',
       '3 visits within 30 days at the same salon = faster bonus ✨':
           'مكافأة أسرع ✨ عند إكمال 3 زيارات خلال 30 يوماً في نفس الصالون',
       'Invite 3 Friends': 'ادعُ 3 أصدقاء',
