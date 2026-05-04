@@ -91,6 +91,7 @@ class ProfileScreenController extends GetxController {
     XFile? image,
     String? email,
     bool? notification,
+    String? languages,
   }) async {
     updateIsLoading.value = true;
 
@@ -99,7 +100,7 @@ class ProfileScreenController extends GetxController {
     if (name != null && name.isNotEmpty) jsonBody['name'] = name;
     if (email != null && email.isNotEmpty) jsonBody['email'] = email;
     if (notification != null) jsonBody['notification'] = notification;
-
+    if(languages!=null)jsonBody['languages']= languages;
     // If you want to handle image, you might need multipart/form-data separately
     // if (image != null) {
     //   // Example using FormData for Dio

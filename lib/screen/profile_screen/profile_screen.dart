@@ -191,6 +191,7 @@ class ProfileScreen extends StatelessWidget {
                                 ListTile(
                                   title: const Text("English"),
                                   onTap: () async {
+                                    controller.updateProfile(languages: 'EN');
                                     await controller.onChangedLanguage('en');
                                     Get.offAllNamed(AppRoute.splashscreen);
                                   },
@@ -204,6 +205,7 @@ class ProfileScreen extends StatelessWidget {
                                 ListTile(
                                   title: const Text("العربية"),
                                   onTap: () async {
+                                    controller.updateProfile(languages: 'AR');
                                     await controller.onChangedLanguage('ar');
                                     Get.offAllNamed(AppRoute.splashscreen);
                                   },

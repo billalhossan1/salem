@@ -6,6 +6,7 @@ class ProfileModel {
   final String role;
   final String name;
   final String email;
+  final String languages;
   final String phoneNumber;
   final bool verified;
   final String status;
@@ -34,6 +35,7 @@ class ProfileModel {
     required this.phoneNumber,
     required this.verified,
     required this.status,
+    required this.languages,
     required this.isVibrationNotificationEnabled,
     required this.isSoundNotificationEnabled,
     required this.coins,
@@ -57,6 +59,7 @@ class ProfileModel {
       spentCoins: 0,
       id: '',
       role: '',
+      languages: '',
       phoneNumber: '',
       verified: false,
       status: '',
@@ -86,6 +89,7 @@ class ProfileModel {
           : int.tryParse(json['spentCoins']?.toString() ?? '') ?? 0,
       id: json['_id']?.toString() ?? '',
       role: json['role']?.toString() ?? '',
+        languages: json['languages']?.toString() ?? '',
       phoneNumber: json['phoneNumber']?.toString() ?? '',
       verified: json['verified'] ?? false,
       status: json['status']?.toString() ?? '',
@@ -130,6 +134,7 @@ class ProfileModel {
       'isVibrationNotificationEnabled': isVibrationNotificationEnabled,
       'isSoundNotificationEnabled': isSoundNotificationEnabled,
       'coins': coins,
+      'languages': languages,
       'referralCode': referralCode,
       'invitedBy': invitedBy,
       'successfulInvites': successfulInvites,

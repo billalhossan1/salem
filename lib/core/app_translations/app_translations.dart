@@ -475,12 +475,14 @@ class AppTranslations extends Translations {
       'Top salons near you ✨ Ready for a glow session?': '✨ صالونات قريبة منك اختاري دلعك اليوم 💖',
 
       'Perfect weekend for your reward 🎁 One visit and it’s yours!': '🎁 ويكند مثالي لمكافأتك زيارة وحدة وتاخذينها 💖✨',
-
+      'We miss you 💔 Let’s fix that with a little pampering ✨':"💔 اشتقنا لكمو وقت ترجعين تدلعين نفسك؟ 💖",
       'Last chance this weekend ✨ Don’t miss your glow': '✨ آخر فرصة هالويكند لا يفوتك الدلع 💖',
       'Points Rolling In 💖': 'النقاط تتدفق 💖',
+      'It’s been a while… your glow is waiting ✨':'✨ طولتي عليناجمالك ينتظرك 💖',
       'Complete Your Profile ✨': 'أكملي ملفك الشخصي ✨',
       'Your glow starts here': 'إشراقتك تبدأ من هنا',
       'You looked amazing yesterday': 'كنتِ رائعة أمس',
+      'Don’t miss your monthly glow ✨ One more visit?':'✨ لا يفوتك glow هذا الشهرزيارة وحدة وتكملين 💖',
       'A little self-care never hurts': 'قليل من العناية بالنفس لا يضر',
       'Time to feel fresh again': 'حان وقت الانتعاش من جديد',
       'Weekend is coming': 'نهاية الأسبوع تقترب',
