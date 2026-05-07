@@ -29,7 +29,7 @@ class AppTranslations extends Translations {
       AppString.contineuWithGoggle: "Continue with Google",
       AppString.contineuWithApple: "Continue with Apple",
       AppString.verificationCode: "Verification Code",
-      AppString.enter4digitWehaveSentto: "Enter the 4-digit code sent to ",
+      AppString.enter6digitWehaveSentto: "Enter the 4-digit code sent to ",
       AppString.resendCodeIn: "Resend code at : ",
       AppString.didntReceiveIt: "Didn't Receive it?",
 
@@ -66,7 +66,7 @@ class AppTranslations extends Translations {
       'View Details': 'View Details',
       'Share the Love 💖': 'Share the Love 💖',
       'Invite a friend, they visit, and you both get something special to smile about.':
-          'Invite a friend, they visit, and you both get something special to smile about.',
+          'Invite your lovely friends and let them try ZENA,and you will enjoy great benefits with them',
       'Invite History': 'Invite History',
       '•': '•',
       'Every Visit Brings You Closer ✨': 'Every Visit Brings You Closer ✨',
@@ -201,11 +201,11 @@ class AppTranslations extends Translations {
       'MEMBER SINCE': 'MEMBER SINCE',
 
       // How It Works - Invite bullets
-      'Invite 3 friends to Zena': 'Invite 3 friends to Zena',
+      'Invite 3 friends to Zena': 'Invite 3 of your friends to ZENA 💕',
       'When they visit, you get a reward 🎁':
-          'When they visit, you get a reward 🎁',
+          'If they visit, you get a reward 🎁',
       'Your friend gets 100 points too (you both win!) 💕':
-          'Your friend gets 100 points too (you both win!) 💕',
+          'And your friend gets 100 points after (everyone wins!) 💖',
 
       // Dynamic interpolation strings from reward_card
       'Goal reached!': 'Goal reached!',
@@ -246,7 +246,7 @@ class AppTranslations extends Translations {
       AppString.contineuWithGoggle: "المتابعة باستخدام Google",
       AppString.contineuWithApple: "المتابعة باستخدام Apple",
       AppString.verificationCode: "رمز التحقق",
-      AppString.enter4digitWehaveSentto:
+      AppString.enter6digitWehaveSentto:
           "أدخل الرمز المكون من 4 أرقام المرسل إلى ",
       AppString.resendCodeIn: "إعادة إرسال الرمز خلال: ",
       AppString.didntReceiveIt: "لم تستلم الرمز؟",
@@ -273,7 +273,7 @@ class AppTranslations extends Translations {
       '4 visits = 1 lovely reward': '4 زيارات = مكافأة جميلة واحدة',
       '3 visits within 30 days at the same salon = faster bonus ✨':
           'مكافأة أسرع ✨ عند إكمال 3 زيارات خلال 30 يوماً في نفس الصالون',
-      'Invite 3 Friends': 'ادعُ 3 أصدقاء',
+      'Invite 3 Friends': '💖'+'ادعي 3 من صديقاتك ',
       'Points': 'نقاط',
       'Share the beauty, share the gift 💗': 'شارك الجمال، شارك الهدية 💗',
       'View Reward': 'عرض المكافأة',
@@ -289,6 +289,7 @@ class AppTranslations extends Translations {
       'Every Visit Brings You Closer ✨': 'كل زيارة تقربك أكثر ✨',
       'Visit your favourite salon, enjoy your time, and feel the joy add up beautifully.':
           'قم بزيارة صالونك المفضل، واستمتع بوقتك، واشعر بالفرحة تتزايد بشكل جميل.',
+      'No reward available':'لا توجد مكافأة متاحة',
       'Explore Salons': 'استكشف الصالونات',
       'Share beauty together': 'شارك الجمال معاً',
       'After completing 3 successful referrals, the reward is valid\\nfor 30 days and will be automatically applied to your next\\nvisit.':
@@ -315,6 +316,7 @@ class AppTranslations extends Translations {
       'Current Reward': 'المكافأة الحالية',
       'No active rewards': 'لا توجد مكافآت نشطة',
       'Filter by Status': 'تصفية حسب الحالة',
+      'Just a few more visits to unlock your reward ✨':'✨'+'باقي كم زيارة بسيطة وتفكين هديتك ',
       'Active': 'نشط',
       'Salon Name': 'اسم الصالون',
       'Date': 'التاريخ',
@@ -406,7 +408,7 @@ class AppTranslations extends Translations {
       'WhatsApp': 'واتساب',
       'Email Contact': 'تواصل عبر البريد الإلكتروني',
       'Contact Form': 'نموذج الاتصال',
-      'Used': 'مستخدم',
+      'Used': 'مستخدمه',
       'points': 'نقاط',
       "Total Points": "مجموع النقاط",
       'Max tier reached 🎉': 'تم الوصول إلى أعلى مستوى 🎉',
@@ -417,11 +419,11 @@ class AppTranslations extends Translations {
       'MEMBER SINCE': 'عضو منذ',
 
       // How It Works - Invite bullets
-      'Invite 3 friends to Zena': 'ادعُ 3 أصدقاء إلى زينة',
+      'Invite 3 friends to Zena':"💕Zena "+"ادعي 3 من صديقاتج لـ",
       'When they visit, you get a reward 🎁':
-          'عندما يزورون، تحصل على مكافأة 🎁',
+          'إذا زاروا، تاخذين مكافأة 🎁',
       'Your friend gets 100 points too (you both win!) 💕':
-          'صديقك يحصل أيضاً على 100 نقطة (كلاكما رابح!) 💕',
+          'وصديقتج تاخذ 100 نقطة بعد (كلكم رابحين!) 💖',
 
       // Dynamic interpolation strings from reward_card
       'Goal reached!': 'تم الوصول للهدف!',

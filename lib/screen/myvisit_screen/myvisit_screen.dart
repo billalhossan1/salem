@@ -289,7 +289,7 @@ class MyvisitScreen extends StatelessWidget {
                             ),
                           ),
                           CommonText(
-                            text: '${profile.totalVisit} ${"Friends".tr}',
+                            text: '${profile.totalVisit}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: const Color(0xFF333333),

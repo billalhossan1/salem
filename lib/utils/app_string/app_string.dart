@@ -25,8 +25,8 @@ class AppString {
   static const String contineuWithGoggle = "Continue with Google";
   static const String contineuWithApple = "Continue with Apple";
   static const String verificationCode = "Verification Code";
-  static const String enter4digitWehaveSentto =
-      "Enter the 4-digit code sent to ";
+  static const String enter6digitWehaveSentto =
+      "Enter the 6-digit code sent to ";
   static const String resendCodeIn = "Resend code at : ";
   static const String didntReceiveIt = "Didn't Receive it?";
 }

@@ -78,9 +78,10 @@ class HomeScreen extends StatelessWidget {
                         6.width,
                         Obx(
                           () => CommonText(
+
                             text:
-                                "${profileController.profileModel.value.coins}/400"
-                                    .tr,
+                               controller.savedLang=='en'? "${profileController.profileModel.value.coins}/400"
+                                    .tr:"400/${profileController.profileModel.value.coins}",
                             fontSize: 24.w,
                             fontWeight: FontWeight.w600,
                             textColor: AppColor.darkColor,
@@ -98,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                           color: AppColor.whiteColor,
                         ),
                         child: FractionallySizedBox(
-                          alignment: Alignment.centerLeft,
+                          alignment: controller.savedLang=='en'?Alignment.centerLeft:Alignment.centerRight,
                           widthFactor:
                               (profileController.profileModel.value.coins / 400)
                                   .clamp(0.0, 1.0), // 70% progress
@@ -163,8 +164,8 @@ class HomeScreen extends StatelessWidget {
                         Obx(
                           () => CommonText(
                             text:
-                                "${profileController.profileModel.value.successfulInvites}/3"
-                                    .tr,
+                               controller.savedLang=='en'? "${profileController.profileModel.value.successfulInvites}/3"
+                                    .tr:"3/${profileController.profileModel.value.successfulInvites}".tr,
                             fontSize: 24.w,
                             fontWeight: FontWeight.w500,
                             textColor: AppColor.screenBackgroundColor,
@@ -181,6 +182,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     32.height,
                     Row(
+
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
@@ -263,7 +265,7 @@ class HomeScreen extends StatelessWidget {
               () => controller.isRewardLoading.value
                   ? const HomeRewardListShimmer()
                   : controller.rewardList.isEmpty
-                  ? Center(child: CommonText(text: 'No reward available'))
+                  ? Center(child: CommonText(text: 'No reward available'.tr))
                   : SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(

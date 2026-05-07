@@ -77,7 +77,7 @@ class OptScreen extends StatelessWidget {
                 ),
                 12.height,
                 CommonText(
-                  text: AppString.enter4digitWehaveSentto.tr,
+                  text: AppString.enter6digitWehaveSentto.tr,
                   fontSize: 16.w,
                   fontWeight: FontWeight.w400,
                   textColor: AppColor.textColor,

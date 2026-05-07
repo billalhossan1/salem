@@ -24,6 +24,7 @@ class HomeScreenController extends GetxController {
   late StreamSubscription<StreamDataModel> subscription;
   String fcmToken = '';
 
+  String savedLang = 'en';
   // Refresh recent location + update server every 5 minutes
   Timer? _locationTimer;
   bool _isUpdatingLocation = false;
@@ -38,6 +39,9 @@ class HomeScreenController extends GetxController {
   Future<void> _initial() async {
     // Wait until LocationController finishes its one-time fetch
     // before firing any API call.
+    savedLang = await SharePrefsHelper.getString(
+      SharedPreferenceValue.language,
+    );
     fcmToken = await SharePrefsHelper.getString(SharedPreferenceValue.fcmToken);
 
     // Make sure initial location attempt is done (success or fail)
