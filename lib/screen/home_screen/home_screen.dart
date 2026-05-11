@@ -78,10 +78,10 @@ class HomeScreen extends StatelessWidget {
                         6.width,
                         Obx(
                           () => CommonText(
-
-                            text:
-                               controller.savedLang=='en'? "${profileController.profileModel.value.coins}/400"
-                                    .tr:"400/${profileController.profileModel.value.coins}",
+                            text: controller.savedLang == 'en'
+                                ? "${profileController.profileModel.value.coins}/400"
+                                      .tr
+                                : "400/${profileController.profileModel.value.coins}",
                             fontSize: 24.w,
                             fontWeight: FontWeight.w600,
                             textColor: AppColor.darkColor,
@@ -99,7 +99,9 @@ class HomeScreen extends StatelessWidget {
                           color: AppColor.whiteColor,
                         ),
                         child: FractionallySizedBox(
-                          alignment: controller.savedLang=='en'?Alignment.centerLeft:Alignment.centerRight,
+                          alignment: controller.savedLang == 'en'
+                              ? Alignment.centerLeft
+                              : Alignment.centerRight,
                           widthFactor:
                               (profileController.profileModel.value.coins / 400)
                                   .clamp(0.0, 1.0), // 70% progress
@@ -113,11 +115,23 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     12.height,
-                    CommonText(
-                      text: "Just a few more visits to unlock your reward ✨".tr,
-                      fontSize: 12.w,
-                      fontWeight: FontWeight.w400,
-                      textColor: AppColor.textColor,
+                    Obx(
+                      () => CommonText(
+                        text: profileController.profileModel.value.coins < 100
+                            ? "A beautiful start ✨ Your first step to glowing rewards has begun 💖"
+                                  .tr
+                            : profileController.profileModel.value.coins < 200
+                            ? "You’re getting closer 🌸 Just a few more visits to unlock your reward 🎁"
+                                  .tr
+                            : profileController.profileModel.value.coins < 300
+                            ? "You’re halfway there ✨ Keep treating yourself, you’re getting close 💕"
+                                  .tr
+                            : "You’re so close 😍 Just one more step and your reward is yours 🎁"
+                                  .tr,
+                        fontSize: 12.w,
+                        fontWeight: FontWeight.w400,
+                        textColor: AppColor.textColor,
+                      ),
                     ),
                   ],
                 ),
@@ -163,9 +177,11 @@ class HomeScreen extends StatelessWidget {
                         08.width,
                         Obx(
                           () => CommonText(
-                            text:
-                               controller.savedLang=='en'? "${profileController.profileModel.value.successfulInvites}/3"
-                                    .tr:"3/${profileController.profileModel.value.successfulInvites}".tr,
+                            text: controller.savedLang == 'en'
+                                ? "${profileController.profileModel.value.successfulInvites}/3"
+                                      .tr
+                                : "3/${profileController.profileModel.value.successfulInvites}"
+                                      .tr,
                             fontSize: 24.w,
                             fontWeight: FontWeight.w500,
                             textColor: AppColor.screenBackgroundColor,
@@ -182,7 +198,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                     32.height,
                     Row(
-
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
@@ -230,7 +245,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-
 
             29.height,
             Row(

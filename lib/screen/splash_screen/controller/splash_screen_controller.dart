@@ -60,8 +60,8 @@ class SplashScreenController extends GetxController {
           Get.offAllNamed(AppRoute.bottomNav);
         } else {
           //! Not authenticated
-          Get.offAllNamed(AppRoute.onboardingScreen);
-          // Get.offAllNamed(AppRoute.bottomNav);
+          // Get.offAllNamed(AppRoute.onboardingScreen);
+          Get.offAllNamed(AppRoute.bottomNav);
         }
       });
     } catch (e) {
