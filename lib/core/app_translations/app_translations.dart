@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:zena_app/utils/app_colors/app_colors.dart';
 import '../../utils/app_string/app_string.dart';
 
 class AppTranslations extends Translations {
+  String secondaryHex =
+      '#${AppColor.secondaryColor.value.toRadixString(16).substring(2)}';
   @override
   Map<String, Map<String, String>> get keys => {
     'en': {
@@ -51,10 +54,11 @@ class AppTranslations extends Translations {
       '*': '*',
       'Save Changes': 'Save Changes',
       'Treat yourself more 💕': 'Treat yourself more 💕',
-      'Every visit = 100 points': 'Every visit = 100 points',
-      '4 visits = 1 lovely reward': '4 visits = 1 lovely reward',
-      '3 visits within 30 days at the same salon = faster bonus ✨':
-          '3 visits within 30 days at the same salon = faster bonus ✨',
+      '<span>Every visit = <span style="color: $secondaryHex; font-weight: 900;">100</span> points</span>': '<span>Every visit = <span style="color: $secondaryHex; font-weight: 900;">100</span> points</span>',
+      '<span><span style="color: $secondaryHex; font-weight: 900;">4</span> visits = 1 lovely reward</span>':
+          '<span><span style="color: $secondaryHex; font-weight: 900;">4</span> visits = 1 lovely reward</span>',
+      '<span><span style="color: $secondaryHex; font-weight: 900;">3</span> visits within <span style="color: $secondaryHex; font-weight: 900;">30</span> days at the same salon = faster bonus ✨</span>':
+          '<span><span style="color: $secondaryHex; font-weight: 900;">3</span> visits within <span style="color: $secondaryHex; font-weight: 900;">30</span> days at the same salon = faster bonus ✨</span>',
       'Invite 3 Friends': 'Invite 3 Friends',
       'Points': 'Points',
       'Share the beauty, share the gift 💗':
@@ -266,16 +270,25 @@ class AppTranslations extends Translations {
       'Full Name': 'الاسم الكامل',
       'Email Address': 'عنوان البريد الإلكتروني',
       'Enter your email address': 'أدخل عنوان بريدك الإلكتروني',
+
+
+      "A beautiful start ✨ Your first step to glowing rewards has begun 💖":'💖''بداية حلوة ✨ أول خطوة للجمال بدأت ',
+      "You’re getting closer 🌸 Just a few more visits to unlock your reward 🎁":'🎁'"قربتي أكثر 🌸 كم زيارة بسيطة وتوصلي لمكافأتك ",
+      "You’re halfway there ✨ Keep treating yourself, you’re getting close 💕":'💕'"نص الطريق صار وراك ✨ كمّلي دلعك والباقي قليل ",
+      "You’re so close 😍 Just one more step and your reward is yours 🎁":'🎁'"قربتي مرّة 😍 باقي خطوة بسيطة ومكافأتك عندك ",
+
+
       '*': '*',
       'Save Changes': 'حفظ التغييرات',
-      'Treat yourself more 💕': 'دلل نفسك أكثر 💕',
-      'Every visit = 100 points': 'كل زيارة تمنحك 100 نقطة',
-      '4 visits = 1 lovely reward': '4 زيارات = مكافأة جميلة واحدة',
-      '3 visits within 30 days at the same salon = faster bonus ✨':
-          'مكافأة أسرع ✨ عند إكمال 3 زيارات خلال 30 يوماً في نفس الصالون',
+      'Treat yourself more 💕': '💕''دلل نفسك أكثر ',
+      '<span>Every visit = <span style="color: $secondaryHex; font-weight: 900;">100</span> points</span>': '<span>كل زيارة تمنحك <span style="color: $secondaryHex; font-weight: 900;">100</span> نقطة</span>',
+      '<span><span style="color: $secondaryHex; font-weight: 900;">4</span> visits = 1 lovely reward</span>':
+          '<span><span style="color: $secondaryHex; font-weight: 900;">4</span> زيارات = مكافأة جميلة</span>',
+      '<span><span style="color: $secondaryHex; font-weight: 900;">3</span> visits within <span style="color: $secondaryHex; font-weight: 900;">30</span> days at the same salon = faster bonus ✨</span>':
+          '<span><span style="color: $secondaryHex; font-weight: 900;">3</span> زيارات خلال <span style="color: $secondaryHex; font-weight: 900;">30</span> يوم في نفس الصالون = مكافأة أسرع يعني الزيارة الثالثة تمنحك <span style="color: $secondaryHex; font-weight: 900;">200</span> نقطة 💕</span>',
       'Invite 3 Friends': '💖'+'ادعي 3 من صديقاتك ',
       'Points': 'نقاط',
-      'Share the beauty, share the gift 💗': 'شارك الجمال، شارك الهدية 💗',
+      'Share the beauty, share the gift 💗': '💗''شارك الجمال، شارك الهدية ',
       'View Reward': 'عرض المكافأة',
       'Invite a Friend': 'دعوة صديق',
       'Exclusive Offer': 'عرض حصري',
@@ -288,7 +301,7 @@ class AppTranslations extends Translations {
       '•': '•',
       'Every Visit Brings You Closer ✨': 'كل زيارة تقربك أكثر ✨',
       'Visit your favourite salon, enjoy your time, and feel the joy add up beautifully.':
-          'قم بزيارة صالونك المفضل، واستمتع بوقتك، واشعر بالفرحة تتزايد بشكل جميل.',
+          '💕'+'زوري صالونج المفضل، واستمتعي بخدماتج، وشوفي نقاطج تكبر مع كل زيارة',
       'No reward available':'لا توجد مكافأة متاحة',
       'Explore Salons': 'استكشف الصالونات',
       'Share beauty together': 'شارك الجمال معاً',

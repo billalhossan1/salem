@@ -1,6 +1,7 @@
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:zena_app/screen/home_screen/controller/home_screen_controller.dart';
 import 'package:zena_app/utils/app_icons/app_icons.dart';
 
 import '../../utils/app_colors/app_colors.dart';
@@ -12,6 +13,9 @@ class HowItWorkPointsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeScreenController homeScreenController = Get.find<HomeScreenController>();
+    String secondaryHex =
+        '#${AppColor.secondaryColor.value.toRadixString(16).substring(2)}';
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
       appBar: AppCustomAppbar(
@@ -66,13 +70,15 @@ class HowItWorkPointsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
+                  _buildBulletPoint('<span>Every visit = <span style="color: $secondaryHex; font-weight: 900;">100</span> points</span>'.tr,homeScreenController.savedLang),
+                  8.height,
+                  _buildBulletPoint('<span><span style="color: $secondaryHex; font-weight: 900;">4</span> visits = 1 lovely reward</span>'.tr,homeScreenController.savedLang),
+                  8.height,
+
                   _buildBulletPoint(
-                    '3 visits within 30 days at the same salon = faster bonus ✨'.tr,
+                    '<span><span style="color: $secondaryHex; font-weight: 900;">3</span> visits within <span style="color: $secondaryHex; font-weight: 900;">30</span> days at the same salon = faster bonus ✨</span>'.tr,homeScreenController.savedLang
                   ),
-                  8.height,
-                  _buildBulletPoint('Every visit = 100 points'.tr),
-                  8.height,
-                  _buildBulletPoint('4 visits = 1 lovely reward'.tr),
 
                 ],
               ),
@@ -105,7 +111,7 @@ class HowItWorkPointsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBulletPoint(String text) {
+  Widget _buildBulletPoint(String text,String language) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -118,8 +124,10 @@ class HowItWorkPointsScreen extends StatelessWidget {
         8.width,
         Expanded(
           child: CommonText(
+            isDescription: true,
             text: text,
             fontSize: 16.sp,
+            overflow: .visible,
             fontWeight: FontWeight.w400,
             textColor: AppColor.darkColor,
             maxLines: 3,
