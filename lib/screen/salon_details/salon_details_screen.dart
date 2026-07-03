@@ -80,7 +80,7 @@ class SalonDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 textColor: AppColor.darkColor,
                               ),
-                              NotificationWidget()
+                              NotificationWidget(),
                             ],
                           ),
                         ),
@@ -205,7 +205,8 @@ class SalonDetailsScreen extends StatelessWidget {
                                           ? Center(
                                               child: CommonText(
                                                 text:
-                                                    "No opening hours available".tr,
+                                                    "No opening hours available"
+                                                        .tr,
                                                 fontSize: 12.sp,
                                                 fontWeight: FontWeight.w400,
                                                 textColor: AppColor.textColor,
@@ -290,21 +291,20 @@ class SalonDetailsScreen extends StatelessWidget {
                             buttonColor: AppColor.screenBackgroundColor,
                             borderColor: AppColor.textColor,
                           ),
-                          // 16.height,
-                          // controller.isConfirmVisitLoading.value
-                          //     ? LoadingWidget()
-                          //     : CommonButton(
-                          //   buttonColor: Colors.white,
-                          //   borderColor: Colors.black,
-                          //   buttonWidth: double.infinity,
-                          //   buttonRadius: 12.w,
-                          //   titleText: "Confirm Visit".tr,
-                          //   onTap: () {
-                          //     controller.confirmVisit();
-                          //   },
-                          // ),
+                          16.height,
+                          controller.isConfirmVisitLoading.value
+                              ? LoadingWidget()
+                              : CommonButton(
+                                  buttonColor: Colors.white,
+                                  borderColor: Colors.black,
+                                  buttonWidth: double.infinity,
+                                  buttonRadius: 12.w,
+                                  titleText: "Visit".tr,
+                                  onTap: () {
+                                    controller.confirmVisit();
+                                  },
+                                ),
                           24.height,
-
 
                           //! Active Points Banner (only when rewards available)
                           if (salon.isRewardAvailable) ...[
@@ -428,24 +428,33 @@ class SalonDetailsScreen extends StatelessWidget {
                 ),
               ),
             16.height,
-           controller.salon.value.isVisited? Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: CommonButton(
-                buttonColor: AppColor.primaryColor,
-                titleColor: AppColor.darkColor,
-                buttonWidth: double.infinity,
-                buttonRadius: 12.w,
-                titleText: "Rate This Salon".tr,
-                prefix: Icon(
-                  Icons.star_rate_rounded,
-                  color: AppColor.darkColor,
-                  size: 20.sp,
-                ),
-                onTap: () {
-                  Get.toNamed(AppRoute.ratingScreen, arguments: {'name':salon.businessName,'service':salon.service,'salonId':salon.id});
-                },
-              ),
-            ):SizedBox(),
+            controller.salon.value.isVisited
+                ? Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: CommonButton(
+                      buttonColor: AppColor.primaryColor,
+                      titleColor: AppColor.darkColor,
+                      buttonWidth: double.infinity,
+                      buttonRadius: 12.w,
+                      titleText: "Rate This Salon".tr,
+                      prefix: Icon(
+                        Icons.star_rate_rounded,
+                        color: AppColor.darkColor,
+                        size: 20.sp,
+                      ),
+                      onTap: () {
+                        Get.toNamed(
+                          AppRoute.ratingScreen,
+                          arguments: {
+                            'name': salon.businessName,
+                            'service': salon.service,
+                            'salonId': salon.id,
+                          },
+                        );
+                      },
+                    ),
+                  )
+                : SizedBox(),
             30.height,
           ],
         );

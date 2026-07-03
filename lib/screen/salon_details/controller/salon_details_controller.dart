@@ -37,7 +37,6 @@ class SalonDetailsController extends GetxController {
     getSingleSalonById();
   }
 
-
   Future<void> confirmVisit() async {
     // ── 1. Fetch / re-request location on every press ──────────────────────
     isConfirmVisitLoading.value = true;
@@ -74,14 +73,12 @@ class SalonDetailsController extends GetxController {
     isConfirmVisitLoading.value = false;
   }
 
-
   Future<void> getSingleSalonById() async {
     isLoading.value = true;
     await DioService.instance.request(
       input: RequestInput(
         endpoint: '${ApiEndpoints.salonList}/$salonId',
         method: .GET,
-
       ),
       responseBuilder: (data) {
         salon.value = SalonItemModel.fromJson(data);
@@ -134,10 +131,7 @@ class SalonDetailsController extends GetxController {
       'https://www.google.com/maps/dir/?api=1&destination=$lat,$lon&travelmode=driving',
     );
 
-    final launched = await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication,
-    );
+    final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
 
     if (!launched) {
       showSnackBar(

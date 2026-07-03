@@ -69,6 +69,7 @@ class EditProfileScreen extends StatelessWidget {
 
                 //! Full Name
                 CommonText(
+
                   text: "Full Name".tr,
                   fontSize: 16.w,
                   fontWeight: FontWeight.w500,
@@ -76,6 +77,7 @@ class EditProfileScreen extends StatelessWidget {
                 ),
                 12.height,
                 CommonTextField(
+                  initialText: controller.profile.profileModel.value.name,
                   controller: controller.fullNameController,
                   hintText: "Enter your full name".tr,
                   validationType: ValidationType.validateFullName,

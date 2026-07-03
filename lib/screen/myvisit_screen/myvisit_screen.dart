@@ -147,6 +147,7 @@ class MyvisitScreen extends StatelessWidget {
                       if (range <= 0) return 1.0;
                       return ((coins - base) / range).clamp(0.0, 1.0);
                     }();
+                     print("tire name${currentTier?.tireName??'N/A'}");
 
                     final tierLabel = currentTier?.tireName ?? '—';
                     final coinsToNext = nextTier != null
@@ -353,193 +354,193 @@ class MyvisitScreen extends StatelessWidget {
                 ),
               ],
             ),
-            12.height,
-            CommonTextField(
-              validationType: ValidationType.notRequired,
-              prefixIcon: SvgPicture.asset(AppIcons.searchIcons),
-              backgroundColor: AppColor.screenBackgroundColor,
-              hintText: "Search".tr,
-              borderColor: AppColor.textColor.withValues(alpha: 0.2),
-              onChanged: (val) => controller.updateSearchText(val),
-            ),
-            12.height,
-            // ── Filter row ────────────────────────────────────────────────
-            Obx(() {
-              final hasDate = controller.selectedDate.value != null;
-              final hasStatus = controller.selectedStatus.value.isNotEmpty;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      // ── Status filter ──────────────────────────────
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => _showStatusPicker(context, controller),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 12,
-                            ),
-                            decoration: BoxDecoration(
-                              color: hasStatus
-                                  ? AppColor.secondaryColor.withValues(
-                                      alpha: 0.1,
-                                    )
-                                  : Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: hasStatus
-                                    ? AppColor.secondaryColor
-                                    : AppColor.textColor.withValues(alpha: 0.2),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  hasStatus
-                                      ? controller.selectedStatus.value.tr
-                                      : 'Status'.tr,
-                                  style: TextStyle(
-                                    color: hasStatus
-                                        ? AppColor.secondaryColor
-                                        : AppColor.textColor,
-                                    fontWeight: hasStatus
-                                        ? FontWeight.w600
-                                        : FontWeight.w400,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.chevron_right,
-                                  color: hasStatus
-                                      ? AppColor.secondaryColor
-                                      : AppColor.textColor,
-                                  size: 20,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      12.width,
-                      // ── Date filter ────────────────────────────────
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () async {
-                            // If a date is already selected → clear it
-                            if (controller.selectedDate.value != null) {
-                              controller.selectedDate.value = null;
-                              controller.onUserRewardsRefresh();
-                              return;
-                            }
-                            // Otherwise open the picker
-                            final picked = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(2020),
-                              lastDate: DateTime.now(),
-                              builder: (context, child) => Theme(
-                                data: Theme.of(context).copyWith(
-                                  colorScheme: ColorScheme.light(
-                                    primary: AppColor.secondaryColor,
-                                    onPrimary: Colors.white,
-                                    surface: Colors.white,
-                                    onSurface: AppColor.darkColor,
-                                  ),
-                                ),
-                                child: child!,
-                              ),
-                            );
-                            if (picked != null) {
-                              controller.selectedDate.value = picked;
-                              controller.onUserRewardsRefresh();
-                            }
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 12,
-                            ),
-                            decoration: BoxDecoration(
-                              color: hasDate
-                                  ? AppColor.secondaryColor.withValues(
-                                      alpha: 0.1,
-                                    )
-                                  : Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: hasDate
-                                    ? AppColor.secondaryColor
-                                    : AppColor.textColor.withValues(alpha: 0.2),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  hasDate
-                                      ? _fmtFilterDate(
-                                          controller.selectedDate.value!,
-                                        )
-                                      : 'Date'.tr,
-                                  style: TextStyle(
-                                    color: hasDate
-                                        ? AppColor.secondaryColor
-                                        : AppColor.textColor,
-                                    fontWeight: hasDate
-                                        ? FontWeight.w600
-                                        : FontWeight.w400,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Icon(
-                                  hasDate
-                                      ? Icons.close
-                                      : Icons.calendar_today_outlined,
-                                  color: hasDate
-                                      ? AppColor.secondaryColor
-                                      : AppColor.textColor,
-                                  size: 18,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // ── Clear button ──────────────────────────────────
-                  if (hasDate || hasStatus)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: GestureDetector(
-                        onTap: controller.clearVisitFilters,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.close,
-                              size: 14,
-                              color: AppColor.textColor,
-                            ),
-                            4.width,
-                            Text(
-                              'Clear filters'.tr,
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: AppColor.textColor,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
+            // 12.height,
+            // CommonTextField(
+            //   validationType: ValidationType.notRequired,
+            //   prefixIcon: SvgPicture.asset(AppIcons.searchIcons),
+            //   backgroundColor: AppColor.screenBackgroundColor,
+            //   hintText: "Search".tr,
+            //   borderColor: AppColor.textColor.withValues(alpha: 0.2),
+            //   onChanged: (val) => controller.updateSearchText(val),
+            // ),
+            // 12.height,
+            // // ── Filter row ────────────────────────────────────────────────
+            // Obx(() {
+            //   final hasDate = controller.selectedDate.value != null;
+            //   final hasStatus = controller.selectedStatus.value.isNotEmpty;
+            //   return Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         children: [
+            //           // ── Status filter ──────────────────────────────
+            //           Expanded(
+            //             child: GestureDetector(
+            //               onTap: () => _showStatusPicker(context, controller),
+            //               child: Container(
+            //                 padding: const EdgeInsets.symmetric(
+            //                   horizontal: 12,
+            //                   vertical: 12,
+            //                 ),
+            //                 decoration: BoxDecoration(
+            //                   color: hasStatus
+            //                       ? AppColor.secondaryColor.withValues(
+            //                           alpha: 0.1,
+            //                         )
+            //                       : Colors.white,
+            //                   borderRadius: BorderRadius.circular(8),
+            //                   border: Border.all(
+            //                     color: hasStatus
+            //                         ? AppColor.secondaryColor
+            //                         : AppColor.textColor.withValues(alpha: 0.2),
+            //                   ),
+            //                 ),
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //                   children: [
+            //                     Text(
+            //                       hasStatus
+            //                           ? controller.selectedStatus.value.tr
+            //                           : 'Status'.tr,
+            //                       style: TextStyle(
+            //                         color: hasStatus
+            //                             ? AppColor.secondaryColor
+            //                             : AppColor.textColor,
+            //                         fontWeight: hasStatus
+            //                             ? FontWeight.w600
+            //                             : FontWeight.w400,
+            //                         fontSize: 13,
+            //                       ),
+            //                     ),
+            //                     Icon(
+            //                       Icons.chevron_right,
+            //                       color: hasStatus
+            //                           ? AppColor.secondaryColor
+            //                           : AppColor.textColor,
+            //                       size: 20,
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //           12.width,
+            //           // ── Date filter ────────────────────────────────
+            //           Expanded(
+            //             child: GestureDetector(
+            //               onTap: () async {
+            //                 // If a date is already selected → clear it
+            //                 if (controller.selectedDate.value != null) {
+            //                   controller.selectedDate.value = null;
+            //                   controller.onUserRewardsRefresh();
+            //                   return;
+            //                 }
+            //                 // Otherwise open the picker
+            //                 final picked = await showDatePicker(
+            //                   context: context,
+            //                   initialDate: DateTime.now(),
+            //                   firstDate: DateTime(2020),
+            //                   lastDate: DateTime.now(),
+            //                   builder: (context, child) => Theme(
+            //                     data: Theme.of(context).copyWith(
+            //                       colorScheme: ColorScheme.light(
+            //                         primary: AppColor.secondaryColor,
+            //                         onPrimary: Colors.white,
+            //                         surface: Colors.white,
+            //                         onSurface: AppColor.darkColor,
+            //                       ),
+            //                     ),
+            //                     child: child!,
+            //                   ),
+            //                 );
+            //                 if (picked != null) {
+            //                   controller.selectedDate.value = picked;
+            //                   controller.onUserRewardsRefresh();
+            //                 }
+            //               },
+            //               child: Container(
+            //                 padding: const EdgeInsets.symmetric(
+            //                   horizontal: 12,
+            //                   vertical: 12,
+            //                 ),
+            //                 decoration: BoxDecoration(
+            //                   color: hasDate
+            //                       ? AppColor.secondaryColor.withValues(
+            //                           alpha: 0.1,
+            //                         )
+            //                       : Colors.white,
+            //                   borderRadius: BorderRadius.circular(8),
+            //                   border: Border.all(
+            //                     color: hasDate
+            //                         ? AppColor.secondaryColor
+            //                         : AppColor.textColor.withValues(alpha: 0.2),
+            //                   ),
+            //                 ),
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //                   children: [
+            //                     Text(
+            //                       hasDate
+            //                           ? _fmtFilterDate(
+            //                               controller.selectedDate.value!,
+            //                             )
+            //                           : 'Date'.tr,
+            //                       style: TextStyle(
+            //                         color: hasDate
+            //                             ? AppColor.secondaryColor
+            //                             : AppColor.textColor,
+            //                         fontWeight: hasDate
+            //                             ? FontWeight.w600
+            //                             : FontWeight.w400,
+            //                         fontSize: 13,
+            //                       ),
+            //                     ),
+            //                     Icon(
+            //                       hasDate
+            //                           ? Icons.close
+            //                           : Icons.calendar_today_outlined,
+            //                       color: hasDate
+            //                           ? AppColor.secondaryColor
+            //                           : AppColor.textColor,
+            //                       size: 18,
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       // ── Clear button ──────────────────────────────────
+            //       if (hasDate || hasStatus)
+            //         Padding(
+            //           padding: const EdgeInsets.only(top: 8),
+            //           child: GestureDetector(
+            //             onTap: controller.clearVisitFilters,
+            //             child: Row(
+            //               mainAxisSize: MainAxisSize.min,
+            //               children: [
+            //                 Icon(
+            //                   Icons.close,
+            //                   size: 14,
+            //                   color: AppColor.textColor,
+            //                 ),
+            //                 4.width,
+            //                 Text(
+            //                   'Clear filters'.tr,
+            //                   style: TextStyle(
+            //                     fontSize: 12,
+            //                     color: AppColor.textColor,
+            //                     decoration: TextDecoration.underline,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //     ],
+            //   );
+            // }),
             20.height,
             CommonText(text: "My Visits & Points".tr, fontSize: 20),
             10.height,

@@ -7,6 +7,7 @@ import 'package:zena_app/core/api_endpoints/api_endpoints.dart';
 import 'package:zena_app/core/services/location_controller.dart';
 import 'package:zena_app/screen/home_screen/model/rewards_item_model.dart';
 import 'package:zena_app/screen/home_screen/repo/home_repo.dart';
+import 'package:zena_app/screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import 'package:zena_app/service/socket_service.dart';
 import 'package:zena_app/utils/shared_prefe.dart';
 
@@ -39,9 +40,12 @@ class HomeScreenController extends GetxController {
   Future<void> _initial() async {
     // Wait until LocationController finishes its one-time fetch
     // before firing any API call.
-    savedLang = await SharePrefsHelper.getString(
+    final lang = await SharePrefsHelper.getString(
       SharedPreferenceValue.language,
     );
+    if (lang.isNotEmpty) {
+      savedLang = lang;
+    }
     fcmToken = await SharePrefsHelper.getString(SharedPreferenceValue.fcmToken);
 
     // Make sure initial location attempt is done (success or fail)
@@ -57,7 +61,9 @@ class HomeScreenController extends GetxController {
     getRewards();
     userId = await SharePrefsHelper.getString(SharedPreferenceValue.userId);
     SocketService.instance.connect(id: userId);
-    subscription = SocketService.instance.streamController.stream.listen((event) {
+    subscription = SocketService.instance.streamController.stream.listen((
+      event,
+    ) {
       if (event.streamType == StreamType.notification) {
         count++;
       }
@@ -82,16 +88,16 @@ class HomeScreenController extends GetxController {
       // Push latest lat/lon (if available) to backend
       await updateFcm();
     } catch (e) {
-      AppLogger.error('HomeScreenController: periodic location update failed — $e');
+      AppLogger.error(
+        'HomeScreenController: periodic location update failed — $e',
+      );
     } finally {
       _isUpdatingLocation = false;
     }
   }
 
   Future<void> updateFcm() async {
-    final Map<String, dynamic> jsonBody = {
-      'fcmToken': fcmToken,
-    };
+    final Map<String, dynamic> jsonBody = {'fcmToken': fcmToken};
 
     final loc = LocationController.instance.currentLocation.value;
     if (loc.lat != 0 && loc.long != 0) {

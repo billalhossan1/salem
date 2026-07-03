@@ -1,4 +1,3 @@
-
 import 'package:core_kit/core_kit.dart';
 import 'package:core_kit/network/request_input.dart';
 import 'package:get/get.dart';
@@ -42,16 +41,16 @@ class SalonScreenController extends GetxController {
   }
 
   Future<void> getSalonList({int page = 1}) async {
-    page==1?allSalonList.clear():null;
-    page==1?isLoading.value = true:null;
+    currentLocation.value = LocationController.instance.currentLocation.value;
+    page == 1 ? allSalonList.clear() : null;
+    page == 1 ? isLoading.value = true : null;
     final response = await DioService.instance.request(
       input: RequestInput(
         endpoint: ApiEndpoints.salonList,
         method: .GET,
         queryParams: {
-
-            'lat1': currentLocation.value.lat,
-            'lon1': currentLocation.value.long,
+          'lat1': currentLocation.value.lat,
+          'lon1': currentLocation.value.long,
           if (search.isNotEmpty) 'searchTerm': search,
           'page': page,
           'limit': 10,

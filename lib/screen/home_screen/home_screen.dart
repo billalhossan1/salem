@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/core/app_route/app_route.dart';
 import 'package:zena_app/screen/home_screen/controller/home_screen_controller.dart';
+import 'package:zena_app/screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 import 'package:zena_app/widget/app_custom_appbar/app_custom_appbar.dart';
 import 'package:zena_app/widget/app_custom_cards/home_screen_card.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<HomeScreenController>();
     final profileController = Get.find<ProfileScreenController>();
+    final myVisitController = Get.find<MyvisitScreenController>();
 
     return Scaffold(
       backgroundColor: AppColor.screenBackgroundColor,
@@ -77,15 +79,20 @@ class HomeScreen extends StatelessWidget {
                         SvgPicture.asset(AppIcons.starIcons),
                         6.width,
                         Obx(
-                          () => CommonText(
-                            text: controller.savedLang == 'en'
-                                ? "${profileController.profileModel.value.coins}/400"
-                                      .tr
-                                : "400/${profileController.profileModel.value.coins}",
-                            fontSize: 24.w,
-                            fontWeight: FontWeight.w600,
-                            textColor: AppColor.darkColor,
-                          ),
+                          () {
+                            final coins =
+                                profileController.profileModel.value.coins;
+                            final targetCoins =
+                                myVisitController.getTargetCoins(coins);
+                            return CommonText(
+                              text: controller.savedLang == 'en'
+                                  ? "$coins/$targetCoins".tr
+                                  : "$targetCoins/$coins",
+                              fontSize: 24.w,
+                              fontWeight: FontWeight.w600,
+                              textColor: AppColor.darkColor,
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -102,9 +109,9 @@ class HomeScreen extends StatelessWidget {
                           alignment: controller.savedLang == 'en'
                               ? Alignment.centerLeft
                               : Alignment.centerRight,
-                          widthFactor:
-                              (profileController.profileModel.value.coins / 400)
-                                  .clamp(0.0, 1.0), // 70% progress
+                          widthFactor: myVisitController.calculateTierProgress(
+                            profileController.profileModel.value.coins,
+                          ),
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),

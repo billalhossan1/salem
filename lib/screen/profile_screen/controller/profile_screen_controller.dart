@@ -124,7 +124,10 @@ class ProfileScreenController extends GetxController {
     if(response.isSuccess){
       showSnackBar(response.message??"Profile Update Successfully", type: SnackBarType.success);
       getProfile(isNotification: true);
+      Get.back();
 
+    }else{
+      showSnackBar(response.message??"Something went wrong", type: .error);
     }
   }
 }

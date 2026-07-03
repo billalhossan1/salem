@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zena_app/screen/myvisit_screen/controller/myvisit_screen_controller.dart';
 import 'package:zena_app/screen/myvisit_screen/model/user_rewards_model.dart';
+import 'package:zena_app/screen/myvisit_screen/model/visit_history_model.dart';
 import 'package:zena_app/utils/app_colors/app_colors.dart';
 
 /// Reusable paginated visit-history table.
@@ -57,12 +58,12 @@ class VisitHistoryTable extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.35,
               child: SmartListLoader(
                 isLoading: controller.isUserRewardsLoading.value,
-                isLoadDone: controller.isUserRewardsLoadDone.value,
-                itemCount: controller.userRewardsList.length,
+                // isLoadDone: controller.isUserRewardsLoadDone.value,
+                itemCount: controller.rewardHistoryList.length,
                 onRefresh: controller.onUserRewardsRefresh,
                 onLoadMore: controller.onUserRewardsLoadMore,
                 itemBuilder: (context, index) {
-                  final item = controller.userRewardsList[index];
+                  final item = controller.rewardHistoryList[index];
                   return _VisitRow(item: item);
                 },
               ),
@@ -97,7 +98,7 @@ class _THead extends StatelessWidget {
 
 // ─── Single data row ──────────────────────────────────────────────────────────
 class _VisitRow extends StatelessWidget {
-  final UserRewardsModel item;
+  final RewardHistoryModel item;
   const _VisitRow({required this.item});
 
   @override
@@ -112,9 +113,7 @@ class _VisitRow extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Text(
-                  item.salonId.businessName.isNotEmpty
-                      ? item.salonId.businessName
-                      : '—',
+                  item.salonName.isNotEmpty ? item.salonName : '—',
                   style: const TextStyle(
                     fontSize: 12,
                     color: Color(0xFF333333),
@@ -126,7 +125,7 @@ class _VisitRow extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Text(
-                  formatDate(item.createdAt),
+                  formatDate(item.lastView),
                   style: const TextStyle(
                     fontSize: 12,
                     color: Color(0xFF6E6E6E),
@@ -138,7 +137,7 @@ class _VisitRow extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Text(
-                  item.salonId.service.isNotEmpty ? item.salonId.service : '—',
+                  item.serviceType.isNotEmpty ? item.serviceType : '—',
                   style: const TextStyle(
                     fontSize: 12,
                     color: Color(0xFF6E6E6E),
@@ -164,7 +163,7 @@ class _VisitRow extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Text(
-                  '${item.pointCost} PTS'.tr,
+                  '${item.totalPoint} PTS'.tr,
                   style: TextStyle(
                     fontSize: 12,
                     color: AppColor.successColor,

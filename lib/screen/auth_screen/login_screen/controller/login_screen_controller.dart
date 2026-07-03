@@ -26,9 +26,8 @@ class LoginScreenController extends GetxController {
     _phoneListener = () {
       AppLogger.apiDebug(phoneNumberController.text);
       final text = phoneNumberController.text.trim();
-      isPhoneValid.value = text.length == 9 ;
+      isPhoneValid.value = text.length == 9;
       AppLogger.apiDebug(isPhoneValid.value.toString());
-
     };
     phoneNumberController.addListener(_phoneListener);
 
@@ -57,7 +56,7 @@ class LoginScreenController extends GetxController {
         method: RequestMethod.POST,
         jsonBody: {
           // "phoneNumber": "+8801868030247",
-          "phoneNumber": countryCode+phoneNumberController.text.trim(),
+          "phoneNumber": countryCode + phoneNumberController.text.trim(),
           if (referralCode.value.isNotEmpty) "referralCode": referralCode.value,
         },
       ),
@@ -76,10 +75,13 @@ class LoginScreenController extends GetxController {
     if (response.isSuccess) {
       // showSnackBar('Otp Send Successfully', type: .success);
       // showSnackBar('Login Successfully', type: .success);
-      Get.toNamed(AppRoute.otpScreen,arguments: phoneNumberController.text.trim());
+      Get.toNamed(
+        AppRoute.otpScreen,
+        arguments: phoneNumberController.text.trim(),
+      );
       // Get.toNamed(AppRoute.bottomNav,);
-    }else{
-      showSnackBar(response.message??'Something Went Wrong', type: .error);
+    } else {
+      showSnackBar(response.message ?? 'Something Went Wrong', type: .error);
     }
   }
 

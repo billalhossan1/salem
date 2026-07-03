@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:core_kit/core_kit.dart';
 import 'package:core_kit/network/request_input.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:zena_app/screen/myvisit_screen/model/tiar_model.dart';
 import 'package:zena_app/screen/myvisit_screen/model/user_rewards_model.dart';
+import 'package:zena_app/screen/myvisit_screen/model/visit_history_model.dart';
 import 'package:zena_app/screen/profile_screen/controller/profile_screen_controller.dart';
 import 'package:zena_app/screen/rewards_screen/controller/rewards_screen_controller.dart';
 
@@ -38,6 +40,7 @@ class MyvisitScreenController extends GetxController {
   RxBool isCurrentRewardsLoadDone = false.obs;
   RxBool isUserRewardsLoading = false.obs;
   RxBool isUserRewardsLoadDone = false.obs;
+  RxList<RewardHistoryModel> rewardHistoryList = <RewardHistoryModel>[].obs;
   // ── Visit filter state ─────────────────────────────────────────────
   final Rxn<DateTime> selectedDate = Rxn<DateTime>();
   final RxString selectedStatus = ''.obs;
@@ -83,7 +86,32 @@ class MyvisitScreenController extends GetxController {
     }
   }
 
+  Future<void> getAllVisit(int page) async {
+    isUserRewardsLoading.value = true;
+    await DioService.instance.request(
+      input: RequestInput(
+        endpoint: '/visit',
+        method: .GET,
+        queryParams: {'page': page},
+        // queryParams: {"userId": userId},
+      ),
+      responseBuilder: (data) {
+        final list = (data['data'] as List<dynamic>)
+            .map((e) => RewardHistoryModel.fromJson(e))
+            .toList();
+        if (page == 1) {
+          rewardHistoryList.assignAll(list);
+        } else {
+          rewardHistoryList.addAll(list);
+        }
+      },
+    );
+    isUserRewardsLoading.value = false;
+  }
+
   Future<void> getUserRewards(int page) async {
+    getAllVisit(page);
+
     if (isUserRewardsLoading.value || isUserRewardsLoadDone.value) return;
     isUserRewardsLoading.value = true;
 
@@ -138,12 +166,16 @@ class MyvisitScreenController extends GetxController {
     getUserRewards(1);
   }
 
-  void onUserRewardsLoadMore(int page) => getUserRewards(page);
+  void onUserRewardsLoadMore(int page) {
+    getUserRewards(page);
+    getAllVisit(page);
+  }
 
   void onCurrentRewardRefresh() {
     isCurrentRewardsLoadDone.value = false;
     activeRewards.clear();
     getAllCurrentRewards(1);
+    getAllVisit(1);
   }
 
   void onCurrentRewardLoadMore(int page) => getAllCurrentRewards(page);
@@ -168,6 +200,42 @@ class MyvisitScreenController extends GetxController {
     isDateAscending.value = !isDateAscending.value;
   }
 
+  List<TiarModel> get sortedTiers =>
+      [...tiarList]..sort((a, b) => a.tireCoins.compareTo(b.tireCoins));
+
+  int getTargetCoins(int coins) {
+    final tiers = sortedTiers;
+    if (tiers.isEmpty) return 400;
+    for (final t in tiers) {
+      if (coins < t.tireCoins) return t.tireCoins;
+    }
+    return tiers.last.tireCoins;
+  }
+
+  double calculateTierProgress(int coins) {
+    final tiers = sortedTiers;
+    if (tiers.isEmpty) return (coins / 400).clamp(0.0, 1.0);
+
+    TiarModel? cur;
+    for (final t in tiers) {
+      if (coins >= t.tireCoins) cur = t;
+    }
+
+    TiarModel? next;
+    for (final t in tiers) {
+      if (coins < t.tireCoins) {
+        next = t;
+        break;
+      }
+    }
+
+    if (next == null) return 1.0;
+    final base = cur?.tireCoins ?? 0;
+    final range = next.tireCoins - base;
+    if (range <= 0) return 1.0;
+    return ((coins - base) / range).clamp(0.0, 1.0);
+  }
+
   Future<void> getAllTiar() async {
     isTiarLoading.value = true;
     await DioService.instance.request(
@@ -177,6 +245,7 @@ class MyvisitScreenController extends GetxController {
             .map((item) => TiarModel.fromJson(item))
             .toList();
         tiarList.assignAll(list);
+       print("first tiar name ${ tiarList[0].tireName}");
       },
     );
     isTiarLoading.value = false;
