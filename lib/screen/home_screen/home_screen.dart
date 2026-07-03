@@ -122,23 +122,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     12.height,
-                    Obx(
-                      () => CommonText(
-                        text: profileController.profileModel.value.coins < 100
-                            ? "A beautiful start ✨ Your first step to glowing rewards has begun 💖"
-                                  .tr
-                            : profileController.profileModel.value.coins < 200
-                            ? "You’re getting closer 🌸 Just a few more visits to unlock your reward 🎁"
-                                  .tr
-                            : profileController.profileModel.value.coins < 300
-                            ? "You’re halfway there ✨ Keep treating yourself, you’re getting close 💕"
-                                  .tr
-                            : "You’re so close 😍 Just one more step and your reward is yours 🎁"
-                                  .tr,
-                        fontSize: 12.w,
-                        fontWeight: FontWeight.w400,
-                        textColor: AppColor.textColor,
-                      ),
+                    CommonText(
+                      text: "Just a few more visits to unlock your reward ✨".tr,
+                      fontSize: 12.w,
+                      fontWeight: FontWeight.w400,
+                      textColor: AppColor.textColor,
                     ),
                   ],
                 ),
@@ -184,11 +172,9 @@ class HomeScreen extends StatelessWidget {
                         08.width,
                         Obx(
                           () => CommonText(
-                            text: controller.savedLang == 'en'
-                                ? "${profileController.profileModel.value.successfulInvites}/3"
-                                      .tr
-                                : "3/${profileController.profileModel.value.successfulInvites}"
-                                      .tr,
+                            text:
+                               controller.savedLang=='en'? "${profileController.profileModel.value.successfulInvites}/3"
+                                    .tr:"3/${profileController.profileModel.value.successfulInvites}".tr,
                             fontSize: 24.w,
                             fontWeight: FontWeight.w500,
                             textColor: AppColor.screenBackgroundColor,
@@ -205,6 +191,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     32.height,
                     Row(
+
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
@@ -252,6 +239,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+
 
             29.height,
             Row(
